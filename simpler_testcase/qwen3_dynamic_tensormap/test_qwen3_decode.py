@@ -33,10 +33,10 @@ _SCENE_TEST_MOD = importlib.import_module(SceneTestCase.__module__)
 _ROOT = Path(__file__).resolve().parent
 _PLOT_HEATMAP_MAX_NUMEL = 1_048_576
 
-# Hook + heatmap module live at <toolkit-root>/dependency-0521/qwen3/.
-# This test file is at <toolkit-root>/dependency-0521/pypto/runtime/examples/qwen3/dynamic_tensormap/.
-# parents: 0=dynamic_tensormap, 1=qwen3, 2=examples, 3=runtime, 4=pypto, 5=dependency-0521.
-_DEPENDENCY_QWEN3_DIR = Path(__file__).resolve().parents[5] / "qwen3"
+# Hook + heatmap module live under V200-benchmark/dependency/.
+# This test file is at V200-benchmark/simpler_testcase/qwen3_dynamic_tensormap/.
+# parents: 0=qwen3_dynamic_tensormap, 1=simpler_testcase, 2=V200-benchmark.
+_DEPENDENCY_QWEN3_DIR = Path(__file__).resolve().parents[2] / "dependency"
 
 
 def _load_qwen3_hooks():
@@ -695,6 +695,8 @@ class TestQwen314bDynamicTensormapDecode(SceneTestCase):
         orig_compare = _SCENE_TEST_MOD._compare_outputs
 
         def _compare_with_heatmaps(test_args, golden_args, output_names, r, a):
+            # golden 校验不包含 kv cache（仅校验 out）
+            output_names = [n for n in output_names if n not in ("k_cache", "v_cache")]
             _QWEN3_HOOKS.log_qwen3("golden_compare_start", case=case_name, outputs=",".join(output_names))
             try:
                 mismatches: list[tuple[str, float, torch.Tensor, torch.Tensor, str | None]] = []

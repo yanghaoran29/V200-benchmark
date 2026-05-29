@@ -1,11 +1,17 @@
 #!/usr/bin/env python3
 # Copyright (c) PyPTO Contributors.
-"""Qwen3-14B single-layer decode — dynamic tensormap, manual-scope variant.
+"""Qwen3-14B single-layer decode — dynamic tensormap variant.
 
-Same kernel set, function IDs, signatures, and dynamic batch derivation as
-``dynamic_tensormap``. The orchestration uses ``PTO2_SCOPE(PTO2ScopeMode::MANUAL)``
-with explicit task-id dependencies via ``ArgWithDeps<N>::add_dep(...)``; the
-dependency pattern follows ``simpler/.../Qwen3Decode_manual_scope_new``.
+Auto-scope orchestration (PyPTO IR compiler output) that reads user_batch
+dynamically from ``orch_args.tensor(0).shapes[0]``. Uses 18 incore kernels
+(see CALLABLE below): SPMD projections, per-batch attention, a MixedKernels
+out_proj_residual group {10, 11, 11}, MLP gate/up/silu/down, and a single
+AIV down_proj_residual writeback.
+
+Modeled after simpler/examples/qwen3_V200/test_qwen3_decode.py — same
+golden-reuse cache, the same relaxed comparator, and the same heatmap
+emission path; only the incore signature list and a few path/constant
+tweaks differ.
 """
 from __future__ import annotations
 
@@ -28,8 +34,8 @@ _ROOT = Path(__file__).resolve().parent
 _PLOT_HEATMAP_MAX_NUMEL = 1_048_576
 
 # Hook + heatmap module live under V200-benchmark/dependency/.
-# This test file is at V200-benchmark/simpler_testcase/qwen3_dynamic_manual_scope/.
-# parents: 0=qwen3_dynamic_manual_scope, 1=simpler_testcase, 2=V200-benchmark.
+# This test file is at V200-benchmark/simpler_testcase/qwen3_dynamic_tensormap_allspmd/.
+# parents: 0=qwen3_dynamic_tensormap_allspmd, 1=simpler_testcase, 2=V200-benchmark.
 _DEPENDENCY_QWEN3_DIR = Path(__file__).resolve().parents[2] / "dependency"
 
 
@@ -426,7 +432,7 @@ def _compute_golden(tensors: dict, params: dict | None = None) -> None:
 
 
 @scene_test(level=2, runtime="tensormap_and_ringbuffer")
-class TestQwen314bDynamicManualScopeDecode(SceneTestCase):
+class TestQwen314bDynamicTensormapDecode(SceneTestCase):
     RTOL = 3e-3
     ATOL = 3e-3
 
