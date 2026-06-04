@@ -47,7 +47,6 @@ INTERMEDIATE = 17408
 KV_HIDDEN = NUM_KV_HEADS * HEAD_DIM
 BATCH_TILE = 16
 BLOCK_SIZE = 128
-SEQ_TILE = 128
 EPS = 1e-6
 Q_HEAD_BATCH = 5
 INPUT_PROJ_K_CHUNK = 128
@@ -320,13 +319,13 @@ def _compute_golden(tensors: dict, params: dict | None = None) -> None:
     tensors["out"][:] = (down + resid1).bfloat16()
 
 
-# Orchestration argument signature — shared by all three SPMD tiers.
+# Orchestration argument signature — shared by all SPMD tiers.
 _ORCH_SIGNATURE = [
     D.IN, D.IN, D.IN, D.IN, D.IN, D.IN, D.IN, D.IN, D.IN, D.IN,
     D.IN, D.IN, D.INOUT, D.INOUT, D.IN, D.IN, D.IN, D.IN, D.IN, D.OUT,
 ]
 
-# Kernel set and func-id assignments — identical across all three SPMD tiers; the
+# Kernel set and func-id assignments — identical across all SPMD tiers; the
 # tier is selected purely by which orchestration source is compiled in.
 _INCORES = [
             {
@@ -459,7 +458,7 @@ _INCORES = [
 
 
 class _Qwen3DecodeMixin:
-    """Shared golden/args/runner for the three SPMD tiers.
+    """Shared golden/args/runner for the SPMD tiers.
 
     Not a ``SceneTestCase`` itself (so it is not collected as a test); each tier
     subclass below mixes this in and supplies a ``CALLABLE`` that differs only in
@@ -638,13 +637,12 @@ class _Qwen3DecodeMixin:
 
 
 # --- SPMD tier as a compile-time -D, single shared orchestration source ---------
-# All three tiers compile the SAME orchestration/qwen3_decode.cpp; the tier is
+# All tiers compile the SAME orchestration/qwen3_decode.cpp; the tier is
 # passed to the compiler as -DQWEN3_SPMD_TIER=<tier> (no per-tier source files).
 # Each test class declares its tier via CALLABLE["orchestration"]["spmd_tier"];
 # the hooks below thread it into the orchestration compile flags. The orchestration
 # toolchains (host g++ for *sim, aarch64 g++ for hardware) are the only ones
 # patched, so the macro never reaches the (tier-agnostic) kernel compiles.
-import os  # noqa: E402
 from simpler_setup import toolchain as _toolchain  # noqa: E402
 
 _ACTIVE_SPMD_TIER = {"value": None}
@@ -694,25 +692,64 @@ def _callable(spmd_tier):
 
 
 @scene_test(level=2, runtime="tensormap_and_ringbuffer")
-class TestQwen314bDynamicManualScopeNoSpmdDecode(_Qwen3DecodeMixin, SceneTestCase):
-    """Tier 0 — no SPMD: every chunkable op runs one task per chunk."""
+class TestQwen314bDynamicManualScopeNonSpmdDecode(_Qwen3DecodeMixin, SceneTestCase):
+    """--non-spmd (tier 0) — m=1: every chunk is its own single-block task."""
 
     CALLABLE = _callable(0)
 
 
 @scene_test(level=2, runtime="tensormap_and_ringbuffer")
-class TestQwen314bDynamicManualScopePartialSpmdDecode(_Qwen3DecodeMixin, SceneTestCase):
-    """Tier 1 — partial SPMD: attention + gate/up/silu use SPMD; the rest per-chunk."""
+class TestQwen314bDynamicManualScopeSpmd2Decode(_Qwen3DecodeMixin, SceneTestCase):
+    """--spmd-2 (tier 1) — m=2: every chunkable op uses blocks_per_task=min(2, total_chunks)."""
 
     CALLABLE = _callable(1)
 
 
 @scene_test(level=2, runtime="tensormap_and_ringbuffer")
-class TestQwen314bDynamicManualScopeAllSpmdDecode(_Qwen3DecodeMixin, SceneTestCase):
-    """Tier 2 — all SPMD: every chunkable op runs a single SPMD launch."""
+class TestQwen314bDynamicManualScopeSpmd4Decode(_Qwen3DecodeMixin, SceneTestCase):
+    """--spmd-4 (tier 2) — m=4: every chunkable op uses blocks_per_task=min(4, total_chunks)."""
 
     CALLABLE = _callable(2)
 
 
+@scene_test(level=2, runtime="tensormap_and_ringbuffer")
+class TestQwen314bDynamicManualScopeSpmd8Decode(_Qwen3DecodeMixin, SceneTestCase):
+    """--spmd-8 (tier 3) — m=8: every chunkable op uses blocks_per_task=min(8, total_chunks)."""
+
+    CALLABLE = _callable(3)
+
+
+@scene_test(level=2, runtime="tensormap_and_ringbuffer")
+class TestQwen314bDynamicManualScopeAllSpmdDecode(_Qwen3DecodeMixin, SceneTestCase):
+    """--all-spmd (tier 4) — m=total_chunks: one SPMD task per chunkable op."""
+
+    CALLABLE = _callable(4)
+
+
+# Map each SPMD CLI flag to its test class. Passing one or more of these flags on
+# the standalone runner selects exactly those configs; with none given, every
+# config runs (matching pytest collection of all five classes).
+_SPMD_FLAG_TO_CASE = {
+    "--non-spmd": "TestQwen314bDynamicManualScopeNonSpmdDecode",
+    "--spmd-2": "TestQwen314bDynamicManualScopeSpmd2Decode",
+    "--spmd-4": "TestQwen314bDynamicManualScopeSpmd4Decode",
+    "--spmd-8": "TestQwen314bDynamicManualScopeSpmd8Decode",
+    "--all-spmd": "TestQwen314bDynamicManualScopeAllSpmdDecode",
+}
+
+
+def _apply_spmd_flags(argv):
+    """Translate --non-spmd/--spmd-2/--spmd-4/--spmd-8/--all-spmd into --case
+    selectors so the framework's fixed argparse never sees the custom flags."""
+    selected = [case for flag, case in _SPMD_FLAG_TO_CASE.items() if flag in argv]
+    rest = [a for a in argv if a not in _SPMD_FLAG_TO_CASE]
+    for case in selected:
+        rest += ["--case", case]
+    return rest
+
+
 if __name__ == "__main__":
+    import sys
+
+    sys.argv = [sys.argv[0]] + _apply_spmd_flags(sys.argv[1:])
     SceneTestCase.run_module(__name__)

@@ -17,7 +17,7 @@ installed ``simpler_setup.goldens.paged_attention``.
 import torch
 from simpler.task_interface import ArgDirection as D
 
-from simpler_setup import Scalar, SceneTestCase, TaskArgsBuilder, Tensor, scene_test
+from simpler_setup import SceneTestCase, TaskArgsBuilder, Tensor, scene_test
 from simpler_setup.goldens.paged_attention import compute_golden as _pa_compute_golden
 from simpler_setup.goldens.paged_attention import generate_inputs as _pa_generate_inputs
 
@@ -93,12 +93,9 @@ class TestPagedAttentionUnroll(SceneTestCase):
 
     def generate_args(self, params):
         result = _pa_generate_inputs(params)
-        specs = []
-        for name, value in result:
-            if isinstance(value, torch.Tensor):
-                specs.append(Tensor(name, value))
-            else:
-                specs.append(Scalar(name, value))
+        # Pass tensors only. The attention scale (a model constant) is intentionally
+        # not forwarded from Python — the orchestration derives it internally.
+        specs = [Tensor(name, value) for name, value in result if isinstance(value, torch.Tensor)]
         return TaskArgsBuilder(*specs)
 
     def compute_golden(self, args, params):

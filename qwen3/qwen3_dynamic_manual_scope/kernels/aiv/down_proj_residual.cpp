@@ -45,58 +45,44 @@ static __aicore__ inline void ptoas_auto_sync_tail(
 }
 
 static __aicore__ void down_proj_residual(__gm__ float* v1, __gm__ float* v2, __gm__ bfloat16_t* v3, int32_t v4, int32_t v5, int32_t v6, int32_t v7, int32_t v8) {
-  unsigned v9 = 5120;
   SaturationMode v10 = SaturationMode::OFF;
   RoundMode v11 = RoundMode::CAST_ROUND;
-  unsigned v12 = 0;
-  const int32_t v13 = 128;
-  const int32_t v14 = 1;
-  const int32_t v15 = 5120;
-  const int32_t v16 = 16;
-  const int64_t v17 = 16384;
-  const int64_t v18 = 8192;
-  const int64_t v19 = 0;
   using T = float;
 
   #if defined(__DAV_VEC__)
   set_mask_norm();
   set_vector_mask(-1, -1);
-  int32_t v20 = (int32_t) ((uint32_t) v7 * (uint32_t) v13);
-  Tile<TileType::Vec, float, 16, 128, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v21 = Tile<TileType::Vec, float, 16, 128, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v16, v13);
-  uint64_t v22 = (uint64_t) v19;
-  TASSIGN(v21, v22);
+  int32_t v20 = (int32_t) ((uint32_t) v7 * (uint32_t) 128);
+  Tile<TileType::Vec, float, 16, 128, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v21 = Tile<TileType::Vec, float, 16, 128, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(16, 128);
+  TASSIGN(v21, (uint64_t) 0);
   pto::Shape<1, 1, 1, 16, 128> v23 = pto::Shape<1, 1, 1, 16, 128>();
   pto::Stride<81920, 81920, 81920, 5120, 1> v24 = pto::Stride<81920, 81920, 81920, 5120, 1>();
-  GlobalTensor<float, pto::Shape<1, 1, 1, 16, 128>, pto::Stride<81920, 81920, 81920, 5120, 1>, pto::Layout::ND> v25 = GlobalTensor<float, pto::Shape<1, 1, 1, 16, 128>, pto::Stride<81920, 81920, 81920, 5120, 1>, pto::Layout::ND>(v1 + (v12 + v12 * (unsigned) v15 + (unsigned) v20 * (unsigned) v14), v23, v24);
+  GlobalTensor<float, pto::Shape<1, 1, 1, 16, 128>, pto::Stride<81920, 81920, 81920, 5120, 1>, pto::Layout::ND> v25 = GlobalTensor<float, pto::Shape<1, 1, 1, 16, 128>, pto::Stride<81920, 81920, 81920, 5120, 1>, pto::Layout::ND>(v1 + (0 + 0 * (unsigned) 5120 + (unsigned) v20 * (unsigned) 1), v23, v24);
   TLOAD(v21, v25);
-  Tile<TileType::Vec, float, 16, 128, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v26 = Tile<TileType::Vec, float, 16, 128, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v16, v13);
-  uint64_t v27 = (uint64_t) v18;
-  TASSIGN(v26, v27);
+  Tile<TileType::Vec, float, 16, 128, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v26 = Tile<TileType::Vec, float, 16, 128, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(16, 128);
+  TASSIGN(v26, (uint64_t) 8192);
   pto::Shape<1, 1, 1, 16, 128> v28 = pto::Shape<1, 1, 1, 16, 128>();
   pto::Stride<81920, 81920, 81920, 5120, 1> v29 = pto::Stride<81920, 81920, 81920, 5120, 1>();
-  GlobalTensor<float, pto::Shape<1, 1, 1, 16, 128>, pto::Stride<81920, 81920, 81920, 5120, 1>, pto::Layout::ND> v30 = GlobalTensor<float, pto::Shape<1, 1, 1, 16, 128>, pto::Stride<81920, 81920, 81920, 5120, 1>, pto::Layout::ND>(v2 + (v12 + v12 * (unsigned) v15 + (unsigned) v20 * (unsigned) v14), v28, v29);
+  GlobalTensor<float, pto::Shape<1, 1, 1, 16, 128>, pto::Stride<81920, 81920, 81920, 5120, 1>, pto::Layout::ND> v30 = GlobalTensor<float, pto::Shape<1, 1, 1, 16, 128>, pto::Stride<81920, 81920, 81920, 5120, 1>, pto::Layout::ND>(v2 + (0 + 0 * (unsigned) 5120 + (unsigned) v20 * (unsigned) 1), v28, v29);
   TLOAD(v26, v30);
   set_flag(PIPE_MTE2, PIPE_V, EVENT_ID0);
-  Tile<TileType::Vec, float, 16, 128, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v31 = Tile<TileType::Vec, float, 16, 128, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v16, v13);
-  uint64_t v32 = (uint64_t) v19;
-  TASSIGN(v31, v32);
+  Tile<TileType::Vec, float, 16, 128, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v31 = Tile<TileType::Vec, float, 16, 128, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(16, 128);
+  TASSIGN(v31, (uint64_t) 0);
   wait_flag(PIPE_MTE2, PIPE_V, EVENT_ID0);
   TADD(v31, v21, v26);
-  Tile<TileType::Vec, bfloat16_t, 16, 128, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v33 = Tile<TileType::Vec, bfloat16_t, 16, 128, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v16, v13);
-  uint64_t v34 = (uint64_t) v17;
-  TASSIGN(v33, v34);
+  Tile<TileType::Vec, bfloat16_t, 16, 128, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v33 = Tile<TileType::Vec, bfloat16_t, 16, 128, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(16, 128);
+  TASSIGN(v33, (uint64_t) 16384);
   TCVT(v33, v31, v11, v10);
-  Tile<TileType::Vec, bfloat16_t, 16, 128, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v35 = Tile<TileType::Vec, bfloat16_t, 16, 128, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v4, v13);
-  uint64_t v36 = (uint64_t) v17;
-  TASSIGN(v35, v36);
+  Tile<TileType::Vec, bfloat16_t, 16, 128, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v35 = Tile<TileType::Vec, bfloat16_t, 16, 128, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v4, 128);
+  TASSIGN(v35, (uint64_t) 16384);
   pipe_barrier(PIPE_V);
   TMOV(v35, v33);
   set_flag(PIPE_V, PIPE_MTE3, EVENT_ID0);
-  v35.SetValidShape(v4, v13);
-  unsigned v37 = (unsigned) v4 * v9;
+  v35.SetValidShape(v4, 128);
+  unsigned v37 = (unsigned) v4 * 5120;
   pto::Shape<1, 1, 1, -1, 128> v38 = pto::Shape<1, 1, 1, -1, 128>(v4);
   pto::Stride<-1, -1, -1, 5120, 1> v39 = pto::Stride<-1, -1, -1, 5120, 1>(v37, v37, v37);
-  GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, -1, 128>, pto::Stride<-1, -1, -1, 5120, 1>, pto::Layout::ND> v40 = GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, -1, 128>, pto::Stride<-1, -1, -1, 5120, 1>, pto::Layout::ND>(v3 + (v12 + (unsigned) v5 * (unsigned) v15 + (unsigned) v20 * (unsigned) v14), v38, v39);
+  GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, -1, 128>, pto::Stride<-1, -1, -1, 5120, 1>, pto::Layout::ND> v40 = GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, -1, 128>, pto::Stride<-1, -1, -1, 5120, 1>, pto::Layout::ND>(v3 + (0 + (unsigned) v5 * (unsigned) 5120 + (unsigned) v20 * (unsigned) 1), v38, v39);
   wait_flag(PIPE_V, PIPE_MTE3, EVENT_ID0);
   TSTORE(v40, v35);
   #endif // __DAV_VEC__
@@ -111,30 +97,30 @@ extern "C" __aicore__ __attribute__((always_inline)) void kernel_entry(__gm__ in
     int32_t __pypto_spmd_block_idx = get_block_idx(args);
     int32_t __pypto_spmd_block_num = get_block_num(args);
 
-    // Unpack tensor: down_tile__ssa_v1
-    __gm__ Tensor* down_tile__ssa_v1_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
-    __gm__ float* down_tile__ssa_v1 = reinterpret_cast<__gm__ float*>(down_tile__ssa_v1_tensor->buffer.addr) + down_tile__ssa_v1_tensor->start_offset;
+    // Unpack tensor: down_tile
+    __gm__ Tensor* down_tile_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
+    __gm__ float* down_tile = reinterpret_cast<__gm__ float*>(down_tile_tensor->buffer.addr) + down_tile_tensor->start_offset;
 
-    // Unpack tensor: resid1_tile__ssa_v1
-    __gm__ Tensor* resid1_tile__ssa_v1_tensor = reinterpret_cast<__gm__ Tensor*>(args[1]);
-    __gm__ float* resid1_tile__ssa_v1 = reinterpret_cast<__gm__ float*>(resid1_tile__ssa_v1_tensor->buffer.addr) + resid1_tile__ssa_v1_tensor->start_offset;
+    // Unpack tensor: resid1_tile
+    __gm__ Tensor* resid1_tile_tensor = reinterpret_cast<__gm__ Tensor*>(args[1]);
+    __gm__ float* resid1_tile = reinterpret_cast<__gm__ float*>(resid1_tile_tensor->buffer.addr) + resid1_tile_tensor->start_offset;
 
-    // Unpack tensor: out__iter_v1
-    __gm__ Tensor* out__iter_v1_tensor = reinterpret_cast<__gm__ Tensor*>(args[2]);
-    __gm__ bfloat16_t* out__iter_v1 = reinterpret_cast<__gm__ bfloat16_t*>(out__iter_v1_tensor->buffer.addr) + out__iter_v1_tensor->start_offset;
+    // Unpack tensor: out
+    __gm__ Tensor* out_tensor = reinterpret_cast<__gm__ Tensor*>(args[2]);
+    __gm__ bfloat16_t* out = reinterpret_cast<__gm__ bfloat16_t*>(out_tensor->buffer.addr) + out_tensor->start_offset;
 
-    // Unpack scalar: cur_valid__ssa_v1
-    union { uint64_t u64; int64_t val; } cur_valid__ssa_v1_conv;
-    cur_valid__ssa_v1_conv.u64 = args[3];
-    int64_t cur_valid__ssa_v1 = cur_valid__ssa_v1_conv.val;
+    // Unpack scalar: cur_valid
+    union { uint64_t u64; int64_t val; } cur_valid_conv;
+    cur_valid_conv.u64 = args[3];
+    int64_t cur_valid = cur_valid_conv.val;
 
-    // Unpack scalar: b0__idx_v0
-    union { uint64_t u64; int64_t val; } b0__idx_v0_conv;
-    b0__idx_v0_conv.u64 = args[4];
-    int64_t b0__idx_v0 = b0__idx_v0_conv.val;
+    // Unpack scalar: b0
+    union { uint64_t u64; int64_t val; } b0_conv;
+    b0_conv.u64 = args[4];
+    int64_t b0 = b0_conv.val;
 
     // Extract dynamic dim: USER_BATCH_DYN
-    int64_t USER_BATCH_DYN = static_cast<int64_t>(out__iter_v1_tensor->shapes[0]);
+    int64_t USER_BATCH_DYN = static_cast<int64_t>(out_tensor->shapes[0]);
 
     // Unpack scalar: __pypto_chunk_base (SPMD tier: chunk index base; 0 in single-SPMD launch)
     union { uint64_t u64; int64_t val; } __pypto_chunk_base_conv;
@@ -142,5 +128,5 @@ extern "C" __aicore__ __attribute__((always_inline)) void kernel_entry(__gm__ in
     int64_t __pypto_chunk_base = __pypto_chunk_base_conv.val;
 
     // Forward to ptoas-generated function
-    down_proj_residual(down_tile__ssa_v1, resid1_tile__ssa_v1, out__iter_v1, cur_valid__ssa_v1, b0__idx_v0, USER_BATCH_DYN, (int32_t)(__pypto_chunk_base + __pypto_spmd_block_idx), __pypto_spmd_block_num);
+    down_proj_residual(down_tile, resid1_tile, out, cur_valid, b0, USER_BATCH_DYN, (int32_t)(__pypto_chunk_base + __pypto_spmd_block_idx), __pypto_spmd_block_num);
 }
