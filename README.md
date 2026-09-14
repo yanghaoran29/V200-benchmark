@@ -23,6 +23,7 @@
 |------|------|------|
 | A manual scope | `qwen3/qwen3_dynamic_manual_scope/` | `test_qwen3_decode.py` + `orchestration/qwen3_decode.cpp` + `kernels/{aic,aiv}/` |
 | B tensormap | `qwen3/qwen3_dynamic_tensormap/` | `test_qwen3_decode.py` + `orchestration/qwen3_decode.cpp` + `kernels/{aic,aiv}/` |
+| PyPTO harvest | `qwen3/qwen3_decode_layer/` | `test_qwen3_decode_layer.py` + pypto codegen `orchestration/` + `kernels/{aic,aiv}/`（见 `VERSIONS.md`） |
 
 每个变体按 SPMD 用量分五档（`--non-spmd` / `--spmd-2` / `--spmd-4` / `--spmd-8` / `--all-spmd`，对所有可分块算子施加统一目标宽度，详见 1.3）：五档共用同一套 kernel 与**同一份**参数化编排 `orchestration/qwen3_decode.cpp`，档位由编译宏 `-DQWEN3_SPMD_TIER=0…4` 在编译期传入（默认 4 即 `--all-spmd`，无需为每档单独建源文件）；`test_qwen3_decode.py` 内五个用例类各自声明档位，由测试框架注入到该编排的编译命令，standalone 运行时也可直接用上述 CLI 参数选择档位。
 
@@ -280,7 +281,30 @@ python test_qwen3_decode.py -p a2a3  --all-spmd --enable-l2-swimlane
 
 ---
 
+# 3. PyPTO harvest 样例（CSA / Qwen decode layer）
+
+由 `pypto-lib` codegen 产物封装为 simpler `SceneTestCase`；工具链 pin 见仓库根 `VERSIONS.md`。
+
+| 目录 | 入口 | 说明 |
+|------|------|------|
+| `qwen3/qwen3_decode_layer/` | `test_qwen3_decode_layer.py` | Qwen3-14B 单层 `decode_fwd`；夹具自包含（seed=1234） |
+| `deepseek/decode_csa/` | `test_decode_csa.py` | DeepSeek V4-Flash CSA attention；夹具经同级 `pypto-lib/.../decode_csa.build_tensor_specs` |
+
+默认 `SKIP_GOLDEN=True`（先 compile+run）。运行前：`source <workspace>/activate.sh`，`PYTHONPATH` 含 venv site-packages 与（CSA）pypto-lib。
+
+```bash
+task-submit --timeout 600 --max-time 600 --device auto --device-num 1 --run \
+  'cd qwen3/qwen3_decode_layer && python test_qwen3_decode_layer.py -p a2a3 -d $TASK_DEVICE --skip-golden'
+task-submit --timeout 600 --max-time 600 --device auto --device-num 1 --run \
+  'cd deepseek/decode_csa && python test_decode_csa.py -p a2a3 -d $TASK_DEVICE --skip-golden --enable-dep-gen'
+```
+
+---
+
 # 修改历史
+
+### 2026/9/14
+1. 新增 `qwen3/qwen3_decode_layer`、`deepseek/decode_csa`：pypto-lib codegen → simpler SceneTestCase；记录五仓版本于 `VERSIONS.md`。
 
 ### 2026/6/4
 1. SPMD 方案改为"单目录 + 可配置档位"：删除 `qwen3/basic/`，去掉 `qwen3/all_spmd/` 目录层，两变体 `qwen3_dynamic_manual_scope` / `qwen3_dynamic_tensormap` 直接置于 `qwen3/` 下。
