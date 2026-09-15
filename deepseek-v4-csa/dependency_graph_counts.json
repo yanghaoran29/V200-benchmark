@@ -1,0 +1,1010 @@
+{
+  "physical_records": 1182,
+  "resources": {
+    "aiv": 437,
+    "aic": 745
+  },
+  "nodes": [
+    {
+      "name": "hc_pre_rms",
+      "physical_records": 1,
+      "resources": {
+        "aiv": 1
+      },
+      "logical_task_ids": [
+        "4294967301"
+      ]
+    },
+    {
+      "name": "hc_pre_linear",
+      "physical_records": 4,
+      "resources": {
+        "aic": 4
+      },
+      "logical_task_ids": [
+        "4294967303"
+      ]
+    },
+    {
+      "name": "hc_pre_linear_reduce",
+      "physical_records": 1,
+      "resources": {
+        "aiv": 1
+      },
+      "logical_task_ids": [
+        "4294967305"
+      ]
+    },
+    {
+      "name": "split_pre_post",
+      "physical_records": 1,
+      "resources": {
+        "aiv": 1
+      },
+      "logical_task_ids": [
+        "4294967307"
+      ]
+    },
+    {
+      "name": "comb_sinkhorn",
+      "physical_records": 1,
+      "resources": {
+        "aiv": 1
+      },
+      "logical_task_ids": [
+        "4294967308"
+      ]
+    },
+    {
+      "name": "mix_x",
+      "physical_records": 4,
+      "resources": {
+        "aiv": 4
+      },
+      "logical_task_ids": [
+        "4294967309"
+      ]
+    },
+    {
+      "name": "csa_rope_step",
+      "physical_records": 1,
+      "resources": {
+        "aiv": 1
+      },
+      "logical_task_ids": [
+        "4294967310"
+      ]
+    },
+    {
+      "name": "Q: rope_interleave",
+      "physical_records": 1,
+      "resources": {
+        "aiv": 1
+      },
+      "logical_task_ids": [
+        "4294967311"
+      ]
+    },
+    {
+      "name": "csa_cmp_rope",
+      "physical_records": 1,
+      "resources": {
+        "aiv": 1
+      },
+      "logical_task_ids": [
+        "4294967312"
+      ]
+    },
+    {
+      "name": "compressed: rope_interleave",
+      "physical_records": 1,
+      "resources": {
+        "aiv": 1
+      },
+      "logical_task_ids": [
+        "4294967313"
+      ]
+    },
+    {
+      "name": "rms_norm",
+      "physical_records": 1,
+      "resources": {
+        "aiv": 1
+      },
+      "logical_task_ids": [
+        "4294967314"
+      ]
+    },
+    {
+      "name": "q_rope_prepare",
+      "physical_records": 1,
+      "resources": {
+        "aiv": 1
+      },
+      "logical_task_ids": [
+        "4294967318"
+      ]
+    },
+    {
+      "name": "qr_proj_seed",
+      "physical_records": 1,
+      "resources": {
+        "aiv": 1
+      },
+      "logical_task_ids": [
+        "4294967321"
+      ]
+    },
+    {
+      "name": "qr_proj_matmul",
+      "physical_records": 64,
+      "resources": {
+        "aic": 64
+      },
+      "logical_task_ids": [
+        "4294967322"
+      ]
+    },
+    {
+      "name": "qr_rms_norm_quant",
+      "physical_records": 1,
+      "resources": {
+        "aiv": 1
+      },
+      "logical_task_ids": [
+        "4294967323"
+      ]
+    },
+    {
+      "name": "qproj_matmul",
+      "physical_records": 128,
+      "resources": {
+        "aic": 128
+      },
+      "logical_task_ids": [
+        "4294967325"
+      ]
+    },
+    {
+      "name": "qproj_dequant_rms_nope_rope",
+      "physical_records": 16,
+      "resources": {
+        "aiv": 16
+      },
+      "logical_task_ids": [
+        "4294967326"
+      ]
+    },
+    {
+      "name": "kv_proj_seed",
+      "physical_records": 1,
+      "resources": {
+        "aiv": 1
+      },
+      "logical_task_ids": [
+        "4294967328"
+      ]
+    },
+    {
+      "name": "kv_proj_matmul",
+      "physical_records": 32,
+      "resources": {
+        "aic": 32
+      },
+      "logical_task_ids": [
+        "4294967329"
+      ]
+    },
+    {
+      "name": "kv_rms_norm_rope",
+      "physical_records": 1,
+      "resources": {
+        "aiv": 1
+      },
+      "logical_task_ids": [
+        "4294967330"
+      ]
+    },
+    {
+      "name": "csa_cache_writeback",
+      "physical_records": 1,
+      "resources": {
+        "aiv": 1
+      },
+      "logical_task_ids": [
+        "4294967331"
+      ]
+    },
+    {
+      "name": "main: kv_score_proj",
+      "physical_records": 64,
+      "resources": {
+        "aic": 64
+      },
+      "logical_task_ids": [
+        "4294967332"
+      ]
+    },
+    {
+      "name": "main: scatter_softmax_pool",
+      "physical_records": 1,
+      "resources": {
+        "aiv": 1
+      },
+      "logical_task_ids": [
+        "4294967333"
+      ]
+    },
+    {
+      "name": "rmsnorm_rope_cache_write",
+      "physical_records": 1,
+      "resources": {
+        "aiv": 1
+      },
+      "logical_task_ids": [
+        "4294967334"
+      ]
+    },
+    {
+      "name": "idx_qr_proj_matmul",
+      "physical_records": 32,
+      "resources": {
+        "aic": 32
+      },
+      "logical_task_ids": [
+        "4294967335"
+      ]
+    },
+    {
+      "name": "idx_qr_proj_dequant",
+      "physical_records": 32,
+      "resources": {
+        "aiv": 32
+      },
+      "logical_task_ids": [
+        "4294967336"
+      ]
+    },
+    {
+      "name": "qr_rope_swap_idx",
+      "physical_records": 1,
+      "resources": {
+        "aiv": 1
+      },
+      "logical_task_ids": [
+        "4294967337"
+      ]
+    },
+    {
+      "name": "qr_rope",
+      "physical_records": 16,
+      "resources": {
+        "aiv": 16
+      },
+      "logical_task_ids": [
+        "4294967338"
+      ]
+    },
+    {
+      "name": "qr_hadamard_matmul",
+      "physical_records": 32,
+      "resources": {
+        "aic": 32
+      },
+      "logical_task_ids": [
+        "4294967339"
+      ]
+    },
+    {
+      "name": "qr_hadamard_quant",
+      "physical_records": 8,
+      "resources": {
+        "aiv": 8
+      },
+      "logical_task_ids": [
+        "4294967340"
+      ]
+    },
+    {
+      "name": "weights_proj",
+      "physical_records": 4,
+      "resources": {
+        "aic": 4
+      },
+      "logical_task_ids": [
+        "4294967341"
+      ]
+    },
+    {
+      "name": "weights_proj_reduce",
+      "physical_records": 1,
+      "resources": {
+        "aiv": 1
+      },
+      "logical_task_ids": [
+        "4294967342"
+      ]
+    },
+    {
+      "name": "indexer: kv_score_proj",
+      "physical_records": 8,
+      "resources": {
+        "aic": 8
+      },
+      "logical_task_ids": [
+        "4294967343"
+      ]
+    },
+    {
+      "name": "indexer: scatter_softmax_pool",
+      "physical_records": 1,
+      "resources": {
+        "aiv": 1
+      },
+      "logical_task_ids": [
+        "4294967344"
+      ]
+    },
+    {
+      "name": "rmsnorm_rope",
+      "physical_records": 1,
+      "resources": {
+        "aiv": 1
+      },
+      "logical_task_ids": [
+        "4294967345"
+      ]
+    },
+    {
+      "name": "kv_hadamard",
+      "physical_records": 1,
+      "resources": {
+        "aic": 1
+      },
+      "logical_task_ids": [
+        "4294967346"
+      ]
+    },
+    {
+      "name": "kv_and_cache_write",
+      "physical_records": 1,
+      "resources": {
+        "aiv": 1
+      },
+      "logical_task_ids": [
+        "4294967347"
+      ]
+    },
+    {
+      "name": "Indexer score",
+      "physical_records": 240,
+      "resources": {
+        "aic": 80,
+        "aiv": 160
+      },
+      "logical_task_ids": [
+        "4294967348"
+      ]
+    },
+    {
+      "name": "topk",
+      "physical_records": 8,
+      "resources": {
+        "aiv": 8
+      },
+      "logical_task_ids": [
+        "4294967349"
+      ]
+    },
+    {
+      "name": "kv_touch",
+      "physical_records": 1,
+      "resources": {
+        "aiv": 1
+      },
+      "logical_task_ids": [
+        "4294967350"
+      ]
+    },
+    {
+      "name": "csa_slots_build_valid_qk_plan",
+      "physical_records": 1,
+      "resources": {
+        "aiv": 1
+      },
+      "logical_task_ids": [
+        "4294967351"
+      ]
+    },
+    {
+      "name": "QK / PV",
+      "physical_records": 120,
+      "resources": {
+        "aic": 40,
+        "aiv": 80
+      },
+      "logical_task_ids": [
+        "4294967352"
+      ]
+    },
+    {
+      "name": "rope_cs",
+      "physical_records": 1,
+      "resources": {
+        "aiv": 1
+      },
+      "logical_task_ids": [
+        "4294967353"
+      ]
+    },
+    {
+      "name": "merge_norm",
+      "physical_records": 64,
+      "resources": {
+        "aiv": 64
+      },
+      "logical_task_ids": [
+        "4294967354"
+      ]
+    },
+    {
+      "name": "proj_a_mm",
+      "physical_records": 128,
+      "resources": {
+        "aic": 128
+      },
+      "logical_task_ids": [
+        "8589934592",
+        "8589934595",
+        "8589934598",
+        "8589934601",
+        "8589934604",
+        "8589934607",
+        "8589934610",
+        "8589934613"
+      ]
+    },
+    {
+      "name": "quant",
+      "physical_records": 8,
+      "resources": {
+        "aiv": 8
+      },
+      "logical_task_ids": [
+        "8589934593",
+        "8589934596",
+        "8589934599",
+        "8589934602",
+        "8589934605",
+        "8589934608",
+        "8589934611",
+        "8589934614"
+      ]
+    },
+    {
+      "name": "proj_b_mm",
+      "physical_records": 128,
+      "resources": {
+        "aic": 128
+      },
+      "logical_task_ids": [
+        "8589934594",
+        "8589934597",
+        "8589934600",
+        "8589934603",
+        "8589934606",
+        "8589934609",
+        "8589934612",
+        "8589934615"
+      ]
+    },
+    {
+      "name": "proj_b_act",
+      "physical_records": 8,
+      "resources": {
+        "aiv": 8
+      },
+      "logical_task_ids": [
+        "4294967355"
+      ]
+    },
+    {
+      "name": "hc_post",
+      "physical_records": 8,
+      "resources": {
+        "aiv": 8
+      },
+      "logical_task_ids": [
+        "4294967356"
+      ]
+    }
+  ],
+  "grouped_edges": [
+    [
+      "Indexer score",
+      "topk"
+    ],
+    [
+      "Q: rope_interleave",
+      "qr_rope"
+    ],
+    [
+      "Q: rope_interleave",
+      "rmsnorm_rope"
+    ],
+    [
+      "QK / PV",
+      "merge_norm"
+    ],
+    [
+      "comb_sinkhorn",
+      "hc_post"
+    ],
+    [
+      "compressed: rope_interleave",
+      "rmsnorm_rope_cache_write"
+    ],
+    [
+      "csa_cache_writeback",
+      "kv_touch"
+    ],
+    [
+      "csa_cmp_rope",
+      "compressed: rope_interleave"
+    ],
+    [
+      "csa_rope_step",
+      "Q: rope_interleave"
+    ],
+    [
+      "csa_rope_step",
+      "q_rope_prepare"
+    ],
+    [
+      "csa_rope_step",
+      "rope_cs"
+    ],
+    [
+      "csa_slots_build_valid_qk_plan",
+      "QK / PV"
+    ],
+    [
+      "hc_pre_linear",
+      "hc_pre_linear_reduce"
+    ],
+    [
+      "hc_pre_linear_reduce",
+      "comb_sinkhorn"
+    ],
+    [
+      "hc_pre_linear_reduce",
+      "split_pre_post"
+    ],
+    [
+      "hc_pre_rms",
+      "comb_sinkhorn"
+    ],
+    [
+      "hc_pre_rms",
+      "split_pre_post"
+    ],
+    [
+      "idx_qr_proj_dequant",
+      "qr_rope"
+    ],
+    [
+      "idx_qr_proj_matmul",
+      "idx_qr_proj_dequant"
+    ],
+    [
+      "indexer: kv_score_proj",
+      "indexer: scatter_softmax_pool"
+    ],
+    [
+      "indexer: scatter_softmax_pool",
+      "rmsnorm_rope"
+    ],
+    [
+      "kv_and_cache_write",
+      "Indexer score"
+    ],
+    [
+      "kv_hadamard",
+      "kv_and_cache_write"
+    ],
+    [
+      "kv_proj_matmul",
+      "kv_rms_norm_rope"
+    ],
+    [
+      "kv_proj_seed",
+      "kv_proj_matmul"
+    ],
+    [
+      "kv_rms_norm_rope",
+      "csa_cache_writeback"
+    ],
+    [
+      "kv_touch",
+      "QK / PV"
+    ],
+    [
+      "main: kv_score_proj",
+      "main: scatter_softmax_pool"
+    ],
+    [
+      "main: scatter_softmax_pool",
+      "rmsnorm_rope_cache_write"
+    ],
+    [
+      "merge_norm",
+      "proj_a_mm"
+    ],
+    [
+      "mix_x",
+      "rms_norm"
+    ],
+    [
+      "proj_a_mm",
+      "quant"
+    ],
+    [
+      "proj_b_act",
+      "hc_post"
+    ],
+    [
+      "proj_b_mm",
+      "proj_b_act"
+    ],
+    [
+      "q_rope_prepare",
+      "kv_rms_norm_rope"
+    ],
+    [
+      "q_rope_prepare",
+      "qproj_dequant_rms_nope_rope"
+    ],
+    [
+      "qproj_dequant_rms_nope_rope",
+      "QK / PV"
+    ],
+    [
+      "qproj_matmul",
+      "qproj_dequant_rms_nope_rope"
+    ],
+    [
+      "qr_hadamard_matmul",
+      "qr_hadamard_quant"
+    ],
+    [
+      "qr_hadamard_quant",
+      "Indexer score"
+    ],
+    [
+      "qr_proj_matmul",
+      "qr_rms_norm_quant"
+    ],
+    [
+      "qr_proj_seed",
+      "qr_proj_matmul"
+    ],
+    [
+      "qr_rms_norm_quant",
+      "idx_qr_proj_dequant"
+    ],
+    [
+      "qr_rms_norm_quant",
+      "idx_qr_proj_matmul"
+    ],
+    [
+      "qr_rms_norm_quant",
+      "qproj_dequant_rms_nope_rope"
+    ],
+    [
+      "qr_rms_norm_quant",
+      "qproj_matmul"
+    ],
+    [
+      "qr_rope",
+      "qr_hadamard_matmul"
+    ],
+    [
+      "qr_rope_swap_idx",
+      "qr_rope"
+    ],
+    [
+      "quant",
+      "proj_b_mm"
+    ],
+    [
+      "rms_norm",
+      "indexer: kv_score_proj"
+    ],
+    [
+      "rms_norm",
+      "kv_proj_matmul"
+    ],
+    [
+      "rms_norm",
+      "main: kv_score_proj"
+    ],
+    [
+      "rms_norm",
+      "qr_proj_matmul"
+    ],
+    [
+      "rms_norm",
+      "weights_proj"
+    ],
+    [
+      "rmsnorm_rope",
+      "kv_hadamard"
+    ],
+    [
+      "rmsnorm_rope_cache_write",
+      "QK / PV"
+    ],
+    [
+      "rope_cs",
+      "merge_norm"
+    ],
+    [
+      "split_pre_post",
+      "hc_post"
+    ],
+    [
+      "split_pre_post",
+      "mix_x"
+    ],
+    [
+      "topk",
+      "csa_slots_build_valid_qk_plan"
+    ],
+    [
+      "weights_proj",
+      "weights_proj_reduce"
+    ],
+    [
+      "weights_proj_reduce",
+      "Indexer score"
+    ]
+  ],
+  "displayed_edges": [
+    [
+      "Indexer score",
+      "topk"
+    ],
+    [
+      "Q: rope_interleave",
+      "qr_rope"
+    ],
+    [
+      "Q: rope_interleave",
+      "rmsnorm_rope"
+    ],
+    [
+      "QK / PV",
+      "merge_norm"
+    ],
+    [
+      "comb_sinkhorn",
+      "hc_post"
+    ],
+    [
+      "compressed: rope_interleave",
+      "rmsnorm_rope_cache_write"
+    ],
+    [
+      "csa_cache_writeback",
+      "kv_touch"
+    ],
+    [
+      "csa_cmp_rope",
+      "compressed: rope_interleave"
+    ],
+    [
+      "csa_rope_step",
+      "Q: rope_interleave"
+    ],
+    [
+      "csa_rope_step",
+      "q_rope_prepare"
+    ],
+    [
+      "csa_rope_step",
+      "rope_cs"
+    ],
+    [
+      "csa_slots_build_valid_qk_plan",
+      "QK / PV"
+    ],
+    [
+      "hc_pre_linear",
+      "hc_pre_linear_reduce"
+    ],
+    [
+      "hc_pre_linear_reduce",
+      "comb_sinkhorn"
+    ],
+    [
+      "hc_pre_linear_reduce",
+      "split_pre_post"
+    ],
+    [
+      "hc_pre_rms",
+      "comb_sinkhorn"
+    ],
+    [
+      "hc_pre_rms",
+      "split_pre_post"
+    ],
+    [
+      "idx_qr_proj_dequant",
+      "qr_rope"
+    ],
+    [
+      "idx_qr_proj_matmul",
+      "idx_qr_proj_dequant"
+    ],
+    [
+      "indexer: kv_score_proj",
+      "indexer: scatter_softmax_pool"
+    ],
+    [
+      "indexer: scatter_softmax_pool",
+      "rmsnorm_rope"
+    ],
+    [
+      "kv_and_cache_write",
+      "Indexer score"
+    ],
+    [
+      "kv_hadamard",
+      "kv_and_cache_write"
+    ],
+    [
+      "kv_proj_matmul",
+      "kv_rms_norm_rope"
+    ],
+    [
+      "kv_proj_seed",
+      "kv_proj_matmul"
+    ],
+    [
+      "kv_rms_norm_rope",
+      "csa_cache_writeback"
+    ],
+    [
+      "kv_touch",
+      "QK / PV"
+    ],
+    [
+      "main: kv_score_proj",
+      "main: scatter_softmax_pool"
+    ],
+    [
+      "main: scatter_softmax_pool",
+      "rmsnorm_rope_cache_write"
+    ],
+    [
+      "merge_norm",
+      "proj_a_mm"
+    ],
+    [
+      "mix_x",
+      "rms_norm"
+    ],
+    [
+      "proj_a_mm",
+      "quant"
+    ],
+    [
+      "proj_b_act",
+      "hc_post"
+    ],
+    [
+      "proj_b_mm",
+      "proj_b_act"
+    ],
+    [
+      "q_rope_prepare",
+      "kv_rms_norm_rope"
+    ],
+    [
+      "q_rope_prepare",
+      "qproj_dequant_rms_nope_rope"
+    ],
+    [
+      "qproj_dequant_rms_nope_rope",
+      "QK / PV"
+    ],
+    [
+      "qproj_matmul",
+      "qproj_dequant_rms_nope_rope"
+    ],
+    [
+      "qr_hadamard_matmul",
+      "qr_hadamard_quant"
+    ],
+    [
+      "qr_hadamard_quant",
+      "Indexer score"
+    ],
+    [
+      "qr_proj_matmul",
+      "qr_rms_norm_quant"
+    ],
+    [
+      "qr_proj_seed",
+      "qr_proj_matmul"
+    ],
+    [
+      "qr_rms_norm_quant",
+      "idx_qr_proj_matmul"
+    ],
+    [
+      "qr_rms_norm_quant",
+      "qproj_matmul"
+    ],
+    [
+      "qr_rope",
+      "qr_hadamard_matmul"
+    ],
+    [
+      "qr_rope_swap_idx",
+      "qr_rope"
+    ],
+    [
+      "quant",
+      "proj_b_mm"
+    ],
+    [
+      "rms_norm",
+      "indexer: kv_score_proj"
+    ],
+    [
+      "rms_norm",
+      "kv_proj_matmul"
+    ],
+    [
+      "rms_norm",
+      "main: kv_score_proj"
+    ],
+    [
+      "rms_norm",
+      "qr_proj_matmul"
+    ],
+    [
+      "rms_norm",
+      "weights_proj"
+    ],
+    [
+      "rmsnorm_rope",
+      "kv_hadamard"
+    ],
+    [
+      "rmsnorm_rope_cache_write",
+      "QK / PV"
+    ],
+    [
+      "rope_cs",
+      "merge_norm"
+    ],
+    [
+      "split_pre_post",
+      "mix_x"
+    ],
+    [
+      "topk",
+      "csa_slots_build_valid_qk_plan"
+    ],
+    [
+      "weights_proj",
+      "weights_proj_reduce"
+    ],
+    [
+      "weights_proj_reduce",
+      "Indexer score"
+    ]
+  ]
+}
