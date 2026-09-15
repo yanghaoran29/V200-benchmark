@@ -30,4 +30,4 @@ Agreement Version 2.0.
 
 Scheme A is preserved. Scheme B is a local source extension of pypto-lib `092efde7317095c468fba9670efdb3ee6bd9de29`, using the same pinned toolchain. Target: 120 AIC; captured and validated: a2a3, 24 AIC / 48 AIV.
 
-CSA Scheme B uses the mainline canonical start-position set, deduplicated and cycled to 20 requests: [8192,0,2,3,7,127,128,255,511,8192,0,2,3,7,127,128,255,511,8192,0]. KV length is start_pos+2. Generated kernels, ABI metadata and paired captures were refreshed. Capture task: task_20260915_014732_315847915665; validation task: task_20260915_014815_32076747505. Full Scheme B documentation is consolidated into README.md section 2.4.
+CSA Scheme B uses the mainline canonical start-position set, deduplicated and cycled to 20 requests: [8192,0,2,3,7,127,128,255,511,8192,0,2,3,7,127,128,255,511,8192,0]. KV length is start_pos+2. Generated kernels, ABI metadata and paired captures were refreshed. Capture task: task_20260915_014732_315847915665; validation task: task_20260915_014815_32076747505. Full Scheme B documentation is consolidated into README.md section 3.4.

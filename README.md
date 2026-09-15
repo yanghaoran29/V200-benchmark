@@ -1,10 +1,18 @@
 # 样例说明
 
 本版面向 **120 AIC 目标机**，提供 DeepSeek V4-Flash CSA decode 和 Qwen3-14B 单层 decode 两个模型的 benchmark，其中 CSA 提供方案 A 和方案 B。
-每个 benchmark 同时包含调整后的 PyPTO 算子与其生成的 Simpler C++，使用相同默认输入和 golden。
+每个样例包含调整后的PyPTO算子及其生成的Simpler C++；同一样例的两种执行入口共用默认输入和Golden。当前结果采集于24 AIC / 48 AIV机器，120 AIC实测尚未完成。
 
-历史内容见 [old/README.md](old/README.md)，归档版本为 `82f5a5c`（2026-07-14）。当前旧工作区快照已作废。
-新 benchmark 不设置根级 support 目录，各自携带必要 Python 支持代码。工具链见 [VERSIONS.md](VERSIONS.md)。
+历史内容见 [old/README.md](old/README.md)，归档版本为 `82f5a5c`（2026-07-14）。
+各样例目录携带独立运行所需的Python支持代码。工具链见 [VERSIONS.md](VERSIONS.md)。
+
+阅读顺序：先看模型相对主线的改动，再看各样例配置与实测结果；运行命令集中在最后一章。
+
+- [1. 相对于主线的模型修改](#mainline-changes)
+- [2. Qwen3 decode layer](#qwen-benchmark)
+- [3. CSA方案A/B与任务粒度对比](#csa-benchmarks)
+- [4. 并发与验证汇总](#validation-summary)
+- [5. 运行方式](#running)
 
 | benchmark | PyPTO 入口 | Simpler C++ 入口 | 依赖图 | 泳道 |
 |---|---|---|---|---|
@@ -23,11 +31,75 @@
 
 布局采用固定主轴与两侧分支：Qwen的Q/K/V同层排列、Gate/Up左右展开；CSA将Indexer主链居中，Q/KV与compressor分布两侧，QK/PV后的输出链保持居中。CSA A/B使用相同节点坐标，只改变标题和记录数，便于对照。模型分支本身不完全对称，布局不添加虚假节点或依赖来凑对称。
 
-图示从配套deps与原始泳道计算，使用固定坐标布局；计数和传递约简在更新时核对。
+统计口径：逻辑任务是编排调用；BlockDim是每次调用的SPMD宽度；SVG任务数将MIX每个block计一次，逐kernel耗时表则分别统计AIC/AIV执行记录。CSA A/B对比的平均粒度为核执行时间总和除以SVG任务数，单位为核μs/任务；它不是墙钟时长。
 
-# 1. Qwen3-14B Decode Layer Benchmark
+<a id="mainline-changes"></a>
 
-## 1.1 样例设计
+# 1. 相对于 pypto-lib 主线模型的修改
+
+对照基线为本次改造起点的 pypto-lib 主线提交 `c3f0dea274f55d9648920f17c968e8564ae9fcdc`，对应 `models/qwen3_14b` 和 `models/deepseek_v4_flash_mtp`。这里比较模型实现、tiling 和输入配置；该固定基线不代表主线后续提交。工具链版本见VERSIONS.md，方案B采集与验证身份见第3.4节。
+
+## 1.1 Qwen3-14B 单层 decode
+
+模型维度与默认 batch=16 保持主线配置，调整任务划分和跨任务调度。
+
+| 项目 | pypto-lib 主线基线 | 当前 benchmark |
+|---|---|---|
+| Q/K/V 投影 | 分别50/10/10个SPMD blocks | 保持50/10/10，保留Split-K原子累加 |
+| Attention | BlockDim=24 | `ATTN_SPMD_BLOCKS=120`；128个请求/KV-head工作项按120步长分配，前8个block各处理2项，其余各1项 |
+| Out projection | N分片10、Split-K=5，共50个工作项；26个普通任务加一次24-block SPMD | N分片20、输出N tile从512降到256，共100个工作项；按每10项组成一次SPMD，共10次调用 |
+| Gate / Up | 各85个工作项；前6个N分片使用SPMD，其余通过dummy延迟调度 | 每个N分片的5个Split-K工作项组成一次SPMD，各17次调用×5 blocks；计算工作项总数不变 |
+| SiLU / Down | 17个SiLU任务、85个Down工作项，带优先波次调度 | 数量保持；每个SiLU等待对应Gate/Up分组及共享RMS，Down等待对应SiLU |
+| 调度 | early dispatch、dummy及同步启动/全核屏障等控制 | 移除这些控制；保留manual scope、表达真实数据依赖的deps及计算所需核内同步 |
+| 输入长度 | 固定种子生成每请求seq_len | 保持seed=1234及长度范围[1,4096]；长度仍影响各Attention工作项的扫描量 |
+
+Out投影每组覆盖两个相邻N tile及其全部5路Split-K；每两组完成即可释放对应的residual cast。增加Attention的BlockDim不增加128个数学工作项，也不保证任务等长。
+
+## 1.2 DeepSeek V4 CSA 方案 A
+
+保持主线的B=4、S=2、T=8和模型维度，主要通过缩小矩阵tile、增加Split-K或重划归约分片提高可调度任务数。
+
+| 算子 | 主线BlockDim | 方案A BlockDim | 实现调整 |
+|---|---:|---:|---|
+| qproj_matmul | 64 | 128 | `QPROJ_MM_N_TILE`：512→256 |
+| qr_proj_matmul | 16 | 64 | `QR_OK`：2→8，增加Split-K原子累加扇入 |
+| kv_proj_matmul | 16 | 32 | `KV_OK`：4→8 |
+| idx_qr_proj_matmul / dequant | 各8 | 各32 | `Q_OUT_TILE`：1024→256，`MM_N_TILE`：512→256，保证输出分片匹配 |
+| qr_hadamard_matmul | 8 | 32 | `QH_MM_TILE`：64→16 |
+| score | 16 | 80 | `REDUCE_NSPLIT`：2→10，8个token各10路归约 |
+| QK/PV | 24 | 40 | `NUM_QK_CORES`：24→40，对应8×5个token/稀疏块工作项 |
+| proj_a_mm | 每次8，共8次 | 每次16，共8次 | `PROJ_A_MM_N_TILE`：128→64 |
+| proj_b_mm | 每次8，共8次 | 每次16，共8次 | `PROJ_B_D_TILE`：512→256 |
+| merge_norm | 32 | 64 | merge阶段Head tile：16→8；QK/PV仍保留16-Head生产分组，重写merge的组内索引 |
+| 主compressor kv_score_proj | 16 | 64 | 输出N tile：64→16；不将此配置应用到内层Indexer compressor |
+
+调度方面，移除early dispatch、RMS延迟dummy、输出投影权重预取及QK/PV非空块优先排序，按自然token/block顺序分配工作。保留manual scope、真实deps、score显式split/slot配置，以及承担KV-cache依赖的`kv_touch`。Split-K原子累加和核内流水同步继续用于计算正确性。
+
+默认起始位置为`[8192,0,2,3]`，KV长度为`[8194,2,4,5]`。这些长度不是均匀负载：score有效页数、QK/PV有效稀疏块及压缩边界分支都会影响任务时长。
+
+## 1.3 DeepSeek V4 CSA 方案 B
+
+方案B继承方案A的算子调整，在主线B=4、S=2的基础上将batch改为20，S仍为2，总token数由8增为40。非长度相关算子保持方案A的调用数和BlockDim，新增token在任务内部处理。
+
+| 项目 | pypto-lib主线基线 | 方案B |
+|---|---|---|
+| batch / 本次token总数 | 4 / 8 | 20 / 40 |
+| 默认start_pos / KV长度 | `[8192,0,2,3]` / `[8194,2,4,5]` | 9种主线边界起始位置循环填满20项 / 每项start_pos+2 |
+| score | 16 blocks，8个token×2路归约 | 100 blocks，40个token×5路归约共200工作项，每block处理2项 |
+| QK/PV | 24 blocks处理40工作项 | 100 blocks处理200工作项，每block处理2项 |
+| 缓存测试输入 | 按原batch和长度组织 | 按20个请求实际长度重新分配互不重叠的物理页，保留跨请求隔离 |
+
+score每个token仍覆盖全部有效压缩位置；QK/PV仍覆盖每个token的5个稀疏块，合并工作项不改变归约或attention语义。采用主线混合长度集合后，score有效页数、QK/PV有效稀疏块数及压缩边界分支随请求变化，100个blocks不等长。完整参数、逐算子统计与验证见本文第3.4节。
+
+上述修改均以120 AIC为目标；当前Golden和配套泳道在24 AIC / 48 AIV机器上验证，不据此给出120 AIC加速比或A/B性能结论。
+
+<a id="qwen-benchmark"></a>
+
+# 2. Qwen3-14B Decode Layer Benchmark
+
+本章给出当前Qwen单层decode的默认负载、分组依赖及采集统计；与主线的差异见第1.1节。
+
+## 2.1 样例设计
 
 | 参数 | 默认值 |
 |---|---|
@@ -42,7 +114,7 @@
 Attention 的 BlockDim 为 120：block 0–7 各执行两个工作项，其余各执行一个。
 长度以张量输入传入；相同种子重复运行会生成相同长度，但每项 KV 扫描量不同，不能把 120 blocks 理解成等长任务。
 
-## 1.2 SPMD 与依赖设计
+## 2.2 SPMD 与依赖设计
 
 | 阶段 | 逻辑任务 × BlockDim | 工作分配与依赖 |
 |---|---|---|
@@ -57,7 +129,7 @@ Attention 的 BlockDim 为 120：block 0–7 各执行两个工作项，其余�
 保留 manual scope 和显式真实依赖；无 early dispatch、dummy 任务或 syncall。
 固定采用以上分组。
 
-## 1.3 a2a3 上各 kernel 执行时间
+## 2.3 a2a3 上各 kernel 执行时间
 
 数据来自随包的 2026-09-14 09:39:42 四级泳道（24 AIC、48 AIV，device 1）。
 下表是**物理核执行记录**，同名编号后缀合并统计；mixed 算子的 AIC/AIV 分列，不按时长排序拼成伪造的 block 配对。
@@ -93,9 +165,13 @@ Attention 的 BlockDim 为 120：block 0–7 各执行两个工作项，其余�
 | AIC | 545 | 30.76 | 24 | 82.5% |
 | AIV | 312 | 26.86 | 48 | 19.3% |
 
-# 2. DeepSeek V4 CSA Benchmark（方案 A）
+<a id="csa-benchmarks"></a>
 
-## 2.1 样例设计
+# 3. DeepSeek V4 CSA Benchmark（方案 A/B）
+
+方案A保持主线batch=4，方案B扩大至batch=20；两者沿用同一主线边界长度生成规则。先介绍A，再说明B增加的任务内工作和长度覆盖，最后对比任务数量与平均粒度。
+
+## 3.1 方案 A：默认配置与长度
 
 | 参数 | 默认值 |
 |---|---|
@@ -110,7 +186,7 @@ Attention 的 BlockDim 为 120：block 0–7 各执行两个工作项，其余�
 QK/PV 默认只有 `8×5=40` 个工作项，增大 BlockDim 本身不会产生更多有效工作。
 短序列时 score 的 80 blocks 中有效工作更少；这些任务不保证均等时长。
 
-## 2.2 Tiling 与并发设计
+## 3.2 方案 A：任务划分与并发设计
 
 | 算子 | BlockDim | 120 AIC 上的含义 |
 |---|---:|---|
@@ -127,7 +203,7 @@ QK/PV 默认只有 `8×5=40` 个工作项，增大 BlockDim 本身不会产生�
 移除 RMS 延迟 dummy、early dispatch 和输出权重预取。
 `kv_touch` 自拷贝承担 KV-cache 正确性依赖，继续保留；核内流水、AIC/AIV 同步属于计算实现，不作为高级调度优化删除。
 
-## 2.3 a2a3 上各 kernel 执行时间
+## 3.3 方案 A：各 kernel 执行时间
 
 数据来自随包的 2026-09-14 18:58:37 四级泳道（24 AIC、48 AIV，device 0），统计口径与 Qwen 相同。
 
@@ -187,11 +263,11 @@ QK/PV 默认只有 `8×5=40` 个工作项，增大 BlockDim 本身不会产生�
 | AIC | 745 | 7.20 | 24 | 40.4% |
 | AIV | 437 | 6.46 | 48 | 10.2% |
 
-## 2.4 方案 B：batch扩大5倍，沿用主线长度规则
+## 3.4 方案 B：batch扩大5倍，沿用主线长度规则
 
 方案 A 保留在 `deepseek-v4-csa/`。方案 B 面向 120 AIC，扩大每次调度承载的计算，不做 A/B 性能比较。
 
-### 2.4.1 配置与任务划分
+### 3.4.1 配置与任务划分
 
 | 项目 | 方案 B |
 |---|---|
@@ -215,7 +291,7 @@ Matmul 保持16行微块，通过内部循环覆盖40行（padding到48行）；
 
 保留 manual_scope、真实 deps、score 的 `split(NONE, slot_num=2)`、Split-K原子操作和核内计算同步。无early dispatch、dummy、syncall、预取或非空块优先调度。`kv_touch`保留缓存依赖作用。
 
-### 2.4.2 长度与缓存
+### 3.4.2 长度与缓存
 
 默认复用主线`csa_decode_start_set(batch=20, seq=2)`：边界集合按顺序去重，再循环填充20个请求。主线集合中`window-1`与`state_block_size*32-1`均为127，去重后共有9项；不是随机长度，也不是只把方案A的前4项重复5遍。
 
@@ -232,7 +308,7 @@ QK/PV仍为每token的1个滑窗块和4个压缩块；短历史下部分块无�
 
 测试页表继续按请求实际长度分配互不重叠的物理页，未分配逻辑页为-1。新默认主/内压缩状态各6682页，ori/cmp/indexer cache各228页；它们是物理池容量，不是任务数。已按新输入重新生成Simpler产物及配套采集，其他静态配置也必须使用匹配产物。
 
-### 2.4.3 并发分析
+### 3.4.3 并发分析
 
 [deps viewer](deepseek-v4-csa-b/deps_viewer.html)、[deps.json](deepseek-v4-csa-b/deps.json)、[原始泳道](deepseek-v4-csa-b/chip_swimlane_records.json)、[合并泳道](deepseek-v4-csa-b/merged_swimlane.json) 来自同一次采集命令。运行时以一次deps采集和一次干净计时组成配对采集。
 
@@ -311,21 +387,15 @@ QK/PV仍为每token的1个滑窗块和4个压缩块；短历史下部分块无�
 | `quant` | AIV | 8 | 8 | 74.66 | 9.33 | 8.26 | 10.26 | 9.35 | 9.94 | 10.23 |
 | `proj_b_mm` | AIC | 8 | 128 | 1302.60 | 10.18 | 9.08 | 12.06 | 10.13 | 11.07 | 11.52 |
 
-### 2.4.4 验证与复现
+### 3.4.4 验证与复现
 
 新默认主线长度集合已通过PyPTO Golden及Simpler replay；统一start_pos=0/127/8192分别通过PyPTO Golden，未放宽数值比较标准。结构检查验证20项默认位置、跨请求页表隔离、score/QK-PV各200项恰好覆盖一次，以及相对A的BlockDim变化仅为score和QK/PV。对score有效长度0..4096穷举页分配，不等同于4097种长度的NPU数值测试。
 
-```bash
-# 在已分配的设备上运行；benchmark根目录执行。
-python deepseek-v4-csa-b/pypto-lib-operator/run_benchmark.py -p a2a3 -d 0
-python deepseek-v4-csa-b/simpler-operator/test_decode_csa.py -p a2a3 -d 0
-python deepseek-v4-csa-b/pypto-lib-operator/run_benchmark.py -p a2a3 -d 0 --start-pos 127
-python deepseek-v4-csa-b/pypto-lib-operator/run_benchmark.py -p a2a3 -d 0 --enable-dep-gen --enable-chip-swimlane 4 --dep-output-dir outputs/csa-b
-```
+默认运行及配套采集命令见第5章。统一长度验证可在B的PyPTO命令后添加`--start-pos 0`、`--start-pos 127`或`--start-pos 8192`。
 
 本次采集任务`task_20260915_014732_315847915665`，验证任务`task_20260915_014815_32076747505`，均在a2a3 device 1运行。PyPTO入口支持a2a3/a2a3sim/a5/a5sim；随包Simpler C++来自a2a3。120 AIC目标机仍需对应平台重新编译/验证，不将24核数据外推为120核性能。
 
-## 2.5 CSA A/B 任务数量与平均粒度对比
+## 3.5 CSA A/B 任务数量与平均粒度对比
 
 任务数量沿用SVG口径：纯AIC/AIV按物理执行记录计数，MIX每个混合SPMD block只计一个任务。同类分组调用合并统计，主compressor与Indexer compressor分别列出。
 
@@ -384,7 +454,9 @@ python deepseek-v4-csa-b/pypto-lib-operator/run_benchmark.py -p a2a3 -d 0 --enab
 | `hc_post` | 8 | 8 | 5.42 | 23.92 |
 | **合计／加权平均** | **942** | **1022** | **8.69** | **18.95** |
 
-# 3. 并发与验证结果
+<a id="validation-summary"></a>
+
+# 4. 并发与验证结果
 
 | 样例 | 逻辑任务 | AIC记录 | AIV记录 | 物理记录完整性 | early_dispatch=true | 采集跨度(us) | 120 AIC实测 |
 |---|---:|---:|---:|---|---:|---:|---|
@@ -398,13 +470,16 @@ AIC/AIV 区间平均占用各自以首个 kernel 开始到最后一个结束为�
 - Qwen：24-AIC 实测最大逻辑 AIC 包络120 blocks（Attention）；MLP 最大同时活跃逻辑任务24个，合计68个声明 blocks。
 - CSA A：QR(64)+主compressor(64)+KV(32)的逻辑包络为160 blocks；Q(128)+Indexer(32)也有重叠。输出阶段峰值6个逻辑任务、96 blocks。
 - 逻辑包络按每个任务首个物理 block 开始至末个 block 结束统计，其声明 blocks 不是同时执行的核数。
-- 24-AIC 上两样例 AIC/AIV 物理峰值均为24/48；不能据此声称120-AIC上的实际并发或加速比。
+- CSA B：AIC最大声明需求包络160 blocks（qproj128 + idx_qr_proj32）；最大活跃逻辑AIC任务数7个，声明112 blocks。
+- 三个样例在24-AIC采集中的AIC/AIV物理峰值均为24/48；不能据此声称120-AIC上的实际并发或加速比。
 
-打包后在 a2a3 device 0 验证：两个 Simpler C++ replay 入口和两个 PyPTO 编译入口均通过 golden。Qwen 重新编译后的 deps 与归档版本具有相同的166个任务、kernel ID、BlockDim和441条依赖边。
+Qwen与CSA A打包后在a2a3 device 0通过PyPTO和Simpler replay Golden。CSA B的新默认混合长度输入在device 1通过两种入口，统一start_pos=0/127/8192分别通过PyPTO Golden；详细采集身份见第3.4.4节。Qwen重新编译后的deps与归档版本具有相同的166个任务、kernel ID、BlockDim和441条依赖边。
 
 Golden 标准：Qwen out 使用 `ratio_allclose(atol=rtol=0.003, max_error_ratio=0.02)`；CSA x_out 使用 `ratio_reldiff(0.004, 0.03, 2)`，kv_cache 使用 `ratio_allclose(atol=1e-4, rtol=1/128)`。
 
-# 4. 运行方式
+<a id="running"></a>
+
+# 5. 运行方式
 
 安装 [VERSIONS.md](VERSIONS.md) 的 PyPTO、Simpler、PTOAS、PTO ISA 及匹配 CANN，激活对应环境。
 无需另外 clone pypto-lib。Simpler 入口使用 PyPTO replay loader 绑定 ABI 和 bundled golden，执行的是随包 C++，不进行 PyPTO 图编译。
@@ -420,6 +495,8 @@ task-submit --device auto --run './run_all.sh simpler -p a2a3 -d "$TASK_DEVICE"'
 # 单个样例的配套依赖和泳道采集：运行时会分别采集图和干净计时。
 python deepseek-v4-csa/pypto-lib-operator/run_benchmark.py -p a2a3 -d 0 \
   --enable-dep-gen --enable-chip-swimlane 4 --dep-output-dir outputs/csa
+python deepseek-v4-csa-b/pypto-lib-operator/run_benchmark.py -p a2a3 -d 0 \
+  --enable-dep-gen --enable-chip-swimlane 4 --dep-output-dir outputs/csa-b
 python qwen3-decode-layer/pypto-lib-operator/run_benchmark.py -p a2a3 -d 0 \
   --enable-dep-gen --enable-chip-swimlane 4 --dep-output-dir outputs/qwen
 ```
@@ -427,77 +504,19 @@ python qwen3-decode-layer/pypto-lib-operator/run_benchmark.py -p a2a3 -d 0 \
 运行日志与临时编译产物不进入版本库。源码入口的 `--dep-output-dir` 指定导出编译产物目录；Simpler replay 的新采集写在自身 `dfx_outputs/`，不会覆盖 benchmark 根下的归档采集。
 更换 batch、静态维度或 tiling 后必须重新生成 Simpler C++；不能只修改输入绕过 ABI 校验。
 
-# 5. benchmark 模型相对于 pypto-lib 主线模型的修改
-
-对照基线为本次改造起点的 pypto-lib 主线提交 `c3f0dea274f55d9648920f17c968e8564ae9fcdc`，对应 `models/qwen3_14b` 和 `models/deepseek_v4_flash_mtp`。这里比较模型实现、tiling 和输入配置；该固定基线不代表主线后续提交。工具链版本见VERSIONS.md，方案B采集与验证身份见第2.4节。
-
-## 5.1 Qwen3-14B 单层 decode
-
-模型维度与默认 batch=16 保持主线配置，调整任务划分和跨任务调度。
-
-| 项目 | pypto-lib 主线基线 | 当前 benchmark |
-|---|---|---|
-| Q/K/V 投影 | 分别50/10/10个SPMD blocks | 保持50/10/10，保留Split-K原子累加 |
-| Attention | BlockDim=24 | `ATTN_SPMD_BLOCKS=120`；128个请求/KV-head工作项按120步长分配，前8个block各处理2项，其余各1项 |
-| Out projection | N分片10、Split-K=5，共50个工作项；26个普通任务加一次24-block SPMD | N分片20、输出N tile从512降到256，共100个工作项；按每10项组成一次SPMD，共10次调用 |
-| Gate / Up | 各85个工作项；前6个N分片使用SPMD，其余通过dummy延迟调度 | 每个N分片的5个Split-K工作项组成一次SPMD，各17次调用×5 blocks；计算工作项总数不变 |
-| SiLU / Down | 17个SiLU任务、85个Down工作项，带优先波次调度 | 数量保持；每个SiLU等待对应Gate/Up分组及共享RMS，Down等待对应SiLU |
-| 调度 | early dispatch、dummy及同步启动/全核屏障等控制 | 移除这些控制；保留manual scope、表达真实数据依赖的deps及计算所需核内同步 |
-| 输入长度 | 固定种子生成每请求seq_len | 保持seed=1234及长度范围[1,4096]；长度仍影响各Attention工作项的扫描量 |
-
-Out投影每组覆盖两个相邻N tile及其全部5路Split-K；每两组完成即可释放对应的residual cast。增加Attention的BlockDim不增加128个数学工作项，也不保证任务等长。
-
-## 5.2 DeepSeek V4 CSA 方案 A
-
-保持主线的B=4、S=2、T=8和模型维度，主要通过缩小矩阵tile、增加Split-K或重划归约分片提高可调度任务数。
-
-| 算子 | 主线BlockDim | 方案A BlockDim | 实现调整 |
-|---|---:|---:|---|
-| qproj_matmul | 64 | 128 | `QPROJ_MM_N_TILE`：512→256 |
-| qr_proj_matmul | 16 | 64 | `QR_OK`：2→8，增加Split-K原子累加扇入 |
-| kv_proj_matmul | 16 | 32 | `KV_OK`：4→8 |
-| idx_qr_proj_matmul / dequant | 各8 | 各32 | `Q_OUT_TILE`：1024→256，`MM_N_TILE`：512→256，保证输出分片匹配 |
-| qr_hadamard_matmul | 8 | 32 | `QH_MM_TILE`：64→16 |
-| score | 16 | 80 | `REDUCE_NSPLIT`：2→10，8个token各10路归约 |
-| QK/PV | 24 | 40 | `NUM_QK_CORES`：24→40，对应8×5个token/稀疏块工作项 |
-| proj_a_mm | 每次8，共8次 | 每次16，共8次 | `PROJ_A_MM_N_TILE`：128→64 |
-| proj_b_mm | 每次8，共8次 | 每次16，共8次 | `PROJ_B_D_TILE`：512→256 |
-| merge_norm | 32 | 64 | merge阶段Head tile：16→8；QK/PV仍保留16-Head生产分组，重写merge的组内索引 |
-| 主compressor kv_score_proj | 16 | 64 | 输出N tile：64→16；不将此配置应用到内层Indexer compressor |
-
-调度方面，移除early dispatch、RMS延迟dummy、输出投影权重预取及QK/PV非空块优先排序，按自然token/block顺序分配工作。保留manual scope、真实deps、score显式split/slot配置，以及承担KV-cache依赖的`kv_touch`。Split-K原子累加和核内流水同步继续用于计算正确性。
-
-默认起始位置为`[8192,0,2,3]`，KV长度为`[8194,2,4,5]`。这些长度不是均匀负载：score有效页数、QK/PV有效稀疏块及压缩边界分支都会影响任务时长。
-
-## 5.3 DeepSeek V4 CSA 方案 B
-
-方案B继承方案A的算子调整，在主线B=4、S=2的基础上将batch改为20，S仍为2，总token数由8增为40。非长度相关算子保持方案A的调用数和BlockDim，新增token在任务内部处理。
-
-| 项目 | pypto-lib主线基线 | 方案B |
-|---|---|---|
-| batch / 本次token总数 | 4 / 8 | 20 / 40 |
-| 默认start_pos / KV长度 | `[8192,0,2,3]` / `[8194,2,4,5]` | 9种主线边界起始位置循环填满20项 / 每项start_pos+2 |
-| score | 16 blocks，8个token×2路归约 | 100 blocks，40个token×5路归约共200工作项，每block处理2项 |
-| QK/PV | 24 blocks处理40工作项 | 100 blocks处理200工作项，每block处理2项 |
-| 缓存测试输入 | 按原batch和长度组织 | 按20个请求实际长度重新分配互不重叠的物理页，保留跨请求隔离 |
-
-score每个token仍覆盖全部有效压缩位置；QK/PV仍覆盖每个token的5个稀疏块，合并工作项不改变归约或attention语义。采用主线混合长度集合后，score有效页数、QK/PV有效稀疏块数及压缩边界分支随请求变化，100个blocks不等长。完整参数、逐算子统计与验证见本文第2.4节。
-
-上述修改均以120 AIC为目标；当前Golden和配套泳道在24 AIC / 48 AIV机器上验证，不据此给出120 AIC加速比或A/B性能结论。
-
 # 修改历史
 
 ### 2026/9/15
 
 - CSA B恢复主线边界长度规则并循环扩展至20请求，重新生成/验证/采集；B说明合并至本README，清理已删除文件的引用。
 
-- 方案B默认20个请求的start_pos统一为8192（KV seq_len=8194），重新验证并采集；根README完整列出方案B设计、长度含义、逐算子统计和复现方式。
+- 曾验证统一start_pos=8192的方案B输入；现已由主线混合长度集合替代，当前默认值和统计以第3.4节为准。
 
 ### 2026/9/14
 
 - 保留CSA方案A，新增独立方案B：batch20、score100、QK/PV100；配套生成代码、deps、泳道、静态并发及Golden验证。
 
 - 将7月版本归档到old，作废迁移前当前快照。
-- 新增两个配套PyPTO/Simpler benchmark，使用已验证的120-AIC目标tiling。
+- 新增两个配套PyPTO/Simpler benchmark，采用面向120 AIC设计、在24 AIC设备上完成正确性验证的tiling。
 - 保留manual scope和CSA split/slot，关闭early dispatch并整理配套采集。
 - 重新计算逐算子统计，区分24-AIC实测与120-AIC目标分析。
