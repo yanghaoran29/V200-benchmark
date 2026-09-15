@@ -1,19 +1,28 @@
-# Toolchain versions
+# Toolchain and source versions
 
-Pinned at 2026-09-14 for the CSA / Qwen3 `_decode_layer` → V200 simpler sample work.
+| Component | Revision |
+|---|---|
+| pypto-lib | `092efde` on `yanghaoran29/pypto-lib-aicore-5x-tiling`, branch `aicore-5x-tiling` |
+| PyPTO | `6fdd989fdf45b10011c4bd6b0291a7e6c18fd7e4` |
+| Simpler | `39ce891dbb3f665e72e99b4a1387b47012fb18bd` (PyPTO runtime gitlink) |
+| PTO ISA | `5a4f74cbf627d4aac2e0ce10d5e0d8b118343265` |
+| PTOAS | `v0.61` |
+| Archived benchmark | `82f5a5c` (2026-07-14) |
 
-| Component | Version | Source |
-|---|---|---|
-| pypto-lib | `3ac8fd8815402a0dc17914dc8c9440d9de5b7329` (`3ac8fd8`, main) | this checkout |
-| pypto | `6fdd989fdf45b10011c4bd6b0291a7e6c18fd7e4` (`6fdd989`, main) | origin/main at pin time |
-| simpler | `39ce891dbb3f665e72e99b4a1387b47012fb18bd` (`39ce891`, detached) | pypto `runtime/` submodule |
-| pto-isa | `5a4f74cbf627d4aac2e0ce10d5e0d8b118343265` (`5a4f74cb`, detached) | pypto `runtime/pto_isa.pin` |
-| ptoas | `v0.61` (`ptoas 0.61`) | pypto `toolchain/versions.env` |
+Use the selected PyPTO checkout's installation procedure and pinned dependencies,
+with a matching CANN installation. Capture environment: a2a3, 24 AIC / 48 AIV,
+CANN 9.0.0. The 120-AIC target has not been measured.
 
-## Local roots
+The Qwen capture was produced after `ffb8e36`; its packaged source and C++ are
+unchanged by `092efde`, which changed CSA. CSA capture matches `092efde`.
+Per-benchmark `PROVENANCE.json` lists upstream source modules, capture identity,
+and SHA-256 hashes for packaged source, generated code, metadata and captures.
 
-- `PYPTO_ROOT=/data/y00955915/Desktop/pypto-lib-09141/pypto`
-- `PTOAS_ROOT=/data/y00955915/Desktop/pypto-lib-09141/ptoas-bin`
-- `PTO_ISA_ROOT=/data/y00955915/Desktop/pypto-lib-09141/.venv/lib/python3.11/site-packages/simpler_setup/_assets/build/pto-isa`
-- activate: `source /data/y00955915/Desktop/pypto-lib-09141/activate.sh`
-- GitHub: `source ~/.config/pto-auth-proxy/env.sh` (port 20809)
+Each `pypto-lib-operator/golden` directory vendors the pypto-lib golden harness.
+Both execution paths require PyPTO and its pinned Simpler runtime; the Simpler
+entry uses runtime-directory replay, not PyPTO code generation. No sibling
+pypto-lib checkout or machine-specific path is required.
+
+Original source copyright headers are preserved. PyPTO source and generated
+artifacts are distributed subject to their upstream CANN Open Software License
+Agreement Version 2.0; see the bundled LICENSE files.

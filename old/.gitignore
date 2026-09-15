@@ -1,0 +1,6 @@
+*.so
+*.o
+__pycache__
+outputs/
+build_outputs/
+swimlane/

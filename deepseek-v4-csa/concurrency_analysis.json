@@ -1,0 +1,155 @@
+{
+  "level": 4,
+  "caps": {
+    "aic": 24,
+    "aiv": 48
+  },
+  "dependency_tasks": 70,
+  "early_dispatch_true": 0,
+  "early_dispatch_false": 70,
+  "expected_physical_rows": 1182,
+  "joined_rows": 1182,
+  "captured_test_span_us": 578.24,
+  "resources": {
+    "aic": {
+      "rows": 745,
+      "peak": 24,
+      "peak_time_us": 152.58,
+      "busy_sum_us": 5364.94,
+      "span_us": 553.38,
+      "average_utilization": 0.404
+    },
+    "aiv": {
+      "rows": 437,
+      "peak": 48,
+      "peak_time_us": 380.40000000000003,
+      "busy_sum_us": 2824.02,
+      "span_us": 574.12,
+      "average_utilization": 0.1025
+    }
+  },
+  "aic_logical_envelope_peak_demand": {
+    "demand": 160,
+    "time_us": 188.84,
+    "logical_tasks": 3,
+    "active": [
+      {
+        "name": "qr_proj_matmul",
+        "block_num": 64
+      },
+      {
+        "name": "kv_score_proj",
+        "block_num": 64
+      },
+      {
+        "name": "kv_proj_matmul",
+        "block_num": 32
+      }
+    ]
+  },
+  "aic_logical_envelope_peak_count": {
+    "count": 6,
+    "time_us": 596.52,
+    "demand": 96,
+    "active": [
+      {
+        "name": "proj_a_mm",
+        "block_num": 16
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 16
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 16
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 16
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 16
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 16
+      }
+    ]
+  },
+  "selected": {
+    "qr_proj_matmul": {
+      "occurrences": 1,
+      "declared_blocks": 64,
+      "rows": 64,
+      "start_us": 149.88,
+      "end_us": 214.4,
+      "exec_sum_us": 245.3
+    },
+    "qproj_matmul": {
+      "occurrences": 1,
+      "declared_blocks": 128,
+      "rows": 128,
+      "start_us": 228.66,
+      "end_us": 310.08,
+      "exec_sum_us": 1093.74
+    },
+    "kv_proj_matmul": {
+      "occurrences": 1,
+      "declared_blocks": 32,
+      "rows": 32,
+      "start_us": 188.84,
+      "end_us": 204.84,
+      "exec_sum_us": 135.28
+    },
+    "kv_score_proj": {
+      "occurrences": 2,
+      "declared_blocks": 72,
+      "rows": 72,
+      "start_us": 149.8,
+      "end_us": 222.52,
+      "exec_sum_us": 506.4
+    },
+    "idx_qr_proj_matmul": {
+      "occurrences": 1,
+      "declared_blocks": 32,
+      "rows": 32,
+      "start_us": 228.74,
+      "end_us": 295.92,
+      "exec_sum_us": 242.98
+    },
+    "qr_hadamard_matmul": {
+      "occurrences": 1,
+      "declared_blocks": 32,
+      "rows": 32,
+      "start_us": 342.82,
+      "end_us": 353.78000000000003,
+      "exec_sum_us": 79.08
+    },
+    "score_aic": {
+      "occurrences": 1,
+      "declared_blocks": 80,
+      "rows": 80,
+      "start_us": 374.8,
+      "end_us": 429.24,
+      "exec_sum_us": 512.62
+    },
+    "qk_pv_aic": {
+      "occurrences": 1,
+      "declared_blocks": 40,
+      "rows": 40,
+      "start_us": 460.1,
+      "end_us": 498.92,
+      "exec_sum_us": 352.18
+    },
+    "proj_a_mm": {
+      "occurrences": 8,
+      "declared_blocks": 128,
+      "rows": 128,
+      "start_us": 531.6800000000001,
+      "end_us": 631.6800000000001,
+      "exec_sum_us": 1382.5
+    }
+  }
+}
