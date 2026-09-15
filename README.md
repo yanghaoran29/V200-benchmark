@@ -333,6 +333,65 @@ python deepseek-v4-csa-b/analyze_capture.py
 
 结构检查需要PyPTO环境；分析还使用NetworkX。源码、生成代码和归档采集哈希见[PROVENANCE.json](deepseek-v4-csa-b/PROVENANCE.json)。PyPTO入口支持`a2a3/a2a3sim/a5/a5sim`；随包Simpler C++来自a2a3，不能直接作为a5产物使用。120 AIC目标机需使用对应平台和匹配工具链重新编译/验证，不将本次24核数据外推为120核性能。
 
+## 2.5 CSA A/B 任务数量与平均粒度对比
+
+任务数量沿用SVG口径：纯AIC/AIV按物理执行记录计数，MIX每个混合SPMD block只计一个任务。同类分组调用合并统计，主compressor与Indexer compressor分别列出。
+
+平均任务粒度定义为该算子的**核执行时间总和÷任务数量**，单位为核微秒/任务；MIX累加其AIC与AIV执行时间，再除以混合block数，表示平均每任务消耗的核执行工作量，**不是任务墙钟时长**。合计行按任务数量加权。数据来自随包24 AIC/48 AIV采集；A使用混合长度，B统一start_pos=8192，因此该表不表示同输入下的性能优劣，也不外推120 AIC性能。
+
+| 算子 | A任务数量 | B任务数量 | A平均粒度（核μs/任务） | B平均粒度（核μs/任务） |
+|---|---:|---:|---:|---:|
+| `hc_pre_rms` | 1 | 1 | 9.94 | 39.80 |
+| `hc_pre_linear` | 4 | 4 | 9.67 | 21.77 |
+| `hc_pre_linear_reduce` | 1 | 1 | 1.46 | 4.56 |
+| `split_pre_post` | 1 | 1 | 3.88 | 8.56 |
+| `comb_sinkhorn` | 1 | 1 | 14.86 | 65.98 |
+| `mix_x` | 4 | 4 | 4.85 | 16.38 |
+| `csa_rope_step` | 1 | 1 | 6.94 | 20.28 |
+| `Q: rope_interleave` | 1 | 1 | 2.42 | 3.50 |
+| `csa_cmp_rope` | 1 | 1 | 3.08 | 8.70 |
+| `compressed: rope_interleave` | 1 | 1 | 2.50 | 4.16 |
+| `rms_norm` | 1 | 1 | 11.20 | 48.04 |
+| `q_rope_prepare` | 1 | 1 | 2.64 | 8.22 |
+| `qr_proj_seed` | 1 | 1 | 2.90 | 5.58 |
+| `qr_proj_matmul` | 64 | 64 | 3.83 | 5.70 |
+| `qr_rms_norm_quant` | 1 | 1 | 4.84 | 19.80 |
+| `qproj_matmul` | 128 | 128 | 8.54 | 13.82 |
+| `qproj_dequant_rms_nope_rope` | 16 | 16 | 6.19 | 25.63 |
+| `kv_proj_seed` | 1 | 1 | 2.36 | 3.46 |
+| `kv_proj_matmul` | 32 | 32 | 4.23 | 6.96 |
+| `kv_rms_norm_rope` | 1 | 1 | 5.52 | 20.62 |
+| `csa_cache_writeback` | 1 | 1 | 3.32 | 14.54 |
+| `main: kv_score_proj` | 64 | 64 | 6.55 | 11.57 |
+| `main: scatter_softmax_pool` | 1 | 1 | 10.58 | 21.32 |
+| `rmsnorm_rope_cache_write` | 1 | 1 | 14.98 | 19.54 |
+| `idx_qr_proj_matmul` | 32 | 32 | 7.59 | 14.07 |
+| `idx_qr_proj_dequant` | 32 | 32 | 1.84 | 4.05 |
+| `qr_rope_swap_idx` | 1 | 1 | 1.50 | 2.10 |
+| `qr_rope` | 16 | 16 | 5.69 | 13.92 |
+| `qr_hadamard_matmul` | 32 | 32 | 2.47 | 4.16 |
+| `qr_hadamard_quant` | 8 | 8 | 6.02 | 25.62 |
+| `weights_proj` | 4 | 4 | 5.47 | 7.10 |
+| `weights_proj_reduce` | 1 | 1 | 1.74 | 3.54 |
+| `indexer: kv_score_proj` | 8 | 8 | 10.94 | 19.00 |
+| `indexer: scatter_softmax_pool` | 1 | 1 | 11.44 | 20.16 |
+| `rmsnorm_rope` | 1 | 1 | 4.70 | 7.36 |
+| `kv_hadamard` | 1 | 1 | 2.64 | 3.62 |
+| `kv_and_cache_write` | 1 | 1 | 3.02 | 3.94 |
+| `Indexer score` | 80 | 100 | 17.65 | 72.29 |
+| `topk` | 8 | 8 | 5.17 | 32.35 |
+| `kv_touch` | 1 | 1 | 1.24 | 1.68 |
+| `csa_slots_build_valid_qk_plan` | 1 | 1 | 4.38 | 15.30 |
+| `QK / PV` | 40 | 100 | 26.21 | 127.11 |
+| `rope_cs` | 1 | 1 | 3.26 | 7.02 |
+| `merge_norm` | 64 | 64 | 9.84 | 20.55 |
+| `proj_a_mm` | 128 | 128 | 10.80 | 22.09 |
+| `quant` | 8 | 8 | 2.95 | 8.76 |
+| `proj_b_mm` | 128 | 128 | 5.87 | 10.06 |
+| `proj_b_act` | 8 | 8 | 4.84 | 16.32 |
+| `hc_post` | 8 | 8 | 5.42 | 23.09 |
+| **合计／加权平均** | **942** | **1022** | **8.69** | **30.70** |
+
 # 3. 并发与验证结果
 
 | 样例 | 逻辑任务 | AIC记录 | AIV记录 | 物理记录完整性 | early_dispatch=true | 采集跨度(us) | 120 AIC实测 |
