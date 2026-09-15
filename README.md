@@ -42,7 +42,7 @@ Attention 的 BlockDim 为 120：block 0–7 各执行两个工作项，其余�
 | Down | 85×1 | 每5项依赖对应 SiLU，可与其他 Gate/Up 分组重叠 |
 
 保留 manual scope 和显式真实依赖；无 early dispatch、dummy 任务或 syncall。
-固定采用以上分组，不再提供旧版统一 SPMD 宽度的五档切换。
+固定采用以上分组。
 
 ## 1.3 a2a3 上各 kernel 执行时间
 
@@ -363,24 +363,63 @@ python qwen3-decode-layer/pypto-lib-operator/run_benchmark.py -p a2a3 -d 0 \
 运行日志与临时编译产物不进入版本库。源码入口的 `--dep-output-dir` 指定导出编译产物目录；Simpler replay 的新采集写在自身 `dfx_outputs/`，不会覆盖 benchmark 根下的归档采集。
 更换 batch、静态维度或 tiling 后必须重新生成 Simpler C++；不能只修改输入绕过 ABI 校验。
 
-# 5. 相对于原 benchmark 的修改
+# 5. benchmark 模型相对于 pypto-lib 主线模型的修改
 
-| 项目 | 7月原版（old/） | 当前 benchmark |
+对照基线为本次改造起点的 pypto-lib 主线提交 `c3f0dea274f55d9648920f17c968e8564ae9fcdc`，对应 `models/qwen3_14b` 和 `models/deepseek_v4_flash_mtp`。这里比较模型实现、tiling 和输入配置；该固定基线不代表主线后续提交。随包代码及采集的精确版本见各样例的 `PROVENANCE.json`。
+
+## 5.1 Qwen3-14B 单层 decode
+
+模型维度与默认 batch=16 保持主线配置，调整任务划分和跨任务调度。
+
+| 项目 | pypto-lib 主线基线 | 当前 benchmark |
 |---|---|---|
-| 内容 | Qwen整层、Scope2 attention与独立Paged Attention | DeepSeek V4 CSA和Qwen单层decode |
-| 源码 | 手写/参数化的benchmark编排及kernel | 调整后的pypto-lib算子和对应生成Simpler代码配套提供 |
-| Qwen默认batch | 旧整层90（padding96）；Scope2样例30 | 单层16，不沿用旧负载的耗时结论 |
-| Qwen Attention | 原独立PA和Scope2分组方式 | Phase0独立16，Attention120；128工作项按120步长分配 |
-| SPMD | 全局统一宽度五档 | 按算子固定分组，Out每10项，Gate/Up每5项 |
-| 依赖 | manual/tensormap方案及局部静态构图设计 | 保留当前manual scope与真实deps；SiLU按Gate/Up分组依赖 |
-| 调度技巧 | 各历史方案见原文档 | 关闭early dispatch，移除dummy、同步启动、全核屏障；CSA移除预取与非空优先排序 |
-| 显式优化配置 | 历史实现 | 按要求保留CSA score的split/slot配置 |
-| 长度 | 旧负载配置 | Qwen固定种子可变seq_len；CSA canonical起始位置集合；报告长度敏感性 |
-| 产物 | 历史目录及泳道 | 每例均带deps、原始泳道、HTML、名称映射、合并泳道和并发分析 |
-| 验证 | 历史测试标准 | 两种入口使用同一输入生成和数值golden，不跳过校验 |
+| Q/K/V 投影 | 分别50/10/10个SPMD blocks | 保持50/10/10，保留Split-K原子累加 |
+| Attention | BlockDim=24 | `ATTN_SPMD_BLOCKS=120`；128个请求/KV-head工作项按120步长分配，前8个block各处理2项，其余各1项 |
+| Out projection | N分片10、Split-K=5，共50个工作项；26个普通任务加一次24-block SPMD | N分片20、输出N tile从512降到256，共100个工作项；按每10项组成一次SPMD，共10次调用 |
+| Gate / Up | 各85个工作项；前6个N分片使用SPMD，其余通过dummy延迟调度 | 每个N分片的5个Split-K工作项组成一次SPMD，各17次调用×5 blocks；计算工作项总数不变 |
+| SiLU / Down | 17个SiLU任务、85个Down工作项，带优先波次调度 | 数量保持；每个SiLU等待对应Gate/Up分组及共享RMS，Down等待对应SiLU |
+| 调度 | early dispatch、dummy及同步启动/全核屏障等控制 | 移除这些控制；保留manual scope、表达真实数据依赖的deps及计算所需核内同步 |
+| 输入长度 | 固定种子生成每请求seq_len | 保持seed=1234及长度范围[1,4096]；长度仍影响各Attention工作项的扫描量 |
 
-CSA相对于此次改造前的pypto-lib基线：qproj 64→128、qr_proj 16→64、kv_proj 16→32；其余细节以随包配置及任务表为准。
-移除高级调度不等于移除计算所需的原子累加、显式依赖或核内同步。
+Out投影每组覆盖两个相邻N tile及其全部5路Split-K；每两组完成即可释放对应的residual cast。增加Attention的BlockDim不增加128个数学工作项，也不保证任务等长。
+
+## 5.2 DeepSeek V4 CSA 方案 A
+
+保持主线的B=4、S=2、T=8和模型维度，主要通过缩小矩阵tile、增加Split-K或重划归约分片提高可调度任务数。
+
+| 算子 | 主线BlockDim | 方案A BlockDim | 实现调整 |
+|---|---:|---:|---|
+| qproj_matmul | 64 | 128 | `QPROJ_MM_N_TILE`：512→256 |
+| qr_proj_matmul | 16 | 64 | `QR_OK`：2→8，增加Split-K原子累加扇入 |
+| kv_proj_matmul | 16 | 32 | `KV_OK`：4→8 |
+| idx_qr_proj_matmul / dequant | 各8 | 各32 | `Q_OUT_TILE`：1024→256，`MM_N_TILE`：512→256，保证输出分片匹配 |
+| qr_hadamard_matmul | 8 | 32 | `QH_MM_TILE`：64→16 |
+| score | 16 | 80 | `REDUCE_NSPLIT`：2→10，8个token各10路归约 |
+| QK/PV | 24 | 40 | `NUM_QK_CORES`：24→40，对应8×5个token/稀疏块工作项 |
+| proj_a_mm | 每次8，共8次 | 每次16，共8次 | `PROJ_A_MM_N_TILE`：128→64 |
+| proj_b_mm | 每次8，共8次 | 每次16，共8次 | `PROJ_B_D_TILE`：512→256 |
+| merge_norm | 32 | 64 | merge阶段Head tile：16→8；QK/PV仍保留16-Head生产分组，重写merge的组内索引 |
+| 主compressor kv_score_proj | 16 | 64 | 输出N tile：64→16；不将此配置应用到内层Indexer compressor |
+
+调度方面，移除early dispatch、RMS延迟dummy、输出投影权重预取及QK/PV非空块优先排序，按自然token/block顺序分配工作。保留manual scope、真实deps、score显式split/slot配置，以及承担KV-cache依赖的`kv_touch`。Split-K原子累加和核内流水同步继续用于计算正确性。
+
+默认起始位置为`[8192,0,2,3]`，KV长度为`[8194,2,4,5]`。这些长度不是均匀负载：score有效页数、QK/PV有效稀疏块及压缩边界分支都会影响任务时长。
+
+## 5.3 DeepSeek V4 CSA 方案 B
+
+方案B继承方案A的算子调整，在主线B=4、S=2的基础上将batch改为20，S仍为2，总token数由8增为40。非长度相关算子保持方案A的调用数和BlockDim，新增token在任务内部处理。
+
+| 项目 | pypto-lib主线基线 | 方案B |
+|---|---|---|
+| batch / 本次token总数 | 4 / 8 | 20 / 40 |
+| 默认start_pos / KV长度 | `[8192,0,2,3]` / `[8194,2,4,5]` | 全部20个请求为8192 / 8194 |
+| score | 16 blocks，8个token×2路归约 | 100 blocks，40个token×5路归约共200工作项，每block处理2项 |
+| QK/PV | 24 blocks处理40工作项 | 100 blocks处理200工作项，每block处理2项 |
+| 缓存测试输入 | 按原batch和长度组织 | 按20个请求实际长度重新分配互不重叠的物理页，保留跨请求隔离 |
+
+score每个token仍覆盖全部有效压缩位置；QK/PV仍覆盖每个token的5个稀疏块，合并工作项不改变归约或attention语义。统一8192起始位置后，score的80个blocks各处理26页、20个各处理24页，仍不能将100个blocks视为完全等长。完整参数、逐算子统计与验证见本文第2.4节。
+
+上述修改均以120 AIC为目标；当前Golden和配套泳道在24 AIC / 48 AIV机器上验证，不据此给出120 AIC加速比或A/B性能结论。
 
 # 修改历史
 
