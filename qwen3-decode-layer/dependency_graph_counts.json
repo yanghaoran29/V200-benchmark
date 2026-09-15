@@ -1,4 +1,6 @@
 {
+  "physical_tasks": 617,
+  "counting_rule": "AIC/AIV: execution records; MIX: one task per mixed SPMD block",
   "physical_records": 857,
   "resources": {
     "aiv": 312,
@@ -7,6 +9,7 @@
   "nodes": [
     {
       "name": "copy_hidden",
+      "physical_tasks": 1,
       "physical_records": 1,
       "resources": {
         "aiv": 1
@@ -17,6 +20,7 @@
     },
     {
       "name": "x_gamma0",
+      "physical_tasks": 5,
       "physical_records": 5,
       "resources": {
         "aiv": 5
@@ -27,6 +31,7 @@
     },
     {
       "name": "attn_out_seed",
+      "physical_tasks": 1,
       "physical_records": 1,
       "resources": {
         "aiv": 1
@@ -37,6 +42,7 @@
     },
     {
       "name": "rms_recip",
+      "physical_tasks": 1,
       "physical_records": 1,
       "resources": {
         "aiv": 1
@@ -47,6 +53,7 @@
     },
     {
       "name": "q_seed",
+      "physical_tasks": 1,
       "physical_records": 1,
       "resources": {
         "aiv": 1
@@ -57,6 +64,7 @@
     },
     {
       "name": "q_proj",
+      "physical_tasks": 50,
       "physical_records": 50,
       "resources": {
         "aic": 50
@@ -67,6 +75,7 @@
     },
     {
       "name": "kv_seed",
+      "physical_tasks": 1,
       "physical_records": 1,
       "resources": {
         "aiv": 1
@@ -77,6 +86,7 @@
     },
     {
       "name": "mlp_out_seed",
+      "physical_tasks": 1,
       "physical_records": 1,
       "resources": {
         "aiv": 1
@@ -87,6 +97,7 @@
     },
     {
       "name": "k_proj",
+      "physical_tasks": 10,
       "physical_records": 10,
       "resources": {
         "aic": 10
@@ -97,6 +108,7 @@
     },
     {
       "name": "v_proj",
+      "physical_tasks": 10,
       "physical_records": 10,
       "resources": {
         "aic": 10
@@ -107,6 +119,7 @@
     },
     {
       "name": "attn_phase0",
+      "physical_tasks": 32,
       "physical_records": 32,
       "resources": {
         "aiv": 32
@@ -117,6 +130,7 @@
     },
     {
       "name": "Attention (QK / softmax / PV)",
+      "physical_tasks": 120,
       "physical_records": 360,
       "resources": {
         "aic": 120,
@@ -128,6 +142,7 @@
     },
     {
       "name": "out_proj",
+      "physical_tasks": 100,
       "physical_records": 100,
       "resources": {
         "aic": 100
@@ -147,6 +162,7 @@
     },
     {
       "name": "residual_rms_cast",
+      "physical_tasks": 5,
       "physical_records": 5,
       "resources": {
         "aiv": 5
@@ -161,6 +177,7 @@
     },
     {
       "name": "post_rms_reduce",
+      "physical_tasks": 1,
       "physical_records": 1,
       "resources": {
         "aiv": 1
@@ -171,6 +188,7 @@
     },
     {
       "name": "gate_proj",
+      "physical_tasks": 85,
       "physical_records": 85,
       "resources": {
         "aic": 85
@@ -197,6 +215,7 @@
     },
     {
       "name": "up_proj",
+      "physical_tasks": 85,
       "physical_records": 85,
       "resources": {
         "aic": 85
@@ -223,6 +242,7 @@
     },
     {
       "name": "silu",
+      "physical_tasks": 17,
       "physical_records": 17,
       "resources": {
         "aiv": 17
@@ -249,6 +269,7 @@
     },
     {
       "name": "down_proj",
+      "physical_tasks": 85,
       "physical_records": 85,
       "resources": {
         "aic": 85
@@ -343,6 +364,7 @@
     },
     {
       "name": "dcr_xgamma",
+      "physical_tasks": 5,
       "physical_records": 5,
       "resources": {
         "aiv": 5
@@ -353,6 +375,7 @@
     },
     {
       "name": "copy_out",
+      "physical_tasks": 1,
       "physical_records": 1,
       "resources": {
         "aiv": 1

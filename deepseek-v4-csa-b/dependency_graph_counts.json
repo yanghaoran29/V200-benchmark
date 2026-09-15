@@ -1,4 +1,6 @@
 {
+  "physical_tasks": 1022,
+  "counting_rule": "AIC/AIV: execution records; MIX: one task per mixed SPMD block",
   "physical_records": 1422,
   "resources": {
     "aiv": 597,
@@ -7,6 +9,7 @@
   "nodes": [
     {
       "name": "hc_pre_rms",
+      "physical_tasks": 1,
       "physical_records": 1,
       "resources": {
         "aiv": 1
@@ -17,6 +20,7 @@
     },
     {
       "name": "hc_pre_linear",
+      "physical_tasks": 4,
       "physical_records": 4,
       "resources": {
         "aic": 4
@@ -27,6 +31,7 @@
     },
     {
       "name": "hc_pre_linear_reduce",
+      "physical_tasks": 1,
       "physical_records": 1,
       "resources": {
         "aiv": 1
@@ -37,6 +42,7 @@
     },
     {
       "name": "split_pre_post",
+      "physical_tasks": 1,
       "physical_records": 1,
       "resources": {
         "aiv": 1
@@ -47,6 +53,7 @@
     },
     {
       "name": "comb_sinkhorn",
+      "physical_tasks": 1,
       "physical_records": 1,
       "resources": {
         "aiv": 1
@@ -57,6 +64,7 @@
     },
     {
       "name": "mix_x",
+      "physical_tasks": 4,
       "physical_records": 4,
       "resources": {
         "aiv": 4
@@ -67,6 +75,7 @@
     },
     {
       "name": "csa_rope_step",
+      "physical_tasks": 1,
       "physical_records": 1,
       "resources": {
         "aiv": 1
@@ -77,6 +86,7 @@
     },
     {
       "name": "Q: rope_interleave",
+      "physical_tasks": 1,
       "physical_records": 1,
       "resources": {
         "aiv": 1
@@ -87,6 +97,7 @@
     },
     {
       "name": "csa_cmp_rope",
+      "physical_tasks": 1,
       "physical_records": 1,
       "resources": {
         "aiv": 1
@@ -97,6 +108,7 @@
     },
     {
       "name": "compressed: rope_interleave",
+      "physical_tasks": 1,
       "physical_records": 1,
       "resources": {
         "aiv": 1
@@ -107,6 +119,7 @@
     },
     {
       "name": "rms_norm",
+      "physical_tasks": 1,
       "physical_records": 1,
       "resources": {
         "aiv": 1
@@ -117,6 +130,7 @@
     },
     {
       "name": "q_rope_prepare",
+      "physical_tasks": 1,
       "physical_records": 1,
       "resources": {
         "aiv": 1
@@ -127,6 +141,7 @@
     },
     {
       "name": "qr_proj_seed",
+      "physical_tasks": 1,
       "physical_records": 1,
       "resources": {
         "aiv": 1
@@ -137,6 +152,7 @@
     },
     {
       "name": "qr_proj_matmul",
+      "physical_tasks": 64,
       "physical_records": 64,
       "resources": {
         "aic": 64
@@ -147,6 +163,7 @@
     },
     {
       "name": "qr_rms_norm_quant",
+      "physical_tasks": 1,
       "physical_records": 1,
       "resources": {
         "aiv": 1
@@ -157,6 +174,7 @@
     },
     {
       "name": "qproj_matmul",
+      "physical_tasks": 128,
       "physical_records": 128,
       "resources": {
         "aic": 128
@@ -167,6 +185,7 @@
     },
     {
       "name": "qproj_dequant_rms_nope_rope",
+      "physical_tasks": 16,
       "physical_records": 16,
       "resources": {
         "aiv": 16
@@ -177,6 +196,7 @@
     },
     {
       "name": "kv_proj_seed",
+      "physical_tasks": 1,
       "physical_records": 1,
       "resources": {
         "aiv": 1
@@ -187,6 +207,7 @@
     },
     {
       "name": "kv_proj_matmul",
+      "physical_tasks": 32,
       "physical_records": 32,
       "resources": {
         "aic": 32
@@ -197,6 +218,7 @@
     },
     {
       "name": "kv_rms_norm_rope",
+      "physical_tasks": 1,
       "physical_records": 1,
       "resources": {
         "aiv": 1
@@ -207,6 +229,7 @@
     },
     {
       "name": "csa_cache_writeback",
+      "physical_tasks": 1,
       "physical_records": 1,
       "resources": {
         "aiv": 1
@@ -217,6 +240,7 @@
     },
     {
       "name": "main: kv_score_proj",
+      "physical_tasks": 64,
       "physical_records": 64,
       "resources": {
         "aic": 64
@@ -227,6 +251,7 @@
     },
     {
       "name": "main: scatter_softmax_pool",
+      "physical_tasks": 1,
       "physical_records": 1,
       "resources": {
         "aiv": 1
@@ -237,6 +262,7 @@
     },
     {
       "name": "rmsnorm_rope_cache_write",
+      "physical_tasks": 1,
       "physical_records": 1,
       "resources": {
         "aiv": 1
@@ -247,6 +273,7 @@
     },
     {
       "name": "idx_qr_proj_matmul",
+      "physical_tasks": 32,
       "physical_records": 32,
       "resources": {
         "aic": 32
@@ -257,6 +284,7 @@
     },
     {
       "name": "idx_qr_proj_dequant",
+      "physical_tasks": 32,
       "physical_records": 32,
       "resources": {
         "aiv": 32
@@ -267,6 +295,7 @@
     },
     {
       "name": "qr_rope_swap_idx",
+      "physical_tasks": 1,
       "physical_records": 1,
       "resources": {
         "aiv": 1
@@ -277,6 +306,7 @@
     },
     {
       "name": "qr_rope",
+      "physical_tasks": 16,
       "physical_records": 16,
       "resources": {
         "aiv": 16
@@ -287,6 +317,7 @@
     },
     {
       "name": "qr_hadamard_matmul",
+      "physical_tasks": 32,
       "physical_records": 32,
       "resources": {
         "aic": 32
@@ -297,6 +328,7 @@
     },
     {
       "name": "qr_hadamard_quant",
+      "physical_tasks": 8,
       "physical_records": 8,
       "resources": {
         "aiv": 8
@@ -307,6 +339,7 @@
     },
     {
       "name": "weights_proj",
+      "physical_tasks": 4,
       "physical_records": 4,
       "resources": {
         "aic": 4
@@ -317,6 +350,7 @@
     },
     {
       "name": "weights_proj_reduce",
+      "physical_tasks": 1,
       "physical_records": 1,
       "resources": {
         "aiv": 1
@@ -327,6 +361,7 @@
     },
     {
       "name": "indexer: kv_score_proj",
+      "physical_tasks": 8,
       "physical_records": 8,
       "resources": {
         "aic": 8
@@ -337,6 +372,7 @@
     },
     {
       "name": "indexer: scatter_softmax_pool",
+      "physical_tasks": 1,
       "physical_records": 1,
       "resources": {
         "aiv": 1
@@ -347,6 +383,7 @@
     },
     {
       "name": "rmsnorm_rope",
+      "physical_tasks": 1,
       "physical_records": 1,
       "resources": {
         "aiv": 1
@@ -357,6 +394,7 @@
     },
     {
       "name": "kv_hadamard",
+      "physical_tasks": 1,
       "physical_records": 1,
       "resources": {
         "aic": 1
@@ -367,6 +405,7 @@
     },
     {
       "name": "kv_and_cache_write",
+      "physical_tasks": 1,
       "physical_records": 1,
       "resources": {
         "aiv": 1
@@ -377,6 +416,7 @@
     },
     {
       "name": "Indexer score",
+      "physical_tasks": 100,
       "physical_records": 300,
       "resources": {
         "aic": 100,
@@ -388,6 +428,7 @@
     },
     {
       "name": "topk",
+      "physical_tasks": 8,
       "physical_records": 8,
       "resources": {
         "aiv": 8
@@ -398,6 +439,7 @@
     },
     {
       "name": "kv_touch",
+      "physical_tasks": 1,
       "physical_records": 1,
       "resources": {
         "aiv": 1
@@ -408,6 +450,7 @@
     },
     {
       "name": "csa_slots_build_valid_qk_plan",
+      "physical_tasks": 1,
       "physical_records": 1,
       "resources": {
         "aiv": 1
@@ -418,6 +461,7 @@
     },
     {
       "name": "QK / PV",
+      "physical_tasks": 100,
       "physical_records": 300,
       "resources": {
         "aic": 100,
@@ -429,6 +473,7 @@
     },
     {
       "name": "rope_cs",
+      "physical_tasks": 1,
       "physical_records": 1,
       "resources": {
         "aiv": 1
@@ -439,6 +484,7 @@
     },
     {
       "name": "merge_norm",
+      "physical_tasks": 64,
       "physical_records": 64,
       "resources": {
         "aiv": 64
@@ -449,6 +495,7 @@
     },
     {
       "name": "proj_a_mm",
+      "physical_tasks": 128,
       "physical_records": 128,
       "resources": {
         "aic": 128
@@ -466,6 +513,7 @@
     },
     {
       "name": "quant",
+      "physical_tasks": 8,
       "physical_records": 8,
       "resources": {
         "aiv": 8
@@ -483,6 +531,7 @@
     },
     {
       "name": "proj_b_mm",
+      "physical_tasks": 128,
       "physical_records": 128,
       "resources": {
         "aic": 128
@@ -500,6 +549,7 @@
     },
     {
       "name": "proj_b_act",
+      "physical_tasks": 8,
       "physical_records": 8,
       "resources": {
         "aiv": 8
@@ -510,6 +560,7 @@
     },
     {
       "name": "hc_post",
+      "physical_tasks": 8,
       "physical_records": 8,
       "resources": {
         "aiv": 8

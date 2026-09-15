@@ -14,12 +14,12 @@
 
 ## 算子依赖关系图（SVG）
 
-- [Qwen3 decode layer](qwen3-decode-layer/dependency_graph.svg)：857条物理记录。
-- [DeepSeek V4 CSA 方案A](deepseek-v4-csa/dependency_graph.svg)：1182条物理记录。
-- [DeepSeek V4 CSA 方案B](deepseek-v4-csa-b/dependency_graph.svg)：1422条物理记录，全部请求start_pos=8192。
+- [Qwen3 decode layer](qwen3-decode-layer/dependency_graph.svg)：617个物理任务（原始泳道857条记录）。
+- [DeepSeek V4 CSA 方案A](deepseek-v4-csa/dependency_graph.svg)：942个物理任务（原始泳道1182条记录）。
+- [DeepSeek V4 CSA 方案B](deepseek-v4-csa-b/dependency_graph.svg)：1022个物理任务（原始泳道1422条记录），全部请求start_pos=8192。
 
-图中AIC为红色、AIV为蓝色、MIX为紫色；每个节点右下角的`x N`按配套泳道物理记录计数，MIX为AIC与AIV记录之和。例如方案B的score为`x 300 = 100 AIC + 200 AIV`，不是300个SPMD blocks。
-同类分组调用合并展示，主compressor与Indexer compressor保持独立。连线从`deps.json`的wait依赖生成，折叠无执行记录的张量创建节点，并省略可通过其他路径到达的传递边。合并节点之间的箭头表示成员间存在依赖，不表示整个算子全部blocks完成后才允许下游启动；完整分组依赖仍以deps viewer为准。融合Attention内部阶段不重复拆分计数。
+图中AIC为红色、AIV为蓝色、MIX为紫色；每个节点右下角的`x N`按物理任务计数：纯AIC/AIV沿用执行记录数，MIX的一个混合SPMD block计为一个物理任务，不重复累计其AIC/AIV记录。Qwen Attention为`x 120`；CSA A的score/QK-PV分别为`x 80`/`x 40`；CSA B两者均为`x 100`。原始泳道记录及其他章节的采集统计保持原有口径，JSON同时保存`physical_tasks`与`physical_records`供核对。
+同类分组调用合并展示，主compressor与Indexer compressor保持独立。连线从`deps.json`的wait依赖生成，折叠无执行记录的张量创建节点，并省略可通过其他路径到达的传递边：存在`A→B→C`时不再画`A→C`，更长路径同样处理；生成时检查可达关系不变且没有冗余边。合并节点之间的箭头表示成员间存在依赖，不表示整个算子全部blocks完成后才允许下游启动；完整分组依赖仍以deps viewer为准。融合Attention内部阶段不重复拆分计数。
 
 布局采用固定主轴与两侧分支：Qwen的Q/K/V同层排列、Gate/Up左右展开；CSA将Indexer主链居中，Q/KV与compressor分布两侧，QK/PV后的输出链保持居中。CSA A/B使用相同节点坐标，只改变标题和记录数，便于对照。模型分支本身不完全对称，布局不添加虚假节点或依赖来凑对称。
 

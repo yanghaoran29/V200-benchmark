@@ -401,7 +401,7 @@
 <title>n41</title>
 <polygon fill="#d4b5ef" stroke="transparent" points="990,-750 990,-808 1272,-808 1272,-750 990,-750"/>
 <text text-anchor="start" x="1105" y="-788.8" font-family="DejaVu Sans" font-size="14.00">QK / PV</text>
-<text text-anchor="start" x="1144" y="-763" font-family="DejaVu Sans" font-size="10.00">40 AIC + 80 AIV &#160;| &#160;x 120</text>
+<text text-anchor="start" x="1209" y="-763" font-family="DejaVu Sans" font-size="10.00">MIX &#160;| &#160;x 40</text>
 <polygon fill="none" stroke="#566579" points="990,-750 990,-808 1272,-808 1272,-750 990,-750"/>
 </g>
 <!-- n16&#45;&gt;n41 -->
@@ -551,7 +551,7 @@
 <title>n37</title>
 <polygon fill="#d4b5ef" stroke="transparent" points="990,-1125 990,-1183 1272,-1183 1272,-1125 990,-1125"/>
 <text text-anchor="start" x="1084" y="-1163.8" font-family="DejaVu Sans" font-size="14.00">Indexer score</text>
-<text text-anchor="start" x="1138" y="-1138" font-family="DejaVu Sans" font-size="10.00">80 AIC + 160 AIV &#160;| &#160;x 240</text>
+<text text-anchor="start" x="1209" y="-1138" font-family="DejaVu Sans" font-size="10.00">MIX &#160;| &#160;x 80</text>
 <polygon fill="none" stroke="#566579" points="990,-1125 990,-1183 1272,-1183 1272,-1125 990,-1125"/>
 </g>
 <!-- n29&#45;&gt;n37 -->

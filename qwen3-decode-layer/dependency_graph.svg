@@ -101,7 +101,7 @@
 <title>n11</title>
 <polygon fill="#d4b5ef" stroke="transparent" points="660,-875 660,-933 942,-933 942,-875 660,-875"/>
 <text text-anchor="start" x="701.5" y="-913.8" font-family="DejaVu Sans" font-size="14.00">Attention (QK / softmax / PV)</text>
-<text text-anchor="start" x="802" y="-888" font-family="DejaVu Sans" font-size="10.00">120 AIC + 240 AIV &#160;| &#160;x 360</text>
+<text text-anchor="start" x="873" y="-888" font-family="DejaVu Sans" font-size="10.00">MIX &#160;| &#160;x 120</text>
 <polygon fill="none" stroke="#566579" points="660,-875 660,-933 942,-933 942,-875 660,-875"/>
 </g>
 <!-- n2&#45;&gt;n11 -->

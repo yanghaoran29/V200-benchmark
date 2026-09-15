@@ -31,6 +31,7 @@ def generate(case, title, subtitle):
         identities.add((core, register))
         rows[tid][capture['metadata']['core_types'][core]] += 1
     groups, counts, call_ids = {}, defaultdict(Counter), defaultdict(list)
+    physical_tasks = Counter()
     for tid, task in tasks.items():
         kids = task['kernel_ids']
         assert sum(rows[tid].values()) == task['block_num'] * sum(k >= 0 for k in kids)
@@ -49,6 +50,8 @@ def generate(case, title, subtitle):
                     'rope_interleave_0': 'compressed: rope_interleave'}.get(name, name)
         groups[tid] = name
         counts[name].update(rows[tid])
+        mixed = kids[0] >= 0 and any(k >= 0 for k in kids[1:])
+        physical_tasks[name] += task["block_num"] if mixed else sum(rows[tid].values())
         call_ids[name].append(str(tid))
     graph = nx.DiGraph()
     graph.add_nodes_from(tasks)
@@ -67,6 +70,11 @@ def generate(case, title, subtitle):
     grouped.add_edges_from((groups[a], groups[b]) for a, b in graph.edges if groups[a] != groups[b])
     assert nx.is_directed_acyclic_graph(grouped), 'Grouping would create a false cycle'
     reduced = nx.transitive_reduction(grouped)
+    assert set(nx.transitive_closure_dag(grouped).edges) == set(nx.transitive_closure_dag(reduced).edges)
+    for a, b in list(reduced.edges):
+        reduced.remove_edge(a, b)
+        assert not nx.has_path(reduced, a, b), "Redundant transitive edge"
+        reduced.add_edge(a, b)
     total = sum(sum(c.values()) for c in counts.values())
     assert total == len(capture['aicore_tasks'])
     totals = Counter()
@@ -127,10 +135,10 @@ def generate(case, title, subtitle):
 
     for name, count in counts.items():
         typ = 'mix' if count['aic'] and count['aiv'] else ('aic' if count['aic'] else 'aiv')
-        detail = f'{count["aic"]} AIC + {count["aiv"]} AIV' if typ == 'mix' else typ.upper()
+        detail = typ.upper()
         label = (f'<<TABLE BORDER="1" WIDTH="280" HEIGHT="58" CELLBORDER="0" CELLSPACING="0" CELLPADDING="7" COLOR="#566579" BGCOLOR="{COLORS[typ]}">'
                  f'<TR><TD WIDTH="280" ALIGN="CENTER"><FONT POINT-SIZE="14">{escape(name)}</FONT></TD></TR>'
-                 f'<TR><TD WIDTH="280" ALIGN="RIGHT"><FONT POINT-SIZE="10">{detail}  |  x {sum(count.values())}</FONT></TD></TR></TABLE>>')
+                 f'<TR><TD WIDTH="280" ALIGN="RIGHT"><FONT POINT-SIZE="10">{detail}  |  x {physical_tasks[name]}</FONT></TD></TR></TABLE>>')
         x, y = positions[name]
         lines.append(f'{ids[name]} [pos="{x * 330},{-y * 125}!", label={label}];')
     for a, b in sorted(reduced.edges):
@@ -138,12 +146,14 @@ def generate(case, title, subtitle):
     lines.append('}')
     subprocess.run(['neato', '-n2', '-Tsvg', '-o', str(folder / 'dependency_graph.svg')],
                    input='\n'.join(lines), text=True, check=True)
-    data = {'physical_records': total, 'resources': dict(totals),
-            'nodes': [{'name': n, 'physical_records': sum(c.values()), 'resources': dict(c),
+    data = {'physical_tasks': sum(physical_tasks.values()),
+            'counting_rule': 'AIC/AIV: execution records; MIX: one task per mixed SPMD block',
+            'physical_records': total, 'resources': dict(totals),
+            'nodes': [{'name': n, 'physical_tasks': physical_tasks[n], 'physical_records': sum(c.values()), 'resources': dict(c),
                        'logical_task_ids': call_ids[n]} for n, c in counts.items()],
             'grouped_edges': sorted(grouped.edges), 'displayed_edges': sorted(reduced.edges)}
     (folder / 'dependency_graph_counts.json').write_text(json.dumps(data, indent=2) + '\n')
-    print(case, len(counts), 'nodes;', total, 'records;', len(reduced.edges), 'displayed edges')
+    print(case, len(counts), 'nodes;', sum(physical_tasks.values()), 'physical tasks;', total, 'records;', len(reduced.edges), 'displayed edges')
 
 
 if __name__ == '__main__':
