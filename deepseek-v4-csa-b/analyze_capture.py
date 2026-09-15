@@ -6,7 +6,7 @@ from simpler_setup.tools.swimlane_converter import read_perf_data
 
 import sys
 base=Path(sys.argv[1]) if len(sys.argv) > 1 else Path(__file__).resolve().parent
-raw_path=base/"Chip_swimlane_records.json"
+raw_path=base/"chip_swimlane_records.json"
 deps=json.loads((base/"deps.json").read_text())
 name_path=base/"name_map.json"
 names=json.loads(name_path.read_text())["callable_id_to_name"]

@@ -4,13 +4,13 @@
 每个 benchmark 同时包含调整后的 PyPTO 算子与其生成的 Simpler C++，使用相同默认输入和 golden。
 
 历史内容见 [old/README.md](old/README.md)，归档版本为 `82f5a5c`（2026-07-14）。当前旧工作区快照已作废。
-新 benchmark 不设置根级 support 目录，各自携带必要 Python 支持代码。工具链见 [VERSIONS.md](VERSIONS.md)。
+新 benchmark 不设置根级 support 目录，各自携带必要 Python 支持代码。工具链见 [VERSIONS.md](VERSIONS.md)。三个样例的逐文件用途和删除建议见 [FILE_GUIDE.md](FILE_GUIDE.md)，完整目录清单见 [FILE_INVENTORY.csv](FILE_INVENTORY.csv)。
 
 | benchmark | PyPTO 入口 | Simpler C++ 入口 | 依赖图 | 泳道 |
 |---|---|---|---|---|
-| DeepSeek V4 CSA 方案 A | [run_benchmark.py](deepseek-v4-csa/pypto-lib-operator/run_benchmark.py) | [test_decode_csa.py](deepseek-v4-csa/simpler-operator/test_decode_csa.py) | [HTML](deepseek-v4-csa/deps_viewer.html) | [原始记录](deepseek-v4-csa/Chip_swimlane_records.json) / [合并泳道](deepseek-v4-csa/merged_swimlane.json) |
-| DeepSeek V4 CSA 方案 B | [run_benchmark.py](deepseek-v4-csa-b/pypto-lib-operator/run_benchmark.py) | [test_decode_csa.py](deepseek-v4-csa-b/simpler-operator/test_decode_csa.py) | [HTML](deepseek-v4-csa-b/deps_viewer.html) | [原始记录](deepseek-v4-csa-b/Chip_swimlane_records.json) / [合并泳道](deepseek-v4-csa-b/merged_swimlane.json) |
-| Qwen3 decode layer | [run_benchmark.py](qwen3-decode-layer/pypto-lib-operator/run_benchmark.py) | [test_qwen3_decode_layer.py](qwen3-decode-layer/simpler-operator/test_qwen3_decode_layer.py) | [HTML](qwen3-decode-layer/deps_viewer.html) | [原始记录](qwen3-decode-layer/Chip_swimlane_records.json) / [合并泳道](qwen3-decode-layer/merged_swimlane.json) |
+| DeepSeek V4 CSA 方案 A | [run_benchmark.py](deepseek-v4-csa/pypto-lib-operator/run_benchmark.py) | [test_decode_csa.py](deepseek-v4-csa/simpler-operator/test_decode_csa.py) | [HTML](deepseek-v4-csa/deps_viewer.html) | [原始记录](deepseek-v4-csa/chip_swimlane_records.json) / [合并泳道](deepseek-v4-csa/merged_swimlane.json) |
+| DeepSeek V4 CSA 方案 B | [run_benchmark.py](deepseek-v4-csa-b/pypto-lib-operator/run_benchmark.py) | [test_decode_csa.py](deepseek-v4-csa-b/simpler-operator/test_decode_csa.py) | [HTML](deepseek-v4-csa-b/deps_viewer.html) | [原始记录](deepseek-v4-csa-b/chip_swimlane_records.json) / [合并泳道](deepseek-v4-csa-b/merged_swimlane.json) |
+| Qwen3 decode layer | [run_benchmark.py](qwen3-decode-layer/pypto-lib-operator/run_benchmark.py) | [test_qwen3_decode_layer.py](qwen3-decode-layer/simpler-operator/test_qwen3_decode_layer.py) | [HTML](qwen3-decode-layer/deps_viewer.html) | [原始记录](qwen3-decode-layer/chip_swimlane_records.json) / [合并泳道](qwen3-decode-layer/merged_swimlane.json) |
 
 ## 算子依赖关系图（SVG）
 
@@ -238,7 +238,7 @@ QK/PV保留每token的1个滑窗块和4个压缩块，每block处理两个工作
 
 ### 2.4.3 并发分析
 
-[deps viewer](deepseek-v4-csa-b/deps_viewer.html)、[deps.json](deepseek-v4-csa-b/deps.json)、[原始泳道](deepseek-v4-csa-b/Chip_swimlane_records.json)、[合并泳道](deepseek-v4-csa-b/merged_swimlane.json)、[完整分析](deepseek-v4-csa-b/concurrency_analysis.json) 来自同一次采集命令。运行时以一次deps采集和一次干净计时组成配对采集。
+[deps viewer](deepseek-v4-csa-b/deps_viewer.html)、[deps.json](deepseek-v4-csa-b/deps.json)、[原始泳道](deepseek-v4-csa-b/chip_swimlane_records.json)、[合并泳道](deepseek-v4-csa-b/merged_swimlane.json)、[完整分析](deepseek-v4-csa-b/concurrency_analysis.json) 来自同一次采集命令。运行时以一次deps采集和一次干净计时组成配对采集。
 
 按deps所有wait边的传递闭包计算最大互无依赖集合（最大加权反链）：
 

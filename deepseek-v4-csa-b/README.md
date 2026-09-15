@@ -49,7 +49,7 @@ QK/PV保留每token的1个滑窗块和4个压缩块，每block处理两个工作
 
 ## 并发分析
 
-[deps viewer](deps_viewer.html)、[deps.json](deps.json)、[原始泳道](Chip_swimlane_records.json)、[合并泳道](merged_swimlane.json)、[完整分析](concurrency_analysis.json) 来自同一次采集命令。运行时以一次deps采集和一次干净计时组成配对采集。
+[deps viewer](deps_viewer.html)、[deps.json](deps.json)、[原始泳道](chip_swimlane_records.json)、[合并泳道](merged_swimlane.json)、[完整分析](concurrency_analysis.json) 来自同一次采集命令。运行时以一次deps采集和一次干净计时组成配对采集。
 
 按deps所有wait边的传递闭包计算最大互无依赖集合（最大加权反链）：
 

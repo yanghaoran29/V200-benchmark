@@ -20,7 +20,7 @@ COLORS = {'aic': '#F8BFC2', 'aiv': '#9EDDF6', 'mix': '#D4B5EF'}
 def generate(case, title, subtitle):
     folder = ROOT / case
     deps, names, capture = [json.loads((folder / f).read_text()) for f in
-                            ('deps.json', 'name_map.json', 'Chip_swimlane_records.json')]
+                            ('deps.json', 'name_map.json', 'chip_swimlane_records.json')]
     names = names['callable_id_to_name']
     tasks = {int(t['task_id']): t for t in deps['tasks']}
     rows = defaultdict(Counter)
