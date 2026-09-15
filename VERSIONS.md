@@ -26,3 +26,9 @@ pypto-lib checkout or machine-specific path is required.
 Original source copyright headers are preserved. PyPTO source and generated
 artifacts are distributed subject to their upstream CANN Open Software License
 Agreement Version 2.0; see the bundled LICENSE files.
+
+## CSA Scheme B
+
+Scheme A is preserved. Scheme B is a local source extension of pypto-lib `092efde7317095c468fba9670efdb3ee6bd9de29`, using the same pinned toolchain. Its source/generated/capture hashes are recorded in `deepseek-v4-csa-b/PROVENANCE.json`. Target: 120 AIC; captured and validated: a2a3, 24 AIC / 48 AIV.
+
+CSA Scheme B default fixture now uses start_pos=8192 for all 20 requests (KV length 8194). The bundled generated kernels and paired capture were refreshed for this input; exact files are identified by the Scheme B provenance manifest.
