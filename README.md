@@ -21,6 +21,8 @@
 图中AIC为红色、AIV为蓝色、MIX为紫色；每个节点右下角的`x N`按配套泳道物理记录计数，MIX为AIC与AIV记录之和。例如方案B的score为`x 300 = 100 AIC + 200 AIV`，不是300个SPMD blocks。
 同类分组调用合并展示，主compressor与Indexer compressor保持独立。连线从`deps.json`的wait依赖生成，折叠无执行记录的张量创建节点，并省略可通过其他路径到达的传递边。合并节点之间的箭头表示成员间存在依赖，不表示整个算子全部blocks完成后才允许下游启动；完整分组依赖仍以deps viewer为准。融合Attention内部阶段不重复拆分计数。
 
+布局采用固定主轴与两侧分支：Qwen的Q/K/V同层排列、Gate/Up左右展开；CSA将Indexer主链居中，Q/KV与compressor分布两侧，QK/PV后的输出链保持居中。CSA A/B使用相同节点坐标，只改变标题和记录数，便于对照。模型分支本身不完全对称，布局不添加虚假节点或依赖来凑对称。
+
 每张图旁的`dependency_graph_counts.json`列出节点物理计数、逻辑TaskId和依赖边，方便核对。安装NetworkX和Graphviz后，在仓库根目录运行`python generate_dependency_svgs.py`可重新生成三张图。
 
 # 1. Qwen3-14B Decode Layer Benchmark
