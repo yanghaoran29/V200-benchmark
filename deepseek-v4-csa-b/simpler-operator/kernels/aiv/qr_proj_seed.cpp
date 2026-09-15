@@ -78,23 +78,23 @@ static __aicore__ void qr_proj_seed(__gm__ float* v1, int64_t v2, int64_t v3) {
   const int64_t v10 = 128;
   // pto: %cst_7
   const float v11 = 0.0f;
-  // pto: %qr_fp32_inline1289__ssa_v0_view
+  // pto: %qr_fp32_inline1203__ssa_v0_view
   const int64_t v12 = 1;
-  // pto: %qr_fp32_inline1289__ssa_v0_view
+  // pto: %qr_fp32_inline1203__ssa_v0_view
   const int64_t v13 = 1;
-  // pto: %qr_fp32_inline1289__ssa_v0_view
+  // pto: %qr_fp32_inline1203__ssa_v0_view
   const int64_t v14 = 1;
-  // pto: %qr_fp32_inline1289__ssa_v0_view
+  // pto: %qr_fp32_inline1203__ssa_v0_view
   int64_t v15 = (int64_t) v3;
-  // pto: %qr_fp32_inline1289__ssa_v0_view
+  // pto: %qr_fp32_inline1203__ssa_v0_view
   int64_t v16 = v15 * v5;
-  // pto: %qr_fp32_inline1289__ssa_v0_view
+  // pto: %qr_fp32_inline1203__ssa_v0_view
   int64_t v17 = v14 * v16;
-  // pto: %qr_fp32_inline1289__ssa_v0_view
+  // pto: %qr_fp32_inline1203__ssa_v0_view
   pto::Shape<1, 1, 1, -1, -1> v18 = pto::Shape<1, 1, 1, -1, -1>(v12, v13, v14, v15, v5);
-  // pto: %qr_fp32_inline1289__ssa_v0_view
+  // pto: %qr_fp32_inline1203__ssa_v0_view
   pto::Stride<-1, -1, -1, -1, -1> v19 = pto::Stride<-1, -1, -1, -1, -1>(v13 * v17, v17, v16, v5, v6);
-  // pto: %qr_fp32_inline1289__ssa_v0_view
+  // pto: %qr_fp32_inline1203__ssa_v0_view
   GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v20 = GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v1, v18, v19);
   // pto: %0
   set_flag(PIPE_MTE3, PIPE_V, EVENT_ID0);
@@ -122,22 +122,22 @@ static __aicore__ void qr_proj_seed(__gm__ float* v1, int64_t v2, int64_t v3) {
       // pto: %4
       ;
       int64_t v28 = v24 < v7 ? v7 : v24;
-      // pto: %qr_fp32_inline1289__iter_v3_pview
+      // pto: %qr_fp32_inline1203__iter_v3_pview
       ;
       __gm__ float* v29 = PTOAS__GLOBAL_TENSOR_DATA(v20);
-      // pto: %qr_fp32_inline1289__iter_v3_pview
+      // pto: %qr_fp32_inline1203__iter_v3_pview
       ;
       const int64_t v30 = 0;
-      // pto: %qr_fp32_inline1289__iter_v3_pview
+      // pto: %qr_fp32_inline1203__iter_v3_pview
       ;
       const int64_t v31 = 1024;
-      // pto: %qr_fp32_inline1289__iter_v3_pview
+      // pto: %qr_fp32_inline1203__iter_v3_pview
       ;
       pto::Shape<1, 1, 1, 16, 128> v32 = pto::Shape<1, 1, 1, 16, 128>();
-      // pto: %qr_fp32_inline1289__iter_v3_pview
+      // pto: %qr_fp32_inline1203__iter_v3_pview
       ;
       pto::Stride<16384, 16384, 16384, 1024, 1> v33 = pto::Stride<16384, 16384, 16384, 1024, 1>();
-      // pto: %qr_fp32_inline1289__iter_v3_pview
+      // pto: %qr_fp32_inline1203__iter_v3_pview
       ;
       GlobalTensor<float, pto::Shape<1, 1, 1, 16, 128>, pto::Stride<16384, 16384, 16384, 1024, 1>, pto::Layout::ND> v34 = GlobalTensor<float, pto::Shape<1, 1, 1, 16, 128>, pto::Stride<16384, 16384, 16384, 1024, 1>, pto::Layout::ND>(v29 + (v30 + v27 * v31 + v28), v32, v33);
       wait_flag(PIPE_V, PIPE_MTE3, EVENT_ID0);
@@ -159,18 +159,18 @@ extern "C" __aicore__ __attribute__((always_inline)) void kernel_entry(__gm__ in
     set_atomic_none();
 #endif
 
-    // Unpack tensor: qr_fp32_inline1289__ssa_v0
-    __gm__ Tensor* qr_fp32_inline1289__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
-    __gm__ float* qr_fp32_inline1289__ssa_v0 = reinterpret_cast<__gm__ float*>(qr_fp32_inline1289__ssa_v0_tensor->buffer.addr) + qr_fp32_inline1289__ssa_v0_tensor->start_offset;
+    // Unpack tensor: qr_fp32_inline1203__ssa_v0
+    __gm__ Tensor* qr_fp32_inline1203__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
+    __gm__ float* qr_fp32_inline1203__ssa_v0 = reinterpret_cast<__gm__ float*>(qr_fp32_inline1203__ssa_v0_tensor->buffer.addr) + qr_fp32_inline1203__ssa_v0_tensor->start_offset;
 
-    // Unpack scalar: t_matmul_inline1234__ssa_v0
-    union { uint64_t u64; int64_t val; } t_matmul_inline1234__ssa_v0_conv;
-    t_matmul_inline1234__ssa_v0_conv.u64 = args[1];
-    int64_t t_matmul_inline1234__ssa_v0 = t_matmul_inline1234__ssa_v0_conv.val;
+    // Unpack scalar: t_matmul_inline1246__ssa_v0
+    union { uint64_t u64; int64_t val; } t_matmul_inline1246__ssa_v0_conv;
+    t_matmul_inline1246__ssa_v0_conv.u64 = args[1];
+    int64_t t_matmul_inline1246__ssa_v0 = t_matmul_inline1246__ssa_v0_conv.val;
 
-    // Extract dynamic dim: t_matmul_inline1234__ssa_v0_1
-    int64_t t_matmul_inline1234__ssa_v0_1 = static_cast<int64_t>(qr_fp32_inline1289__ssa_v0_tensor->shapes[0]);
+    // Extract dynamic dim: t_matmul_inline1246__ssa_v0_1
+    int64_t t_matmul_inline1246__ssa_v0_1 = static_cast<int64_t>(qr_fp32_inline1203__ssa_v0_tensor->shapes[0]);
 
     // Forward to ptoas-generated function
-    qr_proj_seed(qr_fp32_inline1289__ssa_v0, t_matmul_inline1234__ssa_v0, t_matmul_inline1234__ssa_v0_1);
+    qr_proj_seed(qr_fp32_inline1203__ssa_v0, t_matmul_inline1246__ssa_v0, t_matmul_inline1246__ssa_v0_1);
 }

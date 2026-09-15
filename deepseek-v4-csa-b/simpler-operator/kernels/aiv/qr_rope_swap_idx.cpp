@@ -84,21 +84,21 @@ static __aicore__ void qr_rope_swap_idx(__gm__ int32_t* v1) {
   const float v11 = 0.5f;
   // pto: %cst_10
   const float v12 = 2.0f;
-  // pto: %rope_swap_idx_t_inline1557__ssa_v0_view
+  // pto: %rope_swap_idx_t_inline1592__ssa_v0_view
   const int64_t v13 = 1;
-  // pto: %rope_swap_idx_t_inline1557__ssa_v0_view
+  // pto: %rope_swap_idx_t_inline1592__ssa_v0_view
   const int64_t v14 = 1;
-  // pto: %rope_swap_idx_t_inline1557__ssa_v0_view
+  // pto: %rope_swap_idx_t_inline1592__ssa_v0_view
   const int64_t v15 = 1;
-  // pto: %rope_swap_idx_t_inline1557__ssa_v0_view
+  // pto: %rope_swap_idx_t_inline1592__ssa_v0_view
   int64_t v16 = v5 * v6;
-  // pto: %rope_swap_idx_t_inline1557__ssa_v0_view
+  // pto: %rope_swap_idx_t_inline1592__ssa_v0_view
   int64_t v17 = v15 * v16;
-  // pto: %rope_swap_idx_t_inline1557__ssa_v0_view
+  // pto: %rope_swap_idx_t_inline1592__ssa_v0_view
   pto::Shape<1, 1, 1, -1, -1> v18 = pto::Shape<1, 1, 1, -1, -1>(v13, v14, v15, v5, v6);
-  // pto: %rope_swap_idx_t_inline1557__ssa_v0_view
+  // pto: %rope_swap_idx_t_inline1592__ssa_v0_view
   pto::Stride<-1, -1, -1, -1, -1> v19 = pto::Stride<-1, -1, -1, -1, -1>(v14 * v17, v17, v16, v6, v7);
-  // pto: %rope_swap_idx_t_inline1557__ssa_v0_view
+  // pto: %rope_swap_idx_t_inline1592__ssa_v0_view
   GlobalTensor<int32_t, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v20 = GlobalTensor<int32_t, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v1, v18, v19);
   // pto: %t__tile
   Tile<TileType::Vec, float, 32, 64, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v21 = Tile<TileType::Vec, float, 32, 64, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v5, v6);
@@ -133,9 +133,9 @@ static __aicore__ void qr_rope_swap_idx(__gm__ int32_t* v1) {
   RoundMode v31 = RoundMode::CAST_ROUND;
   SaturationMode v32 = SaturationMode::OFF;
   TCVT(v29, v25, v31, v32);
-  // pto: %sw_col_inline1661__tile
+  // pto: %sw_col_inline1588__tile
   Tile<TileType::Vec, float, 32, 64, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v33 = Tile<TileType::Vec, float, 32, 64, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v5, v6);
-  // pto: %sw_col_inline1661__tile
+  // pto: %sw_col_inline1588__tile
   uint64_t v34 = (uint64_t) v2;
   TASSIGN(v33, v34);
   pipe_barrier(PIPE_V);
@@ -156,9 +156,9 @@ static __aicore__ void qr_rope_swap_idx(__gm__ int32_t* v1) {
   RoundMode v39 = RoundMode::CAST_TRUNC;
   SaturationMode v40 = SaturationMode::ON;
   TCVT(v37, v35, v39, v40);
-  // pto: %sw_dup_f_inline1607__tile
+  // pto: %sw_dup_f_inline1609__tile
   Tile<TileType::Vec, float, 32, 64, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v41 = Tile<TileType::Vec, float, 32, 64, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v5, v6);
-  // pto: %sw_dup_f_inline1607__tile
+  // pto: %sw_dup_f_inline1609__tile
   uint64_t v42 = (uint64_t) v3;
   TASSIGN(v41, v42);
   pipe_barrier(PIPE_V);
@@ -209,13 +209,13 @@ static __aicore__ void qr_rope_swap_idx(__gm__ int32_t* v1) {
   SaturationMode v58 = SaturationMode::ON;
   TCVT(v55, v53, v57, v58);
   set_flag(PIPE_V, PIPE_MTE3, EVENT_ID0);
-  // pto: %rope_swap_idx_t_inline1557__ssa_v0_pview
+  // pto: %rope_swap_idx_t_inline1592__ssa_v0_pview
   __gm__ int32_t* v59 = PTOAS__GLOBAL_TENSOR_DATA(v20);
-  // pto: %rope_swap_idx_t_inline1557__ssa_v0_pview
+  // pto: %rope_swap_idx_t_inline1592__ssa_v0_pview
   pto::Shape<1, 1, 1, 32, 64> v60 = pto::Shape<1, 1, 1, 32, 64>();
-  // pto: %rope_swap_idx_t_inline1557__ssa_v0_pview
+  // pto: %rope_swap_idx_t_inline1592__ssa_v0_pview
   pto::Stride<2048, 2048, 2048, 64, 1> v61 = pto::Stride<2048, 2048, 2048, 64, 1>();
-  // pto: %rope_swap_idx_t_inline1557__ssa_v0_pview
+  // pto: %rope_swap_idx_t_inline1592__ssa_v0_pview
   GlobalTensor<int32_t, pto::Shape<1, 1, 1, 32, 64>, pto::Stride<2048, 2048, 2048, 64, 1>, pto::Layout::ND> v62 = GlobalTensor<int32_t, pto::Shape<1, 1, 1, 32, 64>, pto::Stride<2048, 2048, 2048, 64, 1>, pto::Layout::ND>(v59, v60, v61);
   wait_flag(PIPE_V, PIPE_MTE3, EVENT_ID0);
   TSTORE(v62, v55);
@@ -232,10 +232,10 @@ extern "C" __aicore__ __attribute__((always_inline)) void kernel_entry(__gm__ in
     set_atomic_none();
 #endif
 
-    // Unpack tensor: rope_swap_idx_t_inline1557__ssa_v0
-    __gm__ Tensor* rope_swap_idx_t_inline1557__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
-    __gm__ int32_t* rope_swap_idx_t_inline1557__ssa_v0 = reinterpret_cast<__gm__ int32_t*>(rope_swap_idx_t_inline1557__ssa_v0_tensor->buffer.addr) + rope_swap_idx_t_inline1557__ssa_v0_tensor->start_offset;
+    // Unpack tensor: rope_swap_idx_t_inline1592__ssa_v0
+    __gm__ Tensor* rope_swap_idx_t_inline1592__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
+    __gm__ int32_t* rope_swap_idx_t_inline1592__ssa_v0 = reinterpret_cast<__gm__ int32_t*>(rope_swap_idx_t_inline1592__ssa_v0_tensor->buffer.addr) + rope_swap_idx_t_inline1592__ssa_v0_tensor->start_offset;
 
     // Forward to ptoas-generated function
-    qr_rope_swap_idx(rope_swap_idx_t_inline1557__ssa_v0);
+    qr_rope_swap_idx(rope_swap_idx_t_inline1592__ssa_v0);
 }

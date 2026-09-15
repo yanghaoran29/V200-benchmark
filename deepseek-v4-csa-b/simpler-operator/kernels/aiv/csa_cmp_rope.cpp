@@ -82,37 +82,37 @@ static __aicore__ void csa_cmp_rope(__gm__ float* v1, __gm__ float* v2, __gm__ i
   const int64_t v14 = 2;
   // pto: %c4_index
   const int64_t v15 = 4;
-  // pto: %cmp_cos_inline207__ssa_v0_view
+  // pto: %cmp_cos_inline206__ssa_v0_view
   const int64_t v16 = 1;
-  // pto: %cmp_cos_inline207__ssa_v0_view
+  // pto: %cmp_cos_inline206__ssa_v0_view
   const int64_t v17 = 1;
-  // pto: %cmp_cos_inline207__ssa_v0_view
+  // pto: %cmp_cos_inline206__ssa_v0_view
   const int64_t v18 = 1;
-  // pto: %cmp_cos_inline207__ssa_v0_view
+  // pto: %cmp_cos_inline206__ssa_v0_view
   int64_t v19 = v8 * v9;
-  // pto: %cmp_cos_inline207__ssa_v0_view
+  // pto: %cmp_cos_inline206__ssa_v0_view
   int64_t v20 = v18 * v19;
-  // pto: %cmp_cos_inline207__ssa_v0_view
+  // pto: %cmp_cos_inline206__ssa_v0_view
   pto::Shape<1, 1, 1, -1, -1> v21 = pto::Shape<1, 1, 1, -1, -1>(v16, v17, v18, v8, v9);
-  // pto: %cmp_cos_inline207__ssa_v0_view
+  // pto: %cmp_cos_inline206__ssa_v0_view
   pto::Stride<-1, -1, -1, -1, -1> v22 = pto::Stride<-1, -1, -1, -1, -1>(v17 * v20, v20, v19, v9, v10);
-  // pto: %cmp_cos_inline207__ssa_v0_view
+  // pto: %cmp_cos_inline206__ssa_v0_view
   GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v23 = GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v1, v21, v22);
-  // pto: %cmp_sin_inline209__ssa_v0_view
+  // pto: %cmp_sin_inline208__ssa_v0_view
   const int64_t v24 = 1;
-  // pto: %cmp_sin_inline209__ssa_v0_view
+  // pto: %cmp_sin_inline208__ssa_v0_view
   const int64_t v25 = 1;
-  // pto: %cmp_sin_inline209__ssa_v0_view
+  // pto: %cmp_sin_inline208__ssa_v0_view
   const int64_t v26 = 1;
-  // pto: %cmp_sin_inline209__ssa_v0_view
+  // pto: %cmp_sin_inline208__ssa_v0_view
   int64_t v27 = v8 * v9;
-  // pto: %cmp_sin_inline209__ssa_v0_view
+  // pto: %cmp_sin_inline208__ssa_v0_view
   int64_t v28 = v26 * v27;
-  // pto: %cmp_sin_inline209__ssa_v0_view
+  // pto: %cmp_sin_inline208__ssa_v0_view
   pto::Shape<1, 1, 1, -1, -1> v29 = pto::Shape<1, 1, 1, -1, -1>(v24, v25, v26, v8, v9);
-  // pto: %cmp_sin_inline209__ssa_v0_view
+  // pto: %cmp_sin_inline208__ssa_v0_view
   pto::Stride<-1, -1, -1, -1, -1> v30 = pto::Stride<-1, -1, -1, -1, -1>(v25 * v28, v28, v27, v9, v10);
-  // pto: %cmp_sin_inline209__ssa_v0_view
+  // pto: %cmp_sin_inline208__ssa_v0_view
   GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v31 = GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v2, v29, v30);
   // pto: %freqs_cos__ssa_v0_view
   const int64_t v32 = 1;
@@ -206,22 +206,22 @@ static __aicore__ void csa_cmp_rope(__gm__ float* v1, __gm__ float* v2, __gm__ i
     // pto: %12
     ;
     int64_t v65 = v48 < v13 ? v13 : v48;
-    // pto: %cmp_cos_inline207__iter_v1_pview
+    // pto: %cmp_cos_inline206__iter_v1_pview
     ;
     __gm__ float* v66 = PTOAS__GLOBAL_TENSOR_DATA(v23);
-    // pto: %cmp_cos_inline207__iter_v1_pview
+    // pto: %cmp_cos_inline206__iter_v1_pview
     ;
     const int64_t v67 = 0;
-    // pto: %cmp_cos_inline207__iter_v1_pview
+    // pto: %cmp_cos_inline206__iter_v1_pview
     ;
     const int64_t v68 = 32;
-    // pto: %cmp_cos_inline207__iter_v1_pview
+    // pto: %cmp_cos_inline206__iter_v1_pview
     ;
     pto::Shape<1, 1, 1, 1, 32> v69 = pto::Shape<1, 1, 1, 1, 32>();
-    // pto: %cmp_cos_inline207__iter_v1_pview
+    // pto: %cmp_cos_inline206__iter_v1_pview
     ;
     pto::Stride<32, 32, 32, 32, 1> v70 = pto::Stride<32, 32, 32, 32, 1>();
-    // pto: %cmp_cos_inline207__iter_v1_pview
+    // pto: %cmp_cos_inline206__iter_v1_pview
     ;
     GlobalTensor<float, pto::Shape<1, 1, 1, 1, 32>, pto::Stride<32, 32, 32, 32, 1>, pto::Layout::ND> v71 = GlobalTensor<float, pto::Shape<1, 1, 1, 1, 32>, pto::Stride<32, 32, 32, 32, 1>, pto::Layout::ND>(v66 + (v67 + v65 * v68), v69, v70);
     wait_flag(PIPE_V, PIPE_MTE3, EVENT_ID0);
@@ -269,22 +269,22 @@ static __aicore__ void csa_cmp_rope(__gm__ float* v1, __gm__ float* v2, __gm__ i
     TCVT(v80, v72, v82, v83);
     set_flag(PIPE_V, PIPE_MTE2, EVENT_ID0);
     set_flag(PIPE_V, PIPE_MTE3, EVENT_ID1);
-    // pto: %cmp_sin_inline209__iter_v1_pview
+    // pto: %cmp_sin_inline208__iter_v1_pview
     ;
     __gm__ float* v84 = PTOAS__GLOBAL_TENSOR_DATA(v31);
-    // pto: %cmp_sin_inline209__iter_v1_pview
+    // pto: %cmp_sin_inline208__iter_v1_pview
     ;
     const int64_t v85 = 0;
-    // pto: %cmp_sin_inline209__iter_v1_pview
+    // pto: %cmp_sin_inline208__iter_v1_pview
     ;
     const int64_t v86 = 32;
-    // pto: %cmp_sin_inline209__iter_v1_pview
+    // pto: %cmp_sin_inline208__iter_v1_pview
     ;
     pto::Shape<1, 1, 1, 1, 32> v87 = pto::Shape<1, 1, 1, 1, 32>();
-    // pto: %cmp_sin_inline209__iter_v1_pview
+    // pto: %cmp_sin_inline208__iter_v1_pview
     ;
     pto::Stride<32, 32, 32, 32, 1> v88 = pto::Stride<32, 32, 32, 32, 1>();
-    // pto: %cmp_sin_inline209__iter_v1_pview
+    // pto: %cmp_sin_inline208__iter_v1_pview
     ;
     GlobalTensor<float, pto::Shape<1, 1, 1, 1, 32>, pto::Stride<32, 32, 32, 32, 1>, pto::Layout::ND> v89 = GlobalTensor<float, pto::Shape<1, 1, 1, 1, 32>, pto::Stride<32, 32, 32, 32, 1>, pto::Layout::ND>(v84 + (v85 + v65 * v86), v87, v88);
     wait_flag(PIPE_V, PIPE_MTE3, EVENT_ID1);
@@ -306,13 +306,13 @@ extern "C" __aicore__ __attribute__((always_inline)) void kernel_entry(__gm__ in
     set_atomic_none();
 #endif
 
-    // Unpack tensor: cmp_cos_inline207__ssa_v0
-    __gm__ Tensor* cmp_cos_inline207__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
-    __gm__ float* cmp_cos_inline207__ssa_v0 = reinterpret_cast<__gm__ float*>(cmp_cos_inline207__ssa_v0_tensor->buffer.addr) + cmp_cos_inline207__ssa_v0_tensor->start_offset;
+    // Unpack tensor: cmp_cos_inline206__ssa_v0
+    __gm__ Tensor* cmp_cos_inline206__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
+    __gm__ float* cmp_cos_inline206__ssa_v0 = reinterpret_cast<__gm__ float*>(cmp_cos_inline206__ssa_v0_tensor->buffer.addr) + cmp_cos_inline206__ssa_v0_tensor->start_offset;
 
-    // Unpack tensor: cmp_sin_inline209__ssa_v0
-    __gm__ Tensor* cmp_sin_inline209__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[1]);
-    __gm__ float* cmp_sin_inline209__ssa_v0 = reinterpret_cast<__gm__ float*>(cmp_sin_inline209__ssa_v0_tensor->buffer.addr) + cmp_sin_inline209__ssa_v0_tensor->start_offset;
+    // Unpack tensor: cmp_sin_inline208__ssa_v0
+    __gm__ Tensor* cmp_sin_inline208__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[1]);
+    __gm__ float* cmp_sin_inline208__ssa_v0 = reinterpret_cast<__gm__ float*>(cmp_sin_inline208__ssa_v0_tensor->buffer.addr) + cmp_sin_inline208__ssa_v0_tensor->start_offset;
 
     // Unpack tensor: position_ids__ssa_v0
     __gm__ Tensor* position_ids__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[2]);
@@ -327,5 +327,5 @@ extern "C" __aicore__ __attribute__((always_inline)) void kernel_entry(__gm__ in
     __gm__ bfloat16_t* freqs_sin__ssa_v0 = reinterpret_cast<__gm__ bfloat16_t*>(freqs_sin__ssa_v0_tensor->buffer.addr) + freqs_sin__ssa_v0_tensor->start_offset;
 
     // Forward to ptoas-generated function
-    csa_cmp_rope(cmp_cos_inline207__ssa_v0, cmp_sin_inline209__ssa_v0, position_ids__ssa_v0, freqs_cos__ssa_v0, freqs_sin__ssa_v0);
+    csa_cmp_rope(cmp_cos_inline206__ssa_v0, cmp_sin_inline208__ssa_v0, position_ids__ssa_v0, freqs_cos__ssa_v0, freqs_sin__ssa_v0);
 }

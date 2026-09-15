@@ -76,37 +76,37 @@ static __aicore__ void kv_hadamard(__gm__ float* v1, __gm__ bfloat16_t* v2, __gm
   const int64_t v10 = 16;
   // pto: %c64_index
   const int64_t v11 = 64;
-  // pto: %kv_final_inline124_inline1623__ssa_v0_view
+  // pto: %kv_final_inline108_inline1632__ssa_v0_view
   const int64_t v12 = 1;
-  // pto: %kv_final_inline124_inline1623__ssa_v0_view
+  // pto: %kv_final_inline108_inline1632__ssa_v0_view
   const int64_t v13 = 1;
-  // pto: %kv_final_inline124_inline1623__ssa_v0_view
+  // pto: %kv_final_inline108_inline1632__ssa_v0_view
   const int64_t v14 = 1;
-  // pto: %kv_final_inline124_inline1623__ssa_v0_view
+  // pto: %kv_final_inline108_inline1632__ssa_v0_view
   int64_t v15 = v6 * v7;
-  // pto: %kv_final_inline124_inline1623__ssa_v0_view
+  // pto: %kv_final_inline108_inline1632__ssa_v0_view
   int64_t v16 = v14 * v15;
-  // pto: %kv_final_inline124_inline1623__ssa_v0_view
+  // pto: %kv_final_inline108_inline1632__ssa_v0_view
   pto::Shape<1, 1, 1, -1, -1> v17 = pto::Shape<1, 1, 1, -1, -1>(v12, v13, v14, v6, v7);
-  // pto: %kv_final_inline124_inline1623__ssa_v0_view
+  // pto: %kv_final_inline108_inline1632__ssa_v0_view
   pto::Stride<-1, -1, -1, -1, -1> v18 = pto::Stride<-1, -1, -1, -1, -1>(v13 * v16, v16, v15, v7, v8);
-  // pto: %kv_final_inline124_inline1623__ssa_v0_view
+  // pto: %kv_final_inline108_inline1632__ssa_v0_view
   GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v19 = GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v1, v17, v18);
-  // pto: %normed_kv_inline71_inline1508__rv_v2_view
+  // pto: %normed_kv_inline70_inline1623__rv_v2_view
   const int64_t v20 = 1;
-  // pto: %normed_kv_inline71_inline1508__rv_v2_view
+  // pto: %normed_kv_inline70_inline1623__rv_v2_view
   const int64_t v21 = 1;
-  // pto: %normed_kv_inline71_inline1508__rv_v2_view
+  // pto: %normed_kv_inline70_inline1623__rv_v2_view
   const int64_t v22 = 1;
-  // pto: %normed_kv_inline71_inline1508__rv_v2_view
+  // pto: %normed_kv_inline70_inline1623__rv_v2_view
   int64_t v23 = v6 * v7;
-  // pto: %normed_kv_inline71_inline1508__rv_v2_view
+  // pto: %normed_kv_inline70_inline1623__rv_v2_view
   int64_t v24 = v22 * v23;
-  // pto: %normed_kv_inline71_inline1508__rv_v2_view
+  // pto: %normed_kv_inline70_inline1623__rv_v2_view
   pto::Shape<1, 1, 1, -1, -1> v25 = pto::Shape<1, 1, 1, -1, -1>(v20, v21, v22, v6, v7);
-  // pto: %normed_kv_inline71_inline1508__rv_v2_view
+  // pto: %normed_kv_inline70_inline1623__rv_v2_view
   pto::Stride<-1, -1, -1, -1, -1> v26 = pto::Stride<-1, -1, -1, -1, -1>(v21 * v24, v24, v23, v7, v8);
-  // pto: %normed_kv_inline71_inline1508__rv_v2_view
+  // pto: %normed_kv_inline70_inline1623__rv_v2_view
   GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v27 = GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v2, v25, v26);
   // pto: %hadamard_idx__ssa_v0_view
   const int64_t v28 = 1;
@@ -129,32 +129,32 @@ static __aicore__ void kv_hadamard(__gm__ float* v1, __gm__ bfloat16_t* v2, __gm
   set_flag(PIPE_M, PIPE_MTE1, EVENT_ID0);
   set_flag(PIPE_FIX, PIPE_M, EVENT_ID0);
   for (int64_t v36 = v9; v36 < v6; v36 += v10) {
-    // pto: %kv_proj_tile_inline119_inline1545__tile
+    // pto: %kv_proj_tile_inline53_inline1484__tile
     ;
     Tile<TileType::Mat, bfloat16_t, 16, 128, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 512, PadValue::Null, CompactMode::Null> v37 = Tile<TileType::Mat, bfloat16_t, 16, 128, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 512, PadValue::Null, CompactMode::Null>(v10, v7);
-    // pto: %kv_proj_tile_inline119_inline1545__tile
+    // pto: %kv_proj_tile_inline53_inline1484__tile
     ;
     uint64_t v38 = (uint64_t) v4;
     TASSIGN(v37, v38);
     // pto: %0
     ;
     int64_t v39 = v36 < v9 ? v9 : v36;
-    // pto: %normed_kv_inline71_inline1508__rv_v2_pview
+    // pto: %normed_kv_inline70_inline1623__rv_v2_pview
     ;
     __gm__ bfloat16_t* v40 = PTOAS__GLOBAL_TENSOR_DATA(v27);
-    // pto: %normed_kv_inline71_inline1508__rv_v2_pview
+    // pto: %normed_kv_inline70_inline1623__rv_v2_pview
     ;
     const int64_t v41 = 0;
-    // pto: %normed_kv_inline71_inline1508__rv_v2_pview
+    // pto: %normed_kv_inline70_inline1623__rv_v2_pview
     ;
     const int64_t v42 = 128;
-    // pto: %normed_kv_inline71_inline1508__rv_v2_pview
+    // pto: %normed_kv_inline70_inline1623__rv_v2_pview
     ;
     pto::Shape<1, 1, 1, 16, 128> v43 = pto::Shape<1, 1, 1, 16, 128>();
-    // pto: %normed_kv_inline71_inline1508__rv_v2_pview
+    // pto: %normed_kv_inline70_inline1623__rv_v2_pview
     ;
     pto::Stride<2048, 2048, 2048, 128, 1> v44 = pto::Stride<2048, 2048, 2048, 128, 1>();
-    // pto: %normed_kv_inline71_inline1508__rv_v2_pview
+    // pto: %normed_kv_inline70_inline1623__rv_v2_pview
     ;
     GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, 16, 128>, pto::Stride<2048, 2048, 2048, 128, 1>, pto::Layout::ND> v45 = GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, 16, 128>, pto::Stride<2048, 2048, 2048, 128, 1>, pto::Layout::ND>(v40 + (v41 + v39 * v42), v43, v44);
     wait_flag(PIPE_MTE1, PIPE_MTE2, EVENT_ID0);
@@ -162,10 +162,10 @@ static __aicore__ void kv_hadamard(__gm__ float* v1, __gm__ bfloat16_t* v2, __gm
     set_flag(PIPE_MTE2, PIPE_MTE1, EVENT_ID0);
     wait_flag(PIPE_MTE2, PIPE_MTE1, EVENT_ID0);
     for (int64_t v46 = v9; v46 < v7; v46 += v11) {
-      // pto: %hadamard_tile_inline55_inline1489__tile
+      // pto: %hadamard_tile_inline52_inline1531__tile
       ;
       Tile<TileType::Mat, bfloat16_t, 128, 64, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 512, PadValue::Null, CompactMode::Null> v47 = Tile<TileType::Mat, bfloat16_t, 128, 64, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 512, PadValue::Null, CompactMode::Null>(v7, v11);
-      // pto: %hadamard_tile_inline55_inline1489__tile
+      // pto: %hadamard_tile_inline52_inline1531__tile
       ;
       uint64_t v48 = (uint64_t) v5;
       TASSIGN(v47, v48);
@@ -190,19 +190,19 @@ static __aicore__ void kv_hadamard(__gm__ float* v1, __gm__ bfloat16_t* v2, __gm
       wait_flag(PIPE_MTE1, PIPE_MTE2, EVENT_ID1);
       TLOAD(v47, v54);
       set_flag(PIPE_MTE2, PIPE_MTE1, EVENT_ID1);
-      // pto: %kv_proj_tile_inline119_inline1545__tile_Left
+      // pto: %kv_proj_tile_inline53_inline1484__tile_Left
       ;
       Tile<TileType::Left, bfloat16_t, 16, 128, BLayout::RowMajor, -1, -1, SLayout::RowMajor, 512, PadValue::Null, CompactMode::Null> v55 = Tile<TileType::Left, bfloat16_t, 16, 128, BLayout::RowMajor, -1, -1, SLayout::RowMajor, 512, PadValue::Null, CompactMode::Null>(v10, v7);
-      // pto: %kv_proj_tile_inline119_inline1545__tile_Left
+      // pto: %kv_proj_tile_inline53_inline1484__tile_Left
       ;
       uint64_t v56 = (uint64_t) v4;
       TASSIGN(v55, v56);
       wait_flag(PIPE_M, PIPE_MTE1, EVENT_ID0);
       TMOV(v55, v37);
-      // pto: %hadamard_tile_inline55_inline1489__tile_Right
+      // pto: %hadamard_tile_inline52_inline1531__tile_Right
       ;
       Tile<TileType::Right, bfloat16_t, 128, 64, BLayout::RowMajor, -1, -1, SLayout::ColMajor, 512, PadValue::Null, CompactMode::Null> v57 = Tile<TileType::Right, bfloat16_t, 128, 64, BLayout::RowMajor, -1, -1, SLayout::ColMajor, 512, PadValue::Null, CompactMode::Null>(v7, v11);
-      // pto: %hadamard_tile_inline55_inline1489__tile_Right
+      // pto: %hadamard_tile_inline52_inline1531__tile_Right
       ;
       uint64_t v58 = (uint64_t) v4;
       TASSIGN(v57, v58);
@@ -210,10 +210,10 @@ static __aicore__ void kv_hadamard(__gm__ float* v1, __gm__ bfloat16_t* v2, __gm
       TMOV(v57, v47);
       set_flag(PIPE_MTE1, PIPE_M, EVENT_ID0);
       set_flag(PIPE_MTE1, PIPE_MTE2, EVENT_ID1);
-      // pto: %kv_hadamard_acc_inline146_inline1488__tile
+      // pto: %kv_hadamard_acc_inline166_inline1548__tile
       ;
       Tile<TileType::Acc, float, 16, 64, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 1024, PadValue::Null, CompactMode::Null> v59 = Tile<TileType::Acc, float, 16, 64, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 1024, PadValue::Null, CompactMode::Null>(v10, v11);
-      // pto: %kv_hadamard_acc_inline146_inline1488__tile
+      // pto: %kv_hadamard_acc_inline166_inline1548__tile
       ;
       uint64_t v60 = (uint64_t) v4;
       TASSIGN(v59, v60);
@@ -222,22 +222,22 @@ static __aicore__ void kv_hadamard(__gm__ float* v1, __gm__ bfloat16_t* v2, __gm
       TMATMUL(v59, v55, v57);
       set_flag(PIPE_M, PIPE_FIX, EVENT_ID0);
       set_flag(PIPE_M, PIPE_MTE1, EVENT_ID0);
-      // pto: %kv_final_inline124_inline1623__iter_v3_pview
+      // pto: %kv_final_inline108_inline1632__iter_v3_pview
       ;
       __gm__ float* v61 = PTOAS__GLOBAL_TENSOR_DATA(v19);
-      // pto: %kv_final_inline124_inline1623__iter_v3_pview
+      // pto: %kv_final_inline108_inline1632__iter_v3_pview
       ;
       const int64_t v62 = 0;
-      // pto: %kv_final_inline124_inline1623__iter_v3_pview
+      // pto: %kv_final_inline108_inline1632__iter_v3_pview
       ;
       const int64_t v63 = 128;
-      // pto: %kv_final_inline124_inline1623__iter_v3_pview
+      // pto: %kv_final_inline108_inline1632__iter_v3_pview
       ;
       pto::Shape<1, 1, 1, 16, 64> v64 = pto::Shape<1, 1, 1, 16, 64>();
-      // pto: %kv_final_inline124_inline1623__iter_v3_pview
+      // pto: %kv_final_inline108_inline1632__iter_v3_pview
       ;
       pto::Stride<2048, 2048, 2048, 128, 1> v65 = pto::Stride<2048, 2048, 2048, 128, 1>();
-      // pto: %kv_final_inline124_inline1623__iter_v3_pview
+      // pto: %kv_final_inline108_inline1632__iter_v3_pview
       ;
       GlobalTensor<float, pto::Shape<1, 1, 1, 16, 64>, pto::Stride<2048, 2048, 2048, 128, 1>, pto::Layout::ND> v66 = GlobalTensor<float, pto::Shape<1, 1, 1, 16, 64>, pto::Stride<2048, 2048, 2048, 128, 1>, pto::Layout::ND>(v61 + (v62 + v39 * v63 + v49), v64, v65);
       wait_flag(PIPE_M, PIPE_FIX, EVENT_ID0);
@@ -263,18 +263,18 @@ extern "C" __aicore__ __attribute__((always_inline)) void kernel_entry(__gm__ in
     set_atomic_none();
 #endif
 
-    // Unpack tensor: kv_final_inline124_inline1623__ssa_v0
-    __gm__ Tensor* kv_final_inline124_inline1623__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
-    __gm__ float* kv_final_inline124_inline1623__ssa_v0 = reinterpret_cast<__gm__ float*>(kv_final_inline124_inline1623__ssa_v0_tensor->buffer.addr) + kv_final_inline124_inline1623__ssa_v0_tensor->start_offset;
+    // Unpack tensor: kv_final_inline108_inline1632__ssa_v0
+    __gm__ Tensor* kv_final_inline108_inline1632__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
+    __gm__ float* kv_final_inline108_inline1632__ssa_v0 = reinterpret_cast<__gm__ float*>(kv_final_inline108_inline1632__ssa_v0_tensor->buffer.addr) + kv_final_inline108_inline1632__ssa_v0_tensor->start_offset;
 
-    // Unpack tensor: normed_kv_inline71_inline1508__rv_v2
-    __gm__ Tensor* normed_kv_inline71_inline1508__rv_v2_tensor = reinterpret_cast<__gm__ Tensor*>(args[1]);
-    __gm__ bfloat16_t* normed_kv_inline71_inline1508__rv_v2 = reinterpret_cast<__gm__ bfloat16_t*>(normed_kv_inline71_inline1508__rv_v2_tensor->buffer.addr) + normed_kv_inline71_inline1508__rv_v2_tensor->start_offset;
+    // Unpack tensor: normed_kv_inline70_inline1623__rv_v2
+    __gm__ Tensor* normed_kv_inline70_inline1623__rv_v2_tensor = reinterpret_cast<__gm__ Tensor*>(args[1]);
+    __gm__ bfloat16_t* normed_kv_inline70_inline1623__rv_v2 = reinterpret_cast<__gm__ bfloat16_t*>(normed_kv_inline70_inline1623__rv_v2_tensor->buffer.addr) + normed_kv_inline70_inline1623__rv_v2_tensor->start_offset;
 
     // Unpack tensor: hadamard_idx__ssa_v0
     __gm__ Tensor* hadamard_idx__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[2]);
     __gm__ bfloat16_t* hadamard_idx__ssa_v0 = reinterpret_cast<__gm__ bfloat16_t*>(hadamard_idx__ssa_v0_tensor->buffer.addr) + hadamard_idx__ssa_v0_tensor->start_offset;
 
     // Forward to ptoas-generated function
-    kv_hadamard(kv_final_inline124_inline1623__ssa_v0, normed_kv_inline71_inline1508__rv_v2, hadamard_idx__ssa_v0);
+    kv_hadamard(kv_final_inline108_inline1632__ssa_v0, normed_kv_inline70_inline1623__rv_v2, hadamard_idx__ssa_v0);
 }

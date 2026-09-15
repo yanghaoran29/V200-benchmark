@@ -109,106 +109,106 @@ static __aicore__ void qk_pv_aic(__gm__ float* v1, __gm__ float* v2, __gm__ floa
   const int64_t v43 = -32;
   // pto: %c16_index
   const int64_t v44 = 16;
-  // pto: %sparse_blk_oi_inline1879__ssa_v0_view
+  // pto: %sparse_blk_oi_inline1766__ssa_v0_view
   const int64_t v45 = 1;
-  // pto: %sparse_blk_oi_inline1879__ssa_v0_view
+  // pto: %sparse_blk_oi_inline1766__ssa_v0_view
   const int64_t v46 = 1;
-  // pto: %sparse_blk_oi_inline1879__ssa_v0_view
+  // pto: %sparse_blk_oi_inline1766__ssa_v0_view
   const int64_t v47 = 1;
-  // pto: %sparse_blk_oi_inline1879__ssa_v0_view
+  // pto: %sparse_blk_oi_inline1766__ssa_v0_view
   int64_t v48 = v28 * v30;
-  // pto: %sparse_blk_oi_inline1879__ssa_v0_view
+  // pto: %sparse_blk_oi_inline1766__ssa_v0_view
   int64_t v49 = v47 * v48;
-  // pto: %sparse_blk_oi_inline1879__ssa_v0_view
+  // pto: %sparse_blk_oi_inline1766__ssa_v0_view
   pto::Shape<1, 1, 1, -1, -1> v50 = pto::Shape<1, 1, 1, -1, -1>(v45, v46, v47, v28, v30);
-  // pto: %sparse_blk_oi_inline1879__ssa_v0_view
+  // pto: %sparse_blk_oi_inline1766__ssa_v0_view
   pto::Stride<-1, -1, -1, -1, -1> v51 = pto::Stride<-1, -1, -1, -1, -1>(v46 * v49, v49, v48, v30, v29);
-  // pto: %sparse_blk_oi_inline1879__ssa_v0_view
+  // pto: %sparse_blk_oi_inline1766__ssa_v0_view
   GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v52 = GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v3, v50, v51);
   // pto: %166
   int64_t v53 = (int64_t) ((uint64_t) v14 * (uint64_t) v32);
-  // pto: %ori_kv_flat_inline1799__ssa_v1_view
+  // pto: %ori_kv_flat_inline1795__ssa_v1_view
   const int64_t v54 = 1;
-  // pto: %ori_kv_flat_inline1799__ssa_v1_view
+  // pto: %ori_kv_flat_inline1795__ssa_v1_view
   const int64_t v55 = 1;
-  // pto: %ori_kv_flat_inline1799__ssa_v1_view
+  // pto: %ori_kv_flat_inline1795__ssa_v1_view
   const int64_t v56 = 1;
-  // pto: %ori_kv_flat_inline1799__ssa_v1_view
+  // pto: %ori_kv_flat_inline1795__ssa_v1_view
   int64_t v57 = v53 * v30;
-  // pto: %ori_kv_flat_inline1799__ssa_v1_view
+  // pto: %ori_kv_flat_inline1795__ssa_v1_view
   int64_t v58 = v56 * v57;
-  // pto: %ori_kv_flat_inline1799__ssa_v1_view
+  // pto: %ori_kv_flat_inline1795__ssa_v1_view
   pto::Shape<1, 1, 1, -1, -1> v59 = pto::Shape<1, 1, 1, -1, -1>(v54, v55, v56, v53, v30);
-  // pto: %ori_kv_flat_inline1799__ssa_v1_view
+  // pto: %ori_kv_flat_inline1795__ssa_v1_view
   pto::Stride<-1, -1, -1, -1, -1> v60 = pto::Stride<-1, -1, -1, -1, -1>(v55 * v58, v58, v57, v30, v29);
-  // pto: %ori_kv_flat_inline1799__ssa_v1_view
+  // pto: %ori_kv_flat_inline1795__ssa_v1_view
   GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v61 = GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v8, v59, v60);
   // pto: %167
   int64_t v62 = (int64_t) ((uint64_t) v15 * (uint64_t) v39);
-  // pto: %cmp_kv_flat_inline1756__ssa_v0_view
+  // pto: %cmp_kv_flat_inline1773__ssa_v0_view
   const int64_t v63 = 1;
-  // pto: %cmp_kv_flat_inline1756__ssa_v0_view
+  // pto: %cmp_kv_flat_inline1773__ssa_v0_view
   const int64_t v64 = 1;
-  // pto: %cmp_kv_flat_inline1756__ssa_v0_view
+  // pto: %cmp_kv_flat_inline1773__ssa_v0_view
   const int64_t v65 = 1;
-  // pto: %cmp_kv_flat_inline1756__ssa_v0_view
+  // pto: %cmp_kv_flat_inline1773__ssa_v0_view
   int64_t v66 = v62 * v30;
-  // pto: %cmp_kv_flat_inline1756__ssa_v0_view
+  // pto: %cmp_kv_flat_inline1773__ssa_v0_view
   int64_t v67 = v65 * v66;
-  // pto: %cmp_kv_flat_inline1756__ssa_v0_view
+  // pto: %cmp_kv_flat_inline1773__ssa_v0_view
   pto::Shape<1, 1, 1, -1, -1> v68 = pto::Shape<1, 1, 1, -1, -1>(v63, v64, v65, v62, v30);
-  // pto: %cmp_kv_flat_inline1756__ssa_v0_view
+  // pto: %cmp_kv_flat_inline1773__ssa_v0_view
   pto::Stride<-1, -1, -1, -1, -1> v69 = pto::Stride<-1, -1, -1, -1, -1>(v64 * v67, v67, v66, v30, v29);
-  // pto: %cmp_kv_flat_inline1756__ssa_v0_view
+  // pto: %cmp_kv_flat_inline1773__ssa_v0_view
   GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v70 = GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v11, v68, v69);
-  // pto: %q_flat_inline1832__ssa_v0_view
+  // pto: %q_flat_inline1822__ssa_v0_view
   const int64_t v71 = 1;
-  // pto: %q_flat_inline1832__ssa_v0_view
+  // pto: %q_flat_inline1822__ssa_v0_view
   const int64_t v72 = 1;
-  // pto: %q_flat_inline1832__ssa_v0_view
+  // pto: %q_flat_inline1822__ssa_v0_view
   const int64_t v73 = 1;
-  // pto: %q_flat_inline1832__ssa_v0_view
+  // pto: %q_flat_inline1822__ssa_v0_view
   int64_t v74 = v33 * v30;
-  // pto: %q_flat_inline1832__ssa_v0_view
+  // pto: %q_flat_inline1822__ssa_v0_view
   int64_t v75 = v73 * v74;
-  // pto: %q_flat_inline1832__ssa_v0_view
+  // pto: %q_flat_inline1822__ssa_v0_view
   pto::Shape<1, 1, 1, -1, -1> v76 = pto::Shape<1, 1, 1, -1, -1>(v71, v72, v73, v33, v30);
-  // pto: %q_flat_inline1832__ssa_v0_view
+  // pto: %q_flat_inline1822__ssa_v0_view
   pto::Stride<-1, -1, -1, -1, -1> v77 = pto::Stride<-1, -1, -1, -1, -1>(v72 * v75, v75, v74, v30, v29);
-  // pto: %q_flat_inline1832__ssa_v0_view
+  // pto: %q_flat_inline1822__ssa_v0_view
   GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v78 = GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v12, v76, v77);
-  // pto: %qk_kv_inline1889__phi_v7
+  // pto: %qk_kv_inline1879__phi_v7
   Tile<TileType::Mat, bfloat16_t, 128, 512, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 512, PadValue::Null, CompactMode::Null> v79 = Tile<TileType::Mat, bfloat16_t, 128, 512, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 512, PadValue::Null, CompactMode::Null>(v32, v30);
-  // pto: %qk_kv_inline1889__phi_v7
+  // pto: %qk_kv_inline1879__phi_v7
   uint64_t v80 = (uint64_t) v24;
   TASSIGN(v79, v80);
-  // pto: %qk_kv_inline1889__phi_v2
+  // pto: %qk_kv_inline1879__phi_v2
   Tile<TileType::Mat, bfloat16_t, 128, 512, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 512, PadValue::Null, CompactMode::Null> v81 = Tile<TileType::Mat, bfloat16_t, 128, 512, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 512, PadValue::Null, CompactMode::Null>(v32, v30);
-  // pto: %qk_kv_inline1889__phi_v2
+  // pto: %qk_kv_inline1879__phi_v2
   uint64_t v82 = (uint64_t) v24;
   TASSIGN(v81, v82);
-  // pto: %qk_kv_inline1889__phi_v4
+  // pto: %qk_kv_inline1879__phi_v4
   Tile<TileType::Mat, bfloat16_t, 128, 512, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 512, PadValue::Null, CompactMode::Null> v83 = Tile<TileType::Mat, bfloat16_t, 128, 512, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 512, PadValue::Null, CompactMode::Null>(v32, v30);
-  // pto: %qk_kv_inline1889__phi_v4
+  // pto: %qk_kv_inline1879__phi_v4
   uint64_t v84 = (uint64_t) v24;
   TASSIGN(v83, v84);
-  // pto: %qk_kv_inline1889__phi_v6
+  // pto: %qk_kv_inline1879__phi_v6
   Tile<TileType::Mat, bfloat16_t, 128, 512, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 512, PadValue::Null, CompactMode::Null> v85 = Tile<TileType::Mat, bfloat16_t, 128, 512, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 512, PadValue::Null, CompactMode::Null>(v32, v30);
-  // pto: %qk_kv_inline1889__phi_v6
+  // pto: %qk_kv_inline1879__phi_v6
   uint64_t v86 = (uint64_t) v24;
   TASSIGN(v85, v86);
-  // pto: %qk_kv_inline1889__phi_v14
+  // pto: %qk_kv_inline1879__phi_v14
   Tile<TileType::Mat, bfloat16_t, 128, 512, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 512, PadValue::Null, CompactMode::Null> v87 = Tile<TileType::Mat, bfloat16_t, 128, 512, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 512, PadValue::Null, CompactMode::Null>(v32, v30);
-  // pto: %qk_kv_inline1889__phi_v14
+  // pto: %qk_kv_inline1879__phi_v14
   uint64_t v88 = (uint64_t) v24;
   TASSIGN(v87, v88);
-  // pto: %qk_kv_inline1889__phi_v12
+  // pto: %qk_kv_inline1879__phi_v12
   Tile<TileType::Mat, bfloat16_t, 128, 512, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 512, PadValue::Null, CompactMode::Null> v89 = Tile<TileType::Mat, bfloat16_t, 128, 512, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 512, PadValue::Null, CompactMode::Null>(v32, v30);
-  // pto: %qk_kv_inline1889__phi_v12
+  // pto: %qk_kv_inline1879__phi_v12
   uint64_t v90 = (uint64_t) v24;
   TASSIGN(v89, v90);
   auto v91 = TPipe<0, Direction::DIR_BOTH, 16384, 2, 2, true>(v13, v20, v20);
-  // pto: %qk_core_inline1776__ssa_v0
+  // pto: %qk_core_inline1853__ssa_v0
   int64_t v92 = (int64_t) v16;
   // pto: %31, %32, %33
   set_flag(PIPE_MTE1, PIPE_MTE2, EVENT_ID0);
@@ -230,16 +230,16 @@ static __aicore__ void qk_pv_aic(__gm__ float* v1, __gm__ float* v2, __gm__ floa
     // pto: %41
     ;
     int64_t v98 = (int64_t) ((uint64_t) v96 * (uint64_t) v32);
-    // pto: %qk_block_valid_inline1830__tile
+    // pto: %qk_block_valid_inline1798__tile
     ;
     int32_t v99 = (v5)[v94];
     // pto: %42, %43
     ;
     if ((int64_t) v99 > v37) {
-      // pto: %qk_kv_inline1889__tile
+      // pto: %qk_kv_inline1879__tile
       ;
       Tile<TileType::Mat, bfloat16_t, 128, 512, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 512, PadValue::Null, CompactMode::Null> v100 = Tile<TileType::Mat, bfloat16_t, 128, 512, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 512, PadValue::Null, CompactMode::Null>(v32, v30);
-      // pto: %qk_kv_inline1889__tile
+      // pto: %qk_kv_inline1879__tile
       ;
       uint64_t v101 = (uint64_t) v24;
       TASSIGN(v100, v101);
@@ -286,7 +286,7 @@ static __aicore__ void qk_pv_aic(__gm__ float* v1, __gm__ float* v2, __gm__ floa
         // pto: %63
         ;
         if (v113 > v37) {
-          // pto: %65, %66, %qk_run_raw_inline1782__tile
+          // pto: %65, %66, %qk_run_raw_inline1769__tile
           ;
           int32_t v114 = (v7)[(int64_t) ((uint64_t) ((int64_t) (uint64_t) v95 * (uint64_t) v32) + (uint64_t) v98)];
           // pto: %67
@@ -305,34 +305,34 @@ static __aicore__ void qk_pv_aic(__gm__ float* v1, __gm__ float* v2, __gm__ floa
           // pto: %71
           ;
           int64_t v119 = v116 < v37 ? v37 : v116;
-          // pto: %ori_kv_flat_inline1799__ssa_v1_pview
+          // pto: %ori_kv_flat_inline1795__ssa_v1_pview
           ;
           const int64_t v120 = 0;
-          // pto: %ori_kv_flat_inline1799__ssa_v1_pview
+          // pto: %ori_kv_flat_inline1795__ssa_v1_pview
           ;
           __gm__ bfloat16_t* v121 = PTOAS__GLOBAL_TENSOR_DATA(v61);
-          // pto: %ori_kv_flat_inline1799__ssa_v1_pview
+          // pto: %ori_kv_flat_inline1795__ssa_v1_pview
           ;
           const int64_t v122 = 1;
-          // pto: %ori_kv_flat_inline1799__ssa_v1_pview
+          // pto: %ori_kv_flat_inline1795__ssa_v1_pview
           ;
           const int64_t v123 = 1;
-          // pto: %ori_kv_flat_inline1799__ssa_v1_pview
+          // pto: %ori_kv_flat_inline1795__ssa_v1_pview
           ;
           const int64_t v124 = 1;
-          // pto: %ori_kv_flat_inline1799__ssa_v1_pview
+          // pto: %ori_kv_flat_inline1795__ssa_v1_pview
           ;
           int64_t v125 = v113 * v30;
-          // pto: %ori_kv_flat_inline1799__ssa_v1_pview
+          // pto: %ori_kv_flat_inline1795__ssa_v1_pview
           ;
           int64_t v126 = v124 * v125;
-          // pto: %ori_kv_flat_inline1799__ssa_v1_pview
+          // pto: %ori_kv_flat_inline1795__ssa_v1_pview
           ;
           pto::Shape<1, 1, 1, -1, 512> v127 = pto::Shape<1, 1, 1, -1, 512>(v122, v123, v124, v113, v30);
-          // pto: %ori_kv_flat_inline1799__ssa_v1_pview
+          // pto: %ori_kv_flat_inline1795__ssa_v1_pview
           ;
           pto::Stride<-1, -1, -1, -1, -1> v128 = pto::Stride<-1, -1, -1, -1, -1>(v123 * v126, v126, v125, v30, v29);
-          // pto: %ori_kv_flat_inline1799__ssa_v1_pview
+          // pto: %ori_kv_flat_inline1795__ssa_v1_pview
           ;
           GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, -1, 512>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v129 = GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, -1, 512>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v121 + (v120 + v119 * v30 + v37 * v29), v127, v128);
           TLOAD(v117, v129);
@@ -447,7 +447,7 @@ static __aicore__ void qk_pv_aic(__gm__ float* v1, __gm__ float* v2, __gm__ floa
         // pto: %91
         ;
         if (v161 < v30) {
-          // pto: %92, %93, %qk_ridx_inline1810__tile
+          // pto: %92, %93, %qk_ridx_inline1804__tile
           ;
           int32_t v162 = (v9)[(int64_t) ((uint64_t) ((int64_t) (uint64_t) v95 * (uint64_t) v30) + (uint64_t) v161)];
           // pto: %94
@@ -472,22 +472,22 @@ static __aicore__ void qk_pv_aic(__gm__ float* v1, __gm__ float* v2, __gm__ floa
             // pto: %107
             ;
             int64_t v168 = v165 < v37 ? v37 : v165;
-            // pto: %cmp_kv_flat_inline1756__ssa_v0_pview
+            // pto: %cmp_kv_flat_inline1773__ssa_v0_pview
             ;
             __gm__ bfloat16_t* v169 = PTOAS__GLOBAL_TENSOR_DATA(v70);
-            // pto: %cmp_kv_flat_inline1756__ssa_v0_pview
+            // pto: %cmp_kv_flat_inline1773__ssa_v0_pview
             ;
             const int64_t v170 = 0;
-            // pto: %cmp_kv_flat_inline1756__ssa_v0_pview
+            // pto: %cmp_kv_flat_inline1773__ssa_v0_pview
             ;
             const int64_t v171 = 512;
-            // pto: %cmp_kv_flat_inline1756__ssa_v0_pview
+            // pto: %cmp_kv_flat_inline1773__ssa_v0_pview
             ;
             pto::Shape<1, 1, 1, 1, 512> v172 = pto::Shape<1, 1, 1, 1, 512>();
-            // pto: %cmp_kv_flat_inline1756__ssa_v0_pview
+            // pto: %cmp_kv_flat_inline1773__ssa_v0_pview
             ;
             pto::Stride<512, 512, 512, 512, 1> v173 = pto::Stride<512, 512, 512, 512, 1>();
-            // pto: %cmp_kv_flat_inline1756__ssa_v0_pview
+            // pto: %cmp_kv_flat_inline1773__ssa_v0_pview
             ;
             GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, 1, 512>, pto::Stride<512, 512, 512, 512, 1>, pto::Layout::ND> v174 = GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, 1, 512>, pto::Stride<512, 512, 512, 512, 1>, pto::Layout::ND>(v169 + (v170 + v168 * v171), v172, v173);
             TLOAD(v166, v174);
@@ -539,47 +539,47 @@ static __aicore__ void qk_pv_aic(__gm__ float* v1, __gm__ float* v2, __gm__ floa
       // pto: %112
       ;
       int64_t v187 = (int64_t) ((uint64_t) v95 * (uint64_t) v40);
-      // pto: %qk_q_tile_inline1850__tile
+      // pto: %qk_q_tile_inline1835__tile
       ;
       Tile<TileType::Mat, bfloat16_t, 32, 512, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 512, PadValue::Null, CompactMode::Null> v188 = Tile<TileType::Mat, bfloat16_t, 32, 512, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 512, PadValue::Null, CompactMode::Null>(v39, v30);
-      // pto: %qk_q_tile_inline1850__tile
+      // pto: %qk_q_tile_inline1835__tile
       ;
       uint64_t v189 = (uint64_t) v25;
       TASSIGN(v188, v189);
       // pto: %114
       ;
       int64_t v190 = v187 < v37 ? v37 : v187;
-      // pto: %q_flat_inline1832__ssa_v0_pview
+      // pto: %q_flat_inline1822__ssa_v0_pview
       ;
       __gm__ bfloat16_t* v191 = PTOAS__GLOBAL_TENSOR_DATA(v78);
-      // pto: %q_flat_inline1832__ssa_v0_pview
+      // pto: %q_flat_inline1822__ssa_v0_pview
       ;
       const int64_t v192 = 0;
-      // pto: %q_flat_inline1832__ssa_v0_pview
+      // pto: %q_flat_inline1822__ssa_v0_pview
       ;
       const int64_t v193 = 512;
-      // pto: %q_flat_inline1832__ssa_v0_pview
+      // pto: %q_flat_inline1822__ssa_v0_pview
       ;
       pto::Shape<1, 1, 1, 32, 512> v194 = pto::Shape<1, 1, 1, 32, 512>();
-      // pto: %q_flat_inline1832__ssa_v0_pview
+      // pto: %q_flat_inline1822__ssa_v0_pview
       ;
       pto::Stride<16384, 16384, 16384, 512, 1> v195 = pto::Stride<16384, 16384, 16384, 512, 1>();
-      // pto: %q_flat_inline1832__ssa_v0_pview
+      // pto: %q_flat_inline1822__ssa_v0_pview
       ;
       GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, 32, 512>, pto::Stride<16384, 16384, 16384, 512, 1>, pto::Layout::ND> v196 = GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, 32, 512>, pto::Stride<16384, 16384, 16384, 512, 1>, pto::Layout::ND>(v191 + (v192 + v190 * v193), v194, v195);
       TLOAD(v188, v196);
       set_flag(PIPE_MTE2, PIPE_MTE1, EVENT_ID0);
-      // pto: %qk_kv_inline1889__rv_v9_t
+      // pto: %qk_kv_inline1879__rv_v9_t
       ;
       Tile<TileType::Mat, bfloat16_t, 512, 128, BLayout::RowMajor, -1, -1, SLayout::ColMajor, 512, PadValue::Null, CompactMode::Null> v197 = Tile<TileType::Mat, bfloat16_t, 512, 128, BLayout::RowMajor, -1, -1, SLayout::ColMajor, 512, PadValue::Null, CompactMode::Null>(v30, v32);
-      // pto: %qk_kv_inline1889__rv_v9_t
+      // pto: %qk_kv_inline1879__rv_v9_t
       ;
       uint64_t v198 = (uint64_t) v24;
       TASSIGN(v197, v198);
-      // pto: %qk_raw_inline1845__tile_l0_init
+      // pto: %qk_raw_inline1908__tile_l0_init
       ;
       Tile<TileType::Acc, float, 32, 128, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 1024, PadValue::Null, CompactMode::Null> v199 = Tile<TileType::Acc, float, 32, 128, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 1024, PadValue::Null, CompactMode::Null>(v39, v32);
-      // pto: %qk_raw_inline1845__tile_l0_init
+      // pto: %qk_raw_inline1908__tile_l0_init
       ;
       uint64_t v200 = (uint64_t) v26;
       TASSIGN(v199, v200);
@@ -589,20 +589,20 @@ static __aicore__ void qk_pv_aic(__gm__ float* v1, __gm__ float* v2, __gm__ floa
       set_flag(PIPE_M, PIPE_MTE1, EVENT_ID1);
       set_flag(PIPE_M, PIPE_MTE1, EVENT_ID2);
       for (int64_t v201 = v37; v201 < v30; v201 += v41) {
-        // pto: %qk_raw_inline1845__tile_l0_a
+        // pto: %qk_raw_inline1908__tile_l0_a
         ;
         Tile<TileType::Left, bfloat16_t, 32, 128, BLayout::RowMajor, -1, -1, SLayout::RowMajor, 512, PadValue::Null, CompactMode::Null> v202 = Tile<TileType::Left, bfloat16_t, 32, 128, BLayout::RowMajor, -1, -1, SLayout::RowMajor, 512, PadValue::Null, CompactMode::Null>(v39, v32);
-        // pto: %qk_raw_inline1845__tile_l0_a
+        // pto: %qk_raw_inline1908__tile_l0_a
         ;
         uint64_t v203 = (uint64_t) v26;
         TASSIGN(v202, v203);
         wait_flag(PIPE_M, PIPE_MTE1, EVENT_ID1);
         pipe_barrier(PIPE_MTE1);
         TEXTRACT(v202, v188, v37, v201);
-        // pto: %qk_raw_inline1845__tile_l0_b
+        // pto: %qk_raw_inline1908__tile_l0_b
         ;
         Tile<TileType::Right, bfloat16_t, 128, 128, BLayout::RowMajor, -1, -1, SLayout::ColMajor, 512, PadValue::Null, CompactMode::Null> v204 = Tile<TileType::Right, bfloat16_t, 128, 128, BLayout::RowMajor, -1, -1, SLayout::ColMajor, 512, PadValue::Null, CompactMode::Null>(v32, v32);
-        // pto: %qk_raw_inline1845__tile_l0_b
+        // pto: %qk_raw_inline1908__tile_l0_b
         ;
         uint64_t v205 = (uint64_t) v26;
         TASSIGN(v204, v205);
@@ -784,20 +784,20 @@ static __aicore__ void qk_pv_aic(__gm__ float* v1, __gm__ float* v2, __gm__ floa
       wait_flag(PIPE_M, PIPE_FIX, EVENT_ID1);
       TPUSH<TPipe<0, Direction::DIR_BOTH, 16384, 2, 2, true>, Tile<TileType::Acc, float, 32, 128, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 1024, PadValue::Null, CompactMode::Null>, TileSplitAxis::TILE_NO_SPLIT>(v91, v223);
       set_flag(PIPE_FIX, PIPE_M, EVENT_ID2);
-      // pto: %qk_oi_inline1882__tile_l0_init
+      // pto: %qk_oi_inline1848__tile_l0_init
       ;
       Tile<TileType::Acc, float, 32, 512, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 1024, PadValue::Null, CompactMode::Null> v235 = Tile<TileType::Acc, float, 32, 512, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 1024, PadValue::Null, CompactMode::Null>(v39, v30);
-      // pto: %qk_oi_inline1882__tile_l0_init
+      // pto: %qk_oi_inline1848__tile_l0_init
       ;
       uint64_t v236 = (uint64_t) v26;
       TASSIGN(v235, v236);
-      // pto: %qk_oi_inline1882__tile_l0_lmat
+      // pto: %qk_oi_inline1848__tile_l0_lmat
       ;
       const int32_t v237 = 32;
-      // pto: %qk_oi_inline1882__tile_l0_lmat
+      // pto: %qk_oi_inline1848__tile_l0_lmat
       ;
       const int32_t v238 = 128;
-      // pto: %qk_oi_inline1882__tile_l0_lmat
+      // pto: %qk_oi_inline1848__tile_l0_lmat
       ;
       Tile<TileType::Mat, bfloat16_t, 32, 128, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 512, PadValue::Null, CompactMode::Null> v239 = Tile<TileType::Mat, bfloat16_t, 32, 128, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 512, PadValue::Null, CompactMode::Null>(v237, v238);
       pipe_barrier(PIPE_MTE2);
@@ -809,19 +809,19 @@ static __aicore__ void qk_pv_aic(__gm__ float* v1, __gm__ float* v2, __gm__ floa
       set_flag(PIPE_M, PIPE_MTE1, EVENT_ID1);
       set_flag(PIPE_M, PIPE_MTE1, EVENT_ID7);
       for (int64_t v240 = v37; v240 < v32; v240 += v40) {
-        // pto: %qk_oi_inline1882__tile_l0_a
+        // pto: %qk_oi_inline1848__tile_l0_a
         ;
         Tile<TileType::Left, bfloat16_t, 32, 32, BLayout::RowMajor, -1, -1, SLayout::RowMajor, 512, PadValue::Null, CompactMode::Null> v241 = Tile<TileType::Left, bfloat16_t, 32, 32, BLayout::RowMajor, -1, -1, SLayout::RowMajor, 512, PadValue::Null, CompactMode::Null>(v39, v39);
-        // pto: %qk_oi_inline1882__tile_l0_a
+        // pto: %qk_oi_inline1848__tile_l0_a
         ;
         uint64_t v242 = (uint64_t) v26;
         TASSIGN(v241, v242);
         wait_flag(PIPE_M, PIPE_MTE1, EVENT_ID7);
         TEXTRACT(v241, v239, v37, v240);
-        // pto: %qk_oi_inline1882__tile_l0_b
+        // pto: %qk_oi_inline1848__tile_l0_b
         ;
         Tile<TileType::Right, bfloat16_t, 32, 512, BLayout::RowMajor, -1, -1, SLayout::ColMajor, 512, PadValue::Null, CompactMode::Null> v243 = Tile<TileType::Right, bfloat16_t, 32, 512, BLayout::RowMajor, -1, -1, SLayout::ColMajor, 512, PadValue::Null, CompactMode::Null>(v39, v30);
-        // pto: %qk_oi_inline1882__tile_l0_b
+        // pto: %qk_oi_inline1848__tile_l0_b
         ;
         uint64_t v244 = (uint64_t) v26;
         TASSIGN(v243, v244);
@@ -900,22 +900,22 @@ static __aicore__ void qk_pv_aic(__gm__ float* v1, __gm__ float* v2, __gm__ floa
       // pto: %136
       ;
       int64_t v256 = v251 < v37 ? v37 : v251;
-      // pto: %sparse_blk_oi_inline1879__iter_v1_pview
+      // pto: %sparse_blk_oi_inline1766__iter_v1_pview
       ;
       __gm__ float* v257 = PTOAS__GLOBAL_TENSOR_DATA(v52);
-      // pto: %sparse_blk_oi_inline1879__iter_v1_pview
+      // pto: %sparse_blk_oi_inline1766__iter_v1_pview
       ;
       const int64_t v258 = 0;
-      // pto: %sparse_blk_oi_inline1879__iter_v1_pview
+      // pto: %sparse_blk_oi_inline1766__iter_v1_pview
       ;
       const int64_t v259 = 512;
-      // pto: %sparse_blk_oi_inline1879__iter_v1_pview
+      // pto: %sparse_blk_oi_inline1766__iter_v1_pview
       ;
       pto::Shape<1, 1, 1, 16, 512> v260 = pto::Shape<1, 1, 1, 16, 512>();
-      // pto: %sparse_blk_oi_inline1879__iter_v1_pview
+      // pto: %sparse_blk_oi_inline1766__iter_v1_pview
       ;
       pto::Stride<8192, 8192, 8192, 512, 1> v261 = pto::Stride<8192, 8192, 8192, 512, 1>();
-      // pto: %sparse_blk_oi_inline1879__iter_v1_pview
+      // pto: %sparse_blk_oi_inline1766__iter_v1_pview
       ;
       GlobalTensor<float, pto::Shape<1, 1, 1, 16, 512>, pto::Stride<8192, 8192, 8192, 512, 1>, pto::Layout::ND> v262 = GlobalTensor<float, pto::Shape<1, 1, 1, 16, 512>, pto::Stride<8192, 8192, 8192, 512, 1>, pto::Layout::ND>(v257 + (v258 + v256 * v259), v260, v261);
       wait_flag(PIPE_M, PIPE_FIX, EVENT_ID2);
@@ -941,22 +941,22 @@ static __aicore__ void qk_pv_aic(__gm__ float* v1, __gm__ float* v2, __gm__ floa
       // pto: %143
       ;
       int64_t v268 = v263 < v37 ? v37 : v263;
-      // pto: %sparse_blk_oi_inline1879__tile_pview
+      // pto: %sparse_blk_oi_inline1766__tile_pview
       ;
       __gm__ float* v269 = PTOAS__GLOBAL_TENSOR_DATA(v52);
-      // pto: %sparse_blk_oi_inline1879__tile_pview
+      // pto: %sparse_blk_oi_inline1766__tile_pview
       ;
       const int64_t v270 = 0;
-      // pto: %sparse_blk_oi_inline1879__tile_pview
+      // pto: %sparse_blk_oi_inline1766__tile_pview
       ;
       const int64_t v271 = 512;
-      // pto: %sparse_blk_oi_inline1879__tile_pview
+      // pto: %sparse_blk_oi_inline1766__tile_pview
       ;
       pto::Shape<1, 1, 1, 16, 512> v272 = pto::Shape<1, 1, 1, 16, 512>();
-      // pto: %sparse_blk_oi_inline1879__tile_pview
+      // pto: %sparse_blk_oi_inline1766__tile_pview
       ;
       pto::Stride<8192, 8192, 8192, 512, 1> v273 = pto::Stride<8192, 8192, 8192, 512, 1>();
-      // pto: %sparse_blk_oi_inline1879__tile_pview
+      // pto: %sparse_blk_oi_inline1766__tile_pview
       ;
       GlobalTensor<float, pto::Shape<1, 1, 1, 16, 512>, pto::Stride<8192, 8192, 8192, 512, 1>, pto::Layout::ND> v274 = GlobalTensor<float, pto::Shape<1, 1, 1, 16, 512>, pto::Stride<8192, 8192, 8192, 512, 1>, pto::Layout::ND>(v269 + (v270 + v268 * v271), v272, v273);
       pipe_barrier(PIPE_FIX);
@@ -1206,69 +1206,69 @@ static __aicore__ void qk_pv_aiv(__gm__ float* v1, __gm__ float* v2, __gm__ floa
   const float v45 = 0.0f;
   // pto: %c4_index
   const int64_t v46 = 4;
-  // pto: %sparse_blk_li_inline1788__ssa_v0_view
+  // pto: %sparse_blk_li_inline1771__ssa_v0_view
   const int64_t v47 = 1;
-  // pto: %sparse_blk_li_inline1788__ssa_v0_view
+  // pto: %sparse_blk_li_inline1771__ssa_v0_view
   const int64_t v48 = 1;
-  // pto: %sparse_blk_li_inline1788__ssa_v0_view
+  // pto: %sparse_blk_li_inline1771__ssa_v0_view
   const int64_t v49 = 1;
-  // pto: %sparse_blk_li_inline1788__ssa_v0_view
+  // pto: %sparse_blk_li_inline1771__ssa_v0_view
   int64_t v50 = v28 * v29;
-  // pto: %sparse_blk_li_inline1788__ssa_v0_view
+  // pto: %sparse_blk_li_inline1771__ssa_v0_view
   int64_t v51 = v49 * v50;
-  // pto: %sparse_blk_li_inline1788__ssa_v0_view
+  // pto: %sparse_blk_li_inline1771__ssa_v0_view
   pto::Shape<1, 1, 1, -1, -1> v52 = pto::Shape<1, 1, 1, -1, -1>(v47, v48, v49, v28, v29);
-  // pto: %sparse_blk_li_inline1788__ssa_v0_view
+  // pto: %sparse_blk_li_inline1771__ssa_v0_view
   pto::Stride<-1, -1, -1, -1, -1> v53 = pto::Stride<-1, -1, -1, -1, -1>(v48 * v51, v51, v50, v29, v28);
-  // pto: %sparse_blk_li_inline1788__ssa_v0_view
+  // pto: %sparse_blk_li_inline1771__ssa_v0_view
   GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::DN> v54 = GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::DN>(v1, v52, v53);
-  // pto: %sparse_blk_mi_inline1812__ssa_v0_view
+  // pto: %sparse_blk_mi_inline1756__ssa_v0_view
   const int64_t v55 = 1;
-  // pto: %sparse_blk_mi_inline1812__ssa_v0_view
+  // pto: %sparse_blk_mi_inline1756__ssa_v0_view
   const int64_t v56 = 1;
-  // pto: %sparse_blk_mi_inline1812__ssa_v0_view
+  // pto: %sparse_blk_mi_inline1756__ssa_v0_view
   const int64_t v57 = 1;
-  // pto: %sparse_blk_mi_inline1812__ssa_v0_view
+  // pto: %sparse_blk_mi_inline1756__ssa_v0_view
   int64_t v58 = v28 * v29;
-  // pto: %sparse_blk_mi_inline1812__ssa_v0_view
+  // pto: %sparse_blk_mi_inline1756__ssa_v0_view
   int64_t v59 = v57 * v58;
-  // pto: %sparse_blk_mi_inline1812__ssa_v0_view
+  // pto: %sparse_blk_mi_inline1756__ssa_v0_view
   pto::Shape<1, 1, 1, -1, -1> v60 = pto::Shape<1, 1, 1, -1, -1>(v55, v56, v57, v28, v29);
-  // pto: %sparse_blk_mi_inline1812__ssa_v0_view
+  // pto: %sparse_blk_mi_inline1756__ssa_v0_view
   pto::Stride<-1, -1, -1, -1, -1> v61 = pto::Stride<-1, -1, -1, -1, -1>(v56 * v59, v59, v58, v29, v28);
-  // pto: %sparse_blk_mi_inline1812__ssa_v0_view
+  // pto: %sparse_blk_mi_inline1756__ssa_v0_view
   GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::DN> v62 = GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::DN>(v2, v60, v61);
-  // pto: %sparse_blk_oi_inline1879__ssa_v0_view
+  // pto: %sparse_blk_oi_inline1766__ssa_v0_view
   const int64_t v63 = 1;
-  // pto: %sparse_blk_oi_inline1879__ssa_v0_view
+  // pto: %sparse_blk_oi_inline1766__ssa_v0_view
   const int64_t v64 = 1;
-  // pto: %sparse_blk_oi_inline1879__ssa_v0_view
+  // pto: %sparse_blk_oi_inline1766__ssa_v0_view
   const int64_t v65 = 1;
-  // pto: %sparse_blk_oi_inline1879__ssa_v0_view
+  // pto: %sparse_blk_oi_inline1766__ssa_v0_view
   int64_t v66 = v28 * v30;
-  // pto: %sparse_blk_oi_inline1879__ssa_v0_view
+  // pto: %sparse_blk_oi_inline1766__ssa_v0_view
   int64_t v67 = v65 * v66;
-  // pto: %sparse_blk_oi_inline1879__ssa_v0_view
+  // pto: %sparse_blk_oi_inline1766__ssa_v0_view
   pto::Shape<1, 1, 1, -1, -1> v68 = pto::Shape<1, 1, 1, -1, -1>(v63, v64, v65, v28, v30);
-  // pto: %sparse_blk_oi_inline1879__ssa_v0_view
+  // pto: %sparse_blk_oi_inline1766__ssa_v0_view
   pto::Stride<-1, -1, -1, -1, -1> v69 = pto::Stride<-1, -1, -1, -1, -1>(v64 * v67, v67, v66, v30, v29);
-  // pto: %sparse_blk_oi_inline1879__ssa_v0_view
+  // pto: %sparse_blk_oi_inline1766__ssa_v0_view
   GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v70 = GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v3, v68, v69);
-  // pto: %sparse_bias_inline1784__rv_v2_view
+  // pto: %sparse_bias_inline1775__rv_v2_view
   const int64_t v71 = 1;
-  // pto: %sparse_bias_inline1784__rv_v2_view
+  // pto: %sparse_bias_inline1775__rv_v2_view
   const int64_t v72 = 1;
-  // pto: %sparse_bias_inline1784__rv_v2_view
+  // pto: %sparse_bias_inline1775__rv_v2_view
   const int64_t v73 = 1;
-  // pto: %sparse_bias_inline1784__rv_v2_view
+  // pto: %sparse_bias_inline1775__rv_v2_view
   int64_t v74 = v31 * v32;
-  // pto: %sparse_bias_inline1784__rv_v2_view
+  // pto: %sparse_bias_inline1775__rv_v2_view
   int64_t v75 = v73 * v74;
-  // pto: %sparse_bias_inline1784__rv_v2_view
+  // pto: %sparse_bias_inline1775__rv_v2_view
   pto::Shape<1, 1, 1, -1, -1> v76 = pto::Shape<1, 1, 1, -1, -1>(v71, v72, v73, v31, v32);
-  // pto: %sparse_bias_inline1784__rv_v2_view
+  // pto: %sparse_bias_inline1775__rv_v2_view
   pto::Stride<-1, -1, -1, -1, -1> v77 = pto::Stride<-1, -1, -1, -1, -1>(v72 * v75, v75, v74, v32, v29);
-  // pto: %sparse_bias_inline1784__rv_v2_view
+  // pto: %sparse_bias_inline1775__rv_v2_view
   GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v78 = GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v4, v76, v77);
   auto v79 = TPipe<0, Direction::DIR_BOTH, 16384, 2, 2, true>(v13, v22, v22);
   // pto: %subblock_idx, %24
@@ -1283,7 +1283,7 @@ static __aicore__ void qk_pv_aiv(__gm__ float* v1, __gm__ float* v2, __gm__ floa
   set_flag(PIPE_V, PIPE_MTE2, EVENT_ID2);
   set_flag(PIPE_MTE3, PIPE_V, EVENT_ID5);
   if ((int64_t) v18 == v35) {
-    // pto: %qk_core_inline1776__ssa_v0
+    // pto: %qk_core_inline1853__ssa_v0
     ;
     int64_t v80 = (int64_t) v16;
     // pto: %25, %26, %27
@@ -1304,10 +1304,10 @@ static __aicore__ void qk_pv_aiv(__gm__ float* v1, __gm__ float* v2, __gm__ floa
       // pto: %34
       ;
       int64_t v86 = (int64_t) ((uint64_t) v84 * (uint64_t) v34);
-      // pto: %qk_bias_row_inline1801__tile
+      // pto: %qk_bias_row_inline1893__tile
       ;
       Tile<TileType::Vec, float, 1, 128, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v87 = Tile<TileType::Vec, float, 1, 128, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v29, v34);
-      // pto: %qk_bias_row_inline1801__tile
+      // pto: %qk_bias_row_inline1893__tile
       ;
       uint64_t v88 = (uint64_t) v23;
       TASSIGN(v87, v88);
@@ -1317,29 +1317,29 @@ static __aicore__ void qk_pv_aiv(__gm__ float* v1, __gm__ float* v2, __gm__ floa
       // pto: %36
       ;
       int64_t v90 = v86 < v35 ? v35 : v86;
-      // pto: %sparse_bias_inline1784__rv_v2_pview
+      // pto: %sparse_bias_inline1775__rv_v2_pview
       ;
       __gm__ float* v91 = PTOAS__GLOBAL_TENSOR_DATA(v78);
-      // pto: %sparse_bias_inline1784__rv_v2_pview
+      // pto: %sparse_bias_inline1775__rv_v2_pview
       ;
       const int64_t v92 = 0;
-      // pto: %sparse_bias_inline1784__rv_v2_pview
+      // pto: %sparse_bias_inline1775__rv_v2_pview
       ;
       const int64_t v93 = 640;
-      // pto: %sparse_bias_inline1784__rv_v2_pview
+      // pto: %sparse_bias_inline1775__rv_v2_pview
       ;
       pto::Shape<1, 1, 1, 1, 128> v94 = pto::Shape<1, 1, 1, 1, 128>();
-      // pto: %sparse_bias_inline1784__rv_v2_pview
+      // pto: %sparse_bias_inline1775__rv_v2_pview
       ;
       pto::Stride<640, 640, 640, 640, 1> v95 = pto::Stride<640, 640, 640, 640, 1>();
-      // pto: %sparse_bias_inline1784__rv_v2_pview
+      // pto: %sparse_bias_inline1775__rv_v2_pview
       ;
       GlobalTensor<float, pto::Shape<1, 1, 1, 1, 128>, pto::Stride<640, 640, 640, 640, 1>, pto::Layout::ND> v96 = GlobalTensor<float, pto::Shape<1, 1, 1, 1, 128>, pto::Stride<640, 640, 640, 640, 1>, pto::Layout::ND>(v91 + (v92 + v89 * v93 + v90), v94, v95);
       wait_flag(PIPE_V, PIPE_MTE2, EVENT_ID0);
       wait_flag(PIPE_MTE3, PIPE_MTE2, EVENT_ID0);
       TLOAD(v87, v96);
       set_flag(PIPE_MTE2, PIPE_V, EVENT_ID0);
-      // pto: %qk_block_valid_inline1830__tile
+      // pto: %qk_block_valid_inline1798__tile
       ;
       int32_t v97 = (v5)[v82];
       // pto: %37, %38
@@ -1348,22 +1348,22 @@ static __aicore__ void qk_pv_aiv(__gm__ float* v1, __gm__ float* v2, __gm__ floa
       wait_flag(PIPE_MTE2, PIPE_V, EVENT_ID0);
       if ((int64_t) v97 > v35) {
         for (int64_t v98 = v35; v98 < v38; v98 += v29) {
-          // pto: %qk_raw_inline1845__tile_Vec
+          // pto: %qk_raw_inline1908__tile_Vec
           ;
           const int32_t v99 = 32;
-          // pto: %qk_raw_inline1845__tile_Vec
+          // pto: %qk_raw_inline1908__tile_Vec
           ;
           const int32_t v100 = 128;
-          // pto: %qk_raw_inline1845__tile_Vec
+          // pto: %qk_raw_inline1908__tile_Vec
           ;
           Tile<TileType::Vec, float, 32, 128, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v101 = Tile<TileType::Vec, float, 32, 128, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v99, v100);
           wait_flag(PIPE_V, PIPE_MTE2, EVENT_ID1);
           TPOP<TPipe<0, Direction::DIR_BOTH, 16384, 2, 2, true>, Tile<TileType::Vec, float, 32, 128, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>, TileSplitAxis::TILE_NO_SPLIT>(v79, v101);
           set_flag(PIPE_MTE2, PIPE_V, EVENT_ID1);
-          // pto: %qk_scaled_inline1854__tile
+          // pto: %qk_scaled_inline1817__tile
           ;
           Tile<TileType::Vec, float, 32, 128, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v102 = Tile<TileType::Vec, float, 32, 128, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v40, v34);
-          // pto: %qk_scaled_inline1854__tile
+          // pto: %qk_scaled_inline1817__tile
           ;
           uint64_t v103 = (uint64_t) v24;
           TASSIGN(v102, v103);
@@ -1373,10 +1373,10 @@ static __aicore__ void qk_pv_aiv(__gm__ float* v1, __gm__ float* v2, __gm__ floa
           TMULS(v102, v101, v41);
           set_flag(PIPE_V, PIPE_MTE2, EVENT_ID1);
           TFREE<TPipe<0, Direction::DIR_BOTH, 16384, 2, 2, true>, TileSplitAxis::TILE_NO_SPLIT>(v79);
-          // pto: %qk_scores_inline1757__tile
+          // pto: %qk_scores_inline1838__tile
           ;
           Tile<TileType::Vec, float, 32, 128, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v104 = Tile<TileType::Vec, float, 32, 128, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v40, v34);
-          // pto: %qk_scores_inline1757__tile
+          // pto: %qk_scores_inline1838__tile
           ;
           uint64_t v105 = (uint64_t) v24;
           TASSIGN(v104, v105);
@@ -1389,10 +1389,10 @@ static __aicore__ void qk_pv_aiv(__gm__ float* v1, __gm__ float* v2, __gm__ floa
           ;
           uint64_t v107 = (uint64_t) v25;
           TASSIGN(v106, v107);
-          // pto: %qk_mi_inline1855__tile
+          // pto: %qk_mi_inline1839__tile
           ;
           Tile<TileType::Vec, float, 32, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v108 = Tile<TileType::Vec, float, 32, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v40, v29);
-          // pto: %qk_mi_inline1855__tile
+          // pto: %qk_mi_inline1839__tile
           ;
           uint64_t v109 = (uint64_t) v26;
           TASSIGN(v108, v109);
@@ -1408,10 +1408,10 @@ static __aicore__ void qk_pv_aiv(__gm__ float* v1, __gm__ float* v2, __gm__ floa
           TASSIGN(v110, v111);
           pipe_barrier(PIPE_V);
           TROWEXPANDSUB(v110, v104, v108);
-          // pto: %qk_exp_inline1786__tile
+          // pto: %qk_exp_inline1840__tile
           ;
           Tile<TileType::Vec, float, 32, 128, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v112 = Tile<TileType::Vec, float, 32, 128, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v40, v34);
-          // pto: %qk_exp_inline1786__tile
+          // pto: %qk_exp_inline1840__tile
           ;
           uint64_t v113 = (uint64_t) v24;
           TASSIGN(v112, v113);
@@ -1424,20 +1424,20 @@ static __aicore__ void qk_pv_aiv(__gm__ float* v1, __gm__ float* v2, __gm__ floa
           ;
           uint64_t v115 = (uint64_t) v25;
           TASSIGN(v114, v115);
-          // pto: %qk_li_inline1821__tile
+          // pto: %qk_li_inline1843__tile
           ;
           Tile<TileType::Vec, float, 32, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v116 = Tile<TileType::Vec, float, 32, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v40, v29);
-          // pto: %qk_li_inline1821__tile
+          // pto: %qk_li_inline1843__tile
           ;
           uint64_t v117 = (uint64_t) v27;
           TASSIGN(v116, v117);
           pipe_barrier(PIPE_V);
           wait_flag(PIPE_MTE3, PIPE_V, EVENT_ID3);
           TROWSUM(v116, v112, v114);
-          // pto: %qk_exp_bf16_inline1856__tile
+          // pto: %qk_exp_bf16_inline1862__tile
           ;
           Tile<TileType::Vec, bfloat16_t, 32, 128, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v118 = Tile<TileType::Vec, bfloat16_t, 32, 128, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v40, v34);
-          // pto: %qk_exp_bf16_inline1856__tile
+          // pto: %qk_exp_bf16_inline1862__tile
           ;
           uint64_t v119 = (uint64_t) v24;
           TASSIGN(v118, v119);
@@ -1472,19 +1472,19 @@ static __aicore__ void qk_pv_aiv(__gm__ float* v1, __gm__ float* v2, __gm__ floa
           // pto: %44
           ;
           int64_t v128 = v123 < v35 ? v35 : v123;
-          // pto: %sparse_blk_mi_inline1812__iter_v3_pview
+          // pto: %sparse_blk_mi_inline1756__iter_v3_pview
           ;
           __gm__ float* v129 = PTOAS__GLOBAL_TENSOR_DATA(v62);
-          // pto: %sparse_blk_mi_inline1812__iter_v3_pview
+          // pto: %sparse_blk_mi_inline1756__iter_v3_pview
           ;
           const int64_t v130 = 0;
-          // pto: %sparse_blk_mi_inline1812__iter_v3_pview
+          // pto: %sparse_blk_mi_inline1756__iter_v3_pview
           ;
           pto::Shape<1, 1, 1, 16, 1> v131 = pto::Shape<1, 1, 1, 16, 1>();
-          // pto: %sparse_blk_mi_inline1812__iter_v3_pview
+          // pto: %sparse_blk_mi_inline1756__iter_v3_pview
           ;
           pto::Stride<16, 16, 16, 1, 12800> v132 = pto::Stride<16, 16, 16, 1, 12800>();
-          // pto: %sparse_blk_mi_inline1812__iter_v3_pview
+          // pto: %sparse_blk_mi_inline1756__iter_v3_pview
           ;
           GlobalTensor<float, pto::Shape<1, 1, 1, 16, 1>, pto::Stride<16, 16, 16, 1, 12800>, pto::Layout::DN> v133 = GlobalTensor<float, pto::Shape<1, 1, 1, 16, 1>, pto::Stride<16, 16, 16, 1, 12800>, pto::Layout::DN>(v129 + (v130 + v128), v131, v132);
           TSTORE(v133, v126);
@@ -1502,19 +1502,19 @@ static __aicore__ void qk_pv_aiv(__gm__ float* v1, __gm__ float* v2, __gm__ floa
           ;
           uint64_t v137 = (uint64_t) v27;
           TASSIGN(v136, v137);
-          // pto: %sparse_blk_li_inline1788__iter_v3_pview
+          // pto: %sparse_blk_li_inline1771__iter_v3_pview
           ;
           __gm__ float* v138 = PTOAS__GLOBAL_TENSOR_DATA(v54);
-          // pto: %sparse_blk_li_inline1788__iter_v3_pview
+          // pto: %sparse_blk_li_inline1771__iter_v3_pview
           ;
           const int64_t v139 = 0;
-          // pto: %sparse_blk_li_inline1788__iter_v3_pview
+          // pto: %sparse_blk_li_inline1771__iter_v3_pview
           ;
           pto::Shape<1, 1, 1, 16, 1> v140 = pto::Shape<1, 1, 1, 16, 1>();
-          // pto: %sparse_blk_li_inline1788__iter_v3_pview
+          // pto: %sparse_blk_li_inline1771__iter_v3_pview
           ;
           pto::Stride<16, 16, 16, 1, 12800> v141 = pto::Stride<16, 16, 16, 1, 12800>();
-          // pto: %sparse_blk_li_inline1788__iter_v3_pview
+          // pto: %sparse_blk_li_inline1771__iter_v3_pview
           ;
           GlobalTensor<float, pto::Shape<1, 1, 1, 16, 1>, pto::Stride<16, 16, 16, 1, 12800>, pto::Layout::DN> v142 = GlobalTensor<float, pto::Shape<1, 1, 1, 16, 1>, pto::Stride<16, 16, 16, 1, 12800>, pto::Layout::DN>(v138 + (v139 + v128), v140, v141);
           TSTORE(v142, v136);
@@ -1538,19 +1538,19 @@ static __aicore__ void qk_pv_aiv(__gm__ float* v1, __gm__ float* v2, __gm__ floa
           // pto: %55
           ;
           int64_t v148 = v143 < v35 ? v35 : v143;
-          // pto: %sparse_blk_mi_inline1812__tile_pview
+          // pto: %sparse_blk_mi_inline1756__tile_pview
           ;
           __gm__ float* v149 = PTOAS__GLOBAL_TENSOR_DATA(v62);
-          // pto: %sparse_blk_mi_inline1812__tile_pview
+          // pto: %sparse_blk_mi_inline1756__tile_pview
           ;
           const int64_t v150 = 0;
-          // pto: %sparse_blk_mi_inline1812__tile_pview
+          // pto: %sparse_blk_mi_inline1756__tile_pview
           ;
           pto::Shape<1, 1, 1, 16, 1> v151 = pto::Shape<1, 1, 1, 16, 1>();
-          // pto: %sparse_blk_mi_inline1812__tile_pview
+          // pto: %sparse_blk_mi_inline1756__tile_pview
           ;
           pto::Stride<16, 16, 16, 1, 12800> v152 = pto::Stride<16, 16, 16, 1, 12800>();
-          // pto: %sparse_blk_mi_inline1812__tile_pview
+          // pto: %sparse_blk_mi_inline1756__tile_pview
           ;
           GlobalTensor<float, pto::Shape<1, 1, 1, 16, 1>, pto::Stride<16, 16, 16, 1, 12800>, pto::Layout::DN> v153 = GlobalTensor<float, pto::Shape<1, 1, 1, 16, 1>, pto::Stride<16, 16, 16, 1, 12800>, pto::Layout::DN>(v149 + (v150 + v148), v151, v152);
           pipe_barrier(PIPE_MTE3);
@@ -1570,60 +1570,60 @@ static __aicore__ void qk_pv_aiv(__gm__ float* v1, __gm__ float* v2, __gm__ floa
           ;
           uint64_t v157 = (uint64_t) v19;
           TASSIGN(v156, v157);
-          // pto: %sparse_blk_li_inline1788__tile_pview
+          // pto: %sparse_blk_li_inline1771__tile_pview
           ;
           __gm__ float* v158 = PTOAS__GLOBAL_TENSOR_DATA(v54);
-          // pto: %sparse_blk_li_inline1788__tile_pview
+          // pto: %sparse_blk_li_inline1771__tile_pview
           ;
           const int64_t v159 = 0;
-          // pto: %sparse_blk_li_inline1788__tile_pview
+          // pto: %sparse_blk_li_inline1771__tile_pview
           ;
           pto::Shape<1, 1, 1, 16, 1> v160 = pto::Shape<1, 1, 1, 16, 1>();
-          // pto: %sparse_blk_li_inline1788__tile_pview
+          // pto: %sparse_blk_li_inline1771__tile_pview
           ;
           pto::Stride<16, 16, 16, 1, 12800> v161 = pto::Stride<16, 16, 16, 1, 12800>();
-          // pto: %sparse_blk_li_inline1788__tile_pview
+          // pto: %sparse_blk_li_inline1771__tile_pview
           ;
           GlobalTensor<float, pto::Shape<1, 1, 1, 16, 1>, pto::Stride<16, 16, 16, 1, 12800>, pto::Layout::DN> v162 = GlobalTensor<float, pto::Shape<1, 1, 1, 16, 1>, pto::Stride<16, 16, 16, 1, 12800>, pto::Layout::DN>(v158 + (v159 + v148), v160, v161);
           TSTORE(v162, v156);
           set_flag(PIPE_MTE3, PIPE_V, EVENT_ID3);
         };
       } else {
-        // pto: %qk_mi_invalid_row_inline1857__tile
+        // pto: %qk_mi_invalid_row_inline1866__tile
         ;
         Tile<TileType::Vec, float, 1, 16, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v163 = Tile<TileType::Vec, float, 1, 16, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v29, v43);
-        // pto: %qk_mi_invalid_row_inline1857__tile
+        // pto: %qk_mi_invalid_row_inline1866__tile
         ;
         uint64_t v164 = (uint64_t) v25;
         TASSIGN(v163, v164);
         pipe_barrier(PIPE_V);
         TEXPANDS(v163, v44);
-        // pto: %qk_li_invalid_row_inline1868__tile
+        // pto: %qk_li_invalid_row_inline1869__tile
         ;
         Tile<TileType::Vec, float, 1, 16, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v165 = Tile<TileType::Vec, float, 1, 16, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v29, v43);
-        // pto: %qk_li_invalid_row_inline1868__tile
+        // pto: %qk_li_invalid_row_inline1869__tile
         ;
         uint64_t v166 = (uint64_t) v23;
         TASSIGN(v165, v166);
         TEXPANDS(v165, v45);
-        // pto: %qk_mi_invalid_inline1796__tile
+        // pto: %qk_mi_invalid_inline1846__tile
         ;
         Tile<TileType::Vec, float, 16, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v167 = Tile<TileType::Vec, float, 16, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v43, v29);
-        // pto: %qk_mi_invalid_inline1796__tile
+        // pto: %qk_mi_invalid_inline1846__tile
         ;
         uint64_t v168 = (uint64_t) v25;
         TASSIGN(v167, v168);
-        // pto: %qk_li_invalid_inline1867__tile
+        // pto: %qk_li_invalid_inline1865__tile
         ;
         Tile<TileType::Vec, float, 16, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v169 = Tile<TileType::Vec, float, 16, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v43, v29);
-        // pto: %qk_li_invalid_inline1867__tile
+        // pto: %qk_li_invalid_inline1865__tile
         ;
         uint64_t v170 = (uint64_t) v23;
         TASSIGN(v169, v170);
-        // pto: %qk_oi_zero_inline1847__tile
+        // pto: %qk_oi_zero_inline1814__tile
         ;
         Tile<TileType::Vec, float, 16, 512, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v171 = Tile<TileType::Vec, float, 16, 512, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v43, v30);
-        // pto: %qk_oi_zero_inline1847__tile
+        // pto: %qk_oi_zero_inline1814__tile
         ;
         uint64_t v172 = (uint64_t) v24;
         TASSIGN(v171, v172);
@@ -1637,55 +1637,55 @@ static __aicore__ void qk_pv_aiv(__gm__ float* v1, __gm__ float* v2, __gm__ floa
           // pto: %64
           ;
           int64_t v175 = v174 < v35 ? v35 : v174;
-          // pto: %sparse_blk_mi_inline1812__iter_v7_pview
+          // pto: %sparse_blk_mi_inline1756__iter_v7_pview
           ;
           __gm__ float* v176 = PTOAS__GLOBAL_TENSOR_DATA(v62);
-          // pto: %sparse_blk_mi_inline1812__iter_v7_pview
+          // pto: %sparse_blk_mi_inline1756__iter_v7_pview
           ;
           const int64_t v177 = 0;
-          // pto: %sparse_blk_mi_inline1812__iter_v7_pview
+          // pto: %sparse_blk_mi_inline1756__iter_v7_pview
           ;
           pto::Shape<1, 1, 1, 16, 1> v178 = pto::Shape<1, 1, 1, 16, 1>();
-          // pto: %sparse_blk_mi_inline1812__iter_v7_pview
+          // pto: %sparse_blk_mi_inline1756__iter_v7_pview
           ;
           pto::Stride<16, 16, 16, 1, 12800> v179 = pto::Stride<16, 16, 16, 1, 12800>();
-          // pto: %sparse_blk_mi_inline1812__iter_v7_pview
+          // pto: %sparse_blk_mi_inline1756__iter_v7_pview
           ;
           GlobalTensor<float, pto::Shape<1, 1, 1, 16, 1>, pto::Stride<16, 16, 16, 1, 12800>, pto::Layout::DN> v180 = GlobalTensor<float, pto::Shape<1, 1, 1, 16, 1>, pto::Stride<16, 16, 16, 1, 12800>, pto::Layout::DN>(v176 + (v177 + v175), v178, v179);
           pipe_barrier(PIPE_MTE3);
           TSTORE(v180, v167);
-          // pto: %sparse_blk_li_inline1788__iter_v7_pview
+          // pto: %sparse_blk_li_inline1771__iter_v7_pview
           ;
           __gm__ float* v181 = PTOAS__GLOBAL_TENSOR_DATA(v54);
-          // pto: %sparse_blk_li_inline1788__iter_v7_pview
+          // pto: %sparse_blk_li_inline1771__iter_v7_pview
           ;
           const int64_t v182 = 0;
-          // pto: %sparse_blk_li_inline1788__iter_v7_pview
+          // pto: %sparse_blk_li_inline1771__iter_v7_pview
           ;
           pto::Shape<1, 1, 1, 16, 1> v183 = pto::Shape<1, 1, 1, 16, 1>();
-          // pto: %sparse_blk_li_inline1788__iter_v7_pview
+          // pto: %sparse_blk_li_inline1771__iter_v7_pview
           ;
           pto::Stride<16, 16, 16, 1, 12800> v184 = pto::Stride<16, 16, 16, 1, 12800>();
-          // pto: %sparse_blk_li_inline1788__iter_v7_pview
+          // pto: %sparse_blk_li_inline1771__iter_v7_pview
           ;
           GlobalTensor<float, pto::Shape<1, 1, 1, 16, 1>, pto::Stride<16, 16, 16, 1, 12800>, pto::Layout::DN> v185 = GlobalTensor<float, pto::Shape<1, 1, 1, 16, 1>, pto::Stride<16, 16, 16, 1, 12800>, pto::Layout::DN>(v181 + (v182 + v175), v183, v184);
           TSTORE(v185, v169);
-          // pto: %sparse_blk_oi_inline1879__iter_v7_pview
+          // pto: %sparse_blk_oi_inline1766__iter_v7_pview
           ;
           __gm__ float* v186 = PTOAS__GLOBAL_TENSOR_DATA(v70);
-          // pto: %sparse_blk_oi_inline1879__iter_v7_pview
+          // pto: %sparse_blk_oi_inline1766__iter_v7_pview
           ;
           const int64_t v187 = 0;
-          // pto: %sparse_blk_oi_inline1879__iter_v7_pview
+          // pto: %sparse_blk_oi_inline1766__iter_v7_pview
           ;
           const int64_t v188 = 512;
-          // pto: %sparse_blk_oi_inline1879__iter_v7_pview
+          // pto: %sparse_blk_oi_inline1766__iter_v7_pview
           ;
           pto::Shape<1, 1, 1, 16, 512> v189 = pto::Shape<1, 1, 1, 16, 512>();
-          // pto: %sparse_blk_oi_inline1879__iter_v7_pview
+          // pto: %sparse_blk_oi_inline1766__iter_v7_pview
           ;
           pto::Stride<8192, 8192, 8192, 512, 1> v190 = pto::Stride<8192, 8192, 8192, 512, 1>();
-          // pto: %sparse_blk_oi_inline1879__iter_v7_pview
+          // pto: %sparse_blk_oi_inline1766__iter_v7_pview
           ;
           GlobalTensor<float, pto::Shape<1, 1, 1, 16, 512>, pto::Stride<8192, 8192, 8192, 512, 1>, pto::Layout::ND> v191 = GlobalTensor<float, pto::Shape<1, 1, 1, 16, 512>, pto::Stride<8192, 8192, 8192, 512, 1>, pto::Layout::ND>(v186 + (v187 + v175 * v188), v189, v190);
           TSTORE(v191, v171);
@@ -1921,53 +1921,53 @@ extern "C" __aicore__ __attribute__((always_inline)) void kernel_entry(__gm__ in
     // Read SPMD subblock (AIV lane) id from runtime dispatch payload
     int32_t __pypto_spmd_subblock_idx = get_sub_block_id(args);
 
-    // Unpack tensor: sparse_blk_li_inline1788__ssa_v0
-    __gm__ Tensor* sparse_blk_li_inline1788__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
-    __gm__ float* sparse_blk_li_inline1788__ssa_v0 = reinterpret_cast<__gm__ float*>(sparse_blk_li_inline1788__ssa_v0_tensor->buffer.addr) + sparse_blk_li_inline1788__ssa_v0_tensor->start_offset;
+    // Unpack tensor: sparse_blk_li_inline1771__ssa_v0
+    __gm__ Tensor* sparse_blk_li_inline1771__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
+    __gm__ float* sparse_blk_li_inline1771__ssa_v0 = reinterpret_cast<__gm__ float*>(sparse_blk_li_inline1771__ssa_v0_tensor->buffer.addr) + sparse_blk_li_inline1771__ssa_v0_tensor->start_offset;
 
-    // Unpack tensor: sparse_blk_mi_inline1812__ssa_v0
-    __gm__ Tensor* sparse_blk_mi_inline1812__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[1]);
-    __gm__ float* sparse_blk_mi_inline1812__ssa_v0 = reinterpret_cast<__gm__ float*>(sparse_blk_mi_inline1812__ssa_v0_tensor->buffer.addr) + sparse_blk_mi_inline1812__ssa_v0_tensor->start_offset;
+    // Unpack tensor: sparse_blk_mi_inline1756__ssa_v0
+    __gm__ Tensor* sparse_blk_mi_inline1756__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[1]);
+    __gm__ float* sparse_blk_mi_inline1756__ssa_v0 = reinterpret_cast<__gm__ float*>(sparse_blk_mi_inline1756__ssa_v0_tensor->buffer.addr) + sparse_blk_mi_inline1756__ssa_v0_tensor->start_offset;
 
-    // Unpack tensor: sparse_blk_oi_inline1879__ssa_v0
-    __gm__ Tensor* sparse_blk_oi_inline1879__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[2]);
-    __gm__ float* sparse_blk_oi_inline1879__ssa_v0 = reinterpret_cast<__gm__ float*>(sparse_blk_oi_inline1879__ssa_v0_tensor->buffer.addr) + sparse_blk_oi_inline1879__ssa_v0_tensor->start_offset;
+    // Unpack tensor: sparse_blk_oi_inline1766__ssa_v0
+    __gm__ Tensor* sparse_blk_oi_inline1766__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[2]);
+    __gm__ float* sparse_blk_oi_inline1766__ssa_v0 = reinterpret_cast<__gm__ float*>(sparse_blk_oi_inline1766__ssa_v0_tensor->buffer.addr) + sparse_blk_oi_inline1766__ssa_v0_tensor->start_offset;
 
-    // Unpack tensor: sparse_bias_inline1784__rv_v2
-    __gm__ Tensor* sparse_bias_inline1784__rv_v2_tensor = reinterpret_cast<__gm__ Tensor*>(args[3]);
-    __gm__ float* sparse_bias_inline1784__rv_v2 = reinterpret_cast<__gm__ float*>(sparse_bias_inline1784__rv_v2_tensor->buffer.addr) + sparse_bias_inline1784__rv_v2_tensor->start_offset;
+    // Unpack tensor: sparse_bias_inline1775__rv_v2
+    __gm__ Tensor* sparse_bias_inline1775__rv_v2_tensor = reinterpret_cast<__gm__ Tensor*>(args[3]);
+    __gm__ float* sparse_bias_inline1775__rv_v2 = reinterpret_cast<__gm__ float*>(sparse_bias_inline1775__rv_v2_tensor->buffer.addr) + sparse_bias_inline1775__rv_v2_tensor->start_offset;
 
-    // Unpack tensor: valid_block_mask_inline1806__ssa_v0
-    __gm__ Tensor* valid_block_mask_inline1806__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[4]);
-    __gm__ int32_t* valid_block_mask_inline1806__ssa_v0 = reinterpret_cast<__gm__ int32_t*>(valid_block_mask_inline1806__ssa_v0_tensor->buffer.addr) + valid_block_mask_inline1806__ssa_v0_tensor->start_offset;
+    // Unpack tensor: valid_block_mask_inline1861__ssa_v0
+    __gm__ Tensor* valid_block_mask_inline1861__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[4]);
+    __gm__ int32_t* valid_block_mask_inline1861__ssa_v0 = reinterpret_cast<__gm__ int32_t*>(valid_block_mask_inline1861__ssa_v0_tensor->buffer.addr) + valid_block_mask_inline1861__ssa_v0_tensor->start_offset;
 
-    // Unpack tensor: position_ids_t1_inline190__ssa_v0
-    __gm__ Tensor* position_ids_t1_inline190__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[5]);
-    __gm__ int32_t* position_ids_t1_inline190__ssa_v0 = reinterpret_cast<__gm__ int32_t*>(position_ids_t1_inline190__ssa_v0_tensor->buffer.addr) + position_ids_t1_inline190__ssa_v0_tensor->start_offset;
+    // Unpack tensor: position_ids_t1_inline194__ssa_v0
+    __gm__ Tensor* position_ids_t1_inline194__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[5]);
+    __gm__ int32_t* position_ids_t1_inline194__ssa_v0 = reinterpret_cast<__gm__ int32_t*>(position_ids_t1_inline194__ssa_v0_tensor->buffer.addr) + position_ids_t1_inline194__ssa_v0_tensor->start_offset;
 
     // Unpack tensor: window_swa_indices__ssa_v0
     __gm__ Tensor* window_swa_indices__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[6]);
     __gm__ int32_t* window_swa_indices__ssa_v0 = reinterpret_cast<__gm__ int32_t*>(window_swa_indices__ssa_v0_tensor->buffer.addr) + window_swa_indices__ssa_v0_tensor->start_offset;
 
-    // Unpack tensor: ori_kv_flat_inline1799__ssa_v1
-    __gm__ Tensor* ori_kv_flat_inline1799__ssa_v1_tensor = reinterpret_cast<__gm__ Tensor*>(args[7]);
-    __gm__ bfloat16_t* ori_kv_flat_inline1799__ssa_v1 = reinterpret_cast<__gm__ bfloat16_t*>(ori_kv_flat_inline1799__ssa_v1_tensor->buffer.addr) + ori_kv_flat_inline1799__ssa_v1_tensor->start_offset;
+    // Unpack tensor: ori_kv_flat_inline1795__ssa_v1
+    __gm__ Tensor* ori_kv_flat_inline1795__ssa_v1_tensor = reinterpret_cast<__gm__ Tensor*>(args[7]);
+    __gm__ bfloat16_t* ori_kv_flat_inline1795__ssa_v1 = reinterpret_cast<__gm__ bfloat16_t*>(ori_kv_flat_inline1795__ssa_v1_tensor->buffer.addr) + ori_kv_flat_inline1795__ssa_v1_tensor->start_offset;
 
-    // Unpack tensor: cmp_sparse_indices_inline1805__rv_v2
-    __gm__ Tensor* cmp_sparse_indices_inline1805__rv_v2_tensor = reinterpret_cast<__gm__ Tensor*>(args[8]);
-    __gm__ int32_t* cmp_sparse_indices_inline1805__rv_v2 = reinterpret_cast<__gm__ int32_t*>(cmp_sparse_indices_inline1805__rv_v2_tensor->buffer.addr) + cmp_sparse_indices_inline1805__rv_v2_tensor->start_offset;
+    // Unpack tensor: cmp_sparse_indices_inline1790__rv_v2
+    __gm__ Tensor* cmp_sparse_indices_inline1790__rv_v2_tensor = reinterpret_cast<__gm__ Tensor*>(args[8]);
+    __gm__ int32_t* cmp_sparse_indices_inline1790__rv_v2 = reinterpret_cast<__gm__ int32_t*>(cmp_sparse_indices_inline1790__rv_v2_tensor->buffer.addr) + cmp_sparse_indices_inline1790__rv_v2_tensor->start_offset;
 
     // Unpack tensor: cmp_block_table__ssa_v0
     __gm__ Tensor* cmp_block_table__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[9]);
     __gm__ int32_t* cmp_block_table__ssa_v0 = reinterpret_cast<__gm__ int32_t*>(cmp_block_table__ssa_v0_tensor->buffer.addr) + cmp_block_table__ssa_v0_tensor->start_offset;
 
-    // Unpack tensor: cmp_kv_flat_inline1756__ssa_v0
-    __gm__ Tensor* cmp_kv_flat_inline1756__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[10]);
-    __gm__ bfloat16_t* cmp_kv_flat_inline1756__ssa_v0 = reinterpret_cast<__gm__ bfloat16_t*>(cmp_kv_flat_inline1756__ssa_v0_tensor->buffer.addr) + cmp_kv_flat_inline1756__ssa_v0_tensor->start_offset;
+    // Unpack tensor: cmp_kv_flat_inline1773__ssa_v0
+    __gm__ Tensor* cmp_kv_flat_inline1773__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[10]);
+    __gm__ bfloat16_t* cmp_kv_flat_inline1773__ssa_v0 = reinterpret_cast<__gm__ bfloat16_t*>(cmp_kv_flat_inline1773__ssa_v0_tensor->buffer.addr) + cmp_kv_flat_inline1773__ssa_v0_tensor->start_offset;
 
-    // Unpack tensor: q_flat_inline1832__ssa_v0
-    __gm__ Tensor* q_flat_inline1832__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[11]);
-    __gm__ bfloat16_t* q_flat_inline1832__ssa_v0 = reinterpret_cast<__gm__ bfloat16_t*>(q_flat_inline1832__ssa_v0_tensor->buffer.addr) + q_flat_inline1832__ssa_v0_tensor->start_offset;
+    // Unpack tensor: q_flat_inline1822__ssa_v0
+    __gm__ Tensor* q_flat_inline1822__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[11]);
+    __gm__ bfloat16_t* q_flat_inline1822__ssa_v0 = reinterpret_cast<__gm__ bfloat16_t*>(q_flat_inline1822__ssa_v0_tensor->buffer.addr) + q_flat_inline1822__ssa_v0_tensor->start_offset;
 
     // Unpack tensor: __gm_pipe_buffer
     __gm__ Tensor* __gm_pipe_buffer_tensor = reinterpret_cast<__gm__ Tensor*>(args[12]);
@@ -1979,12 +1979,12 @@ extern "C" __aicore__ __attribute__((always_inline)) void kernel_entry(__gm__ in
     int64_t __pypto_gm_block_offset = static_cast<int64_t>(__pypto_spmd_block_idx) * __pypto_gm_elems_per_block;
     __gm__ float* __gm_pipe_buffer = reinterpret_cast<__gm__ float*>(__gm_pipe_buffer_tensor->buffer.addr) + __gm_pipe_buffer_tensor->start_offset + __pypto_gm_block_offset;
 
-    // Extract dynamic dim: ori_block_num_inline1891__ssa_v0
-    int64_t ori_block_num_inline1891__ssa_v0 = (static_cast<int64_t>(ori_kv_flat_inline1799__ssa_v1_tensor->shapes[0]) / 128);
+    // Extract dynamic dim: ori_block_num_inline1776__ssa_v0
+    int64_t ori_block_num_inline1776__ssa_v0 = (static_cast<int64_t>(ori_kv_flat_inline1795__ssa_v1_tensor->shapes[0]) / 128);
 
-    // Extract dynamic dim: cmp_block_num_inline1828__ssa_v0
-    int64_t cmp_block_num_inline1828__ssa_v0 = (static_cast<int64_t>(cmp_kv_flat_inline1756__ssa_v0_tensor->shapes[0]) / 32);
+    // Extract dynamic dim: cmp_block_num_inline1911__ssa_v0
+    int64_t cmp_block_num_inline1911__ssa_v0 = (static_cast<int64_t>(cmp_kv_flat_inline1773__ssa_v0_tensor->shapes[0]) / 32);
 
     // Forward to ptoas-generated function
-    qk_pv_aiv(sparse_blk_li_inline1788__ssa_v0, sparse_blk_mi_inline1812__ssa_v0, sparse_blk_oi_inline1879__ssa_v0, sparse_bias_inline1784__rv_v2, valid_block_mask_inline1806__ssa_v0, position_ids_t1_inline190__ssa_v0, window_swa_indices__ssa_v0, ori_kv_flat_inline1799__ssa_v1, cmp_sparse_indices_inline1805__rv_v2, cmp_block_table__ssa_v0, cmp_kv_flat_inline1756__ssa_v0, q_flat_inline1832__ssa_v0, __gm_pipe_buffer, ori_block_num_inline1891__ssa_v0, cmp_block_num_inline1828__ssa_v0, __pypto_spmd_block_idx, __pypto_spmd_block_num, __pypto_spmd_subblock_idx);
+    qk_pv_aiv(sparse_blk_li_inline1771__ssa_v0, sparse_blk_mi_inline1756__ssa_v0, sparse_blk_oi_inline1766__ssa_v0, sparse_bias_inline1775__rv_v2, valid_block_mask_inline1861__ssa_v0, position_ids_t1_inline194__ssa_v0, window_swa_indices__ssa_v0, ori_kv_flat_inline1795__ssa_v1, cmp_sparse_indices_inline1790__rv_v2, cmp_block_table__ssa_v0, cmp_kv_flat_inline1773__ssa_v0, q_flat_inline1822__ssa_v0, __gm_pipe_buffer, ori_block_num_inline1776__ssa_v0, cmp_block_num_inline1911__ssa_v0, __pypto_spmd_block_idx, __pypto_spmd_block_num, __pypto_spmd_subblock_idx);
 }

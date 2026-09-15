@@ -4,7 +4,7 @@
 每个 benchmark 同时包含调整后的 PyPTO 算子与其生成的 Simpler C++，使用相同默认输入和 golden。
 
 历史内容见 [old/README.md](old/README.md)，归档版本为 `82f5a5c`（2026-07-14）。当前旧工作区快照已作废。
-新 benchmark 不设置根级 support 目录，各自携带必要 Python 支持代码。工具链见 [VERSIONS.md](VERSIONS.md)。三个样例的逐文件用途和删除建议见 [FILE_GUIDE.md](FILE_GUIDE.md)，完整目录清单见 [FILE_INVENTORY.csv](FILE_INVENTORY.csv)。
+新 benchmark 不设置根级 support 目录，各自携带必要 Python 支持代码。工具链见 [VERSIONS.md](VERSIONS.md)。
 
 | benchmark | PyPTO 入口 | Simpler C++ 入口 | 依赖图 | 泳道 |
 |---|---|---|---|---|
@@ -16,14 +16,14 @@
 
 - [Qwen3 decode layer](qwen3-decode-layer/dependency_graph.svg)：617个物理任务（原始泳道857条记录）。
 - [DeepSeek V4 CSA 方案A](deepseek-v4-csa/dependency_graph.svg)：942个物理任务（原始泳道1182条记录）。
-- [DeepSeek V4 CSA 方案B](deepseek-v4-csa-b/dependency_graph.svg)：1022个物理任务（原始泳道1422条记录），全部请求start_pos=8192。
+- [DeepSeek V4 CSA 方案B](deepseek-v4-csa-b/dependency_graph.svg)：1022个物理任务（原始泳道1422条记录），主线边界长度集合扩展到20个请求。
 
-图中AIC为红色、AIV为蓝色、MIX为紫色；每个节点右下角的`x N`按物理任务计数：纯AIC/AIV沿用执行记录数，MIX的一个混合SPMD block计为一个物理任务，不重复累计其AIC/AIV记录。Qwen Attention为`x 120`；CSA A的score/QK-PV分别为`x 80`/`x 40`；CSA B两者均为`x 100`。原始泳道记录及其他章节的采集统计保持原有口径，JSON同时保存`physical_tasks`与`physical_records`供核对。
+图中AIC为红色、AIV为蓝色、MIX为紫色；每个节点右下角的`x N`按物理任务计数：纯AIC/AIV沿用执行记录数，MIX的一个混合SPMD block计为一个物理任务，不重复累计其AIC/AIV记录。Qwen Attention为`x 120`；CSA A的score/QK-PV分别为`x 80`/`x 40`；CSA B两者均为`x 100`。原始泳道记录及其他章节的采集统计保持原有口径。
 同类分组调用合并展示，主compressor与Indexer compressor保持独立。连线从`deps.json`的wait依赖生成，折叠无执行记录的张量创建节点，并省略可通过其他路径到达的传递边：存在`A→B→C`时不再画`A→C`，更长路径同样处理；生成时检查可达关系不变且没有冗余边。合并节点之间的箭头表示成员间存在依赖，不表示整个算子全部blocks完成后才允许下游启动；完整分组依赖仍以deps viewer为准。融合Attention内部阶段不重复拆分计数。
 
 布局采用固定主轴与两侧分支：Qwen的Q/K/V同层排列、Gate/Up左右展开；CSA将Indexer主链居中，Q/KV与compressor分布两侧，QK/PV后的输出链保持居中。CSA A/B使用相同节点坐标，只改变标题和记录数，便于对照。模型分支本身不完全对称，布局不添加虚假节点或依赖来凑对称。
 
-每张图旁的`dependency_graph_counts.json`列出节点物理计数、逻辑TaskId和依赖边，方便核对。安装NetworkX和Graphviz后，在仓库根目录运行`python generate_dependency_svgs.py`可重新生成三张图。
+图示从配套deps与原始泳道计算，使用固定坐标布局；计数和传递约简在更新时核对。
 
 # 1. Qwen3-14B Decode Layer Benchmark
 
@@ -187,7 +187,7 @@ QK/PV 默认只有 `8×5=40` 个工作项，增大 BlockDim 本身不会产生�
 | AIC | 745 | 7.20 | 24 | 40.4% |
 | AIV | 437 | 6.46 | 48 | 10.2% |
 
-## 2.4 方案 B：batch扩大5倍，统一8192起始位置
+## 2.4 方案 B：batch扩大5倍，沿用主线长度规则
 
 方案 A 保留在 `deepseek-v4-csa/`。方案 B 面向 120 AIC，扩大每次调度承载的计算，不做 A/B 性能比较。
 
@@ -197,7 +197,7 @@ QK/PV 默认只有 `8×5=40` 个工作项，增大 BlockDim 本身不会产生�
 |---|---|
 | Batch / 每请求 token / 总 token | 20 / 2 / 40 |
 | 输入种子 | 1234；用于生成张量数据，长度不由随机种子决定 |
-| 默认 start_pos / KV seq_len | 全部20个请求：8192 / 8194 |
+| 默认 start_pos / KV seq_len | 主线边界集合循环填满20项；KV seq_len=start_pos+2 |
 | Indexer score | 1 次调用，100 blocks；`SCORE_BLOCKS=100`、`REDUCE_NSPLIT=5` |
 | QK/PV | 1 次调用，100 blocks；200 个工作项，每 block 顺序处理 2 项 |
 | 其他算子 | 保留方案 A 调用数和 BlockDim，新增工作在任务内部循环 |
@@ -217,45 +217,41 @@ Matmul 保持16行微块，通过内部循环覆盖40行（padding到48行）；
 
 ### 2.4.2 长度与缓存
 
-默认由 `torch.full((B,), DECODE_START_POS)` 生成，其中 `B=20`、`DECODE_START_POS=8192`，不再循环原来的长短序列边界集合。
+默认复用主线`csa_decode_start_set(batch=20, seq=2)`：边界集合按顺序去重，再循环填充20个请求。主线集合中`window-1`与`state_block_size*32-1`均为127，去重后共有9项；不是随机长度，也不是只把方案A的前4项重复5遍。
 
 ```text
-start_pos = [8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192,
-             8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192]
+start_pos = [8192,0,2,3,7,127,128,255,511,8192,0,2,3,7,127,128,255,511,8192,0]
+seq_len   = [8194,2,4,5,9,129,130,257,513,8194,2,4,5,9,129,130,257,513,8194,2]
 ```
 
-每个请求本次处理位置 `[8192,8193]`，新增token数 `S=2`，KV seq_len为 `8192+2=8194`；总处理token数仍为40。8192是统一指定的起始位置，不是batch、任务数或随机长度。可用 `--start-pos N` 将全部请求覆盖为N，对应KV seq_len=N+2。
+每个请求处理`[start_pos,start_pos+1]`两个位置，总token数仍为40。`--start-pos N`可统一覆盖全部请求，KV seq_len为N+2；seed=1234仅决定张量数据，不决定长度集合。
 
-这次修改只统一长度，score与QK/PV仍各100个SPMD blocks。按当前公式，每个token可见 `min(8194//4, (position+1)//4, 4096)=2048` 个压缩位置，score每页处理32个位置，共64页。5路分片分别处理 `[13,13,13,13,12]` 页；每block处理两个token的同一分片，所以100个score blocks中80个处理26页、20个处理24页。
+score与QK/PV仍各100个SPMD blocks、200个工作项，每block处理两项。score有效压缩长度为`min(seq_len//4,(position+1)//4,4096)`，每页32个位置；短序列会减少有效页数，可能产生空归约分片。不同token的页数不同，不能再使用统一8192时的“80个block各26页、20个各24页”描述。
 
-QK/PV保留每token的1个滑窗块和4个压缩块，每block处理两个工作项。默认长度下具备填满这些块所需的有效历史，但滑窗与压缩块的访存方式不同。因此统一seq_len不意味着所有blocks耗时完全一致。
+QK/PV仍为每token的1个滑窗块和4个压缩块；短历史下部分块无效，按原有中性值规则参与后续merge。起始位置0、2、3、7覆盖冷启动与压缩边界，127/128覆盖滑窗边界，255/511覆盖压缩cache页边界，8192覆盖长历史。因此默认输入同时包含长短任务，长度不保证负载均衡。
 
-当前起始位置8192满足 `8192%4=0`，本次两个token尚未到达下一个四token压缩边界；压缩器的边界更新分支不触发，已有压缩历史仍参与score与attention。冷启动和边界行为通过独立的 `--start-pos 0/127` 测试覆盖。
-
-测试页表按实际长度分配互不重叠的请求页，未分配逻辑页为-1。默认主/内压缩状态各40980页，ori/cmp/indexer cache各1300页；这些是物理池容量，不是seq_len或任务数。相比旧混合长度输入，统一长历史需要更大的缓存池，源码入口会据长度重新推导容量。
-
-修改默认输入后已重新生成配套Simpler产物与采集，不沿用旧混合长度的耗时。运行其他静态配置必须使用匹配的编译产物。
+测试页表继续按请求实际长度分配互不重叠的物理页，未分配逻辑页为-1。新默认主/内压缩状态各6682页，ori/cmp/indexer cache各228页；它们是物理池容量，不是任务数。已按新输入重新生成Simpler产物及配套采集，其他静态配置也必须使用匹配产物。
 
 ### 2.4.3 并发分析
 
-[deps viewer](deepseek-v4-csa-b/deps_viewer.html)、[deps.json](deepseek-v4-csa-b/deps.json)、[原始泳道](deepseek-v4-csa-b/chip_swimlane_records.json)、[合并泳道](deepseek-v4-csa-b/merged_swimlane.json)、[完整分析](deepseek-v4-csa-b/concurrency_analysis.json) 来自同一次采集命令。运行时以一次deps采集和一次干净计时组成配对采集。
+[deps viewer](deepseek-v4-csa-b/deps_viewer.html)、[deps.json](deepseek-v4-csa-b/deps.json)、[原始泳道](deepseek-v4-csa-b/chip_swimlane_records.json)、[合并泳道](deepseek-v4-csa-b/merged_swimlane.json) 来自同一次采集命令。运行时以一次deps采集和一次干净计时组成配对采集。
 
 按deps所有wait边的传递闭包计算最大互无依赖集合（最大加权反链）：
 
-- 最大逻辑任务并发度为 **12**，具体集合见分析JSON。
+- 最大逻辑任务并发度为 **12**。
 - 最大AIC声明工作量为 **324 blocks**：qproj128 + kv_proj32 + 主kv_score_proj64 + score100。
 - 最大AIV声明工作量为 **221 records**。这与AIC最大集合是分别求得的界，不能相加解释为同一时刻占用。
 
 以上是忽略时长和资源限制的静态可就绪集合，不是实测同时执行核数。120 AIC将同时执行的AIC数量限制在120；score和QK/PV各自单独只有100 blocks，剩余20核能否利用取决于其他任务是否就绪。
 
-本次实际机器为 **24 AIC / 48 AIV，a2a3 device 3**，120 AIC实测尚未完成：
+本次实际机器为 **24 AIC / 48 AIV，a2a3 device 1**，120 AIC实测尚未完成：
 
 | 类型 | 完整记录 | 峰值执行并发 | 核执行区间平均占用 |
 |---|---:|---:|---:|
-| AIC | 825 | 24 | 58.19% |
-| AIV | 597 | 48 | 31.32% |
+| AIC | 825 | 24 | 47.46% |
+| AIV | 597 | 48 | 18.48% |
 
-首个dispatch到最后finish的采集跨度为1109.96 us，含四级采集影响，不作为多轮benchmark median。实际AIC逻辑任务包络峰值8个（合计128个声明blocks），最大声明需求包络为两处kv_score_proj（8+64）+ kv_proj32 + qr_proj64，共168 blocks；包络内的所有blocks并非同时执行。
+首个dispatch到最后finish的采集跨度为990.70 us，含四级采集影响，不作为多轮benchmark median。实际AIC逻辑任务包络峰值7个（合计112个声明blocks），最大声明需求包络为qproj128 + idx_qr_proj32，共160 blocks；包络内的所有blocks并非同时执行。
 
 #### 逐算子执行时间
 
@@ -263,134 +259,130 @@ QK/PV保留每token的1个滑窗块和4个压缩块，每block处理两个工作
 
 | 算子 | 类型 | 调用数 | 记录数 | total(us) | mean | min | max | median | P90 | P99 |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| `hc_pre_rms` | AIV | 1 | 1 | 39.80 | 39.80 | 39.80 | 39.80 | 39.80 | 39.80 | 39.80 |
-| `hc_pre_linear` | AIC | 1 | 4 | 87.10 | 21.78 | 21.12 | 22.22 | 21.88 | 22.21 | 22.22 |
-| `hc_pre_linear_reduce` | AIV | 1 | 1 | 4.56 | 4.56 | 4.56 | 4.56 | 4.56 | 4.56 | 4.56 |
-| `split_pre_post` | AIV | 1 | 1 | 8.56 | 8.56 | 8.56 | 8.56 | 8.56 | 8.56 | 8.56 |
-| `comb_sinkhorn` | AIV | 1 | 1 | 65.98 | 65.98 | 65.98 | 65.98 | 65.98 | 65.98 | 65.98 |
-| `mix_x` | AIV | 1 | 4 | 65.52 | 16.38 | 15.64 | 16.78 | 16.55 | 16.72 | 16.77 |
-| `csa_rope_step` | AIV | 1 | 1 | 20.28 | 20.28 | 20.28 | 20.28 | 20.28 | 20.28 | 20.28 |
-| `rope_interleave` | AIV | 1 | 1 | 3.50 | 3.50 | 3.50 | 3.50 | 3.50 | 3.50 | 3.50 |
-| `csa_cmp_rope` | AIV | 1 | 1 | 8.70 | 8.70 | 8.70 | 8.70 | 8.70 | 8.70 | 8.70 |
-| `rope_interleave_0` | AIV | 1 | 1 | 4.16 | 4.16 | 4.16 | 4.16 | 4.16 | 4.16 | 4.16 |
-| `rms_norm` | AIV | 1 | 1 | 48.04 | 48.04 | 48.04 | 48.04 | 48.04 | 48.04 | 48.04 |
-| `q_rope_prepare` | AIV | 1 | 1 | 8.22 | 8.22 | 8.22 | 8.22 | 8.22 | 8.22 | 8.22 |
-| `qr_proj_seed` | AIV | 1 | 1 | 5.58 | 5.58 | 5.58 | 5.58 | 5.58 | 5.58 | 5.58 |
-| `qr_proj_matmul` | AIC | 1 | 64 | 364.70 | 5.70 | 4.30 | 7.40 | 5.74 | 6.85 | 7.37 |
-| `qr_rms_norm_quant` | AIV | 1 | 1 | 19.80 | 19.80 | 19.80 | 19.80 | 19.80 | 19.80 | 19.80 |
-| `qproj_matmul` | AIC | 1 | 128 | 1768.88 | 13.82 | 8.52 | 23.58 | 12.74 | 19.39 | 23.17 |
-| `qproj_dequant_rms_nope_rope` | AIV | 1 | 16 | 410.08 | 25.63 | 24.22 | 27.34 | 25.72 | 26.85 | 27.27 |
-| `kv_proj_seed` | AIV | 1 | 1 | 3.46 | 3.46 | 3.46 | 3.46 | 3.46 | 3.46 | 3.46 |
-| `kv_proj_matmul` | AIC | 1 | 32 | 222.60 | 6.96 | 4.50 | 11.46 | 6.43 | 11.20 | 11.44 |
-| `kv_rms_norm_rope` | AIV | 1 | 1 | 20.62 | 20.62 | 20.62 | 20.62 | 20.62 | 20.62 | 20.62 |
-| `csa_cache_writeback` | AIV | 1 | 1 | 14.54 | 14.54 | 14.54 | 14.54 | 14.54 | 14.54 | 14.54 |
-| `kv_score_proj` | AIC | 1 | 64 | 740.66 | 11.57 | 10.40 | 14.96 | 11.23 | 12.59 | 14.27 |
-| `scatter_softmax_pool` | AIV | 1 | 1 | 21.32 | 21.32 | 21.32 | 21.32 | 21.32 | 21.32 | 21.32 |
-| `rmsnorm_rope_cache_write` | AIV | 1 | 1 | 19.54 | 19.54 | 19.54 | 19.54 | 19.54 | 19.54 | 19.54 |
-| `idx_qr_proj_matmul` | AIC | 1 | 32 | 450.18 | 14.07 | 11.20 | 16.54 | 14.26 | 16.03 | 16.49 |
-| `idx_qr_proj_dequant` | AIV | 1 | 32 | 129.74 | 4.05 | 3.22 | 5.52 | 3.95 | 4.75 | 5.39 |
-| `qr_rope_swap_idx` | AIV | 1 | 1 | 2.10 | 2.10 | 2.10 | 2.10 | 2.10 | 2.10 | 2.10 |
-| `qr_rope` | AIV | 1 | 16 | 222.72 | 13.92 | 12.70 | 15.16 | 13.82 | 14.77 | 15.11 |
-| `qr_hadamard_matmul` | AIC | 1 | 32 | 133.16 | 4.16 | 3.10 | 6.66 | 3.97 | 5.10 | 6.34 |
-| `qr_hadamard_quant` | AIV | 1 | 8 | 205.00 | 25.63 | 24.58 | 26.26 | 25.69 | 26.13 | 26.25 |
-| `weights_proj` | AIC | 1 | 4 | 28.42 | 7.10 | 6.86 | 7.30 | 7.13 | 7.25 | 7.30 |
-| `weights_proj_reduce` | AIV | 1 | 1 | 3.54 | 3.54 | 3.54 | 3.54 | 3.54 | 3.54 | 3.54 |
-| `kv_score_proj_0` | AIC | 1 | 8 | 151.96 | 19.00 | 17.82 | 20.42 | 19.20 | 19.87 | 20.37 |
-| `scatter_softmax_pool_0` | AIV | 1 | 1 | 20.16 | 20.16 | 20.16 | 20.16 | 20.16 | 20.16 | 20.16 |
+| `hc_pre_rms` | AIV | 1 | 1 | 40.38 | 40.38 | 40.38 | 40.38 | 40.38 | 40.38 | 40.38 |
+| `hc_pre_linear` | AIC | 1 | 4 | 85.32 | 21.33 | 20.78 | 22.06 | 21.24 | 21.93 | 22.05 |
+| `hc_pre_linear_reduce` | AIV | 1 | 1 | 4.54 | 4.54 | 4.54 | 4.54 | 4.54 | 4.54 | 4.54 |
+| `split_pre_post` | AIV | 1 | 1 | 8.54 | 8.54 | 8.54 | 8.54 | 8.54 | 8.54 | 8.54 |
+| `comb_sinkhorn` | AIV | 1 | 1 | 66.92 | 66.92 | 66.92 | 66.92 | 66.92 | 66.92 | 66.92 |
+| `mix_x` | AIV | 1 | 4 | 63.86 | 15.96 | 15.70 | 16.42 | 15.87 | 16.27 | 16.41 |
+| `csa_rope_step` | AIV | 1 | 1 | 21.62 | 21.62 | 21.62 | 21.62 | 21.62 | 21.62 | 21.62 |
+| `rope_interleave` | AIV | 1 | 1 | 3.58 | 3.58 | 3.58 | 3.58 | 3.58 | 3.58 | 3.58 |
+| `csa_cmp_rope` | AIV | 1 | 1 | 7.42 | 7.42 | 7.42 | 7.42 | 7.42 | 7.42 | 7.42 |
+| `rope_interleave_0` | AIV | 1 | 1 | 4.14 | 4.14 | 4.14 | 4.14 | 4.14 | 4.14 | 4.14 |
+| `rms_norm` | AIV | 1 | 1 | 51.08 | 51.08 | 51.08 | 51.08 | 51.08 | 51.08 | 51.08 |
+| `q_rope_prepare` | AIV | 1 | 1 | 8.48 | 8.48 | 8.48 | 8.48 | 8.48 | 8.48 | 8.48 |
+| `qr_proj_seed` | AIV | 1 | 1 | 5.60 | 5.60 | 5.60 | 5.60 | 5.60 | 5.60 | 5.60 |
+| `qr_proj_matmul` | AIC | 1 | 64 | 383.02 | 5.98 | 4.44 | 10.04 | 5.93 | 7.47 | 9.88 |
+| `qr_rms_norm_quant` | AIV | 1 | 1 | 19.60 | 19.60 | 19.60 | 19.60 | 19.60 | 19.60 | 19.60 |
+| `qproj_matmul` | AIC | 1 | 128 | 1785.82 | 13.95 | 7.58 | 24.34 | 13.11 | 21.73 | 24.07 |
+| `qproj_dequant_rms_nope_rope` | AIV | 1 | 16 | 398.78 | 24.92 | 23.92 | 26.20 | 24.96 | 26.01 | 26.19 |
+| `kv_proj_seed` | AIV | 1 | 1 | 3.86 | 3.86 | 3.86 | 3.86 | 3.86 | 3.86 | 3.86 |
+| `kv_proj_matmul` | AIC | 1 | 32 | 203.06 | 6.35 | 4.72 | 10.28 | 5.80 | 9.40 | 10.13 |
+| `kv_rms_norm_rope` | AIV | 1 | 1 | 22.58 | 22.58 | 22.58 | 22.58 | 22.58 | 22.58 | 22.58 |
+| `csa_cache_writeback` | AIV | 1 | 1 | 13.20 | 13.20 | 13.20 | 13.20 | 13.20 | 13.20 | 13.20 |
+| `kv_score_proj` | AIC | 1 | 64 | 727.92 | 11.37 | 10.40 | 12.74 | 11.31 | 12.13 | 12.58 |
+| `scatter_softmax_pool` | AIV | 1 | 1 | 71.26 | 71.26 | 71.26 | 71.26 | 71.26 | 71.26 | 71.26 |
+| `rmsnorm_rope_cache_write` | AIV | 1 | 1 | 24.18 | 24.18 | 24.18 | 24.18 | 24.18 | 24.18 | 24.18 |
+| `idx_qr_proj_matmul` | AIC | 1 | 32 | 403.08 | 12.60 | 7.56 | 14.32 | 12.97 | 13.88 | 14.30 |
+| `idx_qr_proj_dequant` | AIV | 1 | 32 | 171.06 | 5.35 | 3.72 | 6.58 | 5.45 | 6.02 | 6.53 |
+| `qr_rope_swap_idx` | AIV | 1 | 1 | 2.08 | 2.08 | 2.08 | 2.08 | 2.08 | 2.08 | 2.08 |
+| `qr_rope` | AIV | 1 | 16 | 227.40 | 14.21 | 12.60 | 15.82 | 14.07 | 15.43 | 15.77 |
+| `qr_hadamard_matmul` | AIC | 1 | 32 | 130.88 | 4.09 | 3.38 | 5.50 | 3.95 | 4.71 | 5.42 |
+| `qr_hadamard_quant` | AIV | 1 | 8 | 207.48 | 25.93 | 25.46 | 26.32 | 25.96 | 26.21 | 26.31 |
+| `weights_proj` | AIC | 1 | 4 | 29.94 | 7.48 | 7.06 | 7.88 | 7.50 | 7.86 | 7.88 |
+| `weights_proj_reduce` | AIV | 1 | 1 | 3.24 | 3.24 | 3.24 | 3.24 | 3.24 | 3.24 | 3.24 |
+| `kv_score_proj_0` | AIC | 1 | 8 | 152.32 | 19.04 | 18.36 | 20.04 | 19.08 | 19.65 | 20.00 |
+| `scatter_softmax_pool_0` | AIV | 1 | 1 | 63.70 | 63.70 | 63.70 | 63.70 | 63.70 | 63.70 | 63.70 |
 | `rmsnorm_rope` | AIV | 1 | 1 | 7.36 | 7.36 | 7.36 | 7.36 | 7.36 | 7.36 | 7.36 |
-| `kv_hadamard` | AIC | 1 | 1 | 3.62 | 3.62 | 3.62 | 3.62 | 3.62 | 3.62 | 3.62 |
-| `kv_and_cache_write` | AIV | 1 | 1 | 3.94 | 3.94 | 3.94 | 3.94 | 3.94 | 3.94 | 3.94 |
-| `score_aic` | AIC | 1 | 100 | 2420.22 | 24.20 | 14.36 | 35.98 | 23.37 | 30.25 | 35.45 |
-| `score_aiv` | AIV | 1 | 200 | 4808.74 | 24.04 | 14.34 | 36.60 | 23.27 | 30.05 | 34.27 |
-| `topk` | AIV | 1 | 8 | 258.84 | 32.35 | 31.82 | 33.12 | 32.25 | 32.91 | 33.10 |
-| `kv_touch` | AIV | 1 | 1 | 1.68 | 1.68 | 1.68 | 1.68 | 1.68 | 1.68 | 1.68 |
-| `csa_slots_build_valid_qk_plan` | AIV | 1 | 1 | 15.30 | 15.30 | 15.30 | 15.30 | 15.30 | 15.30 | 15.30 |
-| `qk_pv_aic` | AIC | 1 | 100 | 4266.14 | 42.66 | 14.08 | 59.80 | 46.21 | 56.36 | 58.20 |
-| `qk_pv_aiv` | AIV | 1 | 200 | 8444.94 | 42.22 | 13.84 | 56.08 | 46.65 | 51.82 | 54.59 |
-| `rope_cs` | AIV | 1 | 1 | 7.02 | 7.02 | 7.02 | 7.02 | 7.02 | 7.02 | 7.02 |
-| `merge_norm` | AIV | 1 | 64 | 1315.14 | 20.55 | 16.68 | 25.00 | 20.89 | 23.62 | 24.81 |
-| `proj_b_act` | AIV | 1 | 8 | 130.60 | 16.32 | 15.58 | 16.78 | 16.56 | 16.75 | 16.78 |
-| `hc_post` | AIV | 1 | 8 | 184.68 | 23.09 | 22.90 | 23.30 | 23.07 | 23.26 | 23.30 |
-| `proj_a_mm` | AIC | 8 | 128 | 2827.72 | 22.09 | 19.54 | 24.16 | 22.17 | 23.29 | 24.01 |
-| `quant` | AIV | 8 | 8 | 70.10 | 8.76 | 8.26 | 9.42 | 8.68 | 9.31 | 9.41 |
-| `proj_b_mm` | AIC | 8 | 128 | 1288.02 | 10.06 | 9.10 | 11.58 | 10.00 | 10.76 | 11.49 |
+| `kv_hadamard` | AIC | 1 | 1 | 3.90 | 3.90 | 3.90 | 3.90 | 3.90 | 3.90 | 3.90 |
+| `kv_and_cache_write` | AIV | 1 | 1 | 9.20 | 9.20 | 9.20 | 9.20 | 9.20 | 9.20 | 9.20 |
+| `score_aic` | AIC | 1 | 100 | 770.32 | 7.70 | 1.00 | 24.24 | 5.66 | 16.96 | 23.09 |
+| `score_aiv` | AIV | 1 | 200 | 1548.52 | 7.74 | 1.00 | 25.04 | 5.44 | 17.20 | 23.86 |
+| `topk` | AIV | 1 | 8 | 211.02 | 26.38 | 19.92 | 32.84 | 26.50 | 32.32 | 32.79 |
+| `kv_touch` | AIV | 1 | 1 | 1.60 | 1.60 | 1.60 | 1.60 | 1.60 | 1.60 | 1.60 |
+| `csa_slots_build_valid_qk_plan` | AIV | 1 | 1 | 15.60 | 15.60 | 15.60 | 15.60 | 15.60 | 15.60 | 15.60 |
+| `qk_pv_aic` | AIC | 1 | 100 | 1831.90 | 18.32 | 0.70 | 64.46 | 15.76 | 47.36 | 61.33 |
+| `qk_pv_aiv` | AIV | 1 | 200 | 3630.24 | 18.15 | 0.70 | 62.18 | 14.26 | 45.89 | 59.84 |
+| `rope_cs` | AIV | 1 | 1 | 7.26 | 7.26 | 7.26 | 7.26 | 7.26 | 7.26 | 7.26 |
+| `merge_norm` | AIV | 1 | 64 | 1395.52 | 21.80 | 16.86 | 26.36 | 22.39 | 25.68 | 26.20 |
+| `proj_b_act` | AIV | 1 | 8 | 131.44 | 16.43 | 15.46 | 17.00 | 16.53 | 16.96 | 17.00 |
+| `hc_post` | AIV | 1 | 8 | 191.36 | 23.92 | 23.76 | 24.10 | 23.88 | 24.07 | 24.10 |
+| `proj_a_mm` | AIC | 8 | 128 | 2821.12 | 22.04 | 20.76 | 24.28 | 21.80 | 23.26 | 24.18 |
+| `quant` | AIV | 8 | 8 | 74.66 | 9.33 | 8.26 | 10.26 | 9.35 | 9.94 | 10.23 |
+| `proj_b_mm` | AIC | 8 | 128 | 1302.60 | 10.18 | 9.08 | 12.06 | 10.13 | 11.07 | 11.52 |
 
 ### 2.4.4 验证与复现
 
-已通过原有Golden标准：默认全部start_pos=8192的PyPTO编译运行、默认Simpler C++ replay、全部start_pos=0、全部start_pos=127。
-校验全部40个token的x_out和KV cache，未放宽阈值：x_out为`ratio_reldiff(0.004, 0.03, 2)`，KV为`ratio_allclose(atol=1e-4, rtol=1/128)`。
-另外断言默认20个请求的位置均为[8192,8193]，检查score的200个逻辑工作项恰好分配到100个blocks、每个block两项，并穷举有效score长度0..4096，检查页覆盖一次且不遗漏；检查200个QK工作项恰好分配一次、实际页表/写入slot跨请求隔离，以及全部70项的BlockDim与方案A的差异仅为score和QK/PV。见[结构验证](deepseek-v4-csa-b/structural_validation.json)。这不是对4097种长度逐一做NPU数值测试。
+新默认主线长度集合已通过PyPTO Golden及Simpler replay；统一start_pos=0/127/8192分别通过PyPTO Golden，未放宽数值比较标准。结构检查验证20项默认位置、跨请求页表隔离、score/QK-PV各200项恰好覆盖一次，以及相对A的BlockDim变化仅为score和QK/PV。对score有效长度0..4096穷举页分配，不等同于4097种长度的NPU数值测试。
 
 ```bash
-# 在已分配的设备上运行；在benchmark根目录执行。
-python deepseek-v4-csa-b/pypto-lib-operator/run_benchmark.py -p a2a3 -d DEVICE
-python deepseek-v4-csa-b/simpler-operator/test_decode_csa.py -p a2a3 -d DEVICE
-python deepseek-v4-csa-b/pypto-lib-operator/run_benchmark.py -p a2a3 -d DEVICE \
-  --enable-dep-gen --enable-chip-swimlane 4 --dep-output-dir outputs/csa-b
-python deepseek-v4-csa-b/verify_scheme_b.py
-python deepseek-v4-csa-b/analyze_capture.py
+# 在已分配的设备上运行；benchmark根目录执行。
+python deepseek-v4-csa-b/pypto-lib-operator/run_benchmark.py -p a2a3 -d 0
+python deepseek-v4-csa-b/simpler-operator/test_decode_csa.py -p a2a3 -d 0
+python deepseek-v4-csa-b/pypto-lib-operator/run_benchmark.py -p a2a3 -d 0 --start-pos 127
+python deepseek-v4-csa-b/pypto-lib-operator/run_benchmark.py -p a2a3 -d 0 --enable-dep-gen --enable-chip-swimlane 4 --dep-output-dir outputs/csa-b
 ```
 
-结构检查需要PyPTO环境；分析还使用NetworkX。源码、生成代码和归档采集哈希见[PROVENANCE.json](deepseek-v4-csa-b/PROVENANCE.json)。PyPTO入口支持`a2a3/a2a3sim/a5/a5sim`；随包Simpler C++来自a2a3，不能直接作为a5产物使用。120 AIC目标机需使用对应平台和匹配工具链重新编译/验证，不将本次24核数据外推为120核性能。
+本次采集任务`task_20260915_014732_315847915665`，验证任务`task_20260915_014815_32076747505`，均在a2a3 device 1运行。PyPTO入口支持a2a3/a2a3sim/a5/a5sim；随包Simpler C++来自a2a3。120 AIC目标机仍需对应平台重新编译/验证，不将24核数据外推为120核性能。
 
 ## 2.5 CSA A/B 任务数量与平均粒度对比
 
 任务数量沿用SVG口径：纯AIC/AIV按物理执行记录计数，MIX每个混合SPMD block只计一个任务。同类分组调用合并统计，主compressor与Indexer compressor分别列出。
 
-平均任务粒度定义为该算子的**核执行时间总和÷任务数量**，单位为核微秒/任务；MIX累加其AIC与AIV执行时间，再除以混合block数，表示平均每任务消耗的核执行工作量，**不是任务墙钟时长**。合计行按任务数量加权。数据来自随包24 AIC/48 AIV采集；A使用混合长度，B统一start_pos=8192，因此该表不表示同输入下的性能优劣，也不外推120 AIC性能。
+平均任务粒度定义为该算子的**核执行时间总和÷任务数量**，单位为核微秒/任务；MIX累加其AIC与AIV执行时间，再除以混合block数，表示平均每任务消耗的核执行工作量，**不是任务墙钟时长**。合计行按任务数量加权。数据来自随包24 AIC/48 AIV采集；A使用混合长度，B将主线边界集合循环扩展到20个请求，因此该表不表示同输入下的性能优劣，也不外推120 AIC性能。
 
 | 算子 | A任务数量 | B任务数量 | A平均粒度（核μs/任务） | B平均粒度（核μs/任务） |
 |---|---:|---:|---:|---:|
-| `hc_pre_rms` | 1 | 1 | 9.94 | 39.80 |
-| `hc_pre_linear` | 4 | 4 | 9.67 | 21.77 |
-| `hc_pre_linear_reduce` | 1 | 1 | 1.46 | 4.56 |
-| `split_pre_post` | 1 | 1 | 3.88 | 8.56 |
-| `comb_sinkhorn` | 1 | 1 | 14.86 | 65.98 |
-| `mix_x` | 4 | 4 | 4.85 | 16.38 |
-| `csa_rope_step` | 1 | 1 | 6.94 | 20.28 |
-| `Q: rope_interleave` | 1 | 1 | 2.42 | 3.50 |
-| `csa_cmp_rope` | 1 | 1 | 3.08 | 8.70 |
-| `compressed: rope_interleave` | 1 | 1 | 2.50 | 4.16 |
-| `rms_norm` | 1 | 1 | 11.20 | 48.04 |
-| `q_rope_prepare` | 1 | 1 | 2.64 | 8.22 |
-| `qr_proj_seed` | 1 | 1 | 2.90 | 5.58 |
-| `qr_proj_matmul` | 64 | 64 | 3.83 | 5.70 |
-| `qr_rms_norm_quant` | 1 | 1 | 4.84 | 19.80 |
-| `qproj_matmul` | 128 | 128 | 8.54 | 13.82 |
-| `qproj_dequant_rms_nope_rope` | 16 | 16 | 6.19 | 25.63 |
-| `kv_proj_seed` | 1 | 1 | 2.36 | 3.46 |
-| `kv_proj_matmul` | 32 | 32 | 4.23 | 6.96 |
-| `kv_rms_norm_rope` | 1 | 1 | 5.52 | 20.62 |
-| `csa_cache_writeback` | 1 | 1 | 3.32 | 14.54 |
-| `main: kv_score_proj` | 64 | 64 | 6.55 | 11.57 |
-| `main: scatter_softmax_pool` | 1 | 1 | 10.58 | 21.32 |
-| `rmsnorm_rope_cache_write` | 1 | 1 | 14.98 | 19.54 |
-| `idx_qr_proj_matmul` | 32 | 32 | 7.59 | 14.07 |
-| `idx_qr_proj_dequant` | 32 | 32 | 1.84 | 4.05 |
-| `qr_rope_swap_idx` | 1 | 1 | 1.50 | 2.10 |
-| `qr_rope` | 16 | 16 | 5.69 | 13.92 |
-| `qr_hadamard_matmul` | 32 | 32 | 2.47 | 4.16 |
-| `qr_hadamard_quant` | 8 | 8 | 6.02 | 25.62 |
-| `weights_proj` | 4 | 4 | 5.47 | 7.10 |
-| `weights_proj_reduce` | 1 | 1 | 1.74 | 3.54 |
-| `indexer: kv_score_proj` | 8 | 8 | 10.94 | 19.00 |
-| `indexer: scatter_softmax_pool` | 1 | 1 | 11.44 | 20.16 |
+| `hc_pre_rms` | 1 | 1 | 9.94 | 40.38 |
+| `hc_pre_linear` | 4 | 4 | 9.67 | 21.33 |
+| `hc_pre_linear_reduce` | 1 | 1 | 1.46 | 4.54 |
+| `split_pre_post` | 1 | 1 | 3.88 | 8.54 |
+| `comb_sinkhorn` | 1 | 1 | 14.86 | 66.92 |
+| `mix_x` | 4 | 4 | 4.85 | 15.96 |
+| `csa_rope_step` | 1 | 1 | 6.94 | 21.62 |
+| `Q: rope_interleave` | 1 | 1 | 2.42 | 3.58 |
+| `csa_cmp_rope` | 1 | 1 | 3.08 | 7.42 |
+| `compressed: rope_interleave` | 1 | 1 | 2.50 | 4.14 |
+| `rms_norm` | 1 | 1 | 11.20 | 51.08 |
+| `q_rope_prepare` | 1 | 1 | 2.64 | 8.48 |
+| `qr_proj_seed` | 1 | 1 | 2.90 | 5.60 |
+| `qr_proj_matmul` | 64 | 64 | 3.83 | 5.98 |
+| `qr_rms_norm_quant` | 1 | 1 | 4.84 | 19.60 |
+| `qproj_matmul` | 128 | 128 | 8.54 | 13.95 |
+| `qproj_dequant_rms_nope_rope` | 16 | 16 | 6.19 | 24.92 |
+| `kv_proj_seed` | 1 | 1 | 2.36 | 3.86 |
+| `kv_proj_matmul` | 32 | 32 | 4.23 | 6.35 |
+| `kv_rms_norm_rope` | 1 | 1 | 5.52 | 22.58 |
+| `csa_cache_writeback` | 1 | 1 | 3.32 | 13.20 |
+| `main: kv_score_proj` | 64 | 64 | 6.55 | 11.37 |
+| `main: scatter_softmax_pool` | 1 | 1 | 10.58 | 71.26 |
+| `rmsnorm_rope_cache_write` | 1 | 1 | 14.98 | 24.18 |
+| `idx_qr_proj_matmul` | 32 | 32 | 7.59 | 12.60 |
+| `idx_qr_proj_dequant` | 32 | 32 | 1.84 | 5.35 |
+| `qr_rope_swap_idx` | 1 | 1 | 1.50 | 2.08 |
+| `qr_rope` | 16 | 16 | 5.69 | 14.21 |
+| `qr_hadamard_matmul` | 32 | 32 | 2.47 | 4.09 |
+| `qr_hadamard_quant` | 8 | 8 | 6.02 | 25.94 |
+| `weights_proj` | 4 | 4 | 5.47 | 7.48 |
+| `weights_proj_reduce` | 1 | 1 | 1.74 | 3.24 |
+| `indexer: kv_score_proj` | 8 | 8 | 10.94 | 19.04 |
+| `indexer: scatter_softmax_pool` | 1 | 1 | 11.44 | 63.70 |
 | `rmsnorm_rope` | 1 | 1 | 4.70 | 7.36 |
-| `kv_hadamard` | 1 | 1 | 2.64 | 3.62 |
-| `kv_and_cache_write` | 1 | 1 | 3.02 | 3.94 |
-| `Indexer score` | 80 | 100 | 17.65 | 72.29 |
-| `topk` | 8 | 8 | 5.17 | 32.35 |
-| `kv_touch` | 1 | 1 | 1.24 | 1.68 |
-| `csa_slots_build_valid_qk_plan` | 1 | 1 | 4.38 | 15.30 |
-| `QK / PV` | 40 | 100 | 26.21 | 127.11 |
-| `rope_cs` | 1 | 1 | 3.26 | 7.02 |
-| `merge_norm` | 64 | 64 | 9.84 | 20.55 |
-| `proj_a_mm` | 128 | 128 | 10.80 | 22.09 |
-| `quant` | 8 | 8 | 2.95 | 8.76 |
-| `proj_b_mm` | 128 | 128 | 5.87 | 10.06 |
-| `proj_b_act` | 8 | 8 | 4.84 | 16.32 |
-| `hc_post` | 8 | 8 | 5.42 | 23.09 |
-| **合计／加权平均** | **942** | **1022** | **8.69** | **30.70** |
+| `kv_hadamard` | 1 | 1 | 2.64 | 3.90 |
+| `kv_and_cache_write` | 1 | 1 | 3.02 | 9.20 |
+| `Indexer score` | 80 | 100 | 17.65 | 23.19 |
+| `topk` | 8 | 8 | 5.17 | 26.38 |
+| `kv_touch` | 1 | 1 | 1.24 | 1.60 |
+| `csa_slots_build_valid_qk_plan` | 1 | 1 | 4.38 | 15.60 |
+| `QK / PV` | 40 | 100 | 26.21 | 54.62 |
+| `rope_cs` | 1 | 1 | 3.26 | 7.26 |
+| `merge_norm` | 64 | 64 | 9.84 | 21.80 |
+| `proj_a_mm` | 128 | 128 | 10.80 | 22.04 |
+| `quant` | 8 | 8 | 2.95 | 9.33 |
+| `proj_b_mm` | 128 | 128 | 5.87 | 10.18 |
+| `proj_b_act` | 8 | 8 | 4.84 | 16.43 |
+| `hc_post` | 8 | 8 | 5.42 | 23.92 |
+| **合计／加权平均** | **942** | **1022** | **8.69** | **18.95** |
 
 # 3. 并发与验证结果
 
@@ -398,7 +390,7 @@ python deepseek-v4-csa-b/analyze_capture.py
 |---|---:|---:|---:|---|---:|---:|---|
 | Qwen | 166 | 545 | 312 | 857/857 | 0 | 906.76 | 待测 |
 | CSA A | 70 | 745 | 437 | 1182/1182 | 0 | 578.24 | 待测 |
-| CSA B | 70 | 825 | 597 | 1422/1422 | 0 | 1109.96 | 待测 |
+| CSA B | 70 | 825 | 597 | 1422/1422 | 0 | 990.70 | 待测 |
 
 采集跨度定义为最早 dispatch 到最晚 finish，包含四级采集影响，不能视为 benchmark 多轮 median。
 AIC/AIV 区间平均占用各自以首个 kernel 开始到最后一个结束为分母。
@@ -437,7 +429,7 @@ python qwen3-decode-layer/pypto-lib-operator/run_benchmark.py -p a2a3 -d 0 \
 
 # 5. benchmark 模型相对于 pypto-lib 主线模型的修改
 
-对照基线为本次改造起点的 pypto-lib 主线提交 `c3f0dea274f55d9648920f17c968e8564ae9fcdc`，对应 `models/qwen3_14b` 和 `models/deepseek_v4_flash_mtp`。这里比较模型实现、tiling 和输入配置；该固定基线不代表主线后续提交。随包代码及采集的精确版本见各样例的 `PROVENANCE.json`。
+对照基线为本次改造起点的 pypto-lib 主线提交 `c3f0dea274f55d9648920f17c968e8564ae9fcdc`，对应 `models/qwen3_14b` 和 `models/deepseek_v4_flash_mtp`。这里比较模型实现、tiling 和输入配置；该固定基线不代表主线后续提交。工具链版本见VERSIONS.md，方案B采集与验证身份见第2.4节。
 
 ## 5.1 Qwen3-14B 单层 decode
 
@@ -484,18 +476,20 @@ Out投影每组覆盖两个相邻N tile及其全部5路Split-K；每两组完成
 | 项目 | pypto-lib主线基线 | 方案B |
 |---|---|---|
 | batch / 本次token总数 | 4 / 8 | 20 / 40 |
-| 默认start_pos / KV长度 | `[8192,0,2,3]` / `[8194,2,4,5]` | 全部20个请求为8192 / 8194 |
+| 默认start_pos / KV长度 | `[8192,0,2,3]` / `[8194,2,4,5]` | 9种主线边界起始位置循环填满20项 / 每项start_pos+2 |
 | score | 16 blocks，8个token×2路归约 | 100 blocks，40个token×5路归约共200工作项，每block处理2项 |
 | QK/PV | 24 blocks处理40工作项 | 100 blocks处理200工作项，每block处理2项 |
 | 缓存测试输入 | 按原batch和长度组织 | 按20个请求实际长度重新分配互不重叠的物理页，保留跨请求隔离 |
 
-score每个token仍覆盖全部有效压缩位置；QK/PV仍覆盖每个token的5个稀疏块，合并工作项不改变归约或attention语义。统一8192起始位置后，score的80个blocks各处理26页、20个各处理24页，仍不能将100个blocks视为完全等长。完整参数、逐算子统计与验证见本文第2.4节。
+score每个token仍覆盖全部有效压缩位置；QK/PV仍覆盖每个token的5个稀疏块，合并工作项不改变归约或attention语义。采用主线混合长度集合后，score有效页数、QK/PV有效稀疏块数及压缩边界分支随请求变化，100个blocks不等长。完整参数、逐算子统计与验证见本文第2.4节。
 
 上述修改均以120 AIC为目标；当前Golden和配套泳道在24 AIC / 48 AIV机器上验证，不据此给出120 AIC加速比或A/B性能结论。
 
 # 修改历史
 
 ### 2026/9/15
+
+- CSA B恢复主线边界长度规则并循环扩展至20请求，重新生成/验证/采集；B说明合并至本README，清理已删除文件的引用。
 
 - 方案B默认20个请求的start_pos统一为8192（KV seq_len=8194），重新验证并采集；根README完整列出方案B设计、长度含义、逐算子统计和复现方式。
 

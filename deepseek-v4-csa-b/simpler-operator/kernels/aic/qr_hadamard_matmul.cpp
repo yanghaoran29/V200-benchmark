@@ -79,37 +79,37 @@ static __aicore__ void qr_hadamard_matmul(__gm__ float* v1, __gm__ bfloat16_t* v
   const int64_t v13 = 16;
   // pto: %c0_index
   const int64_t v14 = 0;
-  // pto: %qh_acc_gm_inline1642__ssa_v0_view
+  // pto: %qh_acc_gm_inline1555__ssa_v0_view
   const int64_t v15 = 1;
-  // pto: %qh_acc_gm_inline1642__ssa_v0_view
+  // pto: %qh_acc_gm_inline1555__ssa_v0_view
   const int64_t v16 = 1;
-  // pto: %qh_acc_gm_inline1642__ssa_v0_view
+  // pto: %qh_acc_gm_inline1555__ssa_v0_view
   const int64_t v17 = 1;
-  // pto: %qh_acc_gm_inline1642__ssa_v0_view
+  // pto: %qh_acc_gm_inline1555__ssa_v0_view
   int64_t v18 = v8 * v9;
-  // pto: %qh_acc_gm_inline1642__ssa_v0_view
+  // pto: %qh_acc_gm_inline1555__ssa_v0_view
   int64_t v19 = v17 * v18;
-  // pto: %qh_acc_gm_inline1642__ssa_v0_view
+  // pto: %qh_acc_gm_inline1555__ssa_v0_view
   pto::Shape<1, 1, 1, -1, -1> v20 = pto::Shape<1, 1, 1, -1, -1>(v15, v16, v17, v8, v9);
-  // pto: %qh_acc_gm_inline1642__ssa_v0_view
+  // pto: %qh_acc_gm_inline1555__ssa_v0_view
   pto::Stride<-1, -1, -1, -1, -1> v21 = pto::Stride<-1, -1, -1, -1, -1>(v16 * v19, v19, v18, v9, v10);
-  // pto: %qh_acc_gm_inline1642__ssa_v0_view
+  // pto: %qh_acc_gm_inline1555__ssa_v0_view
   GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v22 = GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v1, v20, v21);
-  // pto: %qr_bf16_inline1611__rv_v2_view
+  // pto: %qr_bf16_inline1681__rv_v2_view
   const int64_t v23 = 1;
-  // pto: %qr_bf16_inline1611__rv_v2_view
+  // pto: %qr_bf16_inline1681__rv_v2_view
   const int64_t v24 = 1;
-  // pto: %qr_bf16_inline1611__rv_v2_view
+  // pto: %qr_bf16_inline1681__rv_v2_view
   const int64_t v25 = 1;
-  // pto: %qr_bf16_inline1611__rv_v2_view
+  // pto: %qr_bf16_inline1681__rv_v2_view
   int64_t v26 = v8 * v9;
-  // pto: %qr_bf16_inline1611__rv_v2_view
+  // pto: %qr_bf16_inline1681__rv_v2_view
   int64_t v27 = v25 * v26;
-  // pto: %qr_bf16_inline1611__rv_v2_view
+  // pto: %qr_bf16_inline1681__rv_v2_view
   pto::Shape<1, 1, 1, -1, -1> v28 = pto::Shape<1, 1, 1, -1, -1>(v23, v24, v25, v8, v9);
-  // pto: %qr_bf16_inline1611__rv_v2_view
+  // pto: %qr_bf16_inline1681__rv_v2_view
   pto::Stride<-1, -1, -1, -1, -1> v29 = pto::Stride<-1, -1, -1, -1, -1>(v24 * v27, v27, v26, v9, v10);
-  // pto: %qr_bf16_inline1611__rv_v2_view
+  // pto: %qr_bf16_inline1681__rv_v2_view
   GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v30 = GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v2, v28, v29);
   // pto: %hadamard_idx__ssa_v0_view
   const int64_t v31 = 1;
@@ -127,7 +127,7 @@ static __aicore__ void qr_hadamard_matmul(__gm__ float* v1, __gm__ bfloat16_t* v
   pto::Stride<-1, -1, -1, -1, -1> v37 = pto::Stride<-1, -1, -1, -1, -1>(v32 * v35, v35, v34, v9, v10);
   // pto: %hadamard_idx__ssa_v0_view
   GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v38 = GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v3, v36, v37);
-  // pto: %idx_lane_inline1536__ssa_v0
+  // pto: %idx_lane_inline1562__ssa_v0
   set_flag(PIPE_MTE1, PIPE_MTE2, EVENT_ID0);
   set_flag(PIPE_MTE1, PIPE_MTE2, EVENT_ID1);
   set_flag(PIPE_M, PIPE_MTE1, EVENT_ID0);
@@ -146,22 +146,22 @@ static __aicore__ void qr_hadamard_matmul(__gm__ float* v1, __gm__ bfloat16_t* v
     // pto: %1
     ;
     int64_t v43 = v40 < v14 ? v14 : v40;
-    // pto: %qr_bf16_inline1611__rv_v2_pview
+    // pto: %qr_bf16_inline1681__rv_v2_pview
     ;
     __gm__ bfloat16_t* v44 = PTOAS__GLOBAL_TENSOR_DATA(v30);
-    // pto: %qr_bf16_inline1611__rv_v2_pview
+    // pto: %qr_bf16_inline1681__rv_v2_pview
     ;
     const int64_t v45 = 0;
-    // pto: %qr_bf16_inline1611__rv_v2_pview
+    // pto: %qr_bf16_inline1681__rv_v2_pview
     ;
     const int64_t v46 = 128;
-    // pto: %qr_bf16_inline1611__rv_v2_pview
+    // pto: %qr_bf16_inline1681__rv_v2_pview
     ;
     pto::Shape<1, 1, 1, 16, 128> v47 = pto::Shape<1, 1, 1, 16, 128>();
-    // pto: %qr_bf16_inline1611__rv_v2_pview
+    // pto: %qr_bf16_inline1681__rv_v2_pview
     ;
     pto::Stride<2048, 2048, 2048, 128, 1> v48 = pto::Stride<2048, 2048, 2048, 128, 1>();
-    // pto: %qr_bf16_inline1611__rv_v2_pview
+    // pto: %qr_bf16_inline1681__rv_v2_pview
     ;
     GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, 16, 128>, pto::Stride<2048, 2048, 2048, 128, 1>, pto::Layout::ND> v49 = GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, 16, 128>, pto::Stride<2048, 2048, 2048, 128, 1>, pto::Layout::ND>(v44 + (v45 + v43 * v46), v47, v48);
     wait_flag(PIPE_MTE1, PIPE_MTE2, EVENT_ID0);
@@ -211,10 +211,10 @@ static __aicore__ void qr_hadamard_matmul(__gm__ float* v1, __gm__ bfloat16_t* v
     TMOV(v58, v50);
     set_flag(PIPE_MTE1, PIPE_MTE2, EVENT_ID1);
     set_flag(PIPE_MTE1, PIPE_M, EVENT_ID0);
-    // pto: %qh_acc_inline1606__tile
+    // pto: %qh_acc_inline1657__tile
     ;
     Tile<TileType::Acc, float, 16, 128, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 1024, PadValue::Null, CompactMode::Null> v60 = Tile<TileType::Acc, float, 16, 128, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 1024, PadValue::Null, CompactMode::Null>(v13, v9);
-    // pto: %qh_acc_inline1606__tile
+    // pto: %qh_acc_inline1657__tile
     ;
     uint64_t v61 = (uint64_t) v6;
     TASSIGN(v60, v61);
@@ -223,22 +223,22 @@ static __aicore__ void qr_hadamard_matmul(__gm__ float* v1, __gm__ bfloat16_t* v
     TMATMUL(v60, v56, v58);
     set_flag(PIPE_M, PIPE_MTE1, EVENT_ID0);
     set_flag(PIPE_M, PIPE_FIX, EVENT_ID0);
-    // pto: %qh_acc_gm_inline1642__iter_v1_pview
+    // pto: %qh_acc_gm_inline1555__iter_v1_pview
     ;
     __gm__ float* v62 = PTOAS__GLOBAL_TENSOR_DATA(v22);
-    // pto: %qh_acc_gm_inline1642__iter_v1_pview
+    // pto: %qh_acc_gm_inline1555__iter_v1_pview
     ;
     const int64_t v63 = 0;
-    // pto: %qh_acc_gm_inline1642__iter_v1_pview
+    // pto: %qh_acc_gm_inline1555__iter_v1_pview
     ;
     const int64_t v64 = 128;
-    // pto: %qh_acc_gm_inline1642__iter_v1_pview
+    // pto: %qh_acc_gm_inline1555__iter_v1_pview
     ;
     pto::Shape<1, 1, 1, 16, 128> v65 = pto::Shape<1, 1, 1, 16, 128>();
-    // pto: %qh_acc_gm_inline1642__iter_v1_pview
+    // pto: %qh_acc_gm_inline1555__iter_v1_pview
     ;
     pto::Stride<2048, 2048, 2048, 128, 1> v66 = pto::Stride<2048, 2048, 2048, 128, 1>();
-    // pto: %qh_acc_gm_inline1642__iter_v1_pview
+    // pto: %qh_acc_gm_inline1555__iter_v1_pview
     ;
     GlobalTensor<float, pto::Shape<1, 1, 1, 16, 128>, pto::Stride<2048, 2048, 2048, 128, 1>, pto::Layout::ND> v67 = GlobalTensor<float, pto::Shape<1, 1, 1, 16, 128>, pto::Stride<2048, 2048, 2048, 128, 1>, pto::Layout::ND>(v62 + (v63 + v43 * v64), v65, v66);
     wait_flag(PIPE_M, PIPE_FIX, EVENT_ID0);
@@ -266,18 +266,18 @@ extern "C" __aicore__ __attribute__((always_inline)) void kernel_entry(__gm__ in
     int32_t __pypto_spmd_block_idx = get_block_idx(args);
     int32_t __pypto_spmd_block_num = get_block_num(args);
 
-    // Unpack tensor: qh_acc_gm_inline1642__ssa_v0
-    __gm__ Tensor* qh_acc_gm_inline1642__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
-    __gm__ float* qh_acc_gm_inline1642__ssa_v0 = reinterpret_cast<__gm__ float*>(qh_acc_gm_inline1642__ssa_v0_tensor->buffer.addr) + qh_acc_gm_inline1642__ssa_v0_tensor->start_offset;
+    // Unpack tensor: qh_acc_gm_inline1555__ssa_v0
+    __gm__ Tensor* qh_acc_gm_inline1555__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
+    __gm__ float* qh_acc_gm_inline1555__ssa_v0 = reinterpret_cast<__gm__ float*>(qh_acc_gm_inline1555__ssa_v0_tensor->buffer.addr) + qh_acc_gm_inline1555__ssa_v0_tensor->start_offset;
 
-    // Unpack tensor: qr_bf16_inline1611__rv_v2
-    __gm__ Tensor* qr_bf16_inline1611__rv_v2_tensor = reinterpret_cast<__gm__ Tensor*>(args[1]);
-    __gm__ bfloat16_t* qr_bf16_inline1611__rv_v2 = reinterpret_cast<__gm__ bfloat16_t*>(qr_bf16_inline1611__rv_v2_tensor->buffer.addr) + qr_bf16_inline1611__rv_v2_tensor->start_offset;
+    // Unpack tensor: qr_bf16_inline1681__rv_v2
+    __gm__ Tensor* qr_bf16_inline1681__rv_v2_tensor = reinterpret_cast<__gm__ Tensor*>(args[1]);
+    __gm__ bfloat16_t* qr_bf16_inline1681__rv_v2 = reinterpret_cast<__gm__ bfloat16_t*>(qr_bf16_inline1681__rv_v2_tensor->buffer.addr) + qr_bf16_inline1681__rv_v2_tensor->start_offset;
 
     // Unpack tensor: hadamard_idx__ssa_v0
     __gm__ Tensor* hadamard_idx__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[2]);
     __gm__ bfloat16_t* hadamard_idx__ssa_v0 = reinterpret_cast<__gm__ bfloat16_t*>(hadamard_idx__ssa_v0_tensor->buffer.addr) + hadamard_idx__ssa_v0_tensor->start_offset;
 
     // Forward to ptoas-generated function
-    qr_hadamard_matmul(qh_acc_gm_inline1642__ssa_v0, qr_bf16_inline1611__rv_v2, hadamard_idx__ssa_v0, __pypto_spmd_block_idx, __pypto_spmd_block_num);
+    qr_hadamard_matmul(qh_acc_gm_inline1555__ssa_v0, qr_bf16_inline1681__rv_v2, hadamard_idx__ssa_v0, __pypto_spmd_block_idx, __pypto_spmd_block_num);
 }

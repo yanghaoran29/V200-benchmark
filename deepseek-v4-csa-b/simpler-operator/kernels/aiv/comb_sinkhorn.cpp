@@ -117,75 +117,75 @@ static __aicore__ void comb_sinkhorn(__gm__ float* v1, __gm__ float* v2, __gm__ 
   const int64_t v36 = 18;
   // pto: %c2_index
   const int64_t v37 = 2;
-  // pto: %inv_rms_inline1029__rv_v2_view
+  // pto: %inv_rms_inline1034__rv_v2_view
   const int64_t v38 = 1;
-  // pto: %inv_rms_inline1029__rv_v2_view
+  // pto: %inv_rms_inline1034__rv_v2_view
   const int64_t v39 = 1;
-  // pto: %inv_rms_inline1029__rv_v2_view
+  // pto: %inv_rms_inline1034__rv_v2_view
   const int64_t v40 = 1;
-  // pto: %inv_rms_inline1029__rv_v2_view
+  // pto: %inv_rms_inline1034__rv_v2_view
   int64_t v41 = (int64_t) v7;
-  // pto: %inv_rms_inline1029__rv_v2_view
+  // pto: %inv_rms_inline1034__rv_v2_view
   int64_t v42 = v41 * v27;
-  // pto: %inv_rms_inline1029__rv_v2_view
+  // pto: %inv_rms_inline1034__rv_v2_view
   int64_t v43 = v40 * v42;
-  // pto: %inv_rms_inline1029__rv_v2_view
+  // pto: %inv_rms_inline1034__rv_v2_view
   pto::Shape<1, 1, 1, -1, -1> v44 = pto::Shape<1, 1, 1, -1, -1>(v38, v39, v40, v41, v27);
-  // pto: %inv_rms_inline1029__rv_v2_view
+  // pto: %inv_rms_inline1034__rv_v2_view
   pto::Stride<-1, -1, -1, -1, -1> v45 = pto::Stride<-1, -1, -1, -1, -1>(v39 * v43, v43, v42, v27, (int64_t) v7);
-  // pto: %inv_rms_inline1029__rv_v2_view
+  // pto: %inv_rms_inline1034__rv_v2_view
   GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::DN> v46 = GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::DN>(v1, v44, v45);
-  // pto: %mixes_raw_inline1058__rv_v2_view
+  // pto: %mixes_raw_inline1078__rv_v2_view
   const int64_t v47 = 1;
-  // pto: %mixes_raw_inline1058__rv_v2_view
+  // pto: %mixes_raw_inline1078__rv_v2_view
   const int64_t v48 = 1;
-  // pto: %mixes_raw_inline1058__rv_v2_view
+  // pto: %mixes_raw_inline1078__rv_v2_view
   const int64_t v49 = 1;
-  // pto: %mixes_raw_inline1058__rv_v2_view
+  // pto: %mixes_raw_inline1078__rv_v2_view
   int64_t v50 = (int64_t) v7;
-  // pto: %mixes_raw_inline1058__rv_v2_view
+  // pto: %mixes_raw_inline1078__rv_v2_view
   int64_t v51 = v50 * v28;
-  // pto: %mixes_raw_inline1058__rv_v2_view
+  // pto: %mixes_raw_inline1078__rv_v2_view
   int64_t v52 = v49 * v51;
-  // pto: %mixes_raw_inline1058__rv_v2_view
+  // pto: %mixes_raw_inline1078__rv_v2_view
   pto::Shape<1, 1, 1, -1, -1> v53 = pto::Shape<1, 1, 1, -1, -1>(v47, v48, v49, v50, v28);
-  // pto: %mixes_raw_inline1058__rv_v2_view
+  // pto: %mixes_raw_inline1078__rv_v2_view
   pto::Stride<-1, -1, -1, -1, -1> v54 = pto::Stride<-1, -1, -1, -1, -1>(v48 * v52, v52, v51, v28, v27);
-  // pto: %mixes_raw_inline1058__rv_v2_view
+  // pto: %mixes_raw_inline1078__rv_v2_view
   GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v55 = GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v2, v53, v54);
-  // pto: %hc_base_2d_inline1033__ssa_v0_view
+  // pto: %hc_base_2d_inline1093__ssa_v0_view
   const int64_t v56 = 1;
-  // pto: %hc_base_2d_inline1033__ssa_v0_view
+  // pto: %hc_base_2d_inline1093__ssa_v0_view
   const int64_t v57 = 1;
-  // pto: %hc_base_2d_inline1033__ssa_v0_view
+  // pto: %hc_base_2d_inline1093__ssa_v0_view
   const int64_t v58 = 1;
-  // pto: %hc_base_2d_inline1033__ssa_v0_view
+  // pto: %hc_base_2d_inline1093__ssa_v0_view
   int64_t v59 = v27 * v29;
-  // pto: %hc_base_2d_inline1033__ssa_v0_view
+  // pto: %hc_base_2d_inline1093__ssa_v0_view
   int64_t v60 = v58 * v59;
-  // pto: %hc_base_2d_inline1033__ssa_v0_view
+  // pto: %hc_base_2d_inline1093__ssa_v0_view
   pto::Shape<1, 1, 1, -1, -1> v61 = pto::Shape<1, 1, 1, -1, -1>(v56, v57, v58, v27, v29);
-  // pto: %hc_base_2d_inline1033__ssa_v0_view
+  // pto: %hc_base_2d_inline1093__ssa_v0_view
   pto::Stride<-1, -1, -1, -1, -1> v62 = pto::Stride<-1, -1, -1, -1, -1>(v57 * v60, v60, v59, v29, v27);
-  // pto: %hc_base_2d_inline1033__ssa_v0_view
+  // pto: %hc_base_2d_inline1093__ssa_v0_view
   GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v63 = GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v3, v61, v62);
-  // pto: %comb_t_inline198__ssa_v0_view
+  // pto: %comb_t_inline191__ssa_v0_view
   const int64_t v64 = 1;
-  // pto: %comb_t_inline198__ssa_v0_view
+  // pto: %comb_t_inline191__ssa_v0_view
   const int64_t v65 = 1;
-  // pto: %comb_t_inline198__ssa_v0_view
+  // pto: %comb_t_inline191__ssa_v0_view
   const int64_t v66 = 1;
-  // pto: %comb_t_inline198__ssa_v0_view
+  // pto: %comb_t_inline191__ssa_v0_view
   int64_t v67 = v30 * v31;
-  // pto: %comb_t_inline198__ssa_v0_view
+  // pto: %comb_t_inline191__ssa_v0_view
   int64_t v68 = v66 * v67;
-  // pto: %comb_t_inline198__ssa_v0_view
+  // pto: %comb_t_inline191__ssa_v0_view
   pto::Shape<1, 1, 1, -1, -1> v69 = pto::Shape<1, 1, 1, -1, -1>(v64, v65, v66, v30, v31);
-  // pto: %comb_t_inline198__ssa_v0_view
+  // pto: %comb_t_inline191__ssa_v0_view
   pto::Stride<-1, -1, -1, -1, -1> v70 = pto::Stride<-1, -1, -1, -1, -1>(v65 * v68, v68, v67, v31, v27);
-  // pto: %comb_t_inline198__ssa_v0_view
+  // pto: %comb_t_inline191__ssa_v0_view
   GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v71 = GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v4, v69, v70);
-  // pto: %ob_lane_inline1087__ssa_v0
+  // pto: %ob_lane_inline1011__ssa_v0
   // pto: %56
   set_flag(PIPE_V, PIPE_MTE2, EVENT_ID0);
   set_flag(PIPE_MTE3, PIPE_MTE2, EVENT_ID0);
@@ -196,83 +196,83 @@ static __aicore__ void comb_sinkhorn(__gm__ float* v1, __gm__ float* v2, __gm__ 
     // pto: %57
     ;
     int64_t v73 = (int64_t) ((uint64_t) v72 * (uint64_t) v32);
-    // pto: %inv_col_t_inline1070__ssa_v0
+    // pto: %inv_col_t_inline1024__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v74 = Tile<TileType::Vec, float, 8, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v32, v27);
-    // pto: %inv_col_t_inline1070__ssa_v0
+    // pto: %inv_col_t_inline1024__ssa_v0
     ;
     uint64_t v75 = (uint64_t) v10;
     TASSIGN(v74, v75);
     // pto: %58
     ;
     int64_t v76 = v73 < v33 ? v33 : v73;
-    // pto: %inv_rms_inline1029__rv_v2_pview
+    // pto: %inv_rms_inline1034__rv_v2_pview
     ;
     int64_t v77 = (int64_t) v7;
-    // pto: %inv_rms_inline1029__rv_v2_pview
+    // pto: %inv_rms_inline1034__rv_v2_pview
     ;
     const int64_t v78 = 0;
-    // pto: %inv_rms_inline1029__rv_v2_pview
+    // pto: %inv_rms_inline1034__rv_v2_pview
     ;
     __gm__ float* v79 = PTOAS__GLOBAL_TENSOR_DATA(v46);
-    // pto: %inv_rms_inline1029__rv_v2_pview
+    // pto: %inv_rms_inline1034__rv_v2_pview
     ;
     const int64_t v80 = 1;
-    // pto: %inv_rms_inline1029__rv_v2_pview
+    // pto: %inv_rms_inline1034__rv_v2_pview
     ;
     const int64_t v81 = 1;
-    // pto: %inv_rms_inline1029__rv_v2_pview
+    // pto: %inv_rms_inline1034__rv_v2_pview
     ;
     const int64_t v82 = 1;
-    // pto: %inv_rms_inline1029__rv_v2_pview
+    // pto: %inv_rms_inline1034__rv_v2_pview
     ;
     int64_t v83 = v32 * v27;
-    // pto: %inv_rms_inline1029__rv_v2_pview
+    // pto: %inv_rms_inline1034__rv_v2_pview
     ;
     int64_t v84 = v82 * v83;
-    // pto: %inv_rms_inline1029__rv_v2_pview
+    // pto: %inv_rms_inline1034__rv_v2_pview
     ;
     pto::Shape<1, 1, 1, 8, 1> v85 = pto::Shape<1, 1, 1, 8, 1>(v80, v81, v82, v32, v27);
-    // pto: %inv_rms_inline1029__rv_v2_pview
+    // pto: %inv_rms_inline1034__rv_v2_pview
     ;
     pto::Stride<-1, -1, -1, -1, -1> v86 = pto::Stride<-1, -1, -1, -1, -1>(v81 * v84, v84, v83, v27, v77);
-    // pto: %inv_rms_inline1029__rv_v2_pview
+    // pto: %inv_rms_inline1034__rv_v2_pview
     ;
     GlobalTensor<float, pto::Shape<1, 1, 1, 8, 1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::DN> v87 = GlobalTensor<float, pto::Shape<1, 1, 1, 8, 1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::DN>(v79 + (v78 + v76 * v27 + v33 * v77), v85, v86);
     wait_flag(PIPE_V, PIPE_MTE2, EVENT_ID0);
     TLOAD(v74, v87);
-    // pto: %mix_g0_inline1074__ssa_v0
+    // pto: %mix_g0_inline1065__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v88 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v32, v34);
-    // pto: %mix_g0_inline1074__ssa_v0
+    // pto: %mix_g0_inline1065__ssa_v0
     ;
     uint64_t v89 = (uint64_t) v11;
     TASSIGN(v88, v89);
-    // pto: %mixes_raw_inline1058__rv_v2_pview
+    // pto: %mixes_raw_inline1078__rv_v2_pview
     ;
     __gm__ float* v90 = PTOAS__GLOBAL_TENSOR_DATA(v55);
-    // pto: %mixes_raw_inline1058__rv_v2_pview
+    // pto: %mixes_raw_inline1078__rv_v2_pview
     ;
     const int64_t v91 = 8;
-    // pto: %mixes_raw_inline1058__rv_v2_pview
+    // pto: %mixes_raw_inline1078__rv_v2_pview
     ;
     const int64_t v92 = 32;
-    // pto: %mixes_raw_inline1058__rv_v2_pview
+    // pto: %mixes_raw_inline1078__rv_v2_pview
     ;
     pto::Shape<1, 1, 1, 8, 4> v93 = pto::Shape<1, 1, 1, 8, 4>();
-    // pto: %mixes_raw_inline1058__rv_v2_pview
+    // pto: %mixes_raw_inline1078__rv_v2_pview
     ;
     pto::Stride<256, 256, 256, 32, 1> v94 = pto::Stride<256, 256, 256, 32, 1>();
-    // pto: %mixes_raw_inline1058__rv_v2_pview
+    // pto: %mixes_raw_inline1078__rv_v2_pview
     ;
     GlobalTensor<float, pto::Shape<1, 1, 1, 8, 4>, pto::Stride<256, 256, 256, 32, 1>, pto::Layout::ND> v95 = GlobalTensor<float, pto::Shape<1, 1, 1, 8, 4>, pto::Stride<256, 256, 256, 32, 1>, pto::Layout::ND>(v90 + (v91 + v76 * v92), v93, v94);
     wait_flag(PIPE_MTE3, PIPE_MTE2, EVENT_ID0);
     TLOAD(v88, v95);
     set_flag(PIPE_MTE2, PIPE_V, EVENT_ID0);
-    // pto: %mix_g1_inline1076__ssa_v0
+    // pto: %mix_g1_inline1066__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v96 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v32, v34);
-    // pto: %mix_g1_inline1076__ssa_v0
+    // pto: %mix_g1_inline1066__ssa_v0
     ;
     uint64_t v97 = (uint64_t) v12;
     TASSIGN(v96, v97);
@@ -296,10 +296,10 @@ static __aicore__ void comb_sinkhorn(__gm__ float* v1, __gm__ float* v2, __gm__ 
     GlobalTensor<float, pto::Shape<1, 1, 1, 8, 4>, pto::Stride<256, 256, 256, 32, 1>, pto::Layout::ND> v103 = GlobalTensor<float, pto::Shape<1, 1, 1, 8, 4>, pto::Stride<256, 256, 256, 32, 1>, pto::Layout::ND>(v98 + (v99 + v76 * v100), v101, v102);
     wait_flag(PIPE_MTE3, PIPE_MTE2, EVENT_ID1);
     TLOAD(v96, v103);
-    // pto: %mix_g2_inline1078__ssa_v0
+    // pto: %mix_g2_inline1058__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v104 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v32, v34);
-    // pto: %mix_g2_inline1078__ssa_v0
+    // pto: %mix_g2_inline1058__ssa_v0
     ;
     uint64_t v105 = (uint64_t) v13;
     TASSIGN(v104, v105);
@@ -323,10 +323,10 @@ static __aicore__ void comb_sinkhorn(__gm__ float* v1, __gm__ float* v2, __gm__ 
     GlobalTensor<float, pto::Shape<1, 1, 1, 8, 4>, pto::Stride<256, 256, 256, 32, 1>, pto::Layout::ND> v111 = GlobalTensor<float, pto::Shape<1, 1, 1, 8, 4>, pto::Stride<256, 256, 256, 32, 1>, pto::Layout::ND>(v106 + (v107 + v76 * v108), v109, v110);
     wait_flag(PIPE_MTE3, PIPE_MTE2, EVENT_ID2);
     TLOAD(v104, v111);
-    // pto: %mix_g3_inline1081__ssa_v0
+    // pto: %mix_g3_inline1026__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v112 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v32, v34);
-    // pto: %mix_g3_inline1081__ssa_v0
+    // pto: %mix_g3_inline1026__ssa_v0
     ;
     uint64_t v113 = (uint64_t) v14;
     TASSIGN(v112, v113);
@@ -350,34 +350,34 @@ static __aicore__ void comb_sinkhorn(__gm__ float* v1, __gm__ float* v2, __gm__ 
     GlobalTensor<float, pto::Shape<1, 1, 1, 8, 4>, pto::Stride<256, 256, 256, 32, 1>, pto::Layout::ND> v119 = GlobalTensor<float, pto::Shape<1, 1, 1, 8, 4>, pto::Stride<256, 256, 256, 32, 1>, pto::Layout::ND>(v114 + (v115 + v76 * v116), v117, v118);
     wait_flag(PIPE_MTE3, PIPE_MTE2, EVENT_ID3);
     TLOAD(v112, v119);
-    // pto: %cb0_inline1086__ssa_v0
+    // pto: %cb0_inline1061__ssa_v0
     ;
     Tile<TileType::Vec, float, 1, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v120 = Tile<TileType::Vec, float, 1, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v27, v34);
-    // pto: %cb0_inline1086__ssa_v0
+    // pto: %cb0_inline1061__ssa_v0
     ;
     uint64_t v121 = (uint64_t) v15;
     TASSIGN(v120, v121);
-    // pto: %hc_base_2d_inline1033__ssa_v0_pview
+    // pto: %hc_base_2d_inline1093__ssa_v0_pview
     ;
     __gm__ float* v122 = PTOAS__GLOBAL_TENSOR_DATA(v63);
-    // pto: %hc_base_2d_inline1033__ssa_v0_pview
+    // pto: %hc_base_2d_inline1093__ssa_v0_pview
     ;
     unsigned v123 = 8;
-    // pto: %hc_base_2d_inline1033__ssa_v0_pview
+    // pto: %hc_base_2d_inline1093__ssa_v0_pview
     ;
     pto::Shape<1, 1, 1, 1, 4> v124 = pto::Shape<1, 1, 1, 1, 4>();
-    // pto: %hc_base_2d_inline1033__ssa_v0_pview
+    // pto: %hc_base_2d_inline1093__ssa_v0_pview
     ;
     pto::Stride<24, 24, 24, 24, 1> v125 = pto::Stride<24, 24, 24, 24, 1>();
-    // pto: %hc_base_2d_inline1033__ssa_v0_pview
+    // pto: %hc_base_2d_inline1093__ssa_v0_pview
     ;
     GlobalTensor<float, pto::Shape<1, 1, 1, 1, 4>, pto::Stride<24, 24, 24, 24, 1>, pto::Layout::ND> v126 = GlobalTensor<float, pto::Shape<1, 1, 1, 1, 4>, pto::Stride<24, 24, 24, 24, 1>, pto::Layout::ND>(v122 + v123, v124, v125);
     TLOAD(v120, v126);
     set_flag(PIPE_MTE2, PIPE_V, EVENT_ID1);
-    // pto: %cb1_inline1013__ssa_v0
+    // pto: %cb1_inline1067__ssa_v0
     ;
     Tile<TileType::Vec, float, 1, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v127 = Tile<TileType::Vec, float, 1, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v27, v34);
-    // pto: %cb1_inline1013__ssa_v0
+    // pto: %cb1_inline1067__ssa_v0
     ;
     uint64_t v128 = (uint64_t) v16;
     TASSIGN(v127, v128);
@@ -398,10 +398,10 @@ static __aicore__ void comb_sinkhorn(__gm__ float* v1, __gm__ float* v2, __gm__ 
     GlobalTensor<float, pto::Shape<1, 1, 1, 1, 4>, pto::Stride<24, 24, 24, 24, 1>, pto::Layout::ND> v133 = GlobalTensor<float, pto::Shape<1, 1, 1, 1, 4>, pto::Stride<24, 24, 24, 24, 1>, pto::Layout::ND>(v129 + v130, v131, v132);
     TLOAD(v127, v133);
     set_flag(PIPE_MTE2, PIPE_V, EVENT_ID2);
-    // pto: %cb2_inline1088__ssa_v0
+    // pto: %cb2_inline1007__ssa_v0
     ;
     Tile<TileType::Vec, float, 1, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v134 = Tile<TileType::Vec, float, 1, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v27, v34);
-    // pto: %cb2_inline1088__ssa_v0
+    // pto: %cb2_inline1007__ssa_v0
     ;
     uint64_t v135 = (uint64_t) v17;
     TASSIGN(v134, v135);
@@ -422,10 +422,10 @@ static __aicore__ void comb_sinkhorn(__gm__ float* v1, __gm__ float* v2, __gm__ 
     GlobalTensor<float, pto::Shape<1, 1, 1, 1, 4>, pto::Stride<24, 24, 24, 24, 1>, pto::Layout::ND> v140 = GlobalTensor<float, pto::Shape<1, 1, 1, 1, 4>, pto::Stride<24, 24, 24, 24, 1>, pto::Layout::ND>(v136 + v137, v138, v139);
     TLOAD(v134, v140);
     set_flag(PIPE_MTE2, PIPE_V, EVENT_ID3);
-    // pto: %cb3_inline1089__ssa_v0
+    // pto: %cb3_inline1094__ssa_v0
     ;
     Tile<TileType::Vec, float, 1, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v141 = Tile<TileType::Vec, float, 1, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v27, v34);
-    // pto: %cb3_inline1089__ssa_v0
+    // pto: %cb3_inline1094__ssa_v0
     ;
     uint64_t v142 = (uint64_t) v18;
     TASSIGN(v141, v142);
@@ -474,10 +474,10 @@ static __aicore__ void comb_sinkhorn(__gm__ float* v1, __gm__ float* v2, __gm__ 
     TASSIGN(v152, v153);
     wait_flag(PIPE_MTE2, PIPE_V, EVENT_ID1);
     TCOLEXPAND(v152, v120);
-    // pto: %row0_inline1120__ssa_v0
+    // pto: %row0_inline1068__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v154 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v32, v34);
-    // pto: %row0_inline1120__ssa_v0
+    // pto: %row0_inline1068__ssa_v0
     ;
     uint64_t v155 = (uint64_t) v11;
     TASSIGN(v154, v155);
@@ -510,10 +510,10 @@ static __aicore__ void comb_sinkhorn(__gm__ float* v1, __gm__ float* v2, __gm__ 
     TASSIGN(v160, v161);
     wait_flag(PIPE_MTE2, PIPE_V, EVENT_ID2);
     TCOLEXPAND(v160, v127);
-    // pto: %row1_inline1092__ssa_v0
+    // pto: %row1_inline1053__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v162 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v32, v34);
-    // pto: %row1_inline1092__ssa_v0
+    // pto: %row1_inline1053__ssa_v0
     ;
     uint64_t v163 = (uint64_t) v12;
     TASSIGN(v162, v163);
@@ -546,10 +546,10 @@ static __aicore__ void comb_sinkhorn(__gm__ float* v1, __gm__ float* v2, __gm__ 
     TASSIGN(v168, v169);
     wait_flag(PIPE_MTE2, PIPE_V, EVENT_ID3);
     TCOLEXPAND(v168, v134);
-    // pto: %row2_inline1093__ssa_v0
+    // pto: %row2_inline1070__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v170 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v32, v34);
-    // pto: %row2_inline1093__ssa_v0
+    // pto: %row2_inline1070__ssa_v0
     ;
     uint64_t v171 = (uint64_t) v13;
     TASSIGN(v170, v171);
@@ -582,92 +582,92 @@ static __aicore__ void comb_sinkhorn(__gm__ float* v1, __gm__ float* v2, __gm__ 
     TASSIGN(v176, v177);
     wait_flag(PIPE_MTE2, PIPE_V, EVENT_ID4);
     TCOLEXPAND(v176, v141);
-    // pto: %row3_inline1094__ssa_v0
+    // pto: %row3_inline1071__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v178 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v32, v34);
-    // pto: %row3_inline1094__ssa_v0
+    // pto: %row3_inline1071__ssa_v0
     ;
     uint64_t v179 = (uint64_t) v14;
     TASSIGN(v178, v179);
     pipe_barrier(PIPE_V);
     TADD(v178, v174, v176);
-    // pto: %row0_p_inline1073__ssa_v0
+    // pto: %row0_p_inline1072__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Min, CompactMode::Null> v180 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Min, CompactMode::Null>(v32, v32);
-    // pto: %row0_p_inline1073__ssa_v0
+    // pto: %row0_p_inline1072__ssa_v0
     ;
     uint64_t v181 = (uint64_t) v11;
     TASSIGN(v180, v181);
     TFILLPAD<pto::TFillPadMode::InPlace>(v180, v154);
-    // pto: %row1_p_inline1024__ssa_v0
+    // pto: %row1_p_inline1013__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Min, CompactMode::Null> v182 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Min, CompactMode::Null>(v32, v32);
-    // pto: %row1_p_inline1024__ssa_v0
+    // pto: %row1_p_inline1013__ssa_v0
     ;
     uint64_t v183 = (uint64_t) v12;
     TASSIGN(v182, v183);
     TFILLPAD<pto::TFillPadMode::InPlace>(v182, v162);
-    // pto: %row2_p_inline1095__ssa_v0
+    // pto: %row2_p_inline1075__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Min, CompactMode::Null> v184 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Min, CompactMode::Null>(v32, v32);
-    // pto: %row2_p_inline1095__ssa_v0
+    // pto: %row2_p_inline1075__ssa_v0
     ;
     uint64_t v185 = (uint64_t) v13;
     TASSIGN(v184, v185);
     TFILLPAD<pto::TFillPadMode::InPlace>(v184, v170);
-    // pto: %row3_p_inline1096__ssa_v0
+    // pto: %row3_p_inline1080__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Min, CompactMode::Null> v186 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Min, CompactMode::Null>(v32, v32);
-    // pto: %row3_p_inline1096__ssa_v0
+    // pto: %row3_p_inline1080__ssa_v0
     ;
     uint64_t v187 = (uint64_t) v14;
     TASSIGN(v186, v187);
     pipe_barrier(PIPE_V);
     TFILLPAD<pto::TFillPadMode::InPlace>(v186, v178);
-    // pto: %row_max_tmp_inline1098__ssa_v0
+    // pto: %row_max_tmp_inline1082__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v188 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v32, v32);
-    // pto: %row_max_tmp_inline1098__ssa_v0
+    // pto: %row_max_tmp_inline1082__ssa_v0
     ;
     uint64_t v189 = (uint64_t) v19;
     TASSIGN(v188, v189);
-    // pto: %row_sum_tmp_inline1100__ssa_v0
+    // pto: %row_sum_tmp_inline1001__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v190 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v32, v32);
-    // pto: %row_sum_tmp_inline1100__ssa_v0
+    // pto: %row_sum_tmp_inline1001__ssa_v0
     ;
     uint64_t v191 = (uint64_t) v10;
     TASSIGN(v190, v191);
-    // pto: %row0_max_inline1101__ssa_v0
+    // pto: %row0_max_inline1083__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v192 = Tile<TileType::Vec, float, 8, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v32, v27);
-    // pto: %row0_max_inline1101__ssa_v0
+    // pto: %row0_max_inline1083__ssa_v0
     ;
     uint64_t v193 = (uint64_t) v15;
     TASSIGN(v192, v193);
     TROWMAX(v192, v180, v188);
-    // pto: %row1_max_inline1103__ssa_v0
+    // pto: %row1_max_inline1085__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v194 = Tile<TileType::Vec, float, 8, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v32, v27);
-    // pto: %row1_max_inline1103__ssa_v0
+    // pto: %row1_max_inline1085__ssa_v0
     ;
     uint64_t v195 = (uint64_t) v16;
     TASSIGN(v194, v195);
     pipe_barrier(PIPE_V);
     TROWMAX(v194, v182, v188);
-    // pto: %row2_max_inline1022__ssa_v0
+    // pto: %row2_max_inline1087__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v196 = Tile<TileType::Vec, float, 8, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v32, v27);
-    // pto: %row2_max_inline1022__ssa_v0
+    // pto: %row2_max_inline1087__ssa_v0
     ;
     uint64_t v197 = (uint64_t) v17;
     TASSIGN(v196, v197);
     pipe_barrier(PIPE_V);
     TROWMAX(v196, v184, v188);
-    // pto: %row3_max_inline1048__ssa_v0
+    // pto: %row3_max_inline1028__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v198 = Tile<TileType::Vec, float, 8, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v32, v27);
-    // pto: %row3_max_inline1048__ssa_v0
+    // pto: %row3_max_inline1028__ssa_v0
     ;
     uint64_t v199 = (uint64_t) v18;
     TASSIGN(v198, v199);
@@ -681,10 +681,10 @@ static __aicore__ void comb_sinkhorn(__gm__ float* v1, __gm__ float* v2, __gm__ 
     uint64_t v201 = (uint64_t) v11;
     TASSIGN(v200, v201);
     TROWEXPANDSUB(v200, v180, v192);
-    // pto: %row0_exp_inline1077__ssa_v0
+    // pto: %row0_exp_inline1088__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Min, CompactMode::Null> v202 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Min, CompactMode::Null>(v32, v32);
-    // pto: %row0_exp_inline1077__ssa_v0
+    // pto: %row0_exp_inline1088__ssa_v0
     ;
     uint64_t v203 = (uint64_t) v11;
     TASSIGN(v202, v203);
@@ -698,10 +698,10 @@ static __aicore__ void comb_sinkhorn(__gm__ float* v1, __gm__ float* v2, __gm__ 
     uint64_t v205 = (uint64_t) v12;
     TASSIGN(v204, v205);
     TROWEXPANDSUB(v204, v182, v194);
-    // pto: %row1_exp_inline1041__ssa_v0
+    // pto: %row1_exp_inline1090__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Min, CompactMode::Null> v206 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Min, CompactMode::Null>(v32, v32);
-    // pto: %row1_exp_inline1041__ssa_v0
+    // pto: %row1_exp_inline1090__ssa_v0
     ;
     uint64_t v207 = (uint64_t) v12;
     TASSIGN(v206, v207);
@@ -715,10 +715,10 @@ static __aicore__ void comb_sinkhorn(__gm__ float* v1, __gm__ float* v2, __gm__ 
     uint64_t v209 = (uint64_t) v13;
     TASSIGN(v208, v209);
     TROWEXPANDSUB(v208, v184, v196);
-    // pto: %row2_exp_inline1106__ssa_v0
+    // pto: %row2_exp_inline1091__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Min, CompactMode::Null> v210 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Min, CompactMode::Null>(v32, v32);
-    // pto: %row2_exp_inline1106__ssa_v0
+    // pto: %row2_exp_inline1091__ssa_v0
     ;
     uint64_t v211 = (uint64_t) v13;
     TASSIGN(v210, v211);
@@ -732,45 +732,45 @@ static __aicore__ void comb_sinkhorn(__gm__ float* v1, __gm__ float* v2, __gm__ 
     uint64_t v213 = (uint64_t) v14;
     TASSIGN(v212, v213);
     TROWEXPANDSUB(v212, v186, v198);
-    // pto: %row3_exp_inline1071__ssa_v0
+    // pto: %row3_exp_inline1092__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Min, CompactMode::Null> v214 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Min, CompactMode::Null>(v32, v32);
-    // pto: %row3_exp_inline1071__ssa_v0
+    // pto: %row3_exp_inline1092__ssa_v0
     ;
     uint64_t v215 = (uint64_t) v14;
     TASSIGN(v214, v215);
     pipe_barrier(PIPE_V);
     TEXP(v214, v212);
-    // pto: %row0_sum_inline1110__ssa_v0
+    // pto: %row0_sum_inline1008__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v216 = Tile<TileType::Vec, float, 8, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v32, v27);
-    // pto: %row0_sum_inline1110__ssa_v0
+    // pto: %row0_sum_inline1008__ssa_v0
     ;
     uint64_t v217 = (uint64_t) v19;
     TASSIGN(v216, v217);
     TROWSUM(v216, v202, v190);
-    // pto: %row1_sum_inline1065__ssa_v0
+    // pto: %row1_sum_inline1032__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v218 = Tile<TileType::Vec, float, 8, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v32, v27);
-    // pto: %row1_sum_inline1065__ssa_v0
+    // pto: %row1_sum_inline1032__ssa_v0
     ;
     uint64_t v219 = (uint64_t) v15;
     TASSIGN(v218, v219);
     pipe_barrier(PIPE_V);
     TROWSUM(v218, v206, v190);
-    // pto: %row2_sum_inline1019__ssa_v0
+    // pto: %row2_sum_inline1076__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v220 = Tile<TileType::Vec, float, 8, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v32, v27);
-    // pto: %row2_sum_inline1019__ssa_v0
+    // pto: %row2_sum_inline1076__ssa_v0
     ;
     uint64_t v221 = (uint64_t) v16;
     TASSIGN(v220, v221);
     pipe_barrier(PIPE_V);
     TROWSUM(v220, v210, v190);
-    // pto: %row3_sum_inline1044__ssa_v0
+    // pto: %row3_sum_inline1035__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v222 = Tile<TileType::Vec, float, 8, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v32, v27);
-    // pto: %row3_sum_inline1044__ssa_v0
+    // pto: %row3_sum_inline1035__ssa_v0
     ;
     uint64_t v223 = (uint64_t) v17;
     TASSIGN(v222, v223);
@@ -784,10 +784,10 @@ static __aicore__ void comb_sinkhorn(__gm__ float* v1, __gm__ float* v2, __gm__ 
     uint64_t v225 = (uint64_t) v11;
     TASSIGN(v224, v225);
     TROWEXPANDDIV(v224, v202, v216);
-    // pto: %row0_soft_inline1072__ssa_v0
+    // pto: %row0_soft_inline1095__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Min, CompactMode::Null> v226 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Min, CompactMode::Null>(v32, v32);
-    // pto: %row0_soft_inline1072__ssa_v0
+    // pto: %row0_soft_inline1095__ssa_v0
     ;
     uint64_t v227 = (uint64_t) v11;
     TASSIGN(v226, v227);
@@ -801,10 +801,10 @@ static __aicore__ void comb_sinkhorn(__gm__ float* v1, __gm__ float* v2, __gm__ 
     uint64_t v229 = (uint64_t) v12;
     TASSIGN(v228, v229);
     TROWEXPANDDIV(v228, v206, v218);
-    // pto: %row1_soft_inline1099__ssa_v0
+    // pto: %row1_soft_inline1097__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Min, CompactMode::Null> v230 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Min, CompactMode::Null>(v32, v32);
-    // pto: %row1_soft_inline1099__ssa_v0
+    // pto: %row1_soft_inline1097__ssa_v0
     ;
     uint64_t v231 = (uint64_t) v12;
     TASSIGN(v230, v231);
@@ -818,10 +818,10 @@ static __aicore__ void comb_sinkhorn(__gm__ float* v1, __gm__ float* v2, __gm__ 
     uint64_t v233 = (uint64_t) v13;
     TASSIGN(v232, v233);
     TROWEXPANDDIV(v232, v210, v220);
-    // pto: %row2_soft_inline1052__ssa_v0
+    // pto: %row2_soft_inline1099__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Min, CompactMode::Null> v234 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Min, CompactMode::Null>(v32, v32);
-    // pto: %row2_soft_inline1052__ssa_v0
+    // pto: %row2_soft_inline1099__ssa_v0
     ;
     uint64_t v235 = (uint64_t) v13;
     TASSIGN(v234, v235);
@@ -835,10 +835,10 @@ static __aicore__ void comb_sinkhorn(__gm__ float* v1, __gm__ float* v2, __gm__ 
     uint64_t v237 = (uint64_t) v14;
     TASSIGN(v236, v237);
     TROWEXPANDDIV(v236, v214, v222);
-    // pto: %row3_soft_inline1083__ssa_v0
+    // pto: %row3_soft_inline1109__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Min, CompactMode::Null> v238 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Min, CompactMode::Null>(v32, v32);
-    // pto: %row3_soft_inline1083__ssa_v0
+    // pto: %row3_soft_inline1109__ssa_v0
     ;
     uint64_t v239 = (uint64_t) v14;
     TASSIGN(v238, v239);
@@ -848,43 +848,43 @@ static __aicore__ void comb_sinkhorn(__gm__ float* v1, __gm__ float* v2, __gm__ 
     v230.SetValidShape(v32, v34);
     v234.SetValidShape(v32, v34);
     v238.SetValidShape(v32, v34);
-    // pto: %row0_eff_inline1003__ssa_v0
+    // pto: %row0_eff_inline1074__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null> v240 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null>(v32, v32);
-    // pto: %row0_eff_inline1003__ssa_v0
+    // pto: %row0_eff_inline1074__ssa_v0
     ;
     uint64_t v241 = (uint64_t) v11;
     TASSIGN(v240, v241);
     TFILLPAD<pto::TFillPadMode::InPlace>(v240, v226);
-    // pto: %row1_eff_inline1113__ssa_v0
+    // pto: %row1_eff_inline1081__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null> v242 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null>(v32, v32);
-    // pto: %row1_eff_inline1113__ssa_v0
+    // pto: %row1_eff_inline1081__ssa_v0
     ;
     uint64_t v243 = (uint64_t) v12;
     TASSIGN(v242, v243);
     TFILLPAD<pto::TFillPadMode::InPlace>(v242, v230);
-    // pto: %row2_eff_inline1049__ssa_v0
+    // pto: %row2_eff_inline1003__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null> v244 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null>(v32, v32);
-    // pto: %row2_eff_inline1049__ssa_v0
+    // pto: %row2_eff_inline1003__ssa_v0
     ;
     uint64_t v245 = (uint64_t) v13;
     TASSIGN(v244, v245);
     TFILLPAD<pto::TFillPadMode::InPlace>(v244, v234);
-    // pto: %row3_eff_inline1116__ssa_v0
+    // pto: %row3_eff_inline1106__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null> v246 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null>(v32, v32);
-    // pto: %row3_eff_inline1116__ssa_v0
+    // pto: %row3_eff_inline1106__ssa_v0
     ;
     uint64_t v247 = (uint64_t) v14;
     TASSIGN(v246, v247);
     pipe_barrier(PIPE_V);
     TFILLPAD<pto::TFillPadMode::InPlace>(v246, v238);
-    // pto: %row_sum_tmp_iter_inline1107__ssa_v0
+    // pto: %row_sum_tmp_iter_inline1128__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v248 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v32, v32);
-    // pto: %row_sum_tmp_iter_inline1107__ssa_v0
+    // pto: %row_sum_tmp_iter_inline1128__ssa_v0
     ;
     uint64_t v249 = (uint64_t) v19;
     TASSIGN(v248, v249);
@@ -905,53 +905,53 @@ static __aicore__ void comb_sinkhorn(__gm__ float* v1, __gm__ float* v2, __gm__ 
     TASSIGN(v252, v253);
     pipe_barrier(PIPE_V);
     TADD(v252, v244, v246);
-    // pto: %col_sum_inline1091__ssa_v0
+    // pto: %col_sum_inline1112__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null> v254 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null>(v32, v32);
-    // pto: %col_sum_inline1091__ssa_v0
+    // pto: %col_sum_inline1112__ssa_v0
     ;
     uint64_t v255 = (uint64_t) v10;
     TASSIGN(v254, v255);
     pipe_barrier(PIPE_V);
     TADD(v254, v250, v252);
-    // pto: %col_sum_v1_inline1105__ssa_v0
+    // pto: %col_sum_v1_inline1114__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null> v256 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null>(v32, v32);
-    // pto: %col_sum_v1_inline1105__ssa_v0
+    // pto: %col_sum_v1_inline1114__ssa_v0
     ;
     uint64_t v257 = (uint64_t) v10;
     TASSIGN(v256, v257);
     pipe_barrier(PIPE_V);
     TADDS(v256, v254, v35);
-    // pto: %row0_cur_inline1114__ssa_v0
+    // pto: %row0_cur_inline1116__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null> v258 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null>(v32, v32);
-    // pto: %row0_cur_inline1114__ssa_v0
+    // pto: %row0_cur_inline1116__ssa_v0
     ;
     uint64_t v259 = (uint64_t) v11;
     TASSIGN(v258, v259);
     pipe_barrier(PIPE_V);
     TDIV(v258, v240, v256);
-    // pto: %row1_cur_inline1007__ssa_v0
+    // pto: %row1_cur_inline1118__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null> v260 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null>(v32, v32);
-    // pto: %row1_cur_inline1007__ssa_v0
+    // pto: %row1_cur_inline1118__ssa_v0
     ;
     uint64_t v261 = (uint64_t) v12;
     TASSIGN(v260, v261);
     TDIV(v260, v242, v256);
-    // pto: %row2_cur_inline1117__ssa_v0
+    // pto: %row2_cur_inline1017__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null> v262 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null>(v32, v32);
-    // pto: %row2_cur_inline1117__ssa_v0
+    // pto: %row2_cur_inline1017__ssa_v0
     ;
     uint64_t v263 = (uint64_t) v13;
     TASSIGN(v262, v263);
     TDIV(v262, v244, v256);
-    // pto: %row3_cur_inline1118__ssa_v0
+    // pto: %row3_cur_inline1119__ssa_v0
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null> v264 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null>(v32, v32);
-    // pto: %row3_cur_inline1118__ssa_v0
+    // pto: %row3_cur_inline1119__ssa_v0
     ;
     uint64_t v265 = (uint64_t) v14;
     TASSIGN(v264, v265);
@@ -966,26 +966,26 @@ static __aicore__ void comb_sinkhorn(__gm__ float* v1, __gm__ float* v2, __gm__ 
       TASSIGN(v267, v268);
       pipe_barrier(PIPE_V);
       TROWSUM(v267, v258, v248);
-      // pto: %row0_rowsum_inline1097__rm_a0_tmp_v0
+      // pto: %row0_rowsum_inline1004__rm_a0_tmp_v0
       ;
       Tile<TileType::Vec, float, 1, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v269 = Tile<TileType::Vec, float, 1, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v27, v32);
-      // pto: %row0_rowsum_inline1097__rm_a0_tmp_v0
+      // pto: %row0_rowsum_inline1004__rm_a0_tmp_v0
       ;
       uint64_t v270 = (uint64_t) v10;
       TASSIGN(v269, v270);
-      // pto: %row0_rowsum_inline1097__row_major_tmp_v1
+      // pto: %row0_rowsum_inline1004__row_major_tmp_v1
       ;
       Tile<TileType::Vec, float, 1, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v271 = Tile<TileType::Vec, float, 1, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v27, v32);
-      // pto: %row0_rowsum_inline1097__row_major_tmp_v1
+      // pto: %row0_rowsum_inline1004__row_major_tmp_v1
       ;
       uint64_t v272 = (uint64_t) v15;
       TASSIGN(v271, v272);
       pipe_barrier(PIPE_V);
       TADDS(v271, v269, v35);
-      // pto: %row0_rowsum_inline1097__ssa_v0
+      // pto: %row0_rowsum_inline1004__ssa_v0
       ;
       Tile<TileType::Vec, float, 8, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v273 = Tile<TileType::Vec, float, 8, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v32, v27);
-      // pto: %row0_rowsum_inline1097__ssa_v0
+      // pto: %row0_rowsum_inline1004__ssa_v0
       ;
       uint64_t v274 = (uint64_t) v15;
       TASSIGN(v273, v274);
@@ -998,26 +998,26 @@ static __aicore__ void comb_sinkhorn(__gm__ float* v1, __gm__ float* v2, __gm__ 
       TASSIGN(v275, v276);
       pipe_barrier(PIPE_V);
       TROWSUM(v275, v260, v248);
-      // pto: %row1_rowsum_inline1121__rm_a0_tmp_v2
+      // pto: %row1_rowsum_inline1084__rm_a0_tmp_v2
       ;
       Tile<TileType::Vec, float, 1, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v277 = Tile<TileType::Vec, float, 1, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v27, v32);
-      // pto: %row1_rowsum_inline1121__rm_a0_tmp_v2
+      // pto: %row1_rowsum_inline1084__rm_a0_tmp_v2
       ;
       uint64_t v278 = (uint64_t) v10;
       TASSIGN(v277, v278);
-      // pto: %row1_rowsum_inline1121__row_major_tmp_v3
+      // pto: %row1_rowsum_inline1084__row_major_tmp_v3
       ;
       Tile<TileType::Vec, float, 1, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v279 = Tile<TileType::Vec, float, 1, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v27, v32);
-      // pto: %row1_rowsum_inline1121__row_major_tmp_v3
+      // pto: %row1_rowsum_inline1084__row_major_tmp_v3
       ;
       uint64_t v280 = (uint64_t) v16;
       TASSIGN(v279, v280);
       pipe_barrier(PIPE_V);
       TADDS(v279, v277, v35);
-      // pto: %row1_rowsum_inline1121__ssa_v0
+      // pto: %row1_rowsum_inline1084__ssa_v0
       ;
       Tile<TileType::Vec, float, 8, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v281 = Tile<TileType::Vec, float, 8, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v32, v27);
-      // pto: %row1_rowsum_inline1121__ssa_v0
+      // pto: %row1_rowsum_inline1084__ssa_v0
       ;
       uint64_t v282 = (uint64_t) v16;
       TASSIGN(v281, v282);
@@ -1030,26 +1030,26 @@ static __aicore__ void comb_sinkhorn(__gm__ float* v1, __gm__ float* v2, __gm__ 
       TASSIGN(v283, v284);
       pipe_barrier(PIPE_V);
       TROWSUM(v283, v262, v248);
-      // pto: %row2_rowsum_inline1090__rm_a0_tmp_v4
+      // pto: %row2_rowsum_inline1122__rm_a0_tmp_v4
       ;
       Tile<TileType::Vec, float, 1, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v285 = Tile<TileType::Vec, float, 1, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v27, v32);
-      // pto: %row2_rowsum_inline1090__rm_a0_tmp_v4
+      // pto: %row2_rowsum_inline1122__rm_a0_tmp_v4
       ;
       uint64_t v286 = (uint64_t) v10;
       TASSIGN(v285, v286);
-      // pto: %row2_rowsum_inline1090__row_major_tmp_v5
+      // pto: %row2_rowsum_inline1122__row_major_tmp_v5
       ;
       Tile<TileType::Vec, float, 1, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v287 = Tile<TileType::Vec, float, 1, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v27, v32);
-      // pto: %row2_rowsum_inline1090__row_major_tmp_v5
+      // pto: %row2_rowsum_inline1122__row_major_tmp_v5
       ;
       uint64_t v288 = (uint64_t) v17;
       TASSIGN(v287, v288);
       pipe_barrier(PIPE_V);
       TADDS(v287, v285, v35);
-      // pto: %row2_rowsum_inline1090__ssa_v0
+      // pto: %row2_rowsum_inline1122__ssa_v0
       ;
       Tile<TileType::Vec, float, 8, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v289 = Tile<TileType::Vec, float, 8, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v32, v27);
-      // pto: %row2_rowsum_inline1090__ssa_v0
+      // pto: %row2_rowsum_inline1122__ssa_v0
       ;
       uint64_t v290 = (uint64_t) v17;
       TASSIGN(v289, v290);
@@ -1062,60 +1062,60 @@ static __aicore__ void comb_sinkhorn(__gm__ float* v1, __gm__ float* v2, __gm__ 
       TASSIGN(v291, v292);
       pipe_barrier(PIPE_V);
       TROWSUM(v291, v264, v248);
-      // pto: %row3_rowsum_inline1122__rm_a0_tmp_v6
+      // pto: %row3_rowsum_inline1010__rm_a0_tmp_v6
       ;
       Tile<TileType::Vec, float, 1, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v293 = Tile<TileType::Vec, float, 1, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v27, v32);
-      // pto: %row3_rowsum_inline1122__rm_a0_tmp_v6
+      // pto: %row3_rowsum_inline1010__rm_a0_tmp_v6
       ;
       uint64_t v294 = (uint64_t) v10;
       TASSIGN(v293, v294);
-      // pto: %row3_rowsum_inline1122__row_major_tmp_v7
+      // pto: %row3_rowsum_inline1010__row_major_tmp_v7
       ;
       Tile<TileType::Vec, float, 1, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v295 = Tile<TileType::Vec, float, 1, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v27, v32);
-      // pto: %row3_rowsum_inline1122__row_major_tmp_v7
+      // pto: %row3_rowsum_inline1010__row_major_tmp_v7
       ;
       uint64_t v296 = (uint64_t) v18;
       TASSIGN(v295, v296);
       pipe_barrier(PIPE_V);
       TADDS(v295, v293, v35);
-      // pto: %row3_rowsum_inline1122__ssa_v0
+      // pto: %row3_rowsum_inline1010__ssa_v0
       ;
       Tile<TileType::Vec, float, 8, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v297 = Tile<TileType::Vec, float, 8, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v32, v27);
-      // pto: %row3_rowsum_inline1122__ssa_v0
+      // pto: %row3_rowsum_inline1010__ssa_v0
       ;
       uint64_t v298 = (uint64_t) v18;
       TASSIGN(v297, v298);
-      // pto: %row0_norm_inline1085__ssa_v0
+      // pto: %row0_norm_inline1086__ssa_v0
       ;
       Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null> v299 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null>(v32, v32);
-      // pto: %row0_norm_inline1085__ssa_v0
+      // pto: %row0_norm_inline1086__ssa_v0
       ;
       uint64_t v300 = (uint64_t) v10;
       TASSIGN(v299, v300);
       pipe_barrier(PIPE_V);
       TROWEXPANDDIV(v299, v258, v273);
-      // pto: %row1_norm_inline1123__ssa_v0
+      // pto: %row1_norm_inline1125__ssa_v0
       ;
       Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null> v301 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null>(v32, v32);
-      // pto: %row1_norm_inline1123__ssa_v0
+      // pto: %row1_norm_inline1125__ssa_v0
       ;
       uint64_t v302 = (uint64_t) v15;
       TASSIGN(v301, v302);
       pipe_barrier(PIPE_V);
       TROWEXPANDDIV(v301, v260, v281);
-      // pto: %row2_norm_inline1102__ssa_v0
+      // pto: %row2_norm_inline1129__ssa_v0
       ;
       Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null> v303 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null>(v32, v32);
-      // pto: %row2_norm_inline1102__ssa_v0
+      // pto: %row2_norm_inline1129__ssa_v0
       ;
       uint64_t v304 = (uint64_t) v16;
       TASSIGN(v303, v304);
       pipe_barrier(PIPE_V);
       TROWEXPANDDIV(v303, v262, v289);
-      // pto: %row3_norm_inline1124__ssa_v0
+      // pto: %row3_norm_inline1130__ssa_v0
       ;
       Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null> v305 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null>(v32, v32);
-      // pto: %row3_norm_inline1124__ssa_v0
+      // pto: %row3_norm_inline1130__ssa_v0
       ;
       uint64_t v306 = (uint64_t) v17;
       TASSIGN(v305, v306);
@@ -1138,53 +1138,53 @@ static __aicore__ void comb_sinkhorn(__gm__ float* v1, __gm__ float* v2, __gm__ 
       uint64_t v310 = (uint64_t) v20;
       TASSIGN(v309, v310);
       TADD(v309, v303, v305);
-      // pto: %col_sum_v1_inline1105__ssa_v3
+      // pto: %col_sum_v1_inline1114__ssa_v3
       ;
       Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null> v311 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null>(v32, v32);
-      // pto: %col_sum_v1_inline1105__ssa_v3
+      // pto: %col_sum_v1_inline1114__ssa_v3
       ;
       uint64_t v312 = (uint64_t) v18;
       TASSIGN(v311, v312);
       pipe_barrier(PIPE_V);
       TADD(v311, v307, v309);
-      // pto: %col_sum_v1_inline1105__ssa_v4
+      // pto: %col_sum_v1_inline1114__ssa_v4
       ;
       Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null> v313 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null>(v32, v32);
-      // pto: %col_sum_v1_inline1105__ssa_v4
+      // pto: %col_sum_v1_inline1114__ssa_v4
       ;
       uint64_t v314 = (uint64_t) v18;
       TASSIGN(v313, v314);
       pipe_barrier(PIPE_V);
       TADDS(v313, v311, v35);
-      // pto: %row0_cur_inline1114__ssa_v3
+      // pto: %row0_cur_inline1116__ssa_v3
       ;
       Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null> v315 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null>(v32, v32);
-      // pto: %row0_cur_inline1114__ssa_v3
+      // pto: %row0_cur_inline1116__ssa_v3
       ;
       uint64_t v316 = (uint64_t) v10;
       TASSIGN(v315, v316);
       pipe_barrier(PIPE_V);
       TDIV(v315, v299, v313);
-      // pto: %row1_cur_inline1007__ssa_v3
+      // pto: %row1_cur_inline1118__ssa_v3
       ;
       Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null> v317 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null>(v32, v32);
-      // pto: %row1_cur_inline1007__ssa_v3
+      // pto: %row1_cur_inline1118__ssa_v3
       ;
       uint64_t v318 = (uint64_t) v15;
       TASSIGN(v317, v318);
       TDIV(v317, v301, v313);
-      // pto: %row2_cur_inline1117__ssa_v3
+      // pto: %row2_cur_inline1017__ssa_v3
       ;
       Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null> v319 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null>(v32, v32);
-      // pto: %row2_cur_inline1117__ssa_v3
+      // pto: %row2_cur_inline1017__ssa_v3
       ;
       uint64_t v320 = (uint64_t) v16;
       TASSIGN(v319, v320);
       TDIV(v319, v303, v313);
-      // pto: %row3_cur_inline1118__ssa_v3
+      // pto: %row3_cur_inline1119__ssa_v3
       ;
       Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null> v321 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null>(v32, v32);
-      // pto: %row3_cur_inline1118__ssa_v3
+      // pto: %row3_cur_inline1119__ssa_v3
       ;
       uint64_t v322 = (uint64_t) v17;
       TASSIGN(v321, v322);
@@ -1653,31 +1653,31 @@ static __aicore__ void comb_sinkhorn(__gm__ float* v1, __gm__ float* v2, __gm__ 
     TASSIGN(v433, v434);
     TDIV(v433, v417, v425);
     set_flag(PIPE_V, PIPE_MTE3, EVENT_ID3);
-    // pto: %row0_cur_inline1114__rv_v2
+    // pto: %row0_cur_inline1116__rv_v2
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null> v435 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null>(v32, v32);
-    // pto: %row0_cur_inline1114__rv_v2
+    // pto: %row0_cur_inline1116__rv_v2
     ;
     uint64_t v436 = (uint64_t) v11;
     TASSIGN(v435, v436);
-    // pto: %row1_cur_inline1007__rv_v2
+    // pto: %row1_cur_inline1118__rv_v2
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null> v437 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null>(v32, v32);
-    // pto: %row1_cur_inline1007__rv_v2
+    // pto: %row1_cur_inline1118__rv_v2
     ;
     uint64_t v438 = (uint64_t) v12;
     TASSIGN(v437, v438);
-    // pto: %row2_cur_inline1117__rv_v2
+    // pto: %row2_cur_inline1017__rv_v2
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null> v439 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null>(v32, v32);
-    // pto: %row2_cur_inline1117__rv_v2
+    // pto: %row2_cur_inline1017__rv_v2
     ;
     uint64_t v440 = (uint64_t) v13;
     TASSIGN(v439, v440);
-    // pto: %row3_cur_inline1118__rv_v2
+    // pto: %row3_cur_inline1119__rv_v2
     ;
     Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null> v441 = Tile<TileType::Vec, float, 8, 8, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Zero, CompactMode::Null>(v32, v32);
-    // pto: %row3_cur_inline1118__rv_v2
+    // pto: %row3_cur_inline1119__rv_v2
     ;
     uint64_t v442 = (uint64_t) v14;
     TASSIGN(v441, v442);
@@ -1685,22 +1685,22 @@ static __aicore__ void comb_sinkhorn(__gm__ float* v1, __gm__ float* v2, __gm__ 
     v437.SetValidShape(v32, v34);
     v439.SetValidShape(v32, v34);
     v441.SetValidShape(v32, v34);
-    // pto: %comb_t_inline198__ssa_v0_pview
+    // pto: %comb_t_inline191__ssa_v0_pview
     ;
     __gm__ float* v443 = PTOAS__GLOBAL_TENSOR_DATA(v71);
-    // pto: %comb_t_inline198__ssa_v0_pview
+    // pto: %comb_t_inline191__ssa_v0_pview
     ;
     const int64_t v444 = 0;
-    // pto: %comb_t_inline198__ssa_v0_pview
+    // pto: %comb_t_inline191__ssa_v0_pview
     ;
     const int64_t v445 = 16;
-    // pto: %comb_t_inline198__ssa_v0_pview
+    // pto: %comb_t_inline191__ssa_v0_pview
     ;
     pto::Shape<1, 1, 1, 8, 4> v446 = pto::Shape<1, 1, 1, 8, 4>();
-    // pto: %comb_t_inline198__ssa_v0_pview
+    // pto: %comb_t_inline191__ssa_v0_pview
     ;
     pto::Stride<128, 128, 128, 16, 1> v447 = pto::Stride<128, 128, 128, 16, 1>();
-    // pto: %comb_t_inline198__ssa_v0_pview
+    // pto: %comb_t_inline191__ssa_v0_pview
     ;
     GlobalTensor<float, pto::Shape<1, 1, 1, 8, 4>, pto::Stride<128, 128, 128, 16, 1>, pto::Layout::ND> v448 = GlobalTensor<float, pto::Shape<1, 1, 1, 8, 4>, pto::Stride<128, 128, 128, 16, 1>, pto::Layout::ND>(v443 + (v444 + v76 * v445), v446, v447);
     wait_flag(PIPE_V, PIPE_MTE3, EVENT_ID0);
@@ -1795,35 +1795,35 @@ extern "C" __aicore__ __attribute__((always_inline)) void kernel_entry(__gm__ in
     int32_t __pypto_spmd_block_idx = get_block_idx(args);
     int32_t __pypto_spmd_block_num = get_block_num(args);
 
-    // Unpack tensor: inv_rms_inline1029__rv_v2
-    __gm__ Tensor* inv_rms_inline1029__rv_v2_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
-    __gm__ float* inv_rms_inline1029__rv_v2 = reinterpret_cast<__gm__ float*>(inv_rms_inline1029__rv_v2_tensor->buffer.addr) + inv_rms_inline1029__rv_v2_tensor->start_offset;
+    // Unpack tensor: inv_rms_inline1034__rv_v2
+    __gm__ Tensor* inv_rms_inline1034__rv_v2_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
+    __gm__ float* inv_rms_inline1034__rv_v2 = reinterpret_cast<__gm__ float*>(inv_rms_inline1034__rv_v2_tensor->buffer.addr) + inv_rms_inline1034__rv_v2_tensor->start_offset;
 
-    // Unpack tensor: mixes_raw_inline1058__rv_v2
-    __gm__ Tensor* mixes_raw_inline1058__rv_v2_tensor = reinterpret_cast<__gm__ Tensor*>(args[1]);
-    __gm__ float* mixes_raw_inline1058__rv_v2 = reinterpret_cast<__gm__ float*>(mixes_raw_inline1058__rv_v2_tensor->buffer.addr) + mixes_raw_inline1058__rv_v2_tensor->start_offset;
+    // Unpack tensor: mixes_raw_inline1078__rv_v2
+    __gm__ Tensor* mixes_raw_inline1078__rv_v2_tensor = reinterpret_cast<__gm__ Tensor*>(args[1]);
+    __gm__ float* mixes_raw_inline1078__rv_v2 = reinterpret_cast<__gm__ float*>(mixes_raw_inline1078__rv_v2_tensor->buffer.addr) + mixes_raw_inline1078__rv_v2_tensor->start_offset;
 
-    // Unpack tensor: hc_base_2d_inline1033__ssa_v0
-    __gm__ Tensor* hc_base_2d_inline1033__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[2]);
-    __gm__ float* hc_base_2d_inline1033__ssa_v0 = reinterpret_cast<__gm__ float*>(hc_base_2d_inline1033__ssa_v0_tensor->buffer.addr) + hc_base_2d_inline1033__ssa_v0_tensor->start_offset;
+    // Unpack tensor: hc_base_2d_inline1093__ssa_v0
+    __gm__ Tensor* hc_base_2d_inline1093__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[2]);
+    __gm__ float* hc_base_2d_inline1093__ssa_v0 = reinterpret_cast<__gm__ float*>(hc_base_2d_inline1093__ssa_v0_tensor->buffer.addr) + hc_base_2d_inline1093__ssa_v0_tensor->start_offset;
 
-    // Unpack tensor: comb_t_inline198__ssa_v0
-    __gm__ Tensor* comb_t_inline198__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[3]);
-    __gm__ float* comb_t_inline198__ssa_v0 = reinterpret_cast<__gm__ float*>(comb_t_inline198__ssa_v0_tensor->buffer.addr) + comb_t_inline198__ssa_v0_tensor->start_offset;
+    // Unpack tensor: comb_t_inline191__ssa_v0
+    __gm__ Tensor* comb_t_inline191__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[3]);
+    __gm__ float* comb_t_inline191__ssa_v0 = reinterpret_cast<__gm__ float*>(comb_t_inline191__ssa_v0_tensor->buffer.addr) + comb_t_inline191__ssa_v0_tensor->start_offset;
 
-    // Unpack scalar: t_dim_inline1059__ssa_v0
-    union { uint64_t u64; int64_t val; } t_dim_inline1059__ssa_v0_conv;
-    t_dim_inline1059__ssa_v0_conv.u64 = args[4];
-    int64_t t_dim_inline1059__ssa_v0 = t_dim_inline1059__ssa_v0_conv.val;
+    // Unpack scalar: t_dim_inline1051__ssa_v0
+    union { uint64_t u64; int64_t val; } t_dim_inline1051__ssa_v0_conv;
+    t_dim_inline1051__ssa_v0_conv.u64 = args[4];
+    int64_t t_dim_inline1051__ssa_v0 = t_dim_inline1051__ssa_v0_conv.val;
 
-    // Unpack scalar: scale2_inline1061__ssa_v0
-    union { uint64_t u64; float val; } scale2_inline1061__ssa_v0_conv;
-    scale2_inline1061__ssa_v0_conv.u64 = args[5];
-    float scale2_inline1061__ssa_v0 = scale2_inline1061__ssa_v0_conv.val;
+    // Unpack scalar: scale2_inline1050__ssa_v0
+    union { uint64_t u64; float val; } scale2_inline1050__ssa_v0_conv;
+    scale2_inline1050__ssa_v0_conv.u64 = args[5];
+    float scale2_inline1050__ssa_v0 = scale2_inline1050__ssa_v0_conv.val;
 
     // Extract dynamic dim: t_linear_inline1046__ssa_v0
-    int64_t t_linear_inline1046__ssa_v0 = static_cast<int64_t>(inv_rms_inline1029__rv_v2_tensor->shapes[0]);
+    int64_t t_linear_inline1046__ssa_v0 = static_cast<int64_t>(inv_rms_inline1034__rv_v2_tensor->shapes[0]);
 
     // Forward to ptoas-generated function
-    comb_sinkhorn(inv_rms_inline1029__rv_v2, mixes_raw_inline1058__rv_v2, hc_base_2d_inline1033__ssa_v0, comb_t_inline198__ssa_v0, t_dim_inline1059__ssa_v0, scale2_inline1061__ssa_v0, t_linear_inline1046__ssa_v0, __pypto_spmd_block_idx, __pypto_spmd_block_num);
+    comb_sinkhorn(inv_rms_inline1034__rv_v2, mixes_raw_inline1078__rv_v2, hc_base_2d_inline1093__ssa_v0, comb_t_inline191__ssa_v0, t_dim_inline1051__ssa_v0, scale2_inline1050__ssa_v0, t_linear_inline1046__ssa_v0, __pypto_spmd_block_idx, __pypto_spmd_block_num);
 }

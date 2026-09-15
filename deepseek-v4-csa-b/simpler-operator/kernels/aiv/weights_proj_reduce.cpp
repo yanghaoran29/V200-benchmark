@@ -84,66 +84,66 @@ static __aicore__ void weights_proj_reduce(__gm__ float* v1, __gm__ float* v2) {
   const int64_t v12 = 144;
   // pto: %cst_10
   const float v13 = 0.0110485433f;
-  // pto: %weights_inline1565__ssa_v0_view
+  // pto: %weights_inline1669__ssa_v0_view
   const int64_t v14 = 1;
-  // pto: %weights_inline1565__ssa_v0_view
+  // pto: %weights_inline1669__ssa_v0_view
   const int64_t v15 = 1;
-  // pto: %weights_inline1565__ssa_v0_view
+  // pto: %weights_inline1669__ssa_v0_view
   const int64_t v16 = 1;
-  // pto: %weights_inline1565__ssa_v0_view
+  // pto: %weights_inline1669__ssa_v0_view
   int64_t v17 = v5 * v6;
-  // pto: %weights_inline1565__ssa_v0_view
+  // pto: %weights_inline1669__ssa_v0_view
   int64_t v18 = v16 * v17;
-  // pto: %weights_inline1565__ssa_v0_view
+  // pto: %weights_inline1669__ssa_v0_view
   pto::Shape<1, 1, 1, -1, -1> v19 = pto::Shape<1, 1, 1, -1, -1>(v14, v15, v16, v5, v6);
-  // pto: %weights_inline1565__ssa_v0_view
+  // pto: %weights_inline1669__ssa_v0_view
   pto::Stride<-1, -1, -1, -1, -1> v20 = pto::Stride<-1, -1, -1, -1, -1>(v15 * v18, v18, v17, v6, v7);
-  // pto: %weights_inline1565__ssa_v0_view
+  // pto: %weights_inline1669__ssa_v0_view
   GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v21 = GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v1, v19, v20);
-  // pto: %weights_partial_inline1524__rv_v2_view
+  // pto: %weights_partial_inline1517__rv_v2_view
   const int64_t v22 = 1;
-  // pto: %weights_partial_inline1524__rv_v2_view
+  // pto: %weights_partial_inline1517__rv_v2_view
   const int64_t v23 = 1;
-  // pto: %weights_partial_inline1524__rv_v2_view
+  // pto: %weights_partial_inline1517__rv_v2_view
   const int64_t v24 = 1;
-  // pto: %weights_partial_inline1524__rv_v2_view
+  // pto: %weights_partial_inline1517__rv_v2_view
   int64_t v25 = v8 * v6;
-  // pto: %weights_partial_inline1524__rv_v2_view
+  // pto: %weights_partial_inline1517__rv_v2_view
   int64_t v26 = v24 * v25;
-  // pto: %weights_partial_inline1524__rv_v2_view
+  // pto: %weights_partial_inline1517__rv_v2_view
   pto::Shape<1, 1, 1, -1, -1> v27 = pto::Shape<1, 1, 1, -1, -1>(v22, v23, v24, v8, v6);
-  // pto: %weights_partial_inline1524__rv_v2_view
+  // pto: %weights_partial_inline1517__rv_v2_view
   pto::Stride<-1, -1, -1, -1, -1> v28 = pto::Stride<-1, -1, -1, -1, -1>(v23 * v26, v26, v25, v6, v7);
-  // pto: %weights_partial_inline1524__rv_v2_view
+  // pto: %weights_partial_inline1517__rv_v2_view
   GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v29 = GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v2, v27, v28);
   set_flag(PIPE_MTE3, PIPE_MTE2, EVENT_ID0);
   for (int64_t v30 = v9; v30 < v5; v30 += v10) {
-    // pto: %w_sum_inline1637__tile
+    // pto: %w_sum_inline1564__tile
     ;
     Tile<TileType::Vec, float, 16, 64, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v31 = Tile<TileType::Vec, float, 16, 64, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v10, v6);
-    // pto: %w_sum_inline1637__tile
+    // pto: %w_sum_inline1564__tile
     ;
     uint64_t v32 = (uint64_t) v3;
     TASSIGN(v31, v32);
     // pto: %6
     ;
     int64_t v33 = v30 < v9 ? v9 : v30;
-    // pto: %weights_partial_inline1524__rv_v2_pview
+    // pto: %weights_partial_inline1517__rv_v2_pview
     ;
     __gm__ float* v34 = PTOAS__GLOBAL_TENSOR_DATA(v29);
-    // pto: %weights_partial_inline1524__rv_v2_pview
+    // pto: %weights_partial_inline1517__rv_v2_pview
     ;
     const int64_t v35 = 0;
-    // pto: %weights_partial_inline1524__rv_v2_pview
+    // pto: %weights_partial_inline1517__rv_v2_pview
     ;
     const int64_t v36 = 64;
-    // pto: %weights_partial_inline1524__rv_v2_pview
+    // pto: %weights_partial_inline1517__rv_v2_pview
     ;
     pto::Shape<1, 1, 1, 16, 64> v37 = pto::Shape<1, 1, 1, 16, 64>();
-    // pto: %weights_partial_inline1524__rv_v2_pview
+    // pto: %weights_partial_inline1517__rv_v2_pview
     ;
     pto::Stride<1024, 1024, 1024, 64, 1> v38 = pto::Stride<1024, 1024, 1024, 64, 1>();
-    // pto: %weights_partial_inline1524__rv_v2_pview
+    // pto: %weights_partial_inline1517__rv_v2_pview
     ;
     GlobalTensor<float, pto::Shape<1, 1, 1, 16, 64>, pto::Stride<1024, 1024, 1024, 64, 1>, pto::Layout::ND> v39 = GlobalTensor<float, pto::Shape<1, 1, 1, 16, 64>, pto::Stride<1024, 1024, 1024, 64, 1>, pto::Layout::ND>(v34 + (v35 + v33 * v36), v37, v38);
     wait_flag(PIPE_MTE3, PIPE_MTE2, EVENT_ID0);
@@ -288,22 +288,22 @@ static __aicore__ void weights_proj_reduce(__gm__ float* v1, __gm__ float* v2) {
     pipe_barrier(PIPE_V);
     TMULS(v76, v74, v13);
     set_flag(PIPE_V, PIPE_MTE3, EVENT_ID0);
-    // pto: %weights_inline1565__iter_v1_pview
+    // pto: %weights_inline1669__iter_v1_pview
     ;
     __gm__ float* v78 = PTOAS__GLOBAL_TENSOR_DATA(v21);
-    // pto: %weights_inline1565__iter_v1_pview
+    // pto: %weights_inline1669__iter_v1_pview
     ;
     const int64_t v79 = 0;
-    // pto: %weights_inline1565__iter_v1_pview
+    // pto: %weights_inline1669__iter_v1_pview
     ;
     const int64_t v80 = 64;
-    // pto: %weights_inline1565__iter_v1_pview
+    // pto: %weights_inline1669__iter_v1_pview
     ;
     pto::Shape<1, 1, 1, 16, 64> v81 = pto::Shape<1, 1, 1, 16, 64>();
-    // pto: %weights_inline1565__iter_v1_pview
+    // pto: %weights_inline1669__iter_v1_pview
     ;
     pto::Stride<1024, 1024, 1024, 64, 1> v82 = pto::Stride<1024, 1024, 1024, 64, 1>();
-    // pto: %weights_inline1565__iter_v1_pview
+    // pto: %weights_inline1669__iter_v1_pview
     ;
     GlobalTensor<float, pto::Shape<1, 1, 1, 16, 64>, pto::Stride<1024, 1024, 1024, 64, 1>, pto::Layout::ND> v83 = GlobalTensor<float, pto::Shape<1, 1, 1, 16, 64>, pto::Stride<1024, 1024, 1024, 64, 1>, pto::Layout::ND>(v78 + (v79 + v33 * v80), v81, v82);
     wait_flag(PIPE_V, PIPE_MTE3, EVENT_ID0);
@@ -324,14 +324,14 @@ extern "C" __aicore__ __attribute__((always_inline)) void kernel_entry(__gm__ in
     set_atomic_none();
 #endif
 
-    // Unpack tensor: weights_inline1565__ssa_v0
-    __gm__ Tensor* weights_inline1565__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
-    __gm__ float* weights_inline1565__ssa_v0 = reinterpret_cast<__gm__ float*>(weights_inline1565__ssa_v0_tensor->buffer.addr) + weights_inline1565__ssa_v0_tensor->start_offset;
+    // Unpack tensor: weights_inline1669__ssa_v0
+    __gm__ Tensor* weights_inline1669__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
+    __gm__ float* weights_inline1669__ssa_v0 = reinterpret_cast<__gm__ float*>(weights_inline1669__ssa_v0_tensor->buffer.addr) + weights_inline1669__ssa_v0_tensor->start_offset;
 
-    // Unpack tensor: weights_partial_inline1524__rv_v2
-    __gm__ Tensor* weights_partial_inline1524__rv_v2_tensor = reinterpret_cast<__gm__ Tensor*>(args[1]);
-    __gm__ float* weights_partial_inline1524__rv_v2 = reinterpret_cast<__gm__ float*>(weights_partial_inline1524__rv_v2_tensor->buffer.addr) + weights_partial_inline1524__rv_v2_tensor->start_offset;
+    // Unpack tensor: weights_partial_inline1517__rv_v2
+    __gm__ Tensor* weights_partial_inline1517__rv_v2_tensor = reinterpret_cast<__gm__ Tensor*>(args[1]);
+    __gm__ float* weights_partial_inline1517__rv_v2 = reinterpret_cast<__gm__ float*>(weights_partial_inline1517__rv_v2_tensor->buffer.addr) + weights_partial_inline1517__rv_v2_tensor->start_offset;
 
     // Forward to ptoas-generated function
-    weights_proj_reduce(weights_inline1565__ssa_v0, weights_partial_inline1524__rv_v2);
+    weights_proj_reduce(weights_inline1669__ssa_v0, weights_partial_inline1517__rv_v2);
 }

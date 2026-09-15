@@ -98,87 +98,87 @@ static __aicore__ void qr_rope(__gm__ bfloat16_t* v1, __gm__ int32_t* v2, __gm__
   const int64_t v24 = 16;
   // pto: %c0_index
   const int64_t v25 = 0;
-  // pto: %qr_bf16_inline1611__ssa_v0_view
+  // pto: %qr_bf16_inline1681__ssa_v0_view
   const int64_t v26 = 1;
-  // pto: %qr_bf16_inline1611__ssa_v0_view
+  // pto: %qr_bf16_inline1681__ssa_v0_view
   const int64_t v27 = 1;
-  // pto: %qr_bf16_inline1611__ssa_v0_view
+  // pto: %qr_bf16_inline1681__ssa_v0_view
   const int64_t v28 = 1;
-  // pto: %qr_bf16_inline1611__ssa_v0_view
+  // pto: %qr_bf16_inline1681__ssa_v0_view
   int64_t v29 = v17 * v18;
-  // pto: %qr_bf16_inline1611__ssa_v0_view
+  // pto: %qr_bf16_inline1681__ssa_v0_view
   int64_t v30 = v28 * v29;
-  // pto: %qr_bf16_inline1611__ssa_v0_view
+  // pto: %qr_bf16_inline1681__ssa_v0_view
   pto::Shape<1, 1, 1, -1, -1> v31 = pto::Shape<1, 1, 1, -1, -1>(v26, v27, v28, v17, v18);
-  // pto: %qr_bf16_inline1611__ssa_v0_view
+  // pto: %qr_bf16_inline1681__ssa_v0_view
   pto::Stride<-1, -1, -1, -1, -1> v32 = pto::Stride<-1, -1, -1, -1, -1>(v27 * v30, v30, v29, v18, v19);
-  // pto: %qr_bf16_inline1611__ssa_v0_view
+  // pto: %qr_bf16_inline1681__ssa_v0_view
   GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v33 = GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v1, v31, v32);
-  // pto: %rope_swap_idx_t_inline1557__ssa_v1_view
+  // pto: %rope_swap_idx_t_inline1592__ssa_v1_view
   const int64_t v34 = 1;
-  // pto: %rope_swap_idx_t_inline1557__ssa_v1_view
+  // pto: %rope_swap_idx_t_inline1592__ssa_v1_view
   const int64_t v35 = 1;
-  // pto: %rope_swap_idx_t_inline1557__ssa_v1_view
+  // pto: %rope_swap_idx_t_inline1592__ssa_v1_view
   const int64_t v36 = 1;
-  // pto: %rope_swap_idx_t_inline1557__ssa_v1_view
+  // pto: %rope_swap_idx_t_inline1592__ssa_v1_view
   int64_t v37 = v20 * v21;
-  // pto: %rope_swap_idx_t_inline1557__ssa_v1_view
+  // pto: %rope_swap_idx_t_inline1592__ssa_v1_view
   int64_t v38 = v36 * v37;
-  // pto: %rope_swap_idx_t_inline1557__ssa_v1_view
+  // pto: %rope_swap_idx_t_inline1592__ssa_v1_view
   pto::Shape<1, 1, 1, -1, -1> v39 = pto::Shape<1, 1, 1, -1, -1>(v34, v35, v36, v20, v21);
-  // pto: %rope_swap_idx_t_inline1557__ssa_v1_view
+  // pto: %rope_swap_idx_t_inline1592__ssa_v1_view
   pto::Stride<-1, -1, -1, -1, -1> v40 = pto::Stride<-1, -1, -1, -1, -1>(v35 * v38, v38, v37, v21, v19);
-  // pto: %rope_swap_idx_t_inline1557__ssa_v1_view
+  // pto: %rope_swap_idx_t_inline1592__ssa_v1_view
   GlobalTensor<int32_t, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v41 = GlobalTensor<int32_t, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v2, v39, v40);
-  // pto: %step_cos_il_inline215__ssa_v1_view
+  // pto: %step_cos_il_inline214__ssa_v1_view
   const int64_t v42 = 1;
-  // pto: %step_cos_il_inline215__ssa_v1_view
+  // pto: %step_cos_il_inline214__ssa_v1_view
   const int64_t v43 = 1;
-  // pto: %step_cos_il_inline215__ssa_v1_view
+  // pto: %step_cos_il_inline214__ssa_v1_view
   const int64_t v44 = 1;
-  // pto: %step_cos_il_inline215__ssa_v1_view
+  // pto: %step_cos_il_inline214__ssa_v1_view
   int64_t v45 = v22 * v21;
-  // pto: %step_cos_il_inline215__ssa_v1_view
+  // pto: %step_cos_il_inline214__ssa_v1_view
   int64_t v46 = v44 * v45;
-  // pto: %step_cos_il_inline215__ssa_v1_view
+  // pto: %step_cos_il_inline214__ssa_v1_view
   pto::Shape<1, 1, 1, -1, -1> v47 = pto::Shape<1, 1, 1, -1, -1>(v42, v43, v44, v22, v21);
-  // pto: %step_cos_il_inline215__ssa_v1_view
+  // pto: %step_cos_il_inline214__ssa_v1_view
   pto::Stride<-1, -1, -1, -1, -1> v48 = pto::Stride<-1, -1, -1, -1, -1>(v43 * v46, v46, v45, v21, v19);
-  // pto: %step_cos_il_inline215__ssa_v1_view
+  // pto: %step_cos_il_inline214__ssa_v1_view
   GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v49 = GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v3, v47, v48);
-  // pto: %step_sin_signed_inline191__ssa_v1_view
+  // pto: %step_sin_signed_inline195__ssa_v1_view
   const int64_t v50 = 1;
-  // pto: %step_sin_signed_inline191__ssa_v1_view
+  // pto: %step_sin_signed_inline195__ssa_v1_view
   const int64_t v51 = 1;
-  // pto: %step_sin_signed_inline191__ssa_v1_view
+  // pto: %step_sin_signed_inline195__ssa_v1_view
   const int64_t v52 = 1;
-  // pto: %step_sin_signed_inline191__ssa_v1_view
+  // pto: %step_sin_signed_inline195__ssa_v1_view
   int64_t v53 = v22 * v21;
-  // pto: %step_sin_signed_inline191__ssa_v1_view
+  // pto: %step_sin_signed_inline195__ssa_v1_view
   int64_t v54 = v52 * v53;
-  // pto: %step_sin_signed_inline191__ssa_v1_view
+  // pto: %step_sin_signed_inline195__ssa_v1_view
   pto::Shape<1, 1, 1, -1, -1> v55 = pto::Shape<1, 1, 1, -1, -1>(v50, v51, v52, v22, v21);
-  // pto: %step_sin_signed_inline191__ssa_v1_view
+  // pto: %step_sin_signed_inline195__ssa_v1_view
   pto::Stride<-1, -1, -1, -1, -1> v56 = pto::Stride<-1, -1, -1, -1, -1>(v51 * v54, v54, v53, v21, v19);
-  // pto: %step_sin_signed_inline191__ssa_v1_view
+  // pto: %step_sin_signed_inline195__ssa_v1_view
   GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v57 = GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v4, v55, v56);
-  // pto: %qr_proj_flat_inline1537__ssa_v0_view
+  // pto: %qr_proj_flat_inline1606__ssa_v0_view
   const int64_t v58 = 1;
-  // pto: %qr_proj_flat_inline1537__ssa_v0_view
+  // pto: %qr_proj_flat_inline1606__ssa_v0_view
   const int64_t v59 = 1;
-  // pto: %qr_proj_flat_inline1537__ssa_v0_view
+  // pto: %qr_proj_flat_inline1606__ssa_v0_view
   const int64_t v60 = 1;
-  // pto: %qr_proj_flat_inline1537__ssa_v0_view
+  // pto: %qr_proj_flat_inline1606__ssa_v0_view
   int64_t v61 = v17 * v18;
-  // pto: %qr_proj_flat_inline1537__ssa_v0_view
+  // pto: %qr_proj_flat_inline1606__ssa_v0_view
   int64_t v62 = v60 * v61;
-  // pto: %qr_proj_flat_inline1537__ssa_v0_view
+  // pto: %qr_proj_flat_inline1606__ssa_v0_view
   pto::Shape<1, 1, 1, -1, -1> v63 = pto::Shape<1, 1, 1, -1, -1>(v58, v59, v60, v17, v18);
-  // pto: %qr_proj_flat_inline1537__ssa_v0_view
+  // pto: %qr_proj_flat_inline1606__ssa_v0_view
   pto::Stride<-1, -1, -1, -1, -1> v64 = pto::Stride<-1, -1, -1, -1, -1>(v59 * v62, v62, v61, v18, v19);
-  // pto: %qr_proj_flat_inline1537__ssa_v0_view
+  // pto: %qr_proj_flat_inline1606__ssa_v0_view
   GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v65 = GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v5, v63, v64);
-  // pto: %idx_lane_inline1566__ssa_v0
+  // pto: %idx_lane_inline1546__ssa_v0
   set_flag(PIPE_MTE3, PIPE_MTE2, EVENT_ID0);
   for (int64_t v66 = (int64_t) v6; v66 < v23; v66 += v24) {
     // pto: %3
@@ -187,115 +187,115 @@ static __aicore__ void qr_rope(__gm__ bfloat16_t* v1, __gm__ int32_t* v2, __gm__
     // pto: %4
     ;
     int64_t v68 = v67 / v18;
-    // pto: %rope_swap_idx_inline1579__tile
+    // pto: %rope_swap_idx_inline1628__tile
     ;
     Tile<TileType::Vec, int32_t, 32, 64, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v69 = Tile<TileType::Vec, int32_t, 32, 64, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v20, v21);
-    // pto: %rope_swap_idx_inline1579__tile
+    // pto: %rope_swap_idx_inline1628__tile
     ;
     uint64_t v70 = (uint64_t) v9;
     TASSIGN(v69, v70);
-    // pto: %rope_swap_idx_t_inline1557__ssa_v1_pview
+    // pto: %rope_swap_idx_t_inline1592__ssa_v1_pview
     ;
     __gm__ int32_t* v71 = PTOAS__GLOBAL_TENSOR_DATA(v41);
-    // pto: %rope_swap_idx_t_inline1557__ssa_v1_pview
+    // pto: %rope_swap_idx_t_inline1592__ssa_v1_pview
     ;
     pto::Shape<1, 1, 1, 32, 64> v72 = pto::Shape<1, 1, 1, 32, 64>();
-    // pto: %rope_swap_idx_t_inline1557__ssa_v1_pview
+    // pto: %rope_swap_idx_t_inline1592__ssa_v1_pview
     ;
     pto::Stride<2048, 2048, 2048, 64, 1> v73 = pto::Stride<2048, 2048, 2048, 64, 1>();
-    // pto: %rope_swap_idx_t_inline1557__ssa_v1_pview
+    // pto: %rope_swap_idx_t_inline1592__ssa_v1_pview
     ;
     GlobalTensor<int32_t, pto::Shape<1, 1, 1, 32, 64>, pto::Stride<2048, 2048, 2048, 64, 1>, pto::Layout::ND> v74 = GlobalTensor<int32_t, pto::Shape<1, 1, 1, 32, 64>, pto::Stride<2048, 2048, 2048, 64, 1>, pto::Layout::ND>(v71, v72, v73);
     wait_flag(PIPE_MTE3, PIPE_MTE2, EVENT_ID0);
     TLOAD(v69, v74);
-    // pto: %cos_row_inline1577__tile
+    // pto: %cos_row_inline1629__tile
     ;
     Tile<TileType::Vec, float, 1, 64, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v75 = Tile<TileType::Vec, float, 1, 64, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v19, v21);
-    // pto: %cos_row_inline1577__tile
+    // pto: %cos_row_inline1629__tile
     ;
     uint64_t v76 = (uint64_t) v10;
     TASSIGN(v75, v76);
     // pto: %5
     ;
     int64_t v77 = v68 < v25 ? v25 : v68;
-    // pto: %step_cos_il_inline215__ssa_v1_pview
+    // pto: %step_cos_il_inline214__ssa_v1_pview
     ;
     __gm__ float* v78 = PTOAS__GLOBAL_TENSOR_DATA(v49);
-    // pto: %step_cos_il_inline215__ssa_v1_pview
+    // pto: %step_cos_il_inline214__ssa_v1_pview
     ;
     const int64_t v79 = 0;
-    // pto: %step_cos_il_inline215__ssa_v1_pview
+    // pto: %step_cos_il_inline214__ssa_v1_pview
     ;
     const int64_t v80 = 64;
-    // pto: %step_cos_il_inline215__ssa_v1_pview
+    // pto: %step_cos_il_inline214__ssa_v1_pview
     ;
     pto::Shape<1, 1, 1, 1, 64> v81 = pto::Shape<1, 1, 1, 1, 64>();
-    // pto: %step_cos_il_inline215__ssa_v1_pview
+    // pto: %step_cos_il_inline214__ssa_v1_pview
     ;
     pto::Stride<64, 64, 64, 64, 1> v82 = pto::Stride<64, 64, 64, 64, 1>();
-    // pto: %step_cos_il_inline215__ssa_v1_pview
+    // pto: %step_cos_il_inline214__ssa_v1_pview
     ;
     GlobalTensor<float, pto::Shape<1, 1, 1, 1, 64>, pto::Stride<64, 64, 64, 64, 1>, pto::Layout::ND> v83 = GlobalTensor<float, pto::Shape<1, 1, 1, 1, 64>, pto::Stride<64, 64, 64, 64, 1>, pto::Layout::ND>(v78 + (v79 + v77 * v80), v81, v82);
     TLOAD(v75, v83);
-    // pto: %sin_row_inline1610__tile
+    // pto: %sin_row_inline1667__tile
     ;
     Tile<TileType::Vec, float, 1, 64, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v84 = Tile<TileType::Vec, float, 1, 64, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v19, v21);
-    // pto: %sin_row_inline1610__tile
+    // pto: %sin_row_inline1667__tile
     ;
     uint64_t v85 = (uint64_t) v11;
     TASSIGN(v84, v85);
-    // pto: %step_sin_signed_inline191__ssa_v1_pview
+    // pto: %step_sin_signed_inline195__ssa_v1_pview
     ;
     __gm__ float* v86 = PTOAS__GLOBAL_TENSOR_DATA(v57);
-    // pto: %step_sin_signed_inline191__ssa_v1_pview
+    // pto: %step_sin_signed_inline195__ssa_v1_pview
     ;
     const int64_t v87 = 0;
-    // pto: %step_sin_signed_inline191__ssa_v1_pview
+    // pto: %step_sin_signed_inline195__ssa_v1_pview
     ;
     const int64_t v88 = 64;
-    // pto: %step_sin_signed_inline191__ssa_v1_pview
+    // pto: %step_sin_signed_inline195__ssa_v1_pview
     ;
     pto::Shape<1, 1, 1, 1, 64> v89 = pto::Shape<1, 1, 1, 1, 64>();
-    // pto: %step_sin_signed_inline191__ssa_v1_pview
+    // pto: %step_sin_signed_inline195__ssa_v1_pview
     ;
     pto::Stride<64, 64, 64, 64, 1> v90 = pto::Stride<64, 64, 64, 64, 1>();
-    // pto: %step_sin_signed_inline191__ssa_v1_pview
+    // pto: %step_sin_signed_inline195__ssa_v1_pview
     ;
     GlobalTensor<float, pto::Shape<1, 1, 1, 1, 64>, pto::Stride<64, 64, 64, 64, 1>, pto::Layout::ND> v91 = GlobalTensor<float, pto::Shape<1, 1, 1, 1, 64>, pto::Stride<64, 64, 64, 64, 1>, pto::Layout::ND>(v86 + (v87 + v77 * v88), v89, v90);
     TLOAD(v84, v91);
-    // pto: %qr_nope_slice_inline1687__tile
+    // pto: %qr_nope_slice_inline1576__tile
     ;
     Tile<TileType::Vec, float, 32, 64, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v92 = Tile<TileType::Vec, float, 32, 64, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v20, v21);
-    // pto: %qr_nope_slice_inline1687__tile
+    // pto: %qr_nope_slice_inline1576__tile
     ;
     uint64_t v93 = (uint64_t) v12;
     TASSIGN(v92, v93);
     // pto: %7
     ;
     int64_t v94 = v67 < v25 ? v25 : v67;
-    // pto: %qr_proj_flat_inline1537__ssa_v0_pview
+    // pto: %qr_proj_flat_inline1606__ssa_v0_pview
     ;
     __gm__ float* v95 = PTOAS__GLOBAL_TENSOR_DATA(v65);
-    // pto: %qr_proj_flat_inline1537__ssa_v0_pview
+    // pto: %qr_proj_flat_inline1606__ssa_v0_pview
     ;
     const int64_t v96 = 0;
-    // pto: %qr_proj_flat_inline1537__ssa_v0_pview
+    // pto: %qr_proj_flat_inline1606__ssa_v0_pview
     ;
     const int64_t v97 = 128;
-    // pto: %qr_proj_flat_inline1537__ssa_v0_pview
+    // pto: %qr_proj_flat_inline1606__ssa_v0_pview
     ;
     pto::Shape<1, 1, 1, 32, 64> v98 = pto::Shape<1, 1, 1, 32, 64>();
-    // pto: %qr_proj_flat_inline1537__ssa_v0_pview
+    // pto: %qr_proj_flat_inline1606__ssa_v0_pview
     ;
     pto::Stride<4096, 4096, 4096, 128, 1> v99 = pto::Stride<4096, 4096, 4096, 128, 1>();
-    // pto: %qr_proj_flat_inline1537__ssa_v0_pview
+    // pto: %qr_proj_flat_inline1606__ssa_v0_pview
     ;
     GlobalTensor<float, pto::Shape<1, 1, 1, 32, 64>, pto::Stride<4096, 4096, 4096, 128, 1>, pto::Layout::ND> v100 = GlobalTensor<float, pto::Shape<1, 1, 1, 32, 64>, pto::Stride<4096, 4096, 4096, 128, 1>, pto::Layout::ND>(v95 + (v96 + v94 * v97), v98, v99);
     TLOAD(v92, v100);
-    // pto: %qr_rope_slice_inline1638__tile
+    // pto: %qr_rope_slice_inline1571__tile
     ;
     Tile<TileType::Vec, float, 32, 64, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v101 = Tile<TileType::Vec, float, 32, 64, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v20, v21);
-    // pto: %qr_rope_slice_inline1638__tile
+    // pto: %qr_rope_slice_inline1571__tile
     ;
     uint64_t v102 = (uint64_t) v13;
     TASSIGN(v101, v102);
@@ -385,10 +385,10 @@ static __aicore__ void qr_rope(__gm__ bfloat16_t* v1, __gm__ int32_t* v2, __gm__
       pipe_barrier(PIPE_V);
       TMOV(v125, v123);
     };
-    // pto: %qr_swapped_inline1550__tile
+    // pto: %qr_swapped_inline1568__tile
     ;
     Tile<TileType::Vec, float, 32, 64, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v127 = Tile<TileType::Vec, float, 32, 64, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v20, v21);
-    // pto: %qr_swapped_inline1550__tile
+    // pto: %qr_swapped_inline1568__tile
     ;
     uint64_t v128 = (uint64_t) v14;
     TASSIGN(v127, v128);
@@ -409,10 +409,10 @@ static __aicore__ void qr_rope(__gm__ bfloat16_t* v1, __gm__ int32_t* v2, __gm__
     TASSIGN(v131, v132);
     pipe_barrier(PIPE_V);
     TCOLEXPANDMUL(v131, v127, v84);
-    // pto: %rope_rot_inline1570__tile
+    // pto: %rope_rot_inline1567__tile
     ;
     Tile<TileType::Vec, float, 32, 64, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v133 = Tile<TileType::Vec, float, 32, 64, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v20, v21);
-    // pto: %rope_rot_inline1570__tile
+    // pto: %rope_rot_inline1567__tile
     ;
     uint64_t v134 = (uint64_t) v9;
     TASSIGN(v133, v134);
@@ -439,32 +439,32 @@ static __aicore__ void qr_rope(__gm__ bfloat16_t* v1, __gm__ int32_t* v2, __gm__
     RoundMode v141 = RoundMode::CAST_RINT;
     SaturationMode v142 = SaturationMode::OFF;
     TCVT(v139, v133, v141, v142);
-    // pto: %qr_vec_inline1614__tile
+    // pto: %qr_vec_inline1565__tile
     ;
     Tile<TileType::Vec, bfloat16_t, 32, 128, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v143 = Tile<TileType::Vec, bfloat16_t, 32, 128, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v20, v18);
-    // pto: %qr_vec_inline1614__tile
+    // pto: %qr_vec_inline1565__tile
     ;
     uint64_t v144 = (uint64_t) v9;
     TASSIGN(v143, v144);
     pipe_barrier(PIPE_V);
     TCONCAT(v143, v135, v139);
     set_flag(PIPE_V, PIPE_MTE3, EVENT_ID0);
-    // pto: %qr_bf16_inline1611__iter_v1_pview
+    // pto: %qr_bf16_inline1681__iter_v1_pview
     ;
     __gm__ bfloat16_t* v145 = PTOAS__GLOBAL_TENSOR_DATA(v33);
-    // pto: %qr_bf16_inline1611__iter_v1_pview
+    // pto: %qr_bf16_inline1681__iter_v1_pview
     ;
     const int64_t v146 = 0;
-    // pto: %qr_bf16_inline1611__iter_v1_pview
+    // pto: %qr_bf16_inline1681__iter_v1_pview
     ;
     const int64_t v147 = 128;
-    // pto: %qr_bf16_inline1611__iter_v1_pview
+    // pto: %qr_bf16_inline1681__iter_v1_pview
     ;
     pto::Shape<1, 1, 1, 32, 128> v148 = pto::Shape<1, 1, 1, 32, 128>();
-    // pto: %qr_bf16_inline1611__iter_v1_pview
+    // pto: %qr_bf16_inline1681__iter_v1_pview
     ;
     pto::Stride<4096, 4096, 4096, 128, 1> v149 = pto::Stride<4096, 4096, 4096, 128, 1>();
-    // pto: %qr_bf16_inline1611__iter_v1_pview
+    // pto: %qr_bf16_inline1681__iter_v1_pview
     ;
     GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, 32, 128>, pto::Stride<4096, 4096, 4096, 128, 1>, pto::Layout::ND> v150 = GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, 32, 128>, pto::Stride<4096, 4096, 4096, 128, 1>, pto::Layout::ND>(v145 + (v146 + v94 * v147), v148, v149);
     wait_flag(PIPE_V, PIPE_MTE3, EVENT_ID0);
@@ -489,26 +489,26 @@ extern "C" __aicore__ __attribute__((always_inline)) void kernel_entry(__gm__ in
     int32_t __pypto_spmd_block_idx = get_block_idx(args);
     int32_t __pypto_spmd_block_num = get_block_num(args);
 
-    // Unpack tensor: qr_bf16_inline1611__ssa_v0
-    __gm__ Tensor* qr_bf16_inline1611__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
-    __gm__ bfloat16_t* qr_bf16_inline1611__ssa_v0 = reinterpret_cast<__gm__ bfloat16_t*>(qr_bf16_inline1611__ssa_v0_tensor->buffer.addr) + qr_bf16_inline1611__ssa_v0_tensor->start_offset;
+    // Unpack tensor: qr_bf16_inline1681__ssa_v0
+    __gm__ Tensor* qr_bf16_inline1681__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
+    __gm__ bfloat16_t* qr_bf16_inline1681__ssa_v0 = reinterpret_cast<__gm__ bfloat16_t*>(qr_bf16_inline1681__ssa_v0_tensor->buffer.addr) + qr_bf16_inline1681__ssa_v0_tensor->start_offset;
 
-    // Unpack tensor: rope_swap_idx_t_inline1557__ssa_v1
-    __gm__ Tensor* rope_swap_idx_t_inline1557__ssa_v1_tensor = reinterpret_cast<__gm__ Tensor*>(args[1]);
-    __gm__ int32_t* rope_swap_idx_t_inline1557__ssa_v1 = reinterpret_cast<__gm__ int32_t*>(rope_swap_idx_t_inline1557__ssa_v1_tensor->buffer.addr) + rope_swap_idx_t_inline1557__ssa_v1_tensor->start_offset;
+    // Unpack tensor: rope_swap_idx_t_inline1592__ssa_v1
+    __gm__ Tensor* rope_swap_idx_t_inline1592__ssa_v1_tensor = reinterpret_cast<__gm__ Tensor*>(args[1]);
+    __gm__ int32_t* rope_swap_idx_t_inline1592__ssa_v1 = reinterpret_cast<__gm__ int32_t*>(rope_swap_idx_t_inline1592__ssa_v1_tensor->buffer.addr) + rope_swap_idx_t_inline1592__ssa_v1_tensor->start_offset;
 
-    // Unpack tensor: step_cos_il_inline215__ssa_v1
-    __gm__ Tensor* step_cos_il_inline215__ssa_v1_tensor = reinterpret_cast<__gm__ Tensor*>(args[2]);
-    __gm__ float* step_cos_il_inline215__ssa_v1 = reinterpret_cast<__gm__ float*>(step_cos_il_inline215__ssa_v1_tensor->buffer.addr) + step_cos_il_inline215__ssa_v1_tensor->start_offset;
+    // Unpack tensor: step_cos_il_inline214__ssa_v1
+    __gm__ Tensor* step_cos_il_inline214__ssa_v1_tensor = reinterpret_cast<__gm__ Tensor*>(args[2]);
+    __gm__ float* step_cos_il_inline214__ssa_v1 = reinterpret_cast<__gm__ float*>(step_cos_il_inline214__ssa_v1_tensor->buffer.addr) + step_cos_il_inline214__ssa_v1_tensor->start_offset;
 
-    // Unpack tensor: step_sin_signed_inline191__ssa_v1
-    __gm__ Tensor* step_sin_signed_inline191__ssa_v1_tensor = reinterpret_cast<__gm__ Tensor*>(args[3]);
-    __gm__ float* step_sin_signed_inline191__ssa_v1 = reinterpret_cast<__gm__ float*>(step_sin_signed_inline191__ssa_v1_tensor->buffer.addr) + step_sin_signed_inline191__ssa_v1_tensor->start_offset;
+    // Unpack tensor: step_sin_signed_inline195__ssa_v1
+    __gm__ Tensor* step_sin_signed_inline195__ssa_v1_tensor = reinterpret_cast<__gm__ Tensor*>(args[3]);
+    __gm__ float* step_sin_signed_inline195__ssa_v1 = reinterpret_cast<__gm__ float*>(step_sin_signed_inline195__ssa_v1_tensor->buffer.addr) + step_sin_signed_inline195__ssa_v1_tensor->start_offset;
 
-    // Unpack tensor: qr_proj_flat_inline1537__ssa_v0
-    __gm__ Tensor* qr_proj_flat_inline1537__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[4]);
-    __gm__ float* qr_proj_flat_inline1537__ssa_v0 = reinterpret_cast<__gm__ float*>(qr_proj_flat_inline1537__ssa_v0_tensor->buffer.addr) + qr_proj_flat_inline1537__ssa_v0_tensor->start_offset;
+    // Unpack tensor: qr_proj_flat_inline1606__ssa_v0
+    __gm__ Tensor* qr_proj_flat_inline1606__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[4]);
+    __gm__ float* qr_proj_flat_inline1606__ssa_v0 = reinterpret_cast<__gm__ float*>(qr_proj_flat_inline1606__ssa_v0_tensor->buffer.addr) + qr_proj_flat_inline1606__ssa_v0_tensor->start_offset;
 
     // Forward to ptoas-generated function
-    qr_rope(qr_bf16_inline1611__ssa_v0, rope_swap_idx_t_inline1557__ssa_v1, step_cos_il_inline215__ssa_v1, step_sin_signed_inline191__ssa_v1, qr_proj_flat_inline1537__ssa_v0, __pypto_spmd_block_idx, __pypto_spmd_block_num);
+    qr_rope(qr_bf16_inline1681__ssa_v0, rope_swap_idx_t_inline1592__ssa_v1, step_cos_il_inline214__ssa_v1, step_sin_signed_inline195__ssa_v1, qr_proj_flat_inline1606__ssa_v0, __pypto_spmd_block_idx, __pypto_spmd_block_num);
 }

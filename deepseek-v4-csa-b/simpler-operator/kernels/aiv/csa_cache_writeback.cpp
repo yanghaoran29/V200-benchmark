@@ -81,21 +81,21 @@ static __aicore__ void csa_cache_writeback(__gm__ bfloat16_t* v1, __gm__ int64_t
   const int64_t v14 = 128;
   // pto: %7
   int64_t v15 = (int64_t) ((uint64_t) v4 * (uint64_t) v14);
-  // pto: %kv_cache_flat_inline178__ssa_v0_view
+  // pto: %kv_cache_flat_inline179__ssa_v0_view
   const int64_t v16 = 1;
-  // pto: %kv_cache_flat_inline178__ssa_v0_view
+  // pto: %kv_cache_flat_inline179__ssa_v0_view
   const int64_t v17 = 1;
-  // pto: %kv_cache_flat_inline178__ssa_v0_view
+  // pto: %kv_cache_flat_inline179__ssa_v0_view
   const int64_t v18 = 1;
-  // pto: %kv_cache_flat_inline178__ssa_v0_view
+  // pto: %kv_cache_flat_inline179__ssa_v0_view
   int64_t v19 = v15 * v8;
-  // pto: %kv_cache_flat_inline178__ssa_v0_view
+  // pto: %kv_cache_flat_inline179__ssa_v0_view
   int64_t v20 = v18 * v19;
-  // pto: %kv_cache_flat_inline178__ssa_v0_view
+  // pto: %kv_cache_flat_inline179__ssa_v0_view
   pto::Shape<1, 1, 1, -1, -1> v21 = pto::Shape<1, 1, 1, -1, -1>(v16, v17, v18, v15, v8);
-  // pto: %kv_cache_flat_inline178__ssa_v0_view
+  // pto: %kv_cache_flat_inline179__ssa_v0_view
   pto::Stride<-1, -1, -1, -1, -1> v22 = pto::Stride<-1, -1, -1, -1, -1>(v17 * v20, v20, v19, v8, v9);
-  // pto: %kv_cache_flat_inline178__ssa_v0_view
+  // pto: %kv_cache_flat_inline179__ssa_v0_view
   GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v23 = GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v1, v21, v22);
   // pto: %kv_inline183__ssa_v0_view
   const int64_t v24 = 1;
@@ -120,7 +120,7 @@ static __aicore__ void csa_cache_writeback(__gm__ bfloat16_t* v1, __gm__ int64_t
       // pto: %0, %1
       ;
       int64_t v34 = (int64_t) ((uint64_t) ((int64_t) (uint64_t) v32 * (uint64_t) v12) + (uint64_t) v33);
-      // pto: %write_row_i64_inline196__tile
+      // pto: %write_row_i64_inline176__tile
       ;
       int64_t v35 = (v2)[v34];
       // pto: %3
@@ -160,22 +160,22 @@ static __aicore__ void csa_cache_writeback(__gm__ bfloat16_t* v1, __gm__ int64_t
         // pto: %6
         ;
         int64_t v45 = v35 < v13 ? v13 : v35;
-        // pto: %kv_cache_flat_inline178__iter_v3_pview
+        // pto: %kv_cache_flat_inline179__iter_v3_pview
         ;
         __gm__ bfloat16_t* v46 = PTOAS__GLOBAL_TENSOR_DATA(v23);
-        // pto: %kv_cache_flat_inline178__iter_v3_pview
+        // pto: %kv_cache_flat_inline179__iter_v3_pview
         ;
         const int64_t v47 = 0;
-        // pto: %kv_cache_flat_inline178__iter_v3_pview
+        // pto: %kv_cache_flat_inline179__iter_v3_pview
         ;
         const int64_t v48 = 512;
-        // pto: %kv_cache_flat_inline178__iter_v3_pview
+        // pto: %kv_cache_flat_inline179__iter_v3_pview
         ;
         pto::Shape<1, 1, 1, 1, 512> v49 = pto::Shape<1, 1, 1, 1, 512>();
-        // pto: %kv_cache_flat_inline178__iter_v3_pview
+        // pto: %kv_cache_flat_inline179__iter_v3_pview
         ;
         pto::Stride<512, 512, 512, 512, 1> v50 = pto::Stride<512, 512, 512, 512, 1>();
-        // pto: %kv_cache_flat_inline178__iter_v3_pview
+        // pto: %kv_cache_flat_inline179__iter_v3_pview
         ;
         GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, 1, 512>, pto::Stride<512, 512, 512, 512, 1>, pto::Layout::ND> v51 = GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, 1, 512>, pto::Stride<512, 512, 512, 512, 1>, pto::Layout::ND>(v46 + (v47 + v45 * v48), v49, v50);
         wait_flag(PIPE_MTE2, PIPE_MTE3, EVENT_ID0);
@@ -202,9 +202,9 @@ extern "C" __aicore__ __attribute__((always_inline)) void kernel_entry(__gm__ in
     int32_t __pypto_spmd_block_idx = get_block_idx(args);
     int32_t __pypto_spmd_block_num = get_block_num(args);
 
-    // Unpack tensor: kv_cache_flat_inline178__ssa_v0
-    __gm__ Tensor* kv_cache_flat_inline178__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
-    __gm__ bfloat16_t* kv_cache_flat_inline178__ssa_v0 = reinterpret_cast<__gm__ bfloat16_t*>(kv_cache_flat_inline178__ssa_v0_tensor->buffer.addr) + kv_cache_flat_inline178__ssa_v0_tensor->start_offset;
+    // Unpack tensor: kv_cache_flat_inline179__ssa_v0
+    __gm__ Tensor* kv_cache_flat_inline179__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
+    __gm__ bfloat16_t* kv_cache_flat_inline179__ssa_v0 = reinterpret_cast<__gm__ bfloat16_t*>(kv_cache_flat_inline179__ssa_v0_tensor->buffer.addr) + kv_cache_flat_inline179__ssa_v0_tensor->start_offset;
 
     // Unpack tensor: ori_slot_mapping__ssa_v0
     __gm__ Tensor* ori_slot_mapping__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[1]);
@@ -214,9 +214,9 @@ extern "C" __aicore__ __attribute__((always_inline)) void kernel_entry(__gm__ in
     __gm__ Tensor* kv_inline183__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[2]);
     __gm__ bfloat16_t* kv_inline183__ssa_v0 = reinterpret_cast<__gm__ bfloat16_t*>(kv_inline183__ssa_v0_tensor->buffer.addr) + kv_inline183__ssa_v0_tensor->start_offset;
 
-    // Extract dynamic dim: ori_block_num_inline179__ssa_v0
-    int64_t ori_block_num_inline179__ssa_v0 = (static_cast<int64_t>(kv_cache_flat_inline178__ssa_v0_tensor->shapes[0]) / 128);
+    // Extract dynamic dim: ori_block_num_inline180__ssa_v0
+    int64_t ori_block_num_inline180__ssa_v0 = (static_cast<int64_t>(kv_cache_flat_inline179__ssa_v0_tensor->shapes[0]) / 128);
 
     // Forward to ptoas-generated function
-    csa_cache_writeback(kv_cache_flat_inline178__ssa_v0, ori_slot_mapping__ssa_v0, kv_inline183__ssa_v0, ori_block_num_inline179__ssa_v0, __pypto_spmd_block_idx, __pypto_spmd_block_num);
+    csa_cache_writeback(kv_cache_flat_inline179__ssa_v0, ori_slot_mapping__ssa_v0, kv_inline183__ssa_v0, ori_block_num_inline180__ssa_v0, __pypto_spmd_block_idx, __pypto_spmd_block_num);
 }

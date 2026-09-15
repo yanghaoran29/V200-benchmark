@@ -33,7 +33,6 @@ from config import (
     FLASH as M,
     DECODE_BATCH,
     DECODE_SEQ,
-    DECODE_START_POS,
     BLOCK_SIZE,
     C4A_COMPRESSOR_BLOCK_SIZE,
     DECODE_CMP_BLOCK_NUM,
@@ -526,6 +525,7 @@ def build_tensor_specs(start_pos=None):
     torch.manual_seed(1234)
     from utils import (
         block_table,
+        csa_decode_start_set,
         compressed_slot_mapping,
         kv_seq_lens_from_starts,
         ori_slot_mapping,
@@ -541,7 +541,7 @@ def build_tensor_specs(start_pos=None):
     # Scheme B fixtures own disjoint physical pages, sized from actual lengths.
     fixture_starts = resolve_start_positions(
         start_pos, batch=B, seq=S, max_seq_len=MAX_SEQ_LEN,
-        default_fn=lambda: torch.full((B,), DECODE_START_POS, dtype=torch.int32),
+        default_fn=lambda: csa_decode_start_set(batch=B, seq=S),
     )
 
     def allocate_pages(page_span, table_cols):
@@ -907,7 +907,7 @@ if __name__ == "__main__":
     parser.add_argument("-d", "--device", type=int, default=0)
     parser.add_argument("--start-pos", type=int, default=None,
                         help="Uniform fixture-only start_pos override for all batches; "
-                             "default (unset) uses start_pos=8192 for every request.")
+                             "default (unset) cycles the mainline CSA boundary set across requests.")
     parser.add_argument("--enable-chip-swimlane", type=int, nargs="?", const=1, default=0, choices=range(5))
     parser.add_argument("--enable-dep-gen", action="store_true", default=False)
     parser.add_argument("--dep-output-dir", type=str, default=None)

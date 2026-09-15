@@ -74,34 +74,34 @@ static __aicore__ void kv_touch(__gm__ bfloat16_t* v1, int64_t v2) {
   const int64_t v7 = 128;
   // pto: %1
   int64_t v8 = (int64_t) ((uint64_t) v2 * (uint64_t) v7);
-  // pto: %ori_kv_flat_inline1799__ssa_v0_view
+  // pto: %ori_kv_flat_inline1795__ssa_v0_view
   const int64_t v9 = 1;
-  // pto: %ori_kv_flat_inline1799__ssa_v0_view
+  // pto: %ori_kv_flat_inline1795__ssa_v0_view
   const int64_t v10 = 1;
-  // pto: %ori_kv_flat_inline1799__ssa_v0_view
+  // pto: %ori_kv_flat_inline1795__ssa_v0_view
   const int64_t v11 = 1;
-  // pto: %ori_kv_flat_inline1799__ssa_v0_view
+  // pto: %ori_kv_flat_inline1795__ssa_v0_view
   int64_t v12 = v8 * v4;
-  // pto: %ori_kv_flat_inline1799__ssa_v0_view
+  // pto: %ori_kv_flat_inline1795__ssa_v0_view
   int64_t v13 = v11 * v12;
-  // pto: %ori_kv_flat_inline1799__ssa_v0_view
+  // pto: %ori_kv_flat_inline1795__ssa_v0_view
   pto::Shape<1, 1, 1, -1, -1> v14 = pto::Shape<1, 1, 1, -1, -1>(v9, v10, v11, v8, v4);
-  // pto: %ori_kv_flat_inline1799__ssa_v0_view
+  // pto: %ori_kv_flat_inline1795__ssa_v0_view
   pto::Stride<-1, -1, -1, -1, -1> v15 = pto::Stride<-1, -1, -1, -1, -1>(v10 * v13, v13, v12, v4, v5);
-  // pto: %ori_kv_flat_inline1799__ssa_v0_view
+  // pto: %ori_kv_flat_inline1795__ssa_v0_view
   GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v16 = GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v1, v14, v15);
   // pto: %t__tile
   Tile<TileType::Vec, bfloat16_t, 40, 512, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v17 = Tile<TileType::Vec, bfloat16_t, 40, 512, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v6, v4);
   // pto: %t__tile
   uint64_t v18 = (uint64_t) v3;
   TASSIGN(v17, v18);
-  // pto: %ori_kv_flat_inline1799__ssa_v0_pview
+  // pto: %ori_kv_flat_inline1795__ssa_v0_pview
   __gm__ bfloat16_t* v19 = PTOAS__GLOBAL_TENSOR_DATA(v16);
-  // pto: %ori_kv_flat_inline1799__ssa_v0_pview
+  // pto: %ori_kv_flat_inline1795__ssa_v0_pview
   pto::Shape<1, 1, 1, 40, 512> v20 = pto::Shape<1, 1, 1, 40, 512>();
-  // pto: %ori_kv_flat_inline1799__ssa_v0_pview
+  // pto: %ori_kv_flat_inline1795__ssa_v0_pview
   pto::Stride<20480, 20480, 20480, 512, 1> v21 = pto::Stride<20480, 20480, 20480, 512, 1>();
-  // pto: %ori_kv_flat_inline1799__ssa_v0_pview
+  // pto: %ori_kv_flat_inline1795__ssa_v0_pview
   GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, 40, 512>, pto::Stride<20480, 20480, 20480, 512, 1>, pto::Layout::ND> v22 = GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, 40, 512>, pto::Stride<20480, 20480, 20480, 512, 1>, pto::Layout::ND>(v19, v20, v21);
   TLOAD(v17, v22);
   set_flag(PIPE_MTE2, PIPE_MTE3, EVENT_ID0);
@@ -120,13 +120,13 @@ extern "C" __aicore__ __attribute__((always_inline)) void kernel_entry(__gm__ in
     set_atomic_none();
 #endif
 
-    // Unpack tensor: ori_kv_flat_inline1799__ssa_v0
-    __gm__ Tensor* ori_kv_flat_inline1799__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
-    __gm__ bfloat16_t* ori_kv_flat_inline1799__ssa_v0 = reinterpret_cast<__gm__ bfloat16_t*>(ori_kv_flat_inline1799__ssa_v0_tensor->buffer.addr) + ori_kv_flat_inline1799__ssa_v0_tensor->start_offset;
+    // Unpack tensor: ori_kv_flat_inline1795__ssa_v0
+    __gm__ Tensor* ori_kv_flat_inline1795__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
+    __gm__ bfloat16_t* ori_kv_flat_inline1795__ssa_v0 = reinterpret_cast<__gm__ bfloat16_t*>(ori_kv_flat_inline1795__ssa_v0_tensor->buffer.addr) + ori_kv_flat_inline1795__ssa_v0_tensor->start_offset;
 
-    // Extract dynamic dim: ori_block_num_inline1891__ssa_v0
-    int64_t ori_block_num_inline1891__ssa_v0 = (static_cast<int64_t>(ori_kv_flat_inline1799__ssa_v0_tensor->shapes[0]) / 128);
+    // Extract dynamic dim: ori_block_num_inline1776__ssa_v0
+    int64_t ori_block_num_inline1776__ssa_v0 = (static_cast<int64_t>(ori_kv_flat_inline1795__ssa_v0_tensor->shapes[0]) / 128);
 
     // Forward to ptoas-generated function
-    kv_touch(ori_kv_flat_inline1799__ssa_v0, ori_block_num_inline1891__ssa_v0);
+    kv_touch(ori_kv_flat_inline1795__ssa_v0, ori_block_num_inline1776__ssa_v0);
 }

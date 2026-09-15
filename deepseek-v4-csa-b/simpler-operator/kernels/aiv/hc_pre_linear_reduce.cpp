@@ -77,43 +77,43 @@ static __aicore__ void hc_pre_linear_reduce(__gm__ float* v1, __gm__ float* v2, 
   const int64_t v12 = 0;
   // pto: %c4_index
   const int64_t v13 = 4;
-  // pto: %mixes_raw_inline1058__ssa_v0_view
+  // pto: %mixes_raw_inline1078__ssa_v0_view
   const int64_t v14 = 1;
-  // pto: %mixes_raw_inline1058__ssa_v0_view
+  // pto: %mixes_raw_inline1078__ssa_v0_view
   const int64_t v15 = 1;
-  // pto: %mixes_raw_inline1058__ssa_v0_view
+  // pto: %mixes_raw_inline1078__ssa_v0_view
   const int64_t v16 = 1;
-  // pto: %mixes_raw_inline1058__ssa_v0_view
+  // pto: %mixes_raw_inline1078__ssa_v0_view
   int64_t v17 = (int64_t) v4;
-  // pto: %mixes_raw_inline1058__ssa_v0_view
+  // pto: %mixes_raw_inline1078__ssa_v0_view
   int64_t v18 = v17 * v9;
-  // pto: %mixes_raw_inline1058__ssa_v0_view
+  // pto: %mixes_raw_inline1078__ssa_v0_view
   int64_t v19 = v16 * v18;
-  // pto: %mixes_raw_inline1058__ssa_v0_view
+  // pto: %mixes_raw_inline1078__ssa_v0_view
   pto::Shape<1, 1, 1, -1, -1> v20 = pto::Shape<1, 1, 1, -1, -1>(v14, v15, v16, v17, v9);
-  // pto: %mixes_raw_inline1058__ssa_v0_view
+  // pto: %mixes_raw_inline1078__ssa_v0_view
   pto::Stride<-1, -1, -1, -1, -1> v21 = pto::Stride<-1, -1, -1, -1, -1>(v15 * v19, v19, v18, v9, v10);
-  // pto: %mixes_raw_inline1058__ssa_v0_view
+  // pto: %mixes_raw_inline1078__ssa_v0_view
   GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v22 = GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v1, v20, v21);
   // pto: %9
   int64_t v23 = (int64_t) ((uint64_t) v4 * (uint64_t) v13);
-  // pto: %mixes_partials_inline1047__rv_v2_view
+  // pto: %mixes_partials_inline1111__rv_v2_view
   const int64_t v24 = 1;
-  // pto: %mixes_partials_inline1047__rv_v2_view
+  // pto: %mixes_partials_inline1111__rv_v2_view
   const int64_t v25 = 1;
-  // pto: %mixes_partials_inline1047__rv_v2_view
+  // pto: %mixes_partials_inline1111__rv_v2_view
   const int64_t v26 = 1;
-  // pto: %mixes_partials_inline1047__rv_v2_view
+  // pto: %mixes_partials_inline1111__rv_v2_view
   int64_t v27 = v23 * v9;
-  // pto: %mixes_partials_inline1047__rv_v2_view
+  // pto: %mixes_partials_inline1111__rv_v2_view
   int64_t v28 = v26 * v27;
-  // pto: %mixes_partials_inline1047__rv_v2_view
+  // pto: %mixes_partials_inline1111__rv_v2_view
   pto::Shape<1, 1, 1, -1, -1> v29 = pto::Shape<1, 1, 1, -1, -1>(v24, v25, v26, v23, v9);
-  // pto: %mixes_partials_inline1047__rv_v2_view
+  // pto: %mixes_partials_inline1111__rv_v2_view
   pto::Stride<-1, -1, -1, -1, -1> v30 = pto::Stride<-1, -1, -1, -1, -1>(v25 * v28, v28, v27, v9, v10);
-  // pto: %mixes_partials_inline1047__rv_v2_view
+  // pto: %mixes_partials_inline1111__rv_v2_view
   GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v31 = GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v2, v29, v30);
-  // pto: %linear_block_lane_inline1028__ssa_v0
+  // pto: %linear_block_lane_inline1009__ssa_v0
   // pto: %1
   set_flag(PIPE_MTE3, PIPE_MTE2, EVENT_ID0);
   set_flag(PIPE_V, PIPE_MTE2, EVENT_ID0);
@@ -121,32 +121,32 @@ static __aicore__ void hc_pre_linear_reduce(__gm__ float* v1, __gm__ float* v2, 
     // pto: %2
     ;
     int64_t v33 = (int64_t) ((uint64_t) v32 * (uint64_t) v11);
-    // pto: %mixes_total_inline1082__tile
+    // pto: %mixes_total_inline1063__tile
     ;
     Tile<TileType::Vec, float, 16, 32, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v34 = Tile<TileType::Vec, float, 16, 32, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v11, v9);
-    // pto: %mixes_total_inline1082__tile
+    // pto: %mixes_total_inline1063__tile
     ;
     uint64_t v35 = (uint64_t) v7;
     TASSIGN(v34, v35);
     // pto: %3
     ;
     int64_t v36 = v33 < v12 ? v12 : v33;
-    // pto: %mixes_partials_inline1047__rv_v2_pview
+    // pto: %mixes_partials_inline1111__rv_v2_pview
     ;
     __gm__ float* v37 = PTOAS__GLOBAL_TENSOR_DATA(v31);
-    // pto: %mixes_partials_inline1047__rv_v2_pview
+    // pto: %mixes_partials_inline1111__rv_v2_pview
     ;
     const int64_t v38 = 0;
-    // pto: %mixes_partials_inline1047__rv_v2_pview
+    // pto: %mixes_partials_inline1111__rv_v2_pview
     ;
     const int64_t v39 = 32;
-    // pto: %mixes_partials_inline1047__rv_v2_pview
+    // pto: %mixes_partials_inline1111__rv_v2_pview
     ;
     pto::Shape<1, 1, 1, 16, 32> v40 = pto::Shape<1, 1, 1, 16, 32>();
-    // pto: %mixes_partials_inline1047__rv_v2_pview
+    // pto: %mixes_partials_inline1111__rv_v2_pview
     ;
     pto::Stride<512, 512, 512, 32, 1> v41 = pto::Stride<512, 512, 512, 32, 1>();
-    // pto: %mixes_partials_inline1047__rv_v2_pview
+    // pto: %mixes_partials_inline1111__rv_v2_pview
     ;
     GlobalTensor<float, pto::Shape<1, 1, 1, 16, 32>, pto::Stride<512, 512, 512, 32, 1>, pto::Layout::ND> v42 = GlobalTensor<float, pto::Shape<1, 1, 1, 16, 32>, pto::Stride<512, 512, 512, 32, 1>, pto::Layout::ND>(v37 + (v38 + v36 * v39), v40, v41);
     wait_flag(PIPE_MTE3, PIPE_MTE2, EVENT_ID0);
@@ -156,10 +156,10 @@ static __aicore__ void hc_pre_linear_reduce(__gm__ float* v1, __gm__ float* v2, 
       // pto: %4, %5
       ;
       int64_t v44 = (int64_t) ((uint64_t) ((int64_t) (uint64_t) v43 * (uint64_t) v4) + (uint64_t) v33);
-      // pto: %partial_tile_inline1015__tile
+      // pto: %partial_tile_inline1038__tile
       ;
       Tile<TileType::Vec, float, 16, 32, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v45 = Tile<TileType::Vec, float, 16, 32, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v11, v9);
-      // pto: %partial_tile_inline1015__tile
+      // pto: %partial_tile_inline1038__tile
       ;
       uint64_t v46 = (uint64_t) v8;
       TASSIGN(v45, v46);
@@ -199,22 +199,22 @@ static __aicore__ void hc_pre_linear_reduce(__gm__ float* v1, __gm__ float* v2, 
       set_flag(PIPE_V, PIPE_MTE2, EVENT_ID0);
     };
     set_flag(PIPE_V, PIPE_MTE3, EVENT_ID0);
-    // pto: %mixes_raw_inline1058__iter_v1_pview
+    // pto: %mixes_raw_inline1078__iter_v1_pview
     ;
     __gm__ float* v56 = PTOAS__GLOBAL_TENSOR_DATA(v22);
-    // pto: %mixes_raw_inline1058__iter_v1_pview
+    // pto: %mixes_raw_inline1078__iter_v1_pview
     ;
     const int64_t v57 = 0;
-    // pto: %mixes_raw_inline1058__iter_v1_pview
+    // pto: %mixes_raw_inline1078__iter_v1_pview
     ;
     const int64_t v58 = 32;
-    // pto: %mixes_raw_inline1058__iter_v1_pview
+    // pto: %mixes_raw_inline1078__iter_v1_pview
     ;
     pto::Shape<1, 1, 1, 16, 32> v59 = pto::Shape<1, 1, 1, 16, 32>();
-    // pto: %mixes_raw_inline1058__iter_v1_pview
+    // pto: %mixes_raw_inline1078__iter_v1_pview
     ;
     pto::Stride<512, 512, 512, 32, 1> v60 = pto::Stride<512, 512, 512, 32, 1>();
-    // pto: %mixes_raw_inline1058__iter_v1_pview
+    // pto: %mixes_raw_inline1078__iter_v1_pview
     ;
     GlobalTensor<float, pto::Shape<1, 1, 1, 16, 32>, pto::Stride<512, 512, 512, 32, 1>, pto::Layout::ND> v61 = GlobalTensor<float, pto::Shape<1, 1, 1, 16, 32>, pto::Stride<512, 512, 512, 32, 1>, pto::Layout::ND>(v56 + (v57 + v36 * v58), v59, v60);
     wait_flag(PIPE_V, PIPE_MTE3, EVENT_ID0);
@@ -241,13 +241,13 @@ extern "C" __aicore__ __attribute__((always_inline)) void kernel_entry(__gm__ in
     int32_t __pypto_spmd_block_idx = get_block_idx(args);
     int32_t __pypto_spmd_block_num = get_block_num(args);
 
-    // Unpack tensor: mixes_raw_inline1058__ssa_v0
-    __gm__ Tensor* mixes_raw_inline1058__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
-    __gm__ float* mixes_raw_inline1058__ssa_v0 = reinterpret_cast<__gm__ float*>(mixes_raw_inline1058__ssa_v0_tensor->buffer.addr) + mixes_raw_inline1058__ssa_v0_tensor->start_offset;
+    // Unpack tensor: mixes_raw_inline1078__ssa_v0
+    __gm__ Tensor* mixes_raw_inline1078__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
+    __gm__ float* mixes_raw_inline1078__ssa_v0 = reinterpret_cast<__gm__ float*>(mixes_raw_inline1078__ssa_v0_tensor->buffer.addr) + mixes_raw_inline1078__ssa_v0_tensor->start_offset;
 
-    // Unpack tensor: mixes_partials_inline1047__rv_v2
-    __gm__ Tensor* mixes_partials_inline1047__rv_v2_tensor = reinterpret_cast<__gm__ Tensor*>(args[1]);
-    __gm__ float* mixes_partials_inline1047__rv_v2 = reinterpret_cast<__gm__ float*>(mixes_partials_inline1047__rv_v2_tensor->buffer.addr) + mixes_partials_inline1047__rv_v2_tensor->start_offset;
+    // Unpack tensor: mixes_partials_inline1111__rv_v2
+    __gm__ Tensor* mixes_partials_inline1111__rv_v2_tensor = reinterpret_cast<__gm__ Tensor*>(args[1]);
+    __gm__ float* mixes_partials_inline1111__rv_v2 = reinterpret_cast<__gm__ float*>(mixes_partials_inline1111__rv_v2_tensor->buffer.addr) + mixes_partials_inline1111__rv_v2_tensor->start_offset;
 
     // Unpack scalar: t_linear_inline1046__ssa_v0
     union { uint64_t u64; int64_t val; } t_linear_inline1046__ssa_v0_conv;
@@ -255,8 +255,8 @@ extern "C" __aicore__ __attribute__((always_inline)) void kernel_entry(__gm__ in
     int64_t t_linear_inline1046__ssa_v0 = t_linear_inline1046__ssa_v0_conv.val;
 
     // Extract dynamic dim: t_linear_inline1046__ssa_v0_1
-    int64_t t_linear_inline1046__ssa_v0_1 = static_cast<int64_t>(mixes_raw_inline1058__ssa_v0_tensor->shapes[0]);
+    int64_t t_linear_inline1046__ssa_v0_1 = static_cast<int64_t>(mixes_raw_inline1078__ssa_v0_tensor->shapes[0]);
 
     // Forward to ptoas-generated function
-    hc_pre_linear_reduce(mixes_raw_inline1058__ssa_v0, mixes_partials_inline1047__rv_v2, t_linear_inline1046__ssa_v0, t_linear_inline1046__ssa_v0_1, __pypto_spmd_block_idx, __pypto_spmd_block_num);
+    hc_pre_linear_reduce(mixes_raw_inline1078__ssa_v0, mixes_partials_inline1111__rv_v2, t_linear_inline1046__ssa_v0, t_linear_inline1046__ssa_v0_1, __pypto_spmd_block_idx, __pypto_spmd_block_num);
 }
