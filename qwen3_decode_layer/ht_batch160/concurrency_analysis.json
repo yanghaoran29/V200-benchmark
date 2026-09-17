@@ -1,0 +1,189 @@
+{
+  "level": 4,
+  "caps": {
+    "aic": 24,
+    "aiv": 48
+  },
+  "dependency_tasks": 1660,
+  "early_dispatch_true": 0,
+  "early_dispatch_false": 1660,
+  "expected_physical_rows": 5690,
+  "joined_rows": 5690,
+  "captured_test_span_us": 8280.86,
+  "resources": {
+    "aic": {
+      "rows": 4490,
+      "peak": 24,
+      "peak_time_us": 180.5,
+      "busy_sum_us": 159866.74,
+      "span_us": 8170.8,
+      "average_utilization": 0.8152
+    },
+    "aiv": {
+      "rows": 1200,
+      "peak": 48,
+      "peak_time_us": 284.14,
+      "busy_sum_us": 82446.02,
+      "span_us": 8278.26,
+      "average_utilization": 0.2075
+    }
+  },
+  "aic_logical_envelope_peak_demand": {
+    "demand": 194,
+    "time_us": 1138.0,
+    "logical_tasks": 6,
+    "active": [
+      {
+        "name": "q_proj_1",
+        "block_num": 50
+      },
+      {
+        "name": "q_proj_2",
+        "block_num": 50
+      },
+      {
+        "name": "q_proj_3",
+        "block_num": 50
+      },
+      {
+        "name": "k_proj_3",
+        "block_num": 10
+      },
+      {
+        "name": "v_proj_3",
+        "block_num": 10
+      },
+      {
+        "name": "attn_swpipe_0_aic",
+        "block_num": 24
+      }
+    ]
+  },
+  "aic_logical_envelope_peak_count": {
+    "count": 30,
+    "time_us": 842.54,
+    "demand": 164,
+    "active": [
+      {
+        "name": "gate_proj_15",
+        "block_num": 5
+      },
+      {
+        "name": "up_proj",
+        "block_num": 5
+      },
+      {
+        "name": "up_proj_6",
+        "block_num": 5
+      },
+      {
+        "name": "gate_proj_4",
+        "block_num": 5
+      },
+      {
+        "name": "up_proj_5",
+        "block_num": 5
+      },
+      {
+        "name": "gate_proj_14",
+        "block_num": 5
+      },
+      {
+        "name": "up_proj_13",
+        "block_num": 5
+      },
+      {
+        "name": "up_proj_10",
+        "block_num": 5
+      },
+      {
+        "name": "up_proj_8",
+        "block_num": 5
+      },
+      {
+        "name": "up_proj_9",
+        "block_num": 5
+      },
+      {
+        "name": "up_proj_1",
+        "block_num": 5
+      },
+      {
+        "name": "up_proj_14",
+        "block_num": 5
+      },
+      {
+        "name": "gate_proj_13",
+        "block_num": 5
+      },
+      {
+        "name": "q_proj_1",
+        "block_num": 50
+      },
+      {
+        "name": "gate_proj_10",
+        "block_num": 5
+      },
+      {
+        "name": "k_proj_1",
+        "block_num": 10
+      },
+      {
+        "name": "up_proj_2",
+        "block_num": 5
+      },
+      {
+        "name": "gate_proj_5",
+        "block_num": 5
+      },
+      {
+        "name": "up_proj_0",
+        "block_num": 5
+      },
+      {
+        "name": "up_proj_4",
+        "block_num": 5
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "gate_proj",
+        "block_num": 5
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      }
+    ]
+  }
+}

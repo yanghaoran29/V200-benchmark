@@ -1,0 +1,265 @@
+{
+  "level": 4,
+  "caps": {
+    "aic": 24,
+    "aiv": 48
+  },
+  "dependency_tasks": 830,
+  "early_dispatch_true": 0,
+  "early_dispatch_false": 830,
+  "expected_physical_rows": 2845,
+  "joined_rows": 2845,
+  "captured_test_span_us": 4225.94,
+  "resources": {
+    "aic": {
+      "rows": 2245,
+      "peak": 24,
+      "peak_time_us": 121.14,
+      "busy_sum_us": 80092.58,
+      "span_us": 4159.82,
+      "average_utilization": 0.8022
+    },
+    "aiv": {
+      "rows": 600,
+      "peak": 48,
+      "peak_time_us": 224.36,
+      "busy_sum_us": 40450.82,
+      "span_us": 4222.92,
+      "average_utilization": 0.1996
+    }
+  },
+  "aic_logical_envelope_peak_demand": {
+    "demand": 212,
+    "time_us": 847.9200000000001,
+    "logical_tasks": 26,
+    "active": [
+      {
+        "name": "gate_proj_15",
+        "block_num": 5
+      },
+      {
+        "name": "gate_proj_14",
+        "block_num": 5
+      },
+      {
+        "name": "gate_proj_6",
+        "block_num": 5
+      },
+      {
+        "name": "up_proj_9",
+        "block_num": 5
+      },
+      {
+        "name": "up_proj_11",
+        "block_num": 5
+      },
+      {
+        "name": "up_proj_0",
+        "block_num": 5
+      },
+      {
+        "name": "gate_proj_0",
+        "block_num": 5
+      },
+      {
+        "name": "gate_proj_1",
+        "block_num": 5
+      },
+      {
+        "name": "v_proj_1",
+        "block_num": 10
+      },
+      {
+        "name": "gate_proj_12",
+        "block_num": 5
+      },
+      {
+        "name": "gate_proj_7",
+        "block_num": 5
+      },
+      {
+        "name": "q_proj_1",
+        "block_num": 50
+      },
+      {
+        "name": "gate_proj_3",
+        "block_num": 5
+      },
+      {
+        "name": "gate_proj_4",
+        "block_num": 5
+      },
+      {
+        "name": "up_proj_3",
+        "block_num": 5
+      },
+      {
+        "name": "k_proj_1",
+        "block_num": 10
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "k_proj_2",
+        "block_num": 10
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "v_proj_2",
+        "block_num": 10
+      },
+      {
+        "name": "q_proj_2",
+        "block_num": 50
+      }
+    ]
+  },
+  "aic_logical_envelope_peak_count": {
+    "count": 29,
+    "time_us": 802.24,
+    "demand": 167,
+    "active": [
+      {
+        "name": "gate_proj_15",
+        "block_num": 5
+      },
+      {
+        "name": "gate_proj_14",
+        "block_num": 5
+      },
+      {
+        "name": "gate_proj_6",
+        "block_num": 5
+      },
+      {
+        "name": "up_proj_9",
+        "block_num": 5
+      },
+      {
+        "name": "up_proj_12",
+        "block_num": 5
+      },
+      {
+        "name": "up_proj_11",
+        "block_num": 5
+      },
+      {
+        "name": "gate_proj_8",
+        "block_num": 5
+      },
+      {
+        "name": "up_proj_1",
+        "block_num": 5
+      },
+      {
+        "name": "up_proj_0",
+        "block_num": 5
+      },
+      {
+        "name": "gate_proj_0",
+        "block_num": 5
+      },
+      {
+        "name": "gate_proj",
+        "block_num": 5
+      },
+      {
+        "name": "up_proj_4",
+        "block_num": 5
+      },
+      {
+        "name": "gate_proj_1",
+        "block_num": 5
+      },
+      {
+        "name": "v_proj_1",
+        "block_num": 10
+      },
+      {
+        "name": "gate_proj_12",
+        "block_num": 5
+      },
+      {
+        "name": "gate_proj_9",
+        "block_num": 5
+      },
+      {
+        "name": "gate_proj_7",
+        "block_num": 5
+      },
+      {
+        "name": "up_proj_5",
+        "block_num": 5
+      },
+      {
+        "name": "q_proj_1",
+        "block_num": 50
+      },
+      {
+        "name": "gate_proj_3",
+        "block_num": 5
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "gate_proj_4",
+        "block_num": 5
+      },
+      {
+        "name": "up_proj_3",
+        "block_num": 5
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      }
+    ]
+  }
+}

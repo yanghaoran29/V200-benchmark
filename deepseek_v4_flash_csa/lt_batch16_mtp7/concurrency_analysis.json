@@ -1,0 +1,245 @@
+{
+  "level": 4,
+  "caps": {
+    "aic": 24,
+    "aiv": 48
+  },
+  "dependency_tasks": 197,
+  "early_dispatch_true": 0,
+  "early_dispatch_false": 197,
+  "expected_physical_rows": 4218,
+  "joined_rows": 4218,
+  "captured_test_span_us": 2546.18,
+  "resources": {
+    "aic": {
+      "rows": 1961,
+      "peak": 24,
+      "peak_time_us": 298.66,
+      "busy_sum_us": 25931.8,
+      "span_us": 2375.9,
+      "average_utilization": 0.4548
+    },
+    "aiv": {
+      "rows": 2257,
+      "peak": 48,
+      "peak_time_us": 951.74,
+      "busy_sum_us": 30905.9,
+      "span_us": 2541.68,
+      "average_utilization": 0.2533
+    }
+  },
+  "aic_logical_envelope_peak_demand": {
+    "demand": 200,
+    "time_us": 2347.4,
+    "logical_tasks": 25,
+    "active": [
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      }
+    ]
+  },
+  "aic_logical_envelope_peak_count": {
+    "count": 25,
+    "time_us": 2347.4,
+    "demand": 200,
+    "active": [
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      }
+    ]
+  }
+}
