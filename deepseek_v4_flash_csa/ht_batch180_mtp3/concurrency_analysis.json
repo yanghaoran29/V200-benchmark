@@ -1,0 +1,517 @@
+{
+  "level": 4,
+  "caps": {
+    "aic": 24,
+    "aiv": 48
+  },
+  "dependency_tasks": 407,
+  "early_dispatch_true": 0,
+  "early_dispatch_false": 407,
+  "expected_physical_rows": 9383,
+  "joined_rows": 9383,
+  "captured_test_span_us": 10753.14,
+  "resources": {
+    "aic": {
+      "rows": 4321,
+      "peak": 24,
+      "peak_time_us": 797.34,
+      "busy_sum_us": 136490.94,
+      "span_us": 9966.72,
+      "average_utilization": 0.5706
+    },
+    "aiv": {
+      "rows": 5062,
+      "peak": 48,
+      "peak_time_us": 3506.1800000000003,
+      "busy_sum_us": 171937.92,
+      "span_us": 10749.3,
+      "average_utilization": 0.3332
+    }
+  },
+  "aic_logical_envelope_peak_demand": {
+    "demand": 472,
+    "time_us": 9046.28,
+    "logical_tasks": 59,
+    "active": [
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      }
+    ]
+  },
+  "aic_logical_envelope_peak_count": {
+    "count": 59,
+    "time_us": 9046.28,
+    "demand": 472,
+    "active": [
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_a_mm",
+        "block_num": 8
+      }
+    ]
+  }
+}
