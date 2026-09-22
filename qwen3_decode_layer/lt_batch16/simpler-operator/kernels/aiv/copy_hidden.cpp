@@ -78,21 +78,21 @@ static __aicore__ void copy_hidden(__gm__ float* v1, __gm__ bfloat16_t* v2, int6
   const int64_t v10 = 20;
   // pto: %c256_index
   const int64_t v11 = 256;
-  // pto: %cur_inline12__iter_v1_view
+  // pto: %cur_inline6__iter_v1_view
   const int64_t v12 = 1;
-  // pto: %cur_inline12__iter_v1_view
+  // pto: %cur_inline6__iter_v1_view
   const int64_t v13 = 1;
-  // pto: %cur_inline12__iter_v1_view
+  // pto: %cur_inline6__iter_v1_view
   const int64_t v14 = 1;
-  // pto: %cur_inline12__iter_v1_view
+  // pto: %cur_inline6__iter_v1_view
   int64_t v15 = v6 * v7;
-  // pto: %cur_inline12__iter_v1_view
+  // pto: %cur_inline6__iter_v1_view
   int64_t v16 = v14 * v15;
-  // pto: %cur_inline12__iter_v1_view
+  // pto: %cur_inline6__iter_v1_view
   pto::Shape<1, 1, 1, -1, -1> v17 = pto::Shape<1, 1, 1, -1, -1>(v12, v13, v14, v6, v7);
-  // pto: %cur_inline12__iter_v1_view
+  // pto: %cur_inline6__iter_v1_view
   pto::Stride<-1, -1, -1, -1, -1> v18 = pto::Stride<-1, -1, -1, -1, -1>(v13 * v16, v16, v15, v7, v8);
-  // pto: %cur_inline12__iter_v1_view
+  // pto: %cur_inline6__iter_v1_view
   GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v19 = GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v1, v17, v18);
   // pto: %hidden_states__ssa_v0_view
   const int64_t v20 = 1;
@@ -164,22 +164,22 @@ static __aicore__ void copy_hidden(__gm__ float* v1, __gm__ bfloat16_t* v2, int6
     TCVT(v40, v30, v42, v43);
     set_flag(PIPE_V, PIPE_MTE2, EVENT_ID0);
     set_flag(PIPE_V, PIPE_MTE3, EVENT_ID0);
-    // pto: %cur_inline12__iter_v3_pview
+    // pto: %cur_inline6__iter_v3_pview
     ;
     __gm__ float* v44 = PTOAS__GLOBAL_TENSOR_DATA(v19);
-    // pto: %cur_inline12__iter_v3_pview
+    // pto: %cur_inline6__iter_v3_pview
     ;
     const int64_t v45 = 0;
-    // pto: %cur_inline12__iter_v3_pview
+    // pto: %cur_inline6__iter_v3_pview
     ;
     const int64_t v46 = 5120;
-    // pto: %cur_inline12__iter_v3_pview
+    // pto: %cur_inline6__iter_v3_pview
     ;
     pto::Shape<1, 1, 1, 16, 256> v47 = pto::Shape<1, 1, 1, 16, 256>();
-    // pto: %cur_inline12__iter_v3_pview
+    // pto: %cur_inline6__iter_v3_pview
     ;
     pto::Stride<81920, 81920, 81920, 5120, 1> v48 = pto::Stride<81920, 81920, 81920, 5120, 1>();
-    // pto: %cur_inline12__iter_v3_pview
+    // pto: %cur_inline6__iter_v3_pview
     ;
     GlobalTensor<float, pto::Shape<1, 1, 1, 16, 256>, pto::Stride<81920, 81920, 81920, 5120, 1>, pto::Layout::ND> v49 = GlobalTensor<float, pto::Shape<1, 1, 1, 16, 256>, pto::Stride<81920, 81920, 81920, 5120, 1>, pto::Layout::ND>(v44 + (v45 + v32 * v46 + v33), v47, v48);
     wait_flag(PIPE_V, PIPE_MTE3, EVENT_ID0);
@@ -201,19 +201,19 @@ extern "C" __aicore__ __attribute__((always_inline)) void kernel_entry(__gm__ in
     set_atomic_none();
 #endif
 
-    // Unpack tensor: cur_inline12__iter_v1
-    __gm__ Tensor* cur_inline12__iter_v1_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
-    __gm__ float* cur_inline12__iter_v1 = reinterpret_cast<__gm__ float*>(cur_inline12__iter_v1_tensor->buffer.addr) + cur_inline12__iter_v1_tensor->start_offset;
+    // Unpack tensor: cur_inline6__iter_v1
+    __gm__ Tensor* cur_inline6__iter_v1_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
+    __gm__ float* cur_inline6__iter_v1 = reinterpret_cast<__gm__ float*>(cur_inline6__iter_v1_tensor->buffer.addr) + cur_inline6__iter_v1_tensor->start_offset;
 
     // Unpack tensor: hidden_states__ssa_v0
     __gm__ Tensor* hidden_states__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[1]);
     __gm__ bfloat16_t* hidden_states__ssa_v0 = reinterpret_cast<__gm__ bfloat16_t*>(hidden_states__ssa_v0_tensor->buffer.addr) + hidden_states__ssa_v0_tensor->start_offset;
 
-    // Unpack scalar: cb0_inline16__idx_v0
-    union { uint64_t u64; int64_t val; } cb0_inline16__idx_v0_conv;
-    cb0_inline16__idx_v0_conv.u64 = args[2];
-    int64_t cb0_inline16__idx_v0 = cb0_inline16__idx_v0_conv.val;
+    // Unpack scalar: cb0_inline15__idx_v0
+    union { uint64_t u64; int64_t val; } cb0_inline15__idx_v0_conv;
+    cb0_inline15__idx_v0_conv.u64 = args[2];
+    int64_t cb0_inline15__idx_v0 = cb0_inline15__idx_v0_conv.val;
 
     // Forward to ptoas-generated function
-    copy_hidden(cur_inline12__iter_v1, hidden_states__ssa_v0, cb0_inline16__idx_v0);
+    copy_hidden(cur_inline6__iter_v1, hidden_states__ssa_v0, cb0_inline15__idx_v0);
 }

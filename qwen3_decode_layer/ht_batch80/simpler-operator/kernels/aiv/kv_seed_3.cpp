@@ -72,37 +72,37 @@ static __aicore__ void kv_seed_3(__gm__ float* v1, __gm__ float* v2) {
   const int64_t v6 = 1;
   // pto: %cst_4
   const float v7 = 0.0f;
-  // pto: %k_proj_inline596__ssa_v20_view
+  // pto: %k_proj_inline575__ssa_v20_view
   const int64_t v8 = 1;
-  // pto: %k_proj_inline596__ssa_v20_view
+  // pto: %k_proj_inline575__ssa_v20_view
   const int64_t v9 = 1;
-  // pto: %k_proj_inline596__ssa_v20_view
+  // pto: %k_proj_inline575__ssa_v20_view
   const int64_t v10 = 1;
-  // pto: %k_proj_inline596__ssa_v20_view
+  // pto: %k_proj_inline575__ssa_v20_view
   int64_t v11 = v4 * v5;
-  // pto: %k_proj_inline596__ssa_v20_view
+  // pto: %k_proj_inline575__ssa_v20_view
   int64_t v12 = v10 * v11;
-  // pto: %k_proj_inline596__ssa_v20_view
+  // pto: %k_proj_inline575__ssa_v20_view
   pto::Shape<1, 1, 1, -1, -1> v13 = pto::Shape<1, 1, 1, -1, -1>(v8, v9, v10, v4, v5);
-  // pto: %k_proj_inline596__ssa_v20_view
+  // pto: %k_proj_inline575__ssa_v20_view
   pto::Stride<-1, -1, -1, -1, -1> v14 = pto::Stride<-1, -1, -1, -1, -1>(v9 * v12, v12, v11, v5, v6);
-  // pto: %k_proj_inline596__ssa_v20_view
+  // pto: %k_proj_inline575__ssa_v20_view
   GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v15 = GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v1, v13, v14);
-  // pto: %v_proj_inline635__ssa_v20_view
+  // pto: %v_proj_inline578__ssa_v20_view
   const int64_t v16 = 1;
-  // pto: %v_proj_inline635__ssa_v20_view
+  // pto: %v_proj_inline578__ssa_v20_view
   const int64_t v17 = 1;
-  // pto: %v_proj_inline635__ssa_v20_view
+  // pto: %v_proj_inline578__ssa_v20_view
   const int64_t v18 = 1;
-  // pto: %v_proj_inline635__ssa_v20_view
+  // pto: %v_proj_inline578__ssa_v20_view
   int64_t v19 = v4 * v5;
-  // pto: %v_proj_inline635__ssa_v20_view
+  // pto: %v_proj_inline578__ssa_v20_view
   int64_t v20 = v18 * v19;
-  // pto: %v_proj_inline635__ssa_v20_view
+  // pto: %v_proj_inline578__ssa_v20_view
   pto::Shape<1, 1, 1, -1, -1> v21 = pto::Shape<1, 1, 1, -1, -1>(v16, v17, v18, v4, v5);
-  // pto: %v_proj_inline635__ssa_v20_view
+  // pto: %v_proj_inline578__ssa_v20_view
   pto::Stride<-1, -1, -1, -1, -1> v22 = pto::Stride<-1, -1, -1, -1, -1>(v17 * v20, v20, v19, v5, v6);
-  // pto: %v_proj_inline635__ssa_v20_view
+  // pto: %v_proj_inline578__ssa_v20_view
   GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v23 = GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v2, v21, v22);
   // pto: %t__tile
   Tile<TileType::Vec, float, 16, 1024, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v24 = Tile<TileType::Vec, float, 16, 1024, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v4, v5);
@@ -111,13 +111,13 @@ static __aicore__ void kv_seed_3(__gm__ float* v1, __gm__ float* v2) {
   TASSIGN(v24, v25);
   TEXPANDS(v24, v7);
   set_flag(PIPE_V, PIPE_MTE3, EVENT_ID0);
-  // pto: %k_proj_inline596__ssa_v20_pview
+  // pto: %k_proj_inline575__ssa_v20_pview
   __gm__ float* v26 = PTOAS__GLOBAL_TENSOR_DATA(v15);
-  // pto: %k_proj_inline596__ssa_v20_pview
+  // pto: %k_proj_inline575__ssa_v20_pview
   pto::Shape<1, 1, 1, 16, 1024> v27 = pto::Shape<1, 1, 1, 16, 1024>();
-  // pto: %k_proj_inline596__ssa_v20_pview
+  // pto: %k_proj_inline575__ssa_v20_pview
   pto::Stride<16384, 16384, 16384, 1024, 1> v28 = pto::Stride<16384, 16384, 16384, 1024, 1>();
-  // pto: %k_proj_inline596__ssa_v20_pview
+  // pto: %k_proj_inline575__ssa_v20_pview
   GlobalTensor<float, pto::Shape<1, 1, 1, 16, 1024>, pto::Stride<16384, 16384, 16384, 1024, 1>, pto::Layout::ND> v29 = GlobalTensor<float, pto::Shape<1, 1, 1, 16, 1024>, pto::Stride<16384, 16384, 16384, 1024, 1>, pto::Layout::ND>(v26, v27, v28);
   wait_flag(PIPE_V, PIPE_MTE3, EVENT_ID0);
   TSTORE(v29, v24);
@@ -130,13 +130,13 @@ static __aicore__ void kv_seed_3(__gm__ float* v1, __gm__ float* v2) {
   wait_flag(PIPE_MTE3, PIPE_V, EVENT_ID0);
   TEXPANDS(v30, v7);
   set_flag(PIPE_V, PIPE_MTE3, EVENT_ID1);
-  // pto: %v_proj_inline635__ssa_v20_pview
+  // pto: %v_proj_inline578__ssa_v20_pview
   __gm__ float* v32 = PTOAS__GLOBAL_TENSOR_DATA(v23);
-  // pto: %v_proj_inline635__ssa_v20_pview
+  // pto: %v_proj_inline578__ssa_v20_pview
   pto::Shape<1, 1, 1, 16, 1024> v33 = pto::Shape<1, 1, 1, 16, 1024>();
-  // pto: %v_proj_inline635__ssa_v20_pview
+  // pto: %v_proj_inline578__ssa_v20_pview
   pto::Stride<16384, 16384, 16384, 1024, 1> v34 = pto::Stride<16384, 16384, 16384, 1024, 1>();
-  // pto: %v_proj_inline635__ssa_v20_pview
+  // pto: %v_proj_inline578__ssa_v20_pview
   GlobalTensor<float, pto::Shape<1, 1, 1, 16, 1024>, pto::Stride<16384, 16384, 16384, 1024, 1>, pto::Layout::ND> v35 = GlobalTensor<float, pto::Shape<1, 1, 1, 16, 1024>, pto::Stride<16384, 16384, 16384, 1024, 1>, pto::Layout::ND>(v32, v33, v34);
   wait_flag(PIPE_V, PIPE_MTE3, EVENT_ID1);
   TSTORE(v35, v30);
@@ -153,14 +153,14 @@ extern "C" __aicore__ __attribute__((always_inline)) void kernel_entry(__gm__ in
     set_atomic_none();
 #endif
 
-    // Unpack tensor: k_proj_inline596__ssa_v20
-    __gm__ Tensor* k_proj_inline596__ssa_v20_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
-    __gm__ float* k_proj_inline596__ssa_v20 = reinterpret_cast<__gm__ float*>(k_proj_inline596__ssa_v20_tensor->buffer.addr) + k_proj_inline596__ssa_v20_tensor->start_offset;
+    // Unpack tensor: k_proj_inline575__ssa_v20
+    __gm__ Tensor* k_proj_inline575__ssa_v20_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
+    __gm__ float* k_proj_inline575__ssa_v20 = reinterpret_cast<__gm__ float*>(k_proj_inline575__ssa_v20_tensor->buffer.addr) + k_proj_inline575__ssa_v20_tensor->start_offset;
 
-    // Unpack tensor: v_proj_inline635__ssa_v20
-    __gm__ Tensor* v_proj_inline635__ssa_v20_tensor = reinterpret_cast<__gm__ Tensor*>(args[1]);
-    __gm__ float* v_proj_inline635__ssa_v20 = reinterpret_cast<__gm__ float*>(v_proj_inline635__ssa_v20_tensor->buffer.addr) + v_proj_inline635__ssa_v20_tensor->start_offset;
+    // Unpack tensor: v_proj_inline578__ssa_v20
+    __gm__ Tensor* v_proj_inline578__ssa_v20_tensor = reinterpret_cast<__gm__ Tensor*>(args[1]);
+    __gm__ float* v_proj_inline578__ssa_v20 = reinterpret_cast<__gm__ float*>(v_proj_inline578__ssa_v20_tensor->buffer.addr) + v_proj_inline578__ssa_v20_tensor->start_offset;
 
     // Forward to ptoas-generated function
-    kv_seed_3(k_proj_inline596__ssa_v20, v_proj_inline635__ssa_v20);
+    kv_seed_3(k_proj_inline575__ssa_v20, v_proj_inline578__ssa_v20);
 }

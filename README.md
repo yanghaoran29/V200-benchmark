@@ -605,8 +605,9 @@ MIX
 | 目录 | B | S | mtp | tile | 块数 | T/任务 | 逻辑任务 |
 |------|--:|--:|----:|-----:|-----:|-------:|---------:|
 | [`deepseek_v4_flash_csa/basic_batch4_mtp1`](deepseek_v4_flash_csa/basic_batch4_mtp1) | 4 | 2 | 1 | —（flash_mtp） | — | 8 | 72 |
-|[`deepseek_v4_flash_csa/lt_batch4_mtp7`](deepseek_v4_flash_csa/lt_batch4_mtp7)|4|8|7|4|1×4|32|71|
-|[`deepseek_v4_flash_csa/lt_batch8_mtp7`](deepseek_v4_flash_csa/lt_batch8_mtp7)|8|8|7|4|2×4|32|113|
+|[`deepseek_v4_flash_csa/lt_batch4_mtp7`](deepseek_v4_flash_csa/lt_batch4_mtp7)|4|8|7|**1**|**4×1**|32|对齐重切（同 5）|
+|[`deepseek_v4_flash_csa/lt_batch5_mtp7`](deepseek_v4_flash_csa/lt_batch5_mtp7)|5|8|7|**1**|**5×1**|40|已上板（推荐）|
+|[`deepseek_v4_flash_csa/lt_batch8_mtp7`](deepseek_v4_flash_csa/lt_batch8_mtp7)|8|8|7|**2**|**4×2**|32|对齐重切（每 2 batch 一刀）|
 |**[`deepseek_v4_flash_csa/lt_batch12_mtp7`](deepseek_v4_flash_csa/lt_batch12_mtp7)**|**12**|8|7|4|3×4|32|155|
 |[`deepseek_v4_flash_csa/lt_batch16_mtp7`](deepseek_v4_flash_csa/lt_batch16_mtp7)|16|8|7|4|4×4|32|197|
 |**[`deepseek_v4_flash_csa/ht_batch60_mtp3`](deepseek_v4_flash_csa/ht_batch60_mtp3)**|**60**|4|3|20|3×20|80|155|
@@ -619,6 +620,7 @@ MIX
 |------|-------|---------|-------------|
 | `deepseek_v4_flash_csa/basic_batch4_mtp1/` | [run_benchmark.py](deepseek_v4_flash_csa/basic_batch4_mtp1/pypto-lib-operator/run_benchmark.py) | [test_decode_csa.py](deepseek_v4_flash_csa/basic_batch4_mtp1/simpler-operator/test_decode_csa.py) | [merged_swimlane.json](deepseek_v4_flash_csa/basic_batch4_mtp1/merged_swimlane.json) / [concurrency_analysis.json](deepseek_v4_flash_csa/basic_batch4_mtp1/concurrency_analysis.json) |
 |`deepseek_v4_flash_csa/lt_batch4_mtp7/`|[run_benchmark.py](deepseek_v4_flash_csa/lt_batch4_mtp7/pypto-lib-operator/run_benchmark.py)|[test_decode_csa.py](deepseek_v4_flash_csa/lt_batch4_mtp7/simpler-operator/test_decode_csa.py)|[merged_swimlane.json](deepseek_v4_flash_csa/lt_batch4_mtp7/merged_swimlane.json) / [concurrency_analysis.json](deepseek_v4_flash_csa/lt_batch4_mtp7/concurrency_analysis.json)|
+|`deepseek_v4_flash_csa/lt_batch5_mtp7/`|[run_benchmark.py](deepseek_v4_flash_csa/lt_batch5_mtp7/pypto-lib-operator/run_benchmark.py)|chip_swimlane + deps|[README](deepseek_v4_flash_csa/lt_batch5_mtp7/README.md) · [拆刀清单](granularity/task_split_5_feasibility.md)|
 |`deepseek_v4_flash_csa/lt_batch8_mtp7/`|[run_benchmark.py](deepseek_v4_flash_csa/lt_batch8_mtp7/pypto-lib-operator/run_benchmark.py)|[test_decode_csa.py](deepseek_v4_flash_csa/lt_batch8_mtp7/simpler-operator/test_decode_csa.py)|[merged_swimlane.json](deepseek_v4_flash_csa/lt_batch8_mtp7/merged_swimlane.json) / [concurrency_analysis.json](deepseek_v4_flash_csa/lt_batch8_mtp7/concurrency_analysis.json)|
 |`deepseek_v4_flash_csa/lt_batch12_mtp7/`|[run_benchmark.py](deepseek_v4_flash_csa/lt_batch12_mtp7/pypto-lib-operator/run_benchmark.py)|[test_decode_csa.py](deepseek_v4_flash_csa/lt_batch12_mtp7/simpler-operator/test_decode_csa.py)|[merged_swimlane.json](deepseek_v4_flash_csa/lt_batch12_mtp7/merged_swimlane.json) / [concurrency_analysis.json](deepseek_v4_flash_csa/lt_batch12_mtp7/concurrency_analysis.json)|
 |`deepseek_v4_flash_csa/lt_batch16_mtp7/`|[run_benchmark.py](deepseek_v4_flash_csa/lt_batch16_mtp7/pypto-lib-operator/run_benchmark.py)|[test_decode_csa.py](deepseek_v4_flash_csa/lt_batch16_mtp7/simpler-operator/test_decode_csa.py)|[merged_swimlane.json](deepseek_v4_flash_csa/lt_batch16_mtp7/merged_swimlane.json) / [concurrency_analysis.json](deepseek_v4_flash_csa/lt_batch16_mtp7/concurrency_analysis.json)|

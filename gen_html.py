@@ -825,27 +825,138 @@ def render_dep_graph_html(leaf: dict) -> str:
 </div>"""
 
 
-def render_leaf_panel(leaf: dict, default_leaf: str) -> str:
-    path = leaf["path"]
-    lid = f"leaf-{leaf['model']}-{leaf['leaf']}"
-    is_default = leaf["leaf"] == default_leaf
-    hidden_attr = "" if is_default else " hidden"
+def render_slice(leaf: dict, default_leaf: str, body: str) -> str:
+    hidden_attr = "" if leaf["leaf"] == default_leaf else " hidden"
     rec = ' <span class="badge-rec">推荐</span>' if leaf["recommended"] else ""
-    title_cls = "rec-hot" if leaf["recommended"] else ""
     return f"""
-<section class="leaf-panel" id="{esc(lid)}" data-model="{esc(leaf['model'])}" data-leaf="{esc(leaf['leaf'])}"{hidden_attr}>
-  <h4 class="{title_cls}"><code>{esc(path)}</code> — {esc(leaf['shape'])}{rec}</h4>
-  <h5>依赖图（120 核 SPMD 并行）</h5>
-  {render_dep_graph_html(leaf)}
-  <h5>各 kernel 执行时间（同类合并）</h5>
-  {render_kernel_table(leaf, f"{lid}-kernel")}
-  <h5>类型汇总</h5>
-  {render_summary_table(leaf, f"{lid}-summary")}
-  <h5>任务粒度分桶</h5>
-  {render_bucket_table(leaf, f"{lid}-bucket")}
-  <h5>直方图</h5>
-  {render_hist(leaf, f"{lid}-hist")}
+<section class="leaf-panel" data-model="{esc(leaf['model'])}" data-leaf="{esc(leaf['leaf'])}"{hidden_attr}>
+  <p class="meta"><code>{esc(leaf['path'])}</code> — {esc(leaf['shape'])}{rec}</p>
+  {body}
 </section>"""
+
+
+def _round_grain(g: dict) -> dict:
+    keys = (
+        "n",
+        "top50_mean_us",
+        "top80_mean_us",
+        "top90_mean_us",
+        "top95_mean_us",
+        "p50",
+        "p80",
+        "p95",
+        "pct_gt_5us",
+    )
+    out = {}
+    for k in keys:
+        v = g.get(k, 0)
+        out[k] = int(v) if k == "n" else round(float(v), 2)
+    return out
+
+
+def grain_for_model(leaves: list[dict]) -> tuple[str, dict]:
+    """Shortest-side top-k% means. Reuse sched JSON when present."""
+    from sched_demand_estimate import build_logical_tasks, topk_mean
+
+    cached: dict[str, dict] = {}
+    jpath = ROOT / "granularity" / "sched_demand_a2a3_to_a5.json"
+    if jpath.exists():
+        payload = json.loads(jpath.read_text(encoding="utf-8"))
+        for key, leaf in (payload.get("leaves") or {}).items():
+            if isinstance(leaf, dict) and leaf.get("grain"):
+                cached[key] = leaf["grain"]
+
+    data: dict[str, dict] = {}
+    rows = []
+    for leaf in leaves:
+        key = leaf["leaf"]
+        if key in cached:
+            g = _round_grain(cached[key])
+        else:
+            leaf_dir = ROOT / leaf["path"]
+            if not (leaf_dir / "deps.json").exists():
+                continue
+            logical, _meta = build_logical_tasks(leaf_dir)
+            g = _round_grain(topk_mean([t.duration_us for t in logical]))
+        data[key] = g
+        hot = ' class="rec-row"' if leaf["recommended"] else ""
+        rows.append(
+            f'<tr{hot} data-leaf="{esc(key)}"><td><code>{esc(key)}</code></td>'
+            f'<td>{g["n"]}</td>'
+            f'<td class="topk-cell">{g["top80_mean_us"]:.2f}</td>'
+            f'<td>{g["p50"]:.2f}</td><td>{g["p80"]:.2f}</td><td>{g["p95"]:.2f}</td>'
+            f'<td>{g["pct_gt_5us"]:.1f}%</td></tr>'
+        )
+    if not rows:
+        return '<p class="note">（无泳道粒度）</p>', {}
+    model = leaves[0]["model"]
+    tid = f"{model}-topk-table"
+    html_tbl = f"""
+<div class="filter-bar topk-bar" data-model="{esc(model)}">
+<span class="filter-label">前 k%</span>
+<button type="button" class="fbtn" data-topk="50">前50%</button>
+<button type="button" class="fbtn active" data-topk="80">前80%</button>
+<button type="button" class="fbtn" data-topk="90">前90%</button>
+<button type="button" class="fbtn" data-topk="95">前95%</button>
+</div>
+<div class="table-wrap"><table class="data" id="{tid}"><thead><tr>
+<th>叶</th><th>n</th><th class="topk-th">前80%均值</th><th>P50</th><th>P80</th><th>P95</th><th>%&gt;5µs</th>
+</tr></thead><tbody>
+{''.join(rows)}
+</tbody></table></div>
+<p class="note">最短侧：按时长升序取前 k% 任务的均值。k 切换只改均值列。</p>
+"""
+    return html_tbl, data
+
+
+def model_section(
+    leaves: list[dict],
+    *,
+    model: str,
+    num: int,
+    title: str,
+    default_leaf: str,
+    compare_title: str,
+    compare_table: dict,
+    compare_id: str,
+) -> tuple[str, dict]:
+    p = str(num)
+    dep = "".join(render_slice(L, default_leaf, render_dep_graph_html(L)) for L in leaves)
+    ops = "".join(
+        render_slice(L, default_leaf, render_kernel_table(L, f"leaf-{model}-{L['leaf']}-kernel"))
+        for L in leaves
+    )
+    types = "".join(
+        render_slice(L, default_leaf, render_summary_table(L, f"leaf-{model}-{L['leaf']}-summary"))
+        for L in leaves
+    )
+    dist = "".join(
+        render_slice(
+            L,
+            default_leaf,
+            render_bucket_table(L, f"leaf-{model}-{L['leaf']}-bucket")
+            + render_hist(L, f"leaf-{model}-{L['leaf']}-hist"),
+        )
+        for L in leaves
+    )
+    grain_html, grain_data = grain_for_model(leaves)
+    return f"""
+  <h2 id="{model}">{p}. {esc(title)}</h2>
+  {config_buttons(leaves, model, default_leaf)}
+  <h3 id="{model}-dep">{p}.1 依赖图</h3>
+  {dep}
+  <h3 id="{model}-grain">{p}.2 任务粒度</h3>
+  <h4 id="{model}-grain-ops">{p}.2.1 各算子任务粒度</h4>
+  {ops}
+  <h4 id="{model}-grain-types">{p}.2.2 各类型任务粒度</h4>
+  {types}
+  <h4 id="{model}-grain-dist">{p}.2.3 任务粒度分布</h4>
+  <p class="note">上为当前配置的分桶与直方图；下表为各叶最短侧前 k% 均值。</p>
+  {dist}
+  {grain_html}
+  <h3 id="{model}-compare">{p}.3 {esc(compare_title)}</h3>
+  {render_means_col_table(compare_table, compare_id)}
+""", grain_data
 
 
 def render_comparison_table(t: dict) -> str:
@@ -997,6 +1108,8 @@ body.sidebar-collapsed #sidebar {
 #sidebar .side-title { font-weight: 700; margin: 0 0 8px; font-size: 0.95rem; }
 #sidebar ul { list-style: none; padding: 0; margin: 0; }
 #sidebar li { margin: 6px 0; }
+#sidebar ul ul { padding-left: 12px; margin: 2px 0 6px; }
+#sidebar ul ul a { font-size: 0.8rem; color: var(--muted); }
 #sidebar a { text-decoration: none; color: var(--text); font-size: 0.88rem; }
 #sidebar a:hover { color: #1a5fb4; }
 #side-toggle {
@@ -1121,6 +1234,20 @@ table.data .main-row { background: #f7f8fa; color: var(--muted); }
   padding: 12px;
   margin: 8px 0 14px;
   overflow-x: auto;
+}
+.fig svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.fig-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 0.82rem;
+  color: var(--muted);
 }
 .fig-title { font-weight: 600; margin-bottom: 8px; }
 .dep-legend { color: var(--muted); font-size: 0.78rem; margin: 0 0 10px; }
@@ -1361,6 +1488,28 @@ JS = r"""
     });
   });
 
+  document.querySelectorAll('.topk-bar').forEach(function (bar) {
+    bar.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-topk]');
+      if (!btn) return;
+      var pct = btn.getAttribute('data-topk');
+      var model = bar.getAttribute('data-model');
+      var key = 'top' + pct + '_mean_us';
+      var table = document.getElementById(model + '-topk-table');
+      if (!table || !window.__grainData || !window.__grainData[model]) return;
+      var th = table.querySelector('.topk-th');
+      if (th) th.textContent = '前' + pct + '%均值';
+      table.querySelectorAll('tbody tr').forEach(function (tr) {
+        var leaf = tr.getAttribute('data-leaf');
+        var cell = tr.querySelector('.topk-cell');
+        var g = window.__grainData[model][leaf];
+        if (!cell || !g) return;
+        var v = g[key];
+        cell.textContent = (typeof v === 'number') ? v.toFixed(2) : v;
+      });
+    });
+  });
+
   setConfig('qwen', 'lt_batch16');
   setConfig('flash', 'lt_batch12_mtp7');
 })();
@@ -1377,43 +1526,78 @@ def main() -> None:
 
     qwen_leaves = [L for L in leaves if L["model"] == "qwen"]
     flash_leaves = [L for L in leaves if L["model"] == "flash"]
+    qwen_html, qwen_grain = model_section(
+        qwen_leaves,
+        model="qwen",
+        num=1,
+        title="Qwen3 decode",
+        default_leaf="lt_batch16",
+        compare_title="六档对照",
+        compare_table=qwen_cmp,
+        compare_id="tbl-qwen-cmp",
+    )
+    flash_html, flash_grain = model_section(
+        flash_leaves,
+        model="flash",
+        num=2,
+        title="Flash CSA",
+        default_leaf="lt_batch12_mtp7",
+        compare_title="八档对照",
+        compare_table=flash_cmp,
+        compare_id="tbl-flash-cmp",
+    )
+    grain_json = json.dumps({"qwen": qwen_grain, "flash": flash_grain}, ensure_ascii=False, separators=(",", ":"))
 
     body = f"""
 <div class="layout">
 <aside id="sidebar">
   <p class="side-title">目录</p>
   <ul>
-    <li><a href="#comparison">总对比表</a></li>
-    <li><a href="#qwen">Qwen3 decode</a></li>
-    <li><a href="#flash">Flash CSA</a></li>
+    <li><a href="#qwen">1. Qwen3 decode</a>
+      <ul>
+        <li><a href="#qwen-dep">1.1 依赖图</a></li>
+        <li><a href="#qwen-grain">1.2 任务粒度</a>
+          <ul>
+            <li><a href="#qwen-grain-ops">1.2.1 各算子任务粒度</a></li>
+            <li><a href="#qwen-grain-types">1.2.2 各类型任务粒度</a></li>
+            <li><a href="#qwen-grain-dist">1.2.3 任务粒度分布</a></li>
+          </ul>
+        </li>
+        <li><a href="#qwen-compare">1.3 六档对照</a></li>
+      </ul>
+    </li>
+    <li><a href="#flash">2. Flash CSA</a>
+      <ul>
+        <li><a href="#flash-dep">2.1 依赖图</a></li>
+        <li><a href="#flash-grain">2.2 任务粒度</a>
+          <ul>
+            <li><a href="#flash-grain-ops">2.2.1 各算子任务粒度</a></li>
+            <li><a href="#flash-grain-types">2.2.2 各类型任务粒度</a></li>
+            <li><a href="#flash-grain-dist">2.2.3 任务粒度分布</a></li>
+          </ul>
+        </li>
+        <li><a href="#flash-compare">2.3 八档对照</a></li>
+      </ul>
+    </li>
+    <li><a href="#v200-sched">3. 时间序列分析</a>
+      <ul>
+        <li><a href="#v200-series-main">3.1 main 分支时间序列</a></li>
+        <li><a href="#v200-series-proxy">3.2 高吞吐 / 低时延模拟时间序列</a></li>
+        <li><a href="#v200-sim120">3.3 120 核模拟泳道时间序列</a></li>
+      </ul>
+    </li>
+    <li><a href="#v200-ascendc">4. AscendC ↔ pypto 对比</a></li>
   </ul>
 </aside>
 <button type="button" id="side-toggle" title="收起/展开目录">«</button>
 <main class="content">
   <h1>V200-benchmark 样例说明</h1>
   <p class="legend-line">单卡 decode 服务负载 · AIC / AIV / MIX 任务粒度。推荐方案标红。</p>
-
-  <h2 id="comparison">总对比表</h2>
-  {render_comparison_table(comparison)}
-  <p class="note-block"><strong>注释（主线 Qwen3 vs basic_batch16）</strong>：同形 batch=16 / ATTN=24，AIC 已对齐（375 条，33.45 vs 33.00）。<code>basic_batch16</code> 去掉了核内 <code>syncall</code>，把 Phase-0 从 MIX 的 <code>attn_swpipe</code> 里拆成独立 <code>attn_phase0</code>（+32 条 AIV），故 AIV 均值上升（6.35→8.33），MIX 均值下降（180.68→156.94；实例数仍为 24）。</p>
-
-  <h2 id="qwen">1. Qwen3 decode layer</h2>
-  <h3>各配置</h3>
-  <p class="legend-line">默认 <code>lt_batch16</code>（推荐）。依赖图见各配置面板（拓扑固定，SPMD 个数随参数变化）。按钮切换 kernel / 分桶 / 直方图。</p>
-  {config_buttons(leaves, "qwen", "lt_batch16")}
-  {"".join(render_leaf_panel(L, "lt_batch16") for L in qwen_leaves)}
-  <h3>六档对照</h3>
-  {render_means_col_table(qwen_cmp, "tbl-qwen-cmp")}
-
-  <h2 id="flash">2. Flash CSA（DeepSeek）</h2>
-  <h3>各配置</h3>
-  <p class="legend-line">默认 <code>lt_batch12_mtp7</code>（推荐，B=12 / SPMD=96）。依赖图见各配置面板（拓扑固定，个数随参数变化）。</p>
-  {config_buttons(leaves, "flash", "lt_batch12_mtp7")}
-  {"".join(render_leaf_panel(L, "lt_batch12_mtp7") for L in flash_leaves)}
-  <h3>八档对照</h3>
-  {render_means_col_table(flash_cmp, "tbl-flash-cmp")}
+  {qwen_html}
+  {flash_html}
 </main>
 </div>
+<script type="application/json" id="grain-topk-data">{grain_json}</script>
 """
 
     doc = f"""<!DOCTYPE html>
@@ -1430,6 +1614,9 @@ def main() -> None:
 {body}
 <script>
 {JS}
+</script>
+<script>
+window.__grainData = JSON.parse(document.getElementById('grain-topk-data').textContent);
 </script>
 </body>
 </html>

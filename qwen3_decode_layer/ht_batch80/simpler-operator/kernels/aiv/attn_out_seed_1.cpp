@@ -67,10 +67,10 @@ extern "C" __aicore__ __attribute__((always_inline)) void kernel_entry(__gm__ in
     set_atomic_none();
 #endif
 
-    // Unpack tensor: attn_out_inline636__ssa_v12
-    __gm__ Tensor* attn_out_inline636__ssa_v12_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
-    __gm__ bfloat16_t* attn_out_inline636__ssa_v12 = reinterpret_cast<__gm__ bfloat16_t*>(attn_out_inline636__ssa_v12_tensor->buffer.addr) + attn_out_inline636__ssa_v12_tensor->start_offset;
+    // Unpack tensor: attn_out_inline533__ssa_v12
+    __gm__ Tensor* attn_out_inline533__ssa_v12_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
+    __gm__ bfloat16_t* attn_out_inline533__ssa_v12 = reinterpret_cast<__gm__ bfloat16_t*>(attn_out_inline533__ssa_v12_tensor->buffer.addr) + attn_out_inline533__ssa_v12_tensor->start_offset;
 
     // Forward to ptoas-generated function
-    attn_out_seed_1(attn_out_inline636__ssa_v12);
+    attn_out_seed_1(attn_out_inline533__ssa_v12);
 }

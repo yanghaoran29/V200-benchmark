@@ -112,41 +112,41 @@ static __aicore__ void rms_recip_3(__gm__ float* v1, __gm__ float* v2) {
   const float v26 = 1.95312503E-4f;
   // pto: %cst_24
   const float v27 = 9.99999997E-7f;
-  // pto: %cur_inline11__rv_v38_view
+  // pto: %cur_inline5__rv_v38_view
   const int64_t v28 = 1;
-  // pto: %cur_inline11__rv_v38_view
+  // pto: %cur_inline5__rv_v38_view
   const int64_t v29 = 1;
-  // pto: %cur_inline11__rv_v38_view
+  // pto: %cur_inline5__rv_v38_view
   const int64_t v30 = 1;
-  // pto: %cur_inline11__rv_v38_view
+  // pto: %cur_inline5__rv_v38_view
   int64_t v31 = v16 * v17;
-  // pto: %cur_inline11__rv_v38_view
+  // pto: %cur_inline5__rv_v38_view
   int64_t v32 = v30 * v31;
-  // pto: %cur_inline11__rv_v38_view
+  // pto: %cur_inline5__rv_v38_view
   pto::Shape<1, 1, 1, -1, -1> v33 = pto::Shape<1, 1, 1, -1, -1>(v28, v29, v30, v16, v17);
-  // pto: %cur_inline11__rv_v38_view
+  // pto: %cur_inline5__rv_v38_view
   pto::Stride<-1, -1, -1, -1, -1> v34 = pto::Stride<-1, -1, -1, -1, -1>(v29 * v32, v32, v31, v17, v18);
-  // pto: %cur_inline11__rv_v38_view
+  // pto: %cur_inline5__rv_v38_view
   GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v35 = GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v1, v33, v34);
-  // pto: %inv_rms_states_inline603__ssa_v8_view
+  // pto: %inv_rms_states_inline537__ssa_v8_view
   const int64_t v36 = 1;
-  // pto: %inv_rms_states_inline603__ssa_v8_view
+  // pto: %inv_rms_states_inline537__ssa_v8_view
   const int64_t v37 = 1;
-  // pto: %inv_rms_states_inline603__ssa_v8_view
+  // pto: %inv_rms_states_inline537__ssa_v8_view
   const int64_t v38 = 1;
-  // pto: %inv_rms_states_inline603__ssa_v8_view
+  // pto: %inv_rms_states_inline537__ssa_v8_view
   int64_t v39 = v16 * v18;
-  // pto: %inv_rms_states_inline603__ssa_v8_view
+  // pto: %inv_rms_states_inline537__ssa_v8_view
   int64_t v40 = v38 * v39;
-  // pto: %inv_rms_states_inline603__ssa_v8_view
+  // pto: %inv_rms_states_inline537__ssa_v8_view
   pto::Shape<1, 1, 1, -1, -1> v41 = pto::Shape<1, 1, 1, -1, -1>(v36, v37, v38, v16, v18);
-  // pto: %inv_rms_states_inline603__ssa_v8_view
+  // pto: %inv_rms_states_inline537__ssa_v8_view
   pto::Stride<-1, -1, -1, -1, -1> v42 = pto::Stride<-1, -1, -1, -1, -1>(v37 * v40, v40, v39, v18, v16);
-  // pto: %inv_rms_states_inline603__ssa_v8_view
+  // pto: %inv_rms_states_inline537__ssa_v8_view
   GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::DN> v43 = GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::DN>(v2, v41, v42);
-  // pto: %partial_sq_inline705__tile
+  // pto: %partial_sq_inline556__tile
   Tile<TileType::Vec, float, 1, 16, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v44 = Tile<TileType::Vec, float, 1, 16, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v18, v16);
-  // pto: %partial_sq_inline705__tile
+  // pto: %partial_sq_inline556__tile
   uint64_t v45 = (uint64_t) v3;
   TASSIGN(v44, v45);
   set_flag(PIPE_V, PIPE_MTE2, EVENT_ID0);
@@ -166,29 +166,29 @@ static __aicore__ void rms_recip_3(__gm__ float* v1, __gm__ float* v2) {
     // pto: %30
     ;
     int64_t v50 = (int64_t) ((uint64_t) v47 + (uint64_t) v25);
-    // pto: %x_chunk_inline561__tile
+    // pto: %x_chunk_inline692__tile
     ;
     Tile<TileType::Vec, float, 16, 256, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v51 = Tile<TileType::Vec, float, 16, 256, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v16, v23);
-    // pto: %x_chunk_inline561__tile
+    // pto: %x_chunk_inline692__tile
     ;
     uint64_t v52 = (uint64_t) v4;
     TASSIGN(v51, v52);
     // pto: %31
     ;
     int64_t v53 = v47 < v20 ? v20 : v47;
-    // pto: %cur_inline11__rv_v38_pview
+    // pto: %cur_inline5__rv_v38_pview
     ;
     __gm__ float* v54 = PTOAS__GLOBAL_TENSOR_DATA(v35);
-    // pto: %cur_inline11__rv_v38_pview
+    // pto: %cur_inline5__rv_v38_pview
     ;
     const int64_t v55 = 0;
-    // pto: %cur_inline11__rv_v38_pview
+    // pto: %cur_inline5__rv_v38_pview
     ;
     pto::Shape<1, 1, 1, 16, 256> v56 = pto::Shape<1, 1, 1, 16, 256>();
-    // pto: %cur_inline11__rv_v38_pview
+    // pto: %cur_inline5__rv_v38_pview
     ;
     pto::Stride<81920, 81920, 81920, 5120, 1> v57 = pto::Stride<81920, 81920, 81920, 5120, 1>();
-    // pto: %cur_inline11__rv_v38_pview
+    // pto: %cur_inline5__rv_v38_pview
     ;
     GlobalTensor<float, pto::Shape<1, 1, 1, 16, 256>, pto::Stride<81920, 81920, 81920, 5120, 1>, pto::Layout::ND> v58 = GlobalTensor<float, pto::Shape<1, 1, 1, 16, 256>, pto::Stride<81920, 81920, 81920, 5120, 1>, pto::Layout::ND>(v54 + (v55 + v53), v56, v57);
     wait_flag(PIPE_V, PIPE_MTE2, EVENT_ID0);
@@ -459,9 +459,9 @@ static __aicore__ void rms_recip_3(__gm__ float* v1, __gm__ float* v2) {
   TASSIGN(v125, v126);
   pipe_barrier(PIPE_V);
   TADDS(v125, v123, v27);
-  // pto: %variance_inline660__tile
+  // pto: %variance_inline469__tile
   Tile<TileType::Vec, float, 16, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v127 = Tile<TileType::Vec, float, 16, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v16, v18);
-  // pto: %variance_inline660__tile
+  // pto: %variance_inline469__tile
   uint64_t v128 = (uint64_t) v4;
   TASSIGN(v127, v128);
   // pto: %t__rm_a0_tmp_v0
@@ -481,31 +481,31 @@ static __aicore__ void rms_recip_3(__gm__ float* v1, __gm__ float* v2) {
   // pto: %23
   uint64_t v134 = (uint64_t) v4;
   TASSIGN(v133, v134);
-  // pto: %inv_rms_inline589__rm_a0_tmp_v2
+  // pto: %inv_rms_inline541__rm_a0_tmp_v2
   Tile<TileType::Vec, float, 1, 16, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v135 = Tile<TileType::Vec, float, 1, 16, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v18, v16);
-  // pto: %inv_rms_inline589__rm_a0_tmp_v2
+  // pto: %inv_rms_inline541__rm_a0_tmp_v2
   uint64_t v136 = (uint64_t) v4;
   TASSIGN(v135, v136);
-  // pto: %inv_rms_inline589__row_major_tmp_v3
+  // pto: %inv_rms_inline541__row_major_tmp_v3
   Tile<TileType::Vec, float, 1, 16, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v137 = Tile<TileType::Vec, float, 1, 16, BLayout::RowMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v18, v16);
-  // pto: %inv_rms_inline589__row_major_tmp_v3
+  // pto: %inv_rms_inline541__row_major_tmp_v3
   uint64_t v138 = (uint64_t) v5;
   TASSIGN(v137, v138);
   pipe_barrier(PIPE_V);
   TRECIP(v137, v135);
   set_flag(PIPE_V, PIPE_MTE3, EVENT_ID0);
-  // pto: %inv_rms_inline589__tile
+  // pto: %inv_rms_inline541__tile
   Tile<TileType::Vec, float, 16, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null> v139 = Tile<TileType::Vec, float, 16, 1, BLayout::ColMajor, -1, -1, SLayout::NoneBox, 512, PadValue::Null, CompactMode::Null>(v16, v18);
-  // pto: %inv_rms_inline589__tile
+  // pto: %inv_rms_inline541__tile
   uint64_t v140 = (uint64_t) v5;
   TASSIGN(v139, v140);
-  // pto: %inv_rms_states_inline603__ssa_v8_pview
+  // pto: %inv_rms_states_inline537__ssa_v8_pview
   __gm__ float* v141 = PTOAS__GLOBAL_TENSOR_DATA(v43);
-  // pto: %inv_rms_states_inline603__ssa_v8_pview
+  // pto: %inv_rms_states_inline537__ssa_v8_pview
   pto::Shape<1, 1, 1, 16, 1> v142 = pto::Shape<1, 1, 1, 16, 1>();
-  // pto: %inv_rms_states_inline603__ssa_v8_pview
+  // pto: %inv_rms_states_inline537__ssa_v8_pview
   pto::Stride<16, 16, 16, 1, 16> v143 = pto::Stride<16, 16, 16, 1, 16>();
-  // pto: %inv_rms_states_inline603__ssa_v8_pview
+  // pto: %inv_rms_states_inline537__ssa_v8_pview
   GlobalTensor<float, pto::Shape<1, 1, 1, 16, 1>, pto::Stride<16, 16, 16, 1, 16>, pto::Layout::DN> v144 = GlobalTensor<float, pto::Shape<1, 1, 1, 16, 1>, pto::Stride<16, 16, 16, 1, 16>, pto::Layout::DN>(v141, v142, v143);
   wait_flag(PIPE_V, PIPE_MTE3, EVENT_ID0);
   TSTORE(v144, v139);
@@ -525,14 +525,14 @@ extern "C" __aicore__ __attribute__((always_inline)) void kernel_entry(__gm__ in
     set_atomic_none();
 #endif
 
-    // Unpack tensor: cur_inline11__rv_v38
-    __gm__ Tensor* cur_inline11__rv_v38_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
-    __gm__ float* cur_inline11__rv_v38 = reinterpret_cast<__gm__ float*>(cur_inline11__rv_v38_tensor->buffer.addr) + cur_inline11__rv_v38_tensor->start_offset;
+    // Unpack tensor: cur_inline5__rv_v38
+    __gm__ Tensor* cur_inline5__rv_v38_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
+    __gm__ float* cur_inline5__rv_v38 = reinterpret_cast<__gm__ float*>(cur_inline5__rv_v38_tensor->buffer.addr) + cur_inline5__rv_v38_tensor->start_offset;
 
-    // Unpack tensor: inv_rms_states_inline603__ssa_v8
-    __gm__ Tensor* inv_rms_states_inline603__ssa_v8_tensor = reinterpret_cast<__gm__ Tensor*>(args[1]);
-    __gm__ float* inv_rms_states_inline603__ssa_v8 = reinterpret_cast<__gm__ float*>(inv_rms_states_inline603__ssa_v8_tensor->buffer.addr) + inv_rms_states_inline603__ssa_v8_tensor->start_offset;
+    // Unpack tensor: inv_rms_states_inline537__ssa_v8
+    __gm__ Tensor* inv_rms_states_inline537__ssa_v8_tensor = reinterpret_cast<__gm__ Tensor*>(args[1]);
+    __gm__ float* inv_rms_states_inline537__ssa_v8 = reinterpret_cast<__gm__ float*>(inv_rms_states_inline537__ssa_v8_tensor->buffer.addr) + inv_rms_states_inline537__ssa_v8_tensor->start_offset;
 
     // Forward to ptoas-generated function
-    rms_recip_3(cur_inline11__rv_v38, inv_rms_states_inline603__ssa_v8);
+    rms_recip_3(cur_inline5__rv_v38, inv_rms_states_inline537__ssa_v8);
 }

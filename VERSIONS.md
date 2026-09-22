@@ -13,14 +13,14 @@ Use the selected PyPTO checkout's installation procedure and pinned dependencies
 with a matching CANN installation. Capture environment: a2a3, 24 AIC / 48 AIV,
 CANN 9.0.0. The 120-AIC target has not been measured.
 
-Serving-load sample tree (14 leaves):
+Serving-load sample tree (15 leaves):
 
 ```
 V200-benchmark/
   qwen3_decode_layer/{basic_batch16,lt_batch16,lt_batch32,
                       ht_batch64,ht_batch80,ht_batch160}/
   deepseek_v4_flash_csa/{basic_batch4_mtp1,
-                         ht_batch180_mtp3,ht_batch100_mtp3,ht_batch60_mtp3,
+                         ht_batch180_mtp3,ht_batch100_mtp3,ht_batch60_mtp3,ht_batch20_mtp3,
                          lt_batch16_mtp7,lt_batch12_mtp7,lt_batch8_mtp7,lt_batch4_mtp7}/
     pypto-lib-operator/
     simpler-operator/

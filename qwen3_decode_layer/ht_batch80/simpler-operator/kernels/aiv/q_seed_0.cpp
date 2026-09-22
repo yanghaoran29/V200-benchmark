@@ -82,21 +82,21 @@ static __aicore__ void q_seed_0(__gm__ float* v1) {
   const int64_t v10 = 512;
   // pto: %cst_9
   const float v11 = 0.0f;
-  // pto: %q_proj_inline684__ssa_v7_view
+  // pto: %q_proj_inline547__ssa_v7_view
   const int64_t v12 = 1;
-  // pto: %q_proj_inline684__ssa_v7_view
+  // pto: %q_proj_inline547__ssa_v7_view
   const int64_t v13 = 1;
-  // pto: %q_proj_inline684__ssa_v7_view
+  // pto: %q_proj_inline547__ssa_v7_view
   const int64_t v14 = 1;
-  // pto: %q_proj_inline684__ssa_v7_view
+  // pto: %q_proj_inline547__ssa_v7_view
   int64_t v15 = v4 * v5;
-  // pto: %q_proj_inline684__ssa_v7_view
+  // pto: %q_proj_inline547__ssa_v7_view
   int64_t v16 = v14 * v15;
-  // pto: %q_proj_inline684__ssa_v7_view
+  // pto: %q_proj_inline547__ssa_v7_view
   pto::Shape<1, 1, 1, -1, -1> v17 = pto::Shape<1, 1, 1, -1, -1>(v12, v13, v14, v4, v5);
-  // pto: %q_proj_inline684__ssa_v7_view
+  // pto: %q_proj_inline547__ssa_v7_view
   pto::Stride<-1, -1, -1, -1, -1> v18 = pto::Stride<-1, -1, -1, -1, -1>(v13 * v16, v16, v15, v5, v6);
-  // pto: %q_proj_inline684__ssa_v7_view
+  // pto: %q_proj_inline547__ssa_v7_view
   GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v19 = GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v1, v17, v18);
   set_flag(PIPE_MTE3, PIPE_V, EVENT_ID0);
   set_flag(PIPE_MTE3, PIPE_V, EVENT_ID1);
@@ -117,19 +117,19 @@ static __aicore__ void q_seed_0(__gm__ float* v1) {
     // pto: %2
     ;
     int64_t v24 = v23 < v7 ? v7 : v23;
-    // pto: %q_proj_inline684__iter_v8_pview
+    // pto: %q_proj_inline547__iter_v8_pview
     ;
     __gm__ float* v25 = PTOAS__GLOBAL_TENSOR_DATA(v19);
-    // pto: %q_proj_inline684__iter_v8_pview
+    // pto: %q_proj_inline547__iter_v8_pview
     ;
     const int64_t v26 = 0;
-    // pto: %q_proj_inline684__iter_v8_pview
+    // pto: %q_proj_inline547__iter_v8_pview
     ;
     pto::Shape<1, 1, 1, 16, 512> v27 = pto::Shape<1, 1, 1, 16, 512>();
-    // pto: %q_proj_inline684__iter_v8_pview
+    // pto: %q_proj_inline547__iter_v8_pview
     ;
     pto::Stride<81920, 81920, 81920, 5120, 1> v28 = pto::Stride<81920, 81920, 81920, 5120, 1>();
-    // pto: %q_proj_inline684__iter_v8_pview
+    // pto: %q_proj_inline547__iter_v8_pview
     ;
     GlobalTensor<float, pto::Shape<1, 1, 1, 16, 512>, pto::Stride<81920, 81920, 81920, 5120, 1>, pto::Layout::ND> v29 = GlobalTensor<float, pto::Shape<1, 1, 1, 16, 512>, pto::Stride<81920, 81920, 81920, 5120, 1>, pto::Layout::ND>(v25 + (v26 + v24), v27, v28);
     wait_flag(PIPE_V, PIPE_MTE3, EVENT_ID0);
@@ -152,19 +152,19 @@ static __aicore__ void q_seed_0(__gm__ float* v1) {
     // pto: %6
     ;
     int64_t v33 = v32 < v7 ? v7 : v32;
-    // pto: %q_proj_inline684__tile_pview
+    // pto: %q_proj_inline547__tile_pview
     ;
     __gm__ float* v34 = PTOAS__GLOBAL_TENSOR_DATA(v19);
-    // pto: %q_proj_inline684__tile_pview
+    // pto: %q_proj_inline547__tile_pview
     ;
     const int64_t v35 = 0;
-    // pto: %q_proj_inline684__tile_pview
+    // pto: %q_proj_inline547__tile_pview
     ;
     pto::Shape<1, 1, 1, 16, 512> v36 = pto::Shape<1, 1, 1, 16, 512>();
-    // pto: %q_proj_inline684__tile_pview
+    // pto: %q_proj_inline547__tile_pview
     ;
     pto::Stride<81920, 81920, 81920, 5120, 1> v37 = pto::Stride<81920, 81920, 81920, 5120, 1>();
-    // pto: %q_proj_inline684__tile_pview
+    // pto: %q_proj_inline547__tile_pview
     ;
     GlobalTensor<float, pto::Shape<1, 1, 1, 16, 512>, pto::Stride<81920, 81920, 81920, 5120, 1>, pto::Layout::ND> v38 = GlobalTensor<float, pto::Shape<1, 1, 1, 16, 512>, pto::Stride<81920, 81920, 81920, 5120, 1>, pto::Layout::ND>(v34 + (v35 + v33), v36, v37);
     wait_flag(PIPE_V, PIPE_MTE3, EVENT_ID1);
@@ -187,10 +187,10 @@ extern "C" __aicore__ __attribute__((always_inline)) void kernel_entry(__gm__ in
     set_atomic_none();
 #endif
 
-    // Unpack tensor: q_proj_inline684__ssa_v7
-    __gm__ Tensor* q_proj_inline684__ssa_v7_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
-    __gm__ float* q_proj_inline684__ssa_v7 = reinterpret_cast<__gm__ float*>(q_proj_inline684__ssa_v7_tensor->buffer.addr) + q_proj_inline684__ssa_v7_tensor->start_offset;
+    // Unpack tensor: q_proj_inline547__ssa_v7
+    __gm__ Tensor* q_proj_inline547__ssa_v7_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
+    __gm__ float* q_proj_inline547__ssa_v7 = reinterpret_cast<__gm__ float*>(q_proj_inline547__ssa_v7_tensor->buffer.addr) + q_proj_inline547__ssa_v7_tensor->start_offset;
 
     // Forward to ptoas-generated function
-    q_seed_0(q_proj_inline684__ssa_v7);
+    q_seed_0(q_proj_inline547__ssa_v7);
 }

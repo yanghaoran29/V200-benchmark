@@ -100,21 +100,21 @@ static __aicore__ void up_proj_0(__gm__ bfloat16_t* v1, __gm__ bfloat16_t* v2, _
   const int64_t v25 = -16;
   // pto: %cn1_index
   const int64_t v26 = -1;
-  // pto: %mlp_norm_in_inline741__rv_v14_view
+  // pto: %mlp_norm_in_inline525__rv_v14_view
   const int64_t v27 = 1;
-  // pto: %mlp_norm_in_inline741__rv_v14_view
+  // pto: %mlp_norm_in_inline525__rv_v14_view
   const int64_t v28 = 1;
-  // pto: %mlp_norm_in_inline741__rv_v14_view
+  // pto: %mlp_norm_in_inline525__rv_v14_view
   const int64_t v29 = 1;
-  // pto: %mlp_norm_in_inline741__rv_v14_view
+  // pto: %mlp_norm_in_inline525__rv_v14_view
   int64_t v30 = v16 * v17;
-  // pto: %mlp_norm_in_inline741__rv_v14_view
+  // pto: %mlp_norm_in_inline525__rv_v14_view
   int64_t v31 = v29 * v30;
-  // pto: %mlp_norm_in_inline741__rv_v14_view
+  // pto: %mlp_norm_in_inline525__rv_v14_view
   pto::Shape<1, 1, 1, -1, -1> v32 = pto::Shape<1, 1, 1, -1, -1>(v27, v28, v29, v16, v17);
-  // pto: %mlp_norm_in_inline741__rv_v14_view
+  // pto: %mlp_norm_in_inline525__rv_v14_view
   pto::Stride<-1, -1, -1, -1, -1> v33 = pto::Stride<-1, -1, -1, -1, -1>(v28 * v31, v31, v30, v17, v18);
-  // pto: %mlp_norm_in_inline741__rv_v14_view
+  // pto: %mlp_norm_in_inline525__rv_v14_view
   GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v34 = GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v1, v32, v33);
   // pto: %w_up__ssa_v0_view
   const int64_t v35 = 1;
@@ -132,27 +132,27 @@ static __aicore__ void up_proj_0(__gm__ bfloat16_t* v1, __gm__ bfloat16_t* v2, _
   pto::Stride<-1, -1, -1, -1, -1> v41 = pto::Stride<-1, -1, -1, -1, -1>(v36 * v39, v39, v38, v19, v18);
   // pto: %w_up__ssa_v0_view
   GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v42 = GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v2, v40, v41);
-  // pto: %up_acc_all_inline762__ssa_v4_view
+  // pto: %up_acc_1_inline614__rv_v2_view
   const int64_t v43 = 1;
-  // pto: %up_acc_all_inline762__ssa_v4_view
+  // pto: %up_acc_1_inline614__rv_v2_view
   const int64_t v44 = 1;
-  // pto: %up_acc_all_inline762__ssa_v4_view
+  // pto: %up_acc_1_inline614__rv_v2_view
   const int64_t v45 = 1;
-  // pto: %up_acc_all_inline762__ssa_v4_view
+  // pto: %up_acc_1_inline614__rv_v2_view
   int64_t v46 = v16 * v19;
-  // pto: %up_acc_all_inline762__ssa_v4_view
+  // pto: %up_acc_1_inline614__rv_v2_view
   int64_t v47 = v45 * v46;
-  // pto: %up_acc_all_inline762__ssa_v4_view
+  // pto: %up_acc_1_inline614__rv_v2_view
   pto::Shape<1, 1, 1, -1, -1> v48 = pto::Shape<1, 1, 1, -1, -1>(v43, v44, v45, v16, v19);
-  // pto: %up_acc_all_inline762__ssa_v4_view
+  // pto: %up_acc_1_inline614__rv_v2_view
   pto::Stride<-1, -1, -1, -1, -1> v49 = pto::Stride<-1, -1, -1, -1, -1>(v44 * v47, v47, v46, v19, v18);
-  // pto: %up_acc_all_inline762__ssa_v4_view
+  // pto: %up_acc_1_inline614__rv_v2_view
   GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v50 = GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v3, v48, v49);
-  // pto: %spmd_up_n_out_inline744__tile, %11
+  // pto: %spmd_up_n_out_inline652__tile, %11
   int64_t v51 = (int64_t) ((uint64_t) ((int64_t) v5) * (uint64_t) v20);
-  // pto: %spmd_up_c_acc_inline745__tile
+  // pto: %spmd_up_c_acc_inline571__tile
   Tile<TileType::Acc, float, 16, 1024, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 1024, PadValue::Null, CompactMode::Null> v52 = Tile<TileType::Acc, float, 16, 1024, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 1024, PadValue::Null, CompactMode::Null>(v16, v20);
-  // pto: %spmd_up_c_acc_inline745__tile
+  // pto: %spmd_up_c_acc_inline571__tile
   uint64_t v53 = (uint64_t) v8;
   TASSIGN(v52, v53);
   set_flag(PIPE_MTE1, PIPE_MTE2, EVENT_ID0);
@@ -166,10 +166,10 @@ static __aicore__ void up_proj_0(__gm__ bfloat16_t* v1, __gm__ bfloat16_t* v2, _
     // pto: %12
     ;
     int64_t v55 = (int64_t) ((uint64_t) v54 * (uint64_t) v23);
-    // pto: %spmd_up_a_k_inline689__tile
+    // pto: %spmd_up_a_k_inline663__tile
     ;
     Tile<TileType::Mat, bfloat16_t, 16, 64, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 512, PadValue::Null, CompactMode::Null> v56 = Tile<TileType::Mat, bfloat16_t, 16, 64, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 512, PadValue::Null, CompactMode::Null>(v16, v23);
-    // pto: %spmd_up_a_k_inline689__tile
+    // pto: %spmd_up_a_k_inline663__tile
     ;
     uint64_t v57 = (uint64_t) v8;
     TASSIGN(v56, v57);
@@ -179,27 +179,27 @@ static __aicore__ void up_proj_0(__gm__ bfloat16_t* v1, __gm__ bfloat16_t* v2, _
     // pto: %16
     ;
     int64_t v59 = v58 < v21 ? v21 : v58;
-    // pto: %mlp_norm_in_inline741__rv_v14_pview
+    // pto: %mlp_norm_in_inline525__rv_v14_pview
     ;
     __gm__ bfloat16_t* v60 = PTOAS__GLOBAL_TENSOR_DATA(v34);
-    // pto: %mlp_norm_in_inline741__rv_v14_pview
+    // pto: %mlp_norm_in_inline525__rv_v14_pview
     ;
     const int64_t v61 = 0;
-    // pto: %mlp_norm_in_inline741__rv_v14_pview
+    // pto: %mlp_norm_in_inline525__rv_v14_pview
     ;
     pto::Shape<1, 1, 1, 16, 64> v62 = pto::Shape<1, 1, 1, 16, 64>();
-    // pto: %mlp_norm_in_inline741__rv_v14_pview
+    // pto: %mlp_norm_in_inline525__rv_v14_pview
     ;
     pto::Stride<81920, 81920, 81920, 5120, 1> v63 = pto::Stride<81920, 81920, 81920, 5120, 1>();
-    // pto: %mlp_norm_in_inline741__rv_v14_pview
+    // pto: %mlp_norm_in_inline525__rv_v14_pview
     ;
     GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, 16, 64>, pto::Stride<81920, 81920, 81920, 5120, 1>, pto::Layout::ND> v64 = GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, 16, 64>, pto::Stride<81920, 81920, 81920, 5120, 1>, pto::Layout::ND>(v60 + (v61 + v59), v62, v63);
     wait_flag(PIPE_MTE1, PIPE_MTE2, EVENT_ID0);
     TLOAD(v56, v64);
-    // pto: %spmd_up_w_k_inline676__tile
+    // pto: %spmd_up_w_k_inline670__tile
     ;
     Tile<TileType::Mat, bfloat16_t, 64, 1024, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 512, PadValue::Null, CompactMode::Null> v65 = Tile<TileType::Mat, bfloat16_t, 64, 1024, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 512, PadValue::Null, CompactMode::Null>(v23, v20);
-    // pto: %spmd_up_w_k_inline676__tile
+    // pto: %spmd_up_w_k_inline670__tile
     ;
     uint64_t v66 = (uint64_t) v9;
     TASSIGN(v65, v66);
@@ -296,20 +296,20 @@ static __aicore__ void up_proj_0(__gm__ bfloat16_t* v1, __gm__ bfloat16_t* v2, _
     wait_flag(PIPE_MTE2, PIPE_MTE1, EVENT_ID0);
     wait_flag(PIPE_M, PIPE_MTE1, EVENT_ID0);
     for (int64_t v95 = v21; v95 < v23; v95 += v24) {
-      // pto: %spmd_up_c_acc_inline745__tile_l0_a
+      // pto: %spmd_up_c_acc_inline571__tile_l0_a
       ;
       Tile<TileType::Left, bfloat16_t, 16, 16, BLayout::RowMajor, -1, -1, SLayout::RowMajor, 512, PadValue::Null, CompactMode::Null> v96 = Tile<TileType::Left, bfloat16_t, 16, 16, BLayout::RowMajor, -1, -1, SLayout::RowMajor, 512, PadValue::Null, CompactMode::Null>(v16, v16);
-      // pto: %spmd_up_c_acc_inline745__tile_l0_a
+      // pto: %spmd_up_c_acc_inline571__tile_l0_a
       ;
       uint64_t v97 = (uint64_t) v12;
       TASSIGN(v96, v97);
       wait_flag(PIPE_M, PIPE_MTE1, EVENT_ID1);
       pipe_barrier(PIPE_MTE1);
       TEXTRACT(v96, v56, v21, v95);
-      // pto: %spmd_up_c_acc_inline745__tile_l0_b
+      // pto: %spmd_up_c_acc_inline571__tile_l0_b
       ;
       Tile<TileType::Right, bfloat16_t, 16, 1024, BLayout::RowMajor, -1, -1, SLayout::ColMajor, 512, PadValue::Null, CompactMode::Null> v98 = Tile<TileType::Right, bfloat16_t, 16, 1024, BLayout::RowMajor, -1, -1, SLayout::ColMajor, 512, PadValue::Null, CompactMode::Null>(v16, v20);
-      // pto: %spmd_up_c_acc_inline745__tile_l0_b
+      // pto: %spmd_up_c_acc_inline571__tile_l0_b
       ;
       uint64_t v99 = (uint64_t) v13;
       TASSIGN(v98, v99);
@@ -439,18 +439,18 @@ static __aicore__ void up_proj_0(__gm__ bfloat16_t* v1, __gm__ bfloat16_t* v2, _
   set_flag(PIPE_M, PIPE_FIX, EVENT_ID0);
   // pto: %46
   int64_t v117 = v51 < v21 ? v21 : v51;
-  // pto: %up_acc_all_inline762__ssa_v4_pview
+  // pto: %up_acc_1_inline614__rv_v2_pview
   __gm__ float* v118 = PTOAS__GLOBAL_TENSOR_DATA(v50);
-  // pto: %up_acc_all_inline762__ssa_v4_pview
+  // pto: %up_acc_1_inline614__rv_v2_pview
   const int64_t v119 = 0;
-  // pto: %up_acc_all_inline762__ssa_v4_pview
+  // pto: %up_acc_1_inline614__rv_v2_pview
   pto::Shape<1, 1, 1, 16, 1024> v120 = pto::Shape<1, 1, 1, 16, 1024>();
-  // pto: %up_acc_all_inline762__ssa_v4_pview
+  // pto: %up_acc_1_inline614__rv_v2_pview
   pto::Stride<278528, 278528, 278528, 17408, 1> v121 = pto::Stride<278528, 278528, 278528, 17408, 1>();
-  // pto: %up_acc_all_inline762__ssa_v4_pview
+  // pto: %up_acc_1_inline614__rv_v2_pview
   GlobalTensor<float, pto::Shape<1, 1, 1, 16, 1024>, pto::Stride<278528, 278528, 278528, 17408, 1>, pto::Layout::ND> v122 = GlobalTensor<float, pto::Shape<1, 1, 1, 16, 1024>, pto::Stride<278528, 278528, 278528, 17408, 1>, pto::Layout::ND>(v118 + (v119 + v117), v120, v121);
   wait_flag(PIPE_M, PIPE_FIX, EVENT_ID0);
-  TSTORE<Tile<TileType::Acc, float, 16, 1024, BLayout::ColMajor, -1, -1, SLayout::RowMajor, 1024, PadValue::Null, CompactMode::Null>, GlobalTensor<float, pto::Shape<1, 1, 1, 16, 1024>, pto::Stride<278528, 278528, 278528, 17408, 1>, pto::Layout::ND>, AtomicType::AtomicAdd>(v122, v52);
+  TSTORE(v122, v52);
   wait_flag(PIPE_MTE1, PIPE_MTE2, EVENT_ID0);
   wait_flag(PIPE_MTE1, PIPE_MTE2, EVENT_ID1);
   wait_flag(PIPE_M, PIPE_MTE1, EVENT_ID0);
@@ -475,23 +475,23 @@ extern "C" __aicore__ __attribute__((always_inline)) void kernel_entry(__gm__ in
     int32_t __pypto_spmd_block_idx = get_block_idx(args);
     int32_t __pypto_spmd_block_num = get_block_num(args);
 
-    // Unpack tensor: mlp_norm_in_inline741__rv_v14
-    __gm__ Tensor* mlp_norm_in_inline741__rv_v14_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
-    __gm__ bfloat16_t* mlp_norm_in_inline741__rv_v14 = reinterpret_cast<__gm__ bfloat16_t*>(mlp_norm_in_inline741__rv_v14_tensor->buffer.addr) + mlp_norm_in_inline741__rv_v14_tensor->start_offset;
+    // Unpack tensor: mlp_norm_in_inline525__rv_v14
+    __gm__ Tensor* mlp_norm_in_inline525__rv_v14_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
+    __gm__ bfloat16_t* mlp_norm_in_inline525__rv_v14 = reinterpret_cast<__gm__ bfloat16_t*>(mlp_norm_in_inline525__rv_v14_tensor->buffer.addr) + mlp_norm_in_inline525__rv_v14_tensor->start_offset;
 
     // Unpack tensor: w_up__ssa_v0
     __gm__ Tensor* w_up__ssa_v0_tensor = reinterpret_cast<__gm__ Tensor*>(args[1]);
     __gm__ bfloat16_t* w_up__ssa_v0 = reinterpret_cast<__gm__ bfloat16_t*>(w_up__ssa_v0_tensor->buffer.addr) + w_up__ssa_v0_tensor->start_offset;
 
-    // Unpack tensor: up_acc_all_inline762__ssa_v4
-    __gm__ Tensor* up_acc_all_inline762__ssa_v4_tensor = reinterpret_cast<__gm__ Tensor*>(args[2]);
-    __gm__ float* up_acc_all_inline762__ssa_v4 = reinterpret_cast<__gm__ float*>(up_acc_all_inline762__ssa_v4_tensor->buffer.addr) + up_acc_all_inline762__ssa_v4_tensor->start_offset;
+    // Unpack tensor: up_acc_1_inline614__rv_v2
+    __gm__ Tensor* up_acc_1_inline614__rv_v2_tensor = reinterpret_cast<__gm__ Tensor*>(args[2]);
+    __gm__ float* up_acc_1_inline614__rv_v2 = reinterpret_cast<__gm__ float*>(up_acc_1_inline614__rv_v2_tensor->buffer.addr) + up_acc_1_inline614__rv_v2_tensor->start_offset;
 
-    // Unpack scalar: layer_hidden_base_inline596__ssa_v0
-    union { uint64_t u64; int64_t val; } layer_hidden_base_inline596__ssa_v0_conv;
-    layer_hidden_base_inline596__ssa_v0_conv.u64 = args[3];
-    int64_t layer_hidden_base_inline596__ssa_v0 = layer_hidden_base_inline596__ssa_v0_conv.val;
+    // Unpack scalar: layer_hidden_base_inline545__ssa_v0
+    union { uint64_t u64; int64_t val; } layer_hidden_base_inline545__ssa_v0_conv;
+    layer_hidden_base_inline545__ssa_v0_conv.u64 = args[3];
+    int64_t layer_hidden_base_inline545__ssa_v0 = layer_hidden_base_inline545__ssa_v0_conv.val;
 
     // Forward to ptoas-generated function
-    up_proj_0(mlp_norm_in_inline741__rv_v14, w_up__ssa_v0, up_acc_all_inline762__ssa_v4, layer_hidden_base_inline596__ssa_v0, __pypto_spmd_block_idx, __pypto_spmd_block_num);
+    up_proj_0(mlp_norm_in_inline525__rv_v14, w_up__ssa_v0, up_acc_1_inline614__rv_v2, layer_hidden_base_inline545__ssa_v0, __pypto_spmd_block_idx, __pypto_spmd_block_num);
 }

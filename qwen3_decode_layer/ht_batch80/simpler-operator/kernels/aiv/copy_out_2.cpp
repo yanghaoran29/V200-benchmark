@@ -96,21 +96,21 @@ static __aicore__ void copy_out_2(__gm__ bfloat16_t* v1, __gm__ float* v2, int64
   pto::Stride<-1, -1, -1, -1, -1> v19 = pto::Stride<-1, -1, -1, -1, -1>(v14 * v17, v17, v16, v6, v7);
   // pto: %out__iter_v16_view
   GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v20 = GlobalTensor<bfloat16_t, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v1, v18, v19);
-  // pto: %cur_inline11__ssa_v35_view
+  // pto: %cur_inline5__ssa_v35_view
   const int64_t v21 = 1;
-  // pto: %cur_inline11__ssa_v35_view
+  // pto: %cur_inline5__ssa_v35_view
   const int64_t v22 = 1;
-  // pto: %cur_inline11__ssa_v35_view
+  // pto: %cur_inline5__ssa_v35_view
   const int64_t v23 = 1;
-  // pto: %cur_inline11__ssa_v35_view
+  // pto: %cur_inline5__ssa_v35_view
   int64_t v24 = v8 * v6;
-  // pto: %cur_inline11__ssa_v35_view
+  // pto: %cur_inline5__ssa_v35_view
   int64_t v25 = v23 * v24;
-  // pto: %cur_inline11__ssa_v35_view
+  // pto: %cur_inline5__ssa_v35_view
   pto::Shape<1, 1, 1, -1, -1> v26 = pto::Shape<1, 1, 1, -1, -1>(v21, v22, v23, v8, v6);
-  // pto: %cur_inline11__ssa_v35_view
+  // pto: %cur_inline5__ssa_v35_view
   pto::Stride<-1, -1, -1, -1, -1> v27 = pto::Stride<-1, -1, -1, -1, -1>(v22 * v25, v25, v24, v6, v7);
-  // pto: %cur_inline11__ssa_v35_view
+  // pto: %cur_inline5__ssa_v35_view
   GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND> v28 = GlobalTensor<float, pto::Shape<1, 1, 1, -1, -1>, pto::Stride<-1, -1, -1, -1, -1>, pto::Layout::ND>(v2, v26, v27);
   set_flag(PIPE_MTE3, PIPE_MTE2, EVENT_ID0);
   for (int64_t v29 = v9; v29 < v10; v29 += v7) {
@@ -130,22 +130,22 @@ static __aicore__ void copy_out_2(__gm__ bfloat16_t* v1, __gm__ float* v2, int64
     // pto: %3
     ;
     int64_t v34 = v30 < v9 ? v9 : v30;
-    // pto: %cur_inline11__ssa_v35_pview
+    // pto: %cur_inline5__ssa_v35_pview
     ;
     __gm__ float* v35 = PTOAS__GLOBAL_TENSOR_DATA(v28);
-    // pto: %cur_inline11__ssa_v35_pview
+    // pto: %cur_inline5__ssa_v35_pview
     ;
     const int64_t v36 = 0;
-    // pto: %cur_inline11__ssa_v35_pview
+    // pto: %cur_inline5__ssa_v35_pview
     ;
     const int64_t v37 = 5120;
-    // pto: %cur_inline11__ssa_v35_pview
+    // pto: %cur_inline5__ssa_v35_pview
     ;
     pto::Shape<1, 1, 1, 16, 256> v38 = pto::Shape<1, 1, 1, 16, 256>();
-    // pto: %cur_inline11__ssa_v35_pview
+    // pto: %cur_inline5__ssa_v35_pview
     ;
     pto::Stride<81920, 81920, 81920, 5120, 1> v39 = pto::Stride<81920, 81920, 81920, 5120, 1>();
-    // pto: %cur_inline11__ssa_v35_pview
+    // pto: %cur_inline5__ssa_v35_pview
     ;
     GlobalTensor<float, pto::Shape<1, 1, 1, 16, 256>, pto::Stride<81920, 81920, 81920, 5120, 1>, pto::Layout::ND> v40 = GlobalTensor<float, pto::Shape<1, 1, 1, 16, 256>, pto::Stride<81920, 81920, 81920, 5120, 1>, pto::Layout::ND>(v35 + (v36 + v33 * v37 + v34), v38, v39);
     wait_flag(PIPE_MTE3, PIPE_MTE2, EVENT_ID0);
@@ -209,15 +209,15 @@ extern "C" __aicore__ __attribute__((always_inline)) void kernel_entry(__gm__ in
     __gm__ Tensor* out__iter_v16_tensor = reinterpret_cast<__gm__ Tensor*>(args[0]);
     __gm__ bfloat16_t* out__iter_v16 = reinterpret_cast<__gm__ bfloat16_t*>(out__iter_v16_tensor->buffer.addr) + out__iter_v16_tensor->start_offset;
 
-    // Unpack tensor: cur_inline11__ssa_v35
-    __gm__ Tensor* cur_inline11__ssa_v35_tensor = reinterpret_cast<__gm__ Tensor*>(args[1]);
-    __gm__ float* cur_inline11__ssa_v35 = reinterpret_cast<__gm__ float*>(cur_inline11__ssa_v35_tensor->buffer.addr) + cur_inline11__ssa_v35_tensor->start_offset;
+    // Unpack tensor: cur_inline5__ssa_v35
+    __gm__ Tensor* cur_inline5__ssa_v35_tensor = reinterpret_cast<__gm__ Tensor*>(args[1]);
+    __gm__ float* cur_inline5__ssa_v35 = reinterpret_cast<__gm__ float*>(cur_inline5__ssa_v35_tensor->buffer.addr) + cur_inline5__ssa_v35_tensor->start_offset;
 
-    // Unpack scalar: ob0_inline2__idx_v3
-    union { uint64_t u64; int64_t val; } ob0_inline2__idx_v3_conv;
-    ob0_inline2__idx_v3_conv.u64 = args[2];
-    int64_t ob0_inline2__idx_v3 = ob0_inline2__idx_v3_conv.val;
+    // Unpack scalar: ob0_inline16__idx_v3
+    union { uint64_t u64; int64_t val; } ob0_inline16__idx_v3_conv;
+    ob0_inline16__idx_v3_conv.u64 = args[2];
+    int64_t ob0_inline16__idx_v3 = ob0_inline16__idx_v3_conv.val;
 
     // Forward to ptoas-generated function
-    copy_out_2(out__iter_v16, cur_inline11__ssa_v35, ob0_inline2__idx_v3);
+    copy_out_2(out__iter_v16, cur_inline5__ssa_v35, ob0_inline16__idx_v3);
 }
