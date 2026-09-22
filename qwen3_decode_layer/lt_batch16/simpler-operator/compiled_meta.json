@@ -1,0 +1,185 @@
+{
+  "schema": 1,
+  "params": [
+    {
+      "name": "hidden_states",
+      "direction": "In",
+      "shape": [
+        16,
+        5120
+      ],
+      "dtype": "bfloat16"
+    },
+    {
+      "name": "input_rms_weight",
+      "direction": "In",
+      "shape": [
+        1,
+        5120
+      ],
+      "dtype": "fp32"
+    },
+    {
+      "name": "wq",
+      "direction": "In",
+      "shape": [
+        5120,
+        5120
+      ],
+      "dtype": "bfloat16"
+    },
+    {
+      "name": "wk",
+      "direction": "In",
+      "shape": [
+        5120,
+        1024
+      ],
+      "dtype": "bfloat16"
+    },
+    {
+      "name": "wv",
+      "direction": "In",
+      "shape": [
+        5120,
+        1024
+      ],
+      "dtype": "bfloat16"
+    },
+    {
+      "name": "q_norm_weight",
+      "direction": "In",
+      "shape": [
+        1,
+        128
+      ],
+      "dtype": "fp32"
+    },
+    {
+      "name": "k_norm_weight",
+      "direction": "In",
+      "shape": [
+        1,
+        128
+      ],
+      "dtype": "fp32"
+    },
+    {
+      "name": "seq_lens",
+      "direction": "In",
+      "shape": [
+        -1
+      ],
+      "dtype": "int32"
+    },
+    {
+      "name": "block_table",
+      "direction": "In",
+      "shape": [
+        -1
+      ],
+      "dtype": "int32"
+    },
+    {
+      "name": "slot_mapping",
+      "direction": "In",
+      "shape": [
+        -1
+      ],
+      "dtype": "int32"
+    },
+    {
+      "name": "rope_cos",
+      "direction": "In",
+      "shape": [
+        4096,
+        128
+      ],
+      "dtype": "fp32"
+    },
+    {
+      "name": "rope_sin",
+      "direction": "In",
+      "shape": [
+        4096,
+        128
+      ],
+      "dtype": "fp32"
+    },
+    {
+      "name": "k_cache",
+      "direction": "In",
+      "shape": [
+        -1,
+        128
+      ],
+      "dtype": "bfloat16"
+    },
+    {
+      "name": "v_cache",
+      "direction": "In",
+      "shape": [
+        -1,
+        128
+      ],
+      "dtype": "bfloat16"
+    },
+    {
+      "name": "wo",
+      "direction": "In",
+      "shape": [
+        5120,
+        5120
+      ],
+      "dtype": "bfloat16"
+    },
+    {
+      "name": "w_gate",
+      "direction": "In",
+      "shape": [
+        5120,
+        17408
+      ],
+      "dtype": "bfloat16"
+    },
+    {
+      "name": "w_up",
+      "direction": "In",
+      "shape": [
+        5120,
+        17408
+      ],
+      "dtype": "bfloat16"
+    },
+    {
+      "name": "w_down",
+      "direction": "In",
+      "shape": [
+        17408,
+        5120
+      ],
+      "dtype": "bfloat16"
+    },
+    {
+      "name": "post_rms_weight",
+      "direction": "In",
+      "shape": [
+        1,
+        5120
+      ],
+      "dtype": "fp32"
+    },
+    {
+      "name": "out",
+      "direction": "Out",
+      "shape": [
+        16,
+        5120
+      ],
+      "dtype": "bfloat16"
+    }
+  ],
+  "num_return_types": 0,
+  "platform": "a2a3",
+  "backend_type": "Ascend910B"
+}

@@ -1,0 +1,161 @@
+{
+  "level": 4,
+  "caps": {
+    "aic": 24,
+    "aiv": 48
+  },
+  "dependency_tasks": 332,
+  "early_dispatch_true": 0,
+  "early_dispatch_false": 332,
+  "expected_physical_rows": 1714,
+  "joined_rows": 1714,
+  "captured_test_span_us": 1693.58,
+  "resources": {
+    "aic": {
+      "rows": 1090,
+      "peak": 24,
+      "peak_time_us": 95.14,
+      "busy_sum_us": 33598.9,
+      "span_us": 1640.86,
+      "average_utilization": 0.8532
+    },
+    "aiv": {
+      "rows": 624,
+      "peak": 48,
+      "peak_time_us": 204.3,
+      "busy_sum_us": 17939.62,
+      "span_us": 1690.54,
+      "average_utilization": 0.2211
+    }
+  },
+  "aic_logical_envelope_peak_demand": {
+    "demand": 190,
+    "time_us": 400.96000000000004,
+    "logical_tasks": 4,
+    "active": [
+      {
+        "name": "attn_swpipe_aic",
+        "block_num": 120
+      },
+      {
+        "name": "q_proj_0",
+        "block_num": 50
+      },
+      {
+        "name": "v_proj_0",
+        "block_num": 10
+      },
+      {
+        "name": "k_proj_0",
+        "block_num": 10
+      }
+    ]
+  },
+  "aic_logical_envelope_peak_count": {
+    "count": 25,
+    "time_us": 1461.24,
+    "demand": 105,
+    "active": [
+      {
+        "name": "gate_proj_25",
+        "block_num": 5
+      },
+      {
+        "name": "gate_proj_22",
+        "block_num": 5
+      },
+      {
+        "name": "gate_proj_19",
+        "block_num": 5
+      },
+      {
+        "name": "up_proj_20",
+        "block_num": 5
+      },
+      {
+        "name": "up_proj_27",
+        "block_num": 5
+      },
+      {
+        "name": "up_proj_29",
+        "block_num": 5
+      },
+      {
+        "name": "gate_proj_20",
+        "block_num": 5
+      },
+      {
+        "name": "up_proj_26",
+        "block_num": 5
+      },
+      {
+        "name": "up_proj_17",
+        "block_num": 5
+      },
+      {
+        "name": "gate_proj_16",
+        "block_num": 5
+      },
+      {
+        "name": "up_proj_24",
+        "block_num": 5
+      },
+      {
+        "name": "gate_proj_27",
+        "block_num": 5
+      },
+      {
+        "name": "gate_proj_29",
+        "block_num": 5
+      },
+      {
+        "name": "gate_proj_21",
+        "block_num": 5
+      },
+      {
+        "name": "gate_proj_23",
+        "block_num": 5
+      },
+      {
+        "name": "up_proj_18",
+        "block_num": 5
+      },
+      {
+        "name": "down_proj_0",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj_0",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj_0",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj_0",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj_0",
+        "block_num": 1
+      },
+      {
+        "name": "gate_proj_17",
+        "block_num": 5
+      },
+      {
+        "name": "gate_proj_26",
+        "block_num": 5
+      },
+      {
+        "name": "up_proj_23",
+        "block_num": 5
+      },
+      {
+        "name": "gate_proj_31",
+        "block_num": 5
+      }
+    ]
+  }
+}

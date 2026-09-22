@@ -1,6 +1,16 @@
 *.so
 *.o
-__pycache__
+*.bin
+*.pyc
+__pycache__/
+cache/
 outputs/
+build_output/
 build_outputs/
-swimlane/
+dfx_outputs/
+data/
+report/
+*.log
+# Raw onboard dumps (regenerate via run_leaf_onboard.sh); keep case_*.md only.
+granularity/live_captures/
+granularity/live_captures_v2/

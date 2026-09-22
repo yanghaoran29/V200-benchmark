@@ -1,0 +1,85 @@
+{
+  "level": 4,
+  "caps": {
+    "aic": 24,
+    "aiv": 48
+  },
+  "dependency_tasks": 71,
+  "early_dispatch_true": 0,
+  "early_dispatch_false": 71,
+  "expected_physical_rows": 1119,
+  "joined_rows": 1119,
+  "captured_test_span_us": 827.98,
+  "resources": {
+    "aic": {
+      "rows": 545,
+      "peak": 24,
+      "peak_time_us": 185.24,
+      "busy_sum_us": 8413.04,
+      "span_us": 780.64,
+      "average_utilization": 0.449
+    },
+    "aiv": {
+      "rows": 574,
+      "peak": 48,
+      "peak_time_us": 415.52,
+      "busy_sum_us": 9225.76,
+      "span_us": 823.56,
+      "average_utilization": 0.2334
+    }
+  },
+  "aic_logical_envelope_peak_demand": {
+    "demand": 104,
+    "time_us": 200.16,
+    "logical_tasks": 4,
+    "active": [
+      {
+        "name": "qr_proj_matmul",
+        "block_num": 16
+      },
+      {
+        "name": "kv_proj_matmul",
+        "block_num": 16
+      },
+      {
+        "name": "kv_score_proj_0",
+        "block_num": 8
+      },
+      {
+        "name": "kv_score_proj",
+        "block_num": 64
+      }
+    ]
+  },
+  "aic_logical_envelope_peak_count": {
+    "count": 6,
+    "time_us": 835.24,
+    "demand": 48,
+    "active": [
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      },
+      {
+        "name": "proj_b_mm",
+        "block_num": 8
+      }
+    ]
+  }
+}

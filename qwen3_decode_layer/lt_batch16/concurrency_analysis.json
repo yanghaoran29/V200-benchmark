@@ -1,0 +1,145 @@
+{
+  "level": 4,
+  "caps": {
+    "aic": 24,
+    "aiv": 48
+  },
+  "dependency_tasks": 166,
+  "early_dispatch_true": 0,
+  "early_dispatch_false": 166,
+  "expected_physical_rows": 857,
+  "joined_rows": 857,
+  "captured_test_span_us": 904.0,
+  "resources": {
+    "aic": {
+      "rows": 545,
+      "peak": 24,
+      "peak_time_us": 131.3,
+      "busy_sum_us": 16959.66,
+      "span_us": 845.22,
+      "average_utilization": 0.8361
+    },
+    "aiv": {
+      "rows": 312,
+      "peak": 48,
+      "peak_time_us": 228.26,
+      "busy_sum_us": 8893.62,
+      "span_us": 901.14,
+      "average_utilization": 0.2056
+    }
+  },
+  "aic_logical_envelope_peak_demand": {
+    "demand": 120,
+    "time_us": 225.08,
+    "logical_tasks": 1,
+    "active": [
+      {
+        "name": "attn_swpipe_aic",
+        "block_num": 120
+      }
+    ]
+  },
+  "aic_logical_envelope_peak_count": {
+    "count": 24,
+    "time_us": 885.5,
+    "demand": 28,
+    "active": [
+      {
+        "name": "up_proj_0",
+        "block_num": 5
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      },
+      {
+        "name": "down_proj",
+        "block_num": 1
+      }
+    ]
+  }
+}
