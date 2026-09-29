@@ -1,0 +1,31 @@
+{
+  "leaf": "ht_batch20_mtp3",
+  "aic_cores": 120,
+  "aiv_cores": 240,
+  "mix_aiv_per_aic": 1,
+  "n_logical": 239,
+  "sim_span_us": 335.84,
+  "assigned_span_us": 336.0,
+  "sim_n_instances_pre_expand": 2659,
+  "swimlane_rows": 3059,
+  "counts_page_style": {
+    "n_aic": 1433,
+    "n_aiv": 826,
+    "n_mix": 400,
+    "n": 2659
+  },
+  "peak_dispatch_5us": 240,
+  "peak_completion_5us": 240,
+  "leaf_meas_n": 2659,
+  "leaf_meas_span_us": 2004.84,
+  "cycle_bumps": 216,
+  "same_core_overlaps": 0,
+  "sibling_edges_dropped": 72,
+  "fold_edges_dropped": 0,
+  "out_cast_edges_dropped": 0,
+  "csa_tile_edges_dropped": 20,
+  "toolkit_sidecars": [
+    "deps.json",
+    "name_map.json"
+  ]
+}
