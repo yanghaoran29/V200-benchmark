@@ -4,7 +4,9 @@ All batch / mtp values are per card. DeepSeek: DECODE_SEQ = mtp + 1.
 Qwen ignores mtp and only changes public batch (not batch_pad / SPMD width).
 
 Larger public batch is split along the batch axis so per-task work stays
-at a fixed tile: flash HT=20, flash LT=4, qwen=16.
+at a fixed tile: flash HT_BATCH20 tile=4, qwen=16.
+Scheduler capture cases only: BASIC_BATCH4_MTP1, HT_BATCH20_MTP3,
+LT_BATCH16, HT_BATCH80.
 
 Select a case with env ``V200_SERVING_CASE`` or ``--serving-case`` on
 run_benchmark.py. Each sample leaf defaults to its directory case name.
@@ -17,24 +19,15 @@ from typing import Optional
 
 # case -> (decode_batch, mtp, decode_seq, T)
 DS_CASES: dict[str, tuple[int, int, int, int]] = {
-    "HT_BATCH180_MTP3": (180, 3, 4, 720),
-    "HT_BATCH100_MTP3": (100, 3, 4, 400),
-    "HT_BATCH60_MTP3": (60, 3, 4, 240),
-    "LT_BATCH16_MTP7": (16, 7, 8, 128),
-    "LT_BATCH12_MTP7": (12, 7, 8, 96),
-    "LT_BATCH8_MTP7": (8, 7, 8, 64),
-    "LT_BATCH4_MTP7": (4, 7, 8, 32),
-    # Mainline-shaped control: B=4 S=2 (mtp=1). Leaf vendors flash_mtp tiling (no N_BATCH_TILES).
+    # B=20 with tile=4 (see FLASH_BATCH_TILE_BY_CASE): 5 tiles × 4.
+    "HT_BATCH20_MTP3": (20, 3, 4, 80),
+    # Mainline-shaped control: B=4 S=2 (mtp=1). No N_BATCH_TILES.
     "BASIC_BATCH4_MTP1": (4, 1, 2, 8),
 }
 
 QWEN_CASES: dict[str, int] = {
-    "BASIC_BATCH16": 16,
     "LT_BATCH16": 16,
-    "LT_BATCH32": 32,
-    "HT_BATCH64": 64,
     "HT_BATCH80": 80,
-    "HT_BATCH160": 160,
 }
 
 QWEN_ATTN_SPMD_BASIC = 24
@@ -43,26 +36,21 @@ QWEN_ATTN_SPMD_SERVING = 120
 # Per-task batch tiles. Serving batch must be an integer multiple.
 FLASH_BATCH_TILE_HT = 20
 FLASH_BATCH_TILE_LT = 4
+# LT knife cuts aligned with feasibility (mainline×batch for C-class):
+#   B=4/5 → 1 req/tile; B=8 → 2 req/tile (every 2 batches one knife).
+FLASH_BATCH_TILE_BY_CASE: dict[str, int] = {
+    "HT_BATCH20_MTP3": 4,
+}
 QWEN_BATCH_TILE = 16
 
 ENV_NAME = "V200_SERVING_CASE"
 
 # Folder leaf name -> case key
 LEAF_TO_CASE: dict[str, str] = {
-    "ht_batch180_mtp3": "HT_BATCH180_MTP3",
-    "ht_batch100_mtp3": "HT_BATCH100_MTP3",
-    "ht_batch60_mtp3": "HT_BATCH60_MTP3",
-    "lt_batch16_mtp7": "LT_BATCH16_MTP7",
-    "lt_batch12_mtp7": "LT_BATCH12_MTP7",
-    "lt_batch8_mtp7": "LT_BATCH8_MTP7",
-    "lt_batch4_mtp7": "LT_BATCH4_MTP7",
+    "ht_batch20_mtp3": "HT_BATCH20_MTP3",
     "basic_batch4_mtp1": "BASIC_BATCH4_MTP1",
-    "basic_batch16": "BASIC_BATCH16",
     "lt_batch16": "LT_BATCH16",
-    "lt_batch32": "LT_BATCH32",
-    "ht_batch64": "HT_BATCH64",
     "ht_batch80": "HT_BATCH80",
-    "ht_batch160": "HT_BATCH160",
 }
 
 
@@ -105,12 +93,14 @@ def is_ht_case(case: Optional[str] = None) -> bool:
 
 
 def flash_batch_tile(case: Optional[str] = None, decode_batch: Optional[int] = None) -> int:
-    """Per-task request count for flash: 20 (HT) or 4 (LT/BASIC). Unset keeps one tile."""
+    """Per-task request count for flash HT/LT (see FLASH_BATCH_TILE_BY_CASE)."""
     name = serving_case_name(case)
     if name is None:
         return decode_batch if decode_batch is not None else FLASH_BATCH_TILE_HT
     if name not in DS_CASES:
         return decode_batch if decode_batch is not None else FLASH_BATCH_TILE_HT
+    if name in FLASH_BATCH_TILE_BY_CASE:
+        return FLASH_BATCH_TILE_BY_CASE[name]
     return FLASH_BATCH_TILE_HT if name.startswith("HT_") else FLASH_BATCH_TILE_LT
 
 

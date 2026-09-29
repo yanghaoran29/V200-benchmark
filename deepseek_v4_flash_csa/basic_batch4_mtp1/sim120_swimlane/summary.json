@@ -1,0 +1,31 @@
+{
+  "leaf": "basic_batch4_mtp1",
+  "aic_cores": 120,
+  "aiv_cores": 240,
+  "mix_aiv_per_aic": 1,
+  "n_logical": 71,
+  "sim_span_us": 163.8,
+  "assigned_span_us": 163.0,
+  "sim_n_instances_pre_expand": 455,
+  "swimlane_rows": 495,
+  "counts_page_style": {
+    "n_aic": 273,
+    "n_aiv": 142,
+    "n_mix": 40,
+    "n": 455
+  },
+  "peak_dispatch_5us": 74,
+  "peak_completion_5us": 65,
+  "leaf_meas_n": 455,
+  "leaf_meas_span_us": 444.98,
+  "cycle_bumps": 0,
+  "same_core_overlaps": 0,
+  "sibling_edges_dropped": 0,
+  "fold_edges_dropped": 0,
+  "out_cast_edges_dropped": 0,
+  "csa_tile_edges_dropped": 0,
+  "toolkit_sidecars": [
+    "deps.json",
+    "name_map.json"
+  ]
+}

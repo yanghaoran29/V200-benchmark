@@ -22,6 +22,7 @@ for leaf in \
   deepseek_v4_flash_csa/lt_batch8_mtp7 \
   deepseek_v4_flash_csa/lt_batch12_mtp7 \
   deepseek_v4_flash_csa/lt_batch16_mtp7 \
+  deepseek_v4_flash_csa/ht_batch20_mtp3 \
   deepseek_v4_flash_csa/ht_batch60_mtp3 \
   deepseek_v4_flash_csa/ht_batch100_mtp3 \
   deepseek_v4_flash_csa/ht_batch180_mtp3

@@ -12,7 +12,9 @@ rm -rf "$OUT"
 mkdir -p "$OUT"
 cd "$REPO"
 # shellcheck disable=SC1091
-. .venv/bin/activate
+. "$REPO/activate.sh"
+# Prefer pinned ptoas (PTOAS_ROOT) over /usr/local/bin/ptoas-0.64.
+export PATH="${PTOAS_ROOT}/bin:${PTOAS_ROOT}:${PATH}"
 python "$V200/$LEAF_REL/pypto-lib-operator/run_benchmark.py" \
   -p a2a3 -d "$DEVICE" --skip-golden --enable-chip-swimlane 4 --enable-dep-gen \
   --dep-output-dir "$OUT"

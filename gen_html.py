@@ -30,9 +30,11 @@ from swimlane_timing_table import (  # noqa: E402
 RECOMMENDED = {
     "lt_batch16",
     "ht_batch80",
-    "lt_batch12_mtp7",
-    "ht_batch60_mtp3",
+    "basic_batch4_mtp1",
+    "ht_batch20_mtp3",
 }
+# Parameter catalog matches Scheduler capture cases only.
+SCHEDULER_LEAVES = set(RECOMMENDED)
 BUCKETS = ["0-5", "5-10", "10-15", "15-20", "20-30", "30-50", "50+"]
 BUCKETS_FINE = [b[0] for b in BUCKETS_MIX_FINE_TAIL]
 
@@ -474,6 +476,17 @@ def extract_section_table(md: str, heading: str) -> dict | None:
             if tables:
                 return tables[0]
     return None
+
+
+def _keep_scheduler_rows(table: dict | None) -> dict | None:
+    if not table:
+        return table
+    rows = [
+        row
+        for row in table["rows"]
+        if any(leaf in " ".join(row) for leaf in SCHEDULER_LEAVES)
+    ]
+    return {**table, "rows": rows}
 
 
 def extract_comparison(md: str) -> dict:
@@ -1511,7 +1524,7 @@ JS = r"""
   });
 
   setConfig('qwen', 'lt_batch16');
-  setConfig('flash', 'lt_batch12_mtp7');
+  setConfig('flash', 'basic_batch4_mtp1');
 })();
 """
 
@@ -1519,10 +1532,13 @@ JS = r"""
 def main() -> None:
     ASSETS.mkdir(exist_ok=True)
     md = README.read_text(encoding="utf-8")
-    leaves = parse_leaf_blocks(md)
+    leaves = [L for L in parse_leaf_blocks(md) if L["leaf"] in SCHEDULER_LEAVES]
     comparison = extract_comparison(md)
-    qwen_cmp = extract_section_table(md, "## 1.3 六档对照")
-    flash_cmp = extract_section_table(md, "## 2.3 八档对照") or extract_section_table(md, "## 2.3 七档对照")
+    qwen_cmp = _keep_scheduler_rows(extract_section_table(md, "## 1.3 六档对照"))
+    flash_cmp = _keep_scheduler_rows(
+        extract_section_table(md, "## 2.3 八档对照")
+        or extract_section_table(md, "## 2.3 七档对照")
+    )
 
     qwen_leaves = [L for L in leaves if L["model"] == "qwen"]
     flash_leaves = [L for L in leaves if L["model"] == "flash"]
@@ -1532,7 +1548,7 @@ def main() -> None:
         num=1,
         title="Qwen3 decode",
         default_leaf="lt_batch16",
-        compare_title="六档对照",
+        compare_title="Scheduler 样例",
         compare_table=qwen_cmp,
         compare_id="tbl-qwen-cmp",
     )
@@ -1541,8 +1557,8 @@ def main() -> None:
         model="flash",
         num=2,
         title="Flash CSA",
-        default_leaf="lt_batch12_mtp7",
-        compare_title="八档对照",
+        default_leaf="basic_batch4_mtp1",
+        compare_title="Scheduler 样例",
         compare_table=flash_cmp,
         compare_id="tbl-flash-cmp",
     )
@@ -1563,7 +1579,7 @@ def main() -> None:
             <li><a href="#qwen-grain-dist">1.2.3 任务粒度分布</a></li>
           </ul>
         </li>
-        <li><a href="#qwen-compare">1.3 六档对照</a></li>
+        <li><a href="#qwen-compare">1.3 Scheduler 样例</a></li>
       </ul>
     </li>
     <li><a href="#flash">2. Flash CSA</a>
@@ -1576,7 +1592,7 @@ def main() -> None:
             <li><a href="#flash-grain-dist">2.2.3 任务粒度分布</a></li>
           </ul>
         </li>
-        <li><a href="#flash-compare">2.3 八档对照</a></li>
+        <li><a href="#flash-compare">2.3 Scheduler 样例</a></li>
       </ul>
     </li>
     <li><a href="#v200-sched">3. 时间序列分析</a>
@@ -1587,6 +1603,14 @@ def main() -> None:
       </ul>
     </li>
     <li><a href="#v200-ascendc">4. AscendC ↔ pypto 对比</a></li>
+    <li><a href="#v200-sched-sample">5. Scheduler 样例构建与 SPMD</a>
+      <ul>
+        <li><a href="#v200-sched-pipeline">5.1 样例构建流水线</a></li>
+        <li><a href="#v200-sched-fields">5.2 字段约定</a></li>
+        <li><a href="#v200-sched-irregular">5.3 异形改写</a></li>
+        <li><a href="#v200-sched-expand">5.4 SPMD 依赖展开</a></li>
+      </ul>
+    </li>
   </ul>
 </aside>
 <button type="button" id="side-toggle" title="收起/展开目录">«</button>
